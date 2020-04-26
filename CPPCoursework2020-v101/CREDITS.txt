@@ -1,0 +1,11 @@
+Music and SFX from RPG Maker
+Also used Darren Curtis' Commercially Free Music
+
+Enemy and Player sprites are from Heroes of Might and Magic II
+https://www.spriters-resource.com/pc_computer/heroesofmightandmagic2/
+
+Weapons and Items are mostly from Terraria, including various Terraria mods
+https://www.spriters-resource.com/pc_computer/terraria/
+
+Background Tiles and some Items are from the Dokucraft Texture Pack for Minecraft
+https://www.minecraftforum.net/forums/mapping-and-modding-java-edition/resource-packs/2958851-32x-bedrock-official-dokucraft-the-saga-continues

@@ -1,0 +1,85 @@
+SKELETON SAVES THE DUNGEON
+
+Genre is a dungeon-crawling RPG
+Entire game is turn-based, including combat, picking up/dropping items, equipping/unequipping items, etc.
+Player has a maximum number of actions per turn (starts as 1 of each action type)
+Player can move 1 tile at a time, up to a set distance maximum per turn
+Enemies play by the same rules, with a set number of actions they can take per turn
+
+Actions Allowed = Movement, Item Use, Attack, Environment Interaction
+Interactions with tiles can include: breaking an obstacle, activating a switch, etc.
+
+STATS:
+Health (damage taken before death)
+Stamina (max tiles moved per turn. certain milestones grant additional item/attack uses)
+Strength (chance to hit with melee)
+Ranged (chance to hit with projectile)
+Magic (chance to hit with spells, also affects max number of spellcasts per floor)
+Defence (chance for enemies to miss)
+
+-Health and Stamina increase automatically on level-up
+-All others can be allocated by the player on level-up
+Essentially the choice will be whether to focus on one stat and be very good at that combat type,
+or spread the stats out to better take advantage of enemy weaknesses
+
+ITEMS:
+Weapons - each has a different base chance to hit, also determines damage upon hit
+Armour - lighter armour gives higher Initiative, heavier armour gives higher Defence bonus
+Consumables - restores health, stamina or magic, can also buff stats for X turns
+
+	MELEE
+Sword - high damage, 1 tile range
+Spear - med damage, but 2 tile range
+Dagger - lower damage, but gets 1 extra attack per turn and can be thrown
+	RANGED
+Bow - med damage, variable tile range
+Staff/Spellbook - high damage, variable tile range, limited uses
+
+Enemies:
+Can attack through MELEE or RANGED, each of which can be either PHYS or MAG
+Each enemy has a weakness. Attacking with this type gives a x1.25 damage bonus
+
+Zombie (PHYS MELEE, weak to MELEE/MAG RANGED)
+Mummy (MAG MELEE, weak to MAG)
+Direwolf (MELEE, weak to PHYS)
+Ghost (MAG MELEE, weak to MAG)
+Minotaur (PHYS MELEE, weak to RANGED)
+
+Elf (PHYS RANGED, weak to MELEE)
+Orc (PHYS RANGED, weak to MAG)
+Cultist (MAG RANGED, weak to PHYS)
+Lich (MAG RANGED/SUPPORT, weak to PHYS)
+
+Troll (PHYS MELEE/PHYS RANGED, strong against PHYS)
+Dragon (PHYS MELEE/MAG RANGED, strong against MAG)
+
+
+WORLD
+Each floor of the dungeon has a single, semi-randomly generated room
+Rooms will be large enough that scrolling is required
+Will have a set of template level files that are pulled from when entering a new room
+Templates will include the wall positions, and then a set of flags for possible spawn locations of each level object
+
+ROOM PROPERTIES
+Type - determines which wall and floor tiles are used, as well as which enemy types can spawn
+Level - determines the difficulty level of the room
+
+LEVEL OBJECTS
+Enemies
+Chests (containing new items)
+Entrance
+Exit (can only be opened by a key dropped by a random enemy in the room, or found in a chest)
+
+
+MARKING CRITERIA
+1. will have a state manager that handles different states within battles
+2. will save player and enemy positions, along with player stats and inventory (maybe)
+3. enemies' movement and behaviour will be automated, with multiple enemy subclasses
+4. hopefully my game will be impressive.
+
+A 1.scrolling and zooming - maps will be large enough to require this
+B 2.advanced animation - most objects will be animated via sprite sheets
+C 2.interesting tile manager - will probably have some animated tiles
+D 1.new displayable objects - this will be required for creating projectiles and spawning enemies
+E 1.user input text - for entering character name
+H 1.Image rotation - ranged projectiles will point towards target
