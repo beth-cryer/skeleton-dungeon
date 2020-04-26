@@ -1,8 +1,7 @@
 #pragma once
-#include "AnimatedObject.h"
+#include "CharObject.h"
 
 #include "MovementPosition.h"
-#include "Psybc5TileManager.h"
 
 #include "Weapon.h"
 
@@ -30,7 +29,7 @@ public:
 
 //Generic Enemy class
 class EnemyObject :
-	public AnimatedObject
+	public CharObject
 {
 
 public:
@@ -48,16 +47,6 @@ public:
 	std::list<Node*> calcPath(int goalX, int goalY);
 	int calcHeuristic(Node n, int goalX, int goalY);
 
-	//TODO: Add Bresenham's Line Algorithm for line-of-sight, which controls whether enemy is aggroed
-	//TODO: Add A* Algorithm to find the most efficient path to the player
-
-	void setMovement(int iStartTime, int iEndTime, int iCurrentTime, int iStartX, int iStartY, int iEndX, int iEndY);
-	void move(int xmove, int ymove, int currentTime, int time);
-
-	bool lineOfSight(const int x1, const int y1, const int x2, const int y2, const int range);
-
-	enum State { stateIdle, stateWalk };
-
 protected:
 	std::string name, desc;
 	int health, maxHealth;
@@ -66,8 +55,5 @@ protected:
 
 	//Weapon used
 	Weapon wep;
-
-	MovementPosition objMovement;
-	State currentState;
 
 };

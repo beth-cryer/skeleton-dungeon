@@ -2,6 +2,7 @@
 #include "Psybc5Engine.h"
 
 #include "PlayerObject.h"
+#include "EnemyZombieObject.h"
 
 Psybc5Engine::Psybc5Engine()
 	: currentState(stateStart) //Start in Initial state

@@ -6,8 +6,6 @@
 #include "Psybc5TileManager.h"
 #include "ImageManager.h"
 
-#include "EnemyZombieObject.h"
-
 #include "AudioPlayer.h"
 
 //Lets us store pointers of these objects

@@ -1,14 +1,13 @@
 #include "header.h"
 #include "EnemyObject.h"
 
-#include "Psybc5Engine.h"
+#include "PlayerObject.h"
 
 
 EnemyObject::EnemyObject(int xStart, int yStart, BaseEngine* pEngine, int width, int height, bool topleft,
 	std::string name, std::string desc, int maxHealth, int maxStamina, int expDrop)
-	: AnimatedObject(xStart, yStart, pEngine, width, height, topleft),
-	name(name), desc(desc), maxHealth(maxHealth), health(maxHealth), maxStamina(maxStamina), stamina(maxStamina), expDrop(expDrop),
-	currentState(stateIdle)
+	: CharObject(xStart, yStart, pEngine, width, height, topleft),
+	name(name), desc(desc), maxHealth(maxHealth), health(maxHealth), maxStamina(maxStamina), stamina(maxStamina), expDrop(expDrop)
 {
 	
 }
@@ -20,8 +19,8 @@ EnemyObject::~EnemyObject()
 void EnemyObject::virtDoUpdate(int iCurrentTime) {
 
 	//Query AI if movement is finished
-	if (currentState != stateIdle && objMovement.hasMovementFinished(iCurrentTime)) {
-		currentState = stateIdle;
+	if (currentState != CharState::stateIdle && objMovement.hasMovementFinished(iCurrentTime)) {
+		currentState = CharState::stateIdle;
 		AI();
 	}
 }
@@ -187,67 +186,4 @@ void EnemyObject::damage(int amount)
 //Override this where necessary
 void EnemyObject::attack() {
 	((Psybc5Engine*)getEngine())->health--;
-}
-
-//Most bare-bones implementation of move. Extended by PlayerObject, but it's enough for EnemyObject
-void EnemyObject::move(int xmove, int ymove, int currentTime, int time)
-{
-	setMovement(currentTime, currentTime + time, currentTime,
-		m_iCurrentScreenX, m_iCurrentScreenY, m_iCurrentScreenX + xmove, m_iCurrentScreenY + ymove);
-
-	currentState = stateWalk;
-}
-
-//Takes the required parameters and calculates a new movement path using the objMovement object
-void EnemyObject::setMovement(int iStartTime, int iEndTime, int iCurrentTime,
-	int iStartX, int iStartY, int iEndX, int iEndY)
-{
-	objMovement.setup(iStartX, iStartY, iEndX, iEndY, iStartTime, iEndTime);
-	objMovement.calculate(iCurrentTime);
-	m_iCurrentScreenX = objMovement.getX();
-	m_iCurrentScreenY = objMovement.getY();
-}
-
-
-//Using Bresenham's Line Algorithm to find the list of tiles between two points, then returning false if any of those tiles are solid
-//Also returns false if there are too many tiles between the points (ie. out of the given range)
-bool EnemyObject::lineOfSight(const int x1, const int y1, const int x2, const int y2, const int range) {
-
-	std::list<std::tuple<int, int>> los;
-
-	//Algorithm performed using only integer operations (fast and easy)
-	int dy = y2 - y1;
-	int dx = x2 - x1;
-	int D = 2 * dy - dx;
-	int y = y1;
-
-	for (int x = x1; x <= x2; x += TILE_SIZE) {
-		std::cout << "(" << x << "," << y << ")\n";
-
-		los.push_back(std::make_tuple(x, y));
-
-		//Increment y when it's time to slope
-		if (D >= 0) {
-			y += TILE_SIZE;
-			D -= 2 * dx;
-		}
-		D += 2 * dy;
-	}
-
-	//Check length of line, return false if greater than the range
-	//(range ignored if set to zero or less)
-	if (range < 0 && los.size() > range) {
-		std::cout << "Target out of range\n";
-		return false;
-	}
-
-	//Check if any tiles are solid, return false if any found
-	for (auto it = los.begin(); it != los.end(); it++) {
-		if (((Psybc5Engine*)getEngine())->GetTilesSolid().isValidTilePosition(std::get<0>(*it), std::get<1>(*it))) {
-			std::cout << "Line of sight blocked\n";
-			return false;
-		}
-	}
-
-	return true;
 }

@@ -5,8 +5,8 @@
 
 
 PlayerObject::PlayerObject(BaseEngine* pEngine, Psybc5TileManager* pTiles)
-	: AnimatedObject(64, 64, pEngine, 64, 64, true),
-	tileManager(pTiles), currentState(stateIdle)
+	: CharObject(64, 64, pEngine, 64, 64, true),
+	tileManager(pTiles)
 {
 	imgSprites = ImageManager::loadImage("sprites/chars/skeleton.png", true);
 }
@@ -21,8 +21,8 @@ void PlayerObject::virtDraw()
 	//Handles the animation for each player state
 	//Set max frames in animation depending on which animation state we're in
 	switch (currentState) {
-	case (stateIdle): animate(4, 96, 100, 0, 0, 16, 36); break;
-	case(stateWalk): animate(8, 96, 100, 0, 100, 16, 36); break;
+	case (CharState::stateIdle): animate(4, 96, 100, 0, 0, 16, 36); break;
+	case(CharState::stateWalk): animate(8, 96, 100, 0, 100, 16, 36); break;
 	}
 
 	return AnimatedObject::virtDraw();
@@ -56,7 +56,7 @@ void PlayerObject::virtDoUpdate(int iCurrentTime)
 
 	//REQ 4. (2/2) Keyboard input handled
 	switch (currentState) {
-	case(stateIdle):
+	case(CharState::stateIdle):
 		if (engine->stamina > 0) {
 			if (getEngine()->isKeyPressed(SDLK_UP)) move(0, -64, iCurrentTime, 400);
 			if (getEngine()->isKeyPressed(SDLK_DOWN)) move(0, 64, iCurrentTime, 400);
@@ -65,7 +65,7 @@ void PlayerObject::virtDoUpdate(int iCurrentTime)
 		}
 		break;
 
-	case(stateWalk):
+	case(CharState::stateWalk):
 		//Calculate current position based on movement calculator
 		objMovement.calculate(iCurrentTime);
 		m_iCurrentScreenX = objMovement.getX();
@@ -73,7 +73,7 @@ void PlayerObject::virtDoUpdate(int iCurrentTime)
 
 		//If movement has reached end point, exit walk state
 		if (objMovement.hasMovementFinished(iCurrentTime)) {
-			currentState = stateIdle;
+			currentState = CharState::stateIdle;
 
 			m_iCurrentScreenX = objMovement.getX();
 			m_iCurrentScreenY = objMovement.getY();
@@ -111,10 +111,7 @@ void PlayerObject::move(int xmove, int ymove, int currentTime, int time)
 	((Psybc5Engine*)getEngine())->audio.playAudio("sfx/combat/fst_conc_solid_run_01.wav", -1, 0);
 	((Psybc5Engine*)getEngine())->stamina--;
 
-	setMovement(currentTime, currentTime + time, currentTime,
-		m_iCurrentScreenX, m_iCurrentScreenY, m_iCurrentScreenX + xmove, m_iCurrentScreenY + ymove);
-
-	currentState = stateWalk;
+	CharObject::move(xmove, ymove, currentTime, time);
 }
 
 //Check if the position is within a certain radius of tiles from the Player
@@ -124,58 +121,4 @@ bool PlayerObject::adjacentTo(int x, int y, int squareSize) {
 		x < m_iCurrentScreenX + squareSize * 64 &&
 		y > m_iCurrentScreenY - squareSize * 64 &&
 		y < m_iCurrentScreenY + squareSize * 64);
-}
-
-//Takes the required parameters and calculates a new movement path using the objMovement object
-void PlayerObject::setMovement(int iStartTime, int iEndTime, int iCurrentTime,
-	int iStartX, int iStartY, int iEndX, int iEndY)
-{
-	objMovement.setup(iStartX, iStartY, iEndX, iEndY, iStartTime, iEndTime);
-	objMovement.calculate(iCurrentTime);
-	m_iCurrentScreenX = objMovement.getX();
-	m_iCurrentScreenY = objMovement.getY();
-}
-
-
-//Using Bresenham's Line Algorithm to find the list of tiles between two points, then returning false if any of those tiles are solid
-//Also returns false if there are too many tiles between the points (ie. out of the given range)
-bool PlayerObject::lineOfSight(const int x1, const int y1, const int x2, const int y2, const int range) {
-
-	std::list<std::tuple<int, int>> los;
-
-	//Algorithm performed using only integer operations (fast and easy)
-	int dy = y2 - y1;
-	int dx = x2 - x1;
-	int D = 2 * dy - dx;
-	int y = y1;
-
-	for (int x = x1; x <= x2; x += TILE_SIZE) {
-		std::cout << "(" << x << "," << y << ")\n";
-
-		los.push_back(std::make_tuple(x, y));
-
-		//Increment y when it's time to slope
-		if (D >= 0) {
-			y += TILE_SIZE;
-			D -= 2 * dx;
-		}
-		D += 2 * dy;
-	}
-
-	//Check length of line, return false if greater than the range
-	//(range ignored if set to zero or less)
-	if (range < 0 && los.size() > range) {
-		std::cout << "Target out of range\n";
-		return false;
-	}
-
-	//Check if any tiles are solid, return false if any found
-	for (auto it = los.begin(); it != los.end(); it++) {
-		if (((Psybc5Engine*)getEngine())->GetTilesSolid().isValidTilePosition(std::get<0>(*it), std::get<1>(*it))) {
-			std::cout << "Line of sight blocked\n";
-			return false;
-		}
-	}
-
-	return true;
 }

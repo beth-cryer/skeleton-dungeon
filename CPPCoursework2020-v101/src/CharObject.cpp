@@ -5,7 +5,7 @@
 
 CharObject::CharObject(int xStart, int yStart, BaseEngine* pEngine, int width, int height, bool topleft)
 	: AnimatedObject(xStart, yStart, pEngine, width, height, topleft),
-	currentState(stateIdle)
+	currentState(CharState::stateIdle)
 {
 }
 
@@ -17,7 +17,7 @@ void CharObject::move(int xmove, int ymove, int currentTime, int time)
 	setMovement(currentTime, currentTime + time, currentTime,
 		m_iCurrentScreenX, m_iCurrentScreenY, m_iCurrentScreenX + xmove, m_iCurrentScreenY + ymove);
 
-	currentState = stateWalk;
+	currentState = CharState::stateWalk;
 }
 
 //Takes the required parameters and calculates a new movement path using the objMovement object
