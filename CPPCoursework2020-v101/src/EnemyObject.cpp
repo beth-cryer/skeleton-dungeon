@@ -20,6 +20,10 @@ void EnemyObject::virtDoUpdate(int iCurrentTime)
 {
 	//Query AI if movement is finished
 	if (currentState != CharState::stateIdle && objMovement.hasMovementFinished(iCurrentTime)) {
+
+		//Redo order of depth for charobjects by height
+		((Psybc5Engine*)getEngine())->orderCharsByHeight();
+
 		currentState = CharState::stateIdle;
 		AI();
 	}

@@ -417,7 +417,7 @@ void Psybc5Engine::orderCharsByHeight()
 
 		//Check the object currently at the top, place pChar on top if it's lower on the screen
 		if (pChar) {
-			DisplayableObject* pTopObj = getContentItem(getContentCount());
+			DisplayableObject* pTopObj = getContentItem(getContentCount()-1);
 			if (pTopObj->getYCentre() < pChar->getYCentre()) moveToLast(pChar);
 		}
 	}

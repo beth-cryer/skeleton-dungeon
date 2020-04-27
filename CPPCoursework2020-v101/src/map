@@ -1,6 +1,6 @@
  CourseworkBase2020
 
- Timestamp is 5ea70322 (Mon Apr 27 17:06:58 2020)
+ Timestamp is 5ea7059f (Mon Apr 27 17:17:35 2020)
 
  Preferred load address is 00400000
 
@@ -889,12 +889,12 @@
  0001:0001b630       ??0EnemyObject@@QAE@HHPAVBaseEngine@@HH_NV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@2HHH@Z 0041c630 f   EnemyObject.obj
  0001:0001b730       ??1EnemyObject@@UAE@XZ     0041c730 f   EnemyObject.obj
  0001:0001b780       ?virtDoUpdate@EnemyObject@@UAEXH@Z 0041c780 f   EnemyObject.obj
- 0001:0001b7d0       ?damage@EnemyObject@@QAEXH@Z 0041c7d0 f   EnemyObject.obj
- 0001:0001b8e0       ?attack@EnemyObject@@UAEXXZ 0041c8e0 f   EnemyObject.obj
- 0001:0001b910       ?turnStart@EnemyObject@@UAEXXZ 0041c910 f   EnemyObject.obj
- 0001:0001b980       ?AI@EnemyObject@@UAEXXZ    0041c980 f   EnemyObject.obj
- 0001:0001ba60       ?calcPath@EnemyObject@@QAE?AV?$list@PAVNode@@V?$allocator@PAVNode@@@std@@@std@@HH@Z 0041ca60 f   EnemyObject.obj
- 0001:0001c1a0       ?calcHeuristic@EnemyObject@@QAEHVNode@@HH@Z 0041d1a0 f   EnemyObject.obj
+ 0001:0001b7e0       ?damage@EnemyObject@@QAEXH@Z 0041c7e0 f   EnemyObject.obj
+ 0001:0001b8f0       ?attack@EnemyObject@@UAEXXZ 0041c8f0 f   EnemyObject.obj
+ 0001:0001b920       ?turnStart@EnemyObject@@UAEXXZ 0041c920 f   EnemyObject.obj
+ 0001:0001b990       ?AI@EnemyObject@@UAEXXZ    0041c990 f   EnemyObject.obj
+ 0001:0001ba70       ?calcPath@EnemyObject@@QAE?AV?$list@PAVNode@@V?$allocator@PAVNode@@@std@@@std@@HH@Z 0041ca70 f   EnemyObject.obj
+ 0001:0001c1b0       ?calcHeuristic@EnemyObject@@QAEHVNode@@HH@Z 0041d1b0 f   EnemyObject.obj
  0001:0001c4d0       ??$?0$$V@?$_Compressed_pair@V?$allocator@PAVNode@@@std@@V?$_Deque_val@U?$_Deque_simple_types@PAVNode@@@std@@@2@$00@std@@QAE@U_Zero_then_variadic_args_t@1@@Z 0041d4d0 f i EnemyObject.obj
  0001:0001c500       ??$?0$$V@?$_Compressed_pair@V?$allocator@U?$_List_node@PAVNode@@PAX@std@@@std@@V?$_List_val@U?$_List_simple_types@PAVNode@@@std@@@2@$00@std@@QAE@U_Zero_then_variadic_args_t@1@@Z 0041d500 f i EnemyObject.obj
  0001:0001c530       ??$?0ABQAVNode@@@?$_List_node_emplace_op2@V?$allocator@U?$_List_node@PAVNode@@PAX@std@@@std@@@std@@QAE@AAV?$allocator@U?$_List_node@PAVNode@@PAX@std@@@1@ABQAVNode@@@Z 0041d530 f i EnemyObject.obj
@@ -6075,25 +6075,25 @@
  0002:0000509c       $SG150878                  0045109c     DrawingSurface.obj
  0002:000050c8       $SG150877                  004510c8     DrawingSurface.obj
  0002:0000519c       $SG150879                  0045119c     DrawingSurface.obj
- 0002:00005428       $SG91320                   00451428     EnemyObject.obj
- 0002:00005438       $SG91321                   00451438     EnemyObject.obj
- 0002:00005448       $SG91322                   00451448     EnemyObject.obj
- 0002:00005450       $SG91323                   00451450     EnemyObject.obj
- 0002:00005458       $SG91325                   00451458     EnemyObject.obj
- 0002:00005468       $SG91326                   00451468     EnemyObject.obj
- 0002:00005470       $SG104997                  00451470     EnemyObject.obj
- 0002:00005484       $SG104998                  00451484     EnemyObject.obj
- 0002:00005488       $SG104999                  00451488     EnemyObject.obj
- 0002:000054f0       $SG105000                  004514f0     EnemyObject.obj
- 0002:000055c0       $SG105001                  004515c0     EnemyObject.obj
- 0002:00005610       $SG105002                  00451610     EnemyObject.obj
- 0002:00005638       $SG105751                  00451638     EnemyObject.obj
- 0002:000056a0       $SG105951                  004516a0     EnemyObject.obj
- 0002:000056bc       $SG105952                  004516bc     EnemyObject.obj
- 0002:000056c0       $SG105953                  004516c0     EnemyObject.obj
- 0002:0000572c       $SG105955                  0045172c     EnemyObject.obj
- 0002:00005758       $SG105954                  00451758     EnemyObject.obj
- 0002:0000582c       $SG105956                  0045182c     EnemyObject.obj
+ 0002:00005428       $SG91321                   00451428     EnemyObject.obj
+ 0002:00005438       $SG91322                   00451438     EnemyObject.obj
+ 0002:00005448       $SG91323                   00451448     EnemyObject.obj
+ 0002:00005450       $SG91324                   00451450     EnemyObject.obj
+ 0002:00005458       $SG91326                   00451458     EnemyObject.obj
+ 0002:00005468       $SG91327                   00451468     EnemyObject.obj
+ 0002:00005470       $SG104998                  00451470     EnemyObject.obj
+ 0002:00005484       $SG104999                  00451484     EnemyObject.obj
+ 0002:00005488       $SG105000                  00451488     EnemyObject.obj
+ 0002:000054f0       $SG105001                  004514f0     EnemyObject.obj
+ 0002:000055c0       $SG105002                  004515c0     EnemyObject.obj
+ 0002:00005610       $SG105003                  00451610     EnemyObject.obj
+ 0002:00005638       $SG105752                  00451638     EnemyObject.obj
+ 0002:000056a0       $SG105952                  004516a0     EnemyObject.obj
+ 0002:000056bc       $SG105953                  004516bc     EnemyObject.obj
+ 0002:000056c0       $SG105954                  004516c0     EnemyObject.obj
+ 0002:0000572c       $SG105956                  0045172c     EnemyObject.obj
+ 0002:00005758       $SG105955                  00451758     EnemyObject.obj
+ 0002:0000582c       $SG105957                  0045182c     EnemyObject.obj
  0002:00006828       $SG90136                   00452828     EnemyZombieObject.obj
  0002:00006848       $SG90137                   00452848     EnemyZombieObject.obj
  0002:00006850       $SG90138                   00452850     EnemyZombieObject.obj

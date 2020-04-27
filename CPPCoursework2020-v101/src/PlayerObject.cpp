@@ -82,7 +82,9 @@ void PlayerObject::virtDoUpdate(int iCurrentTime)
 			m_iCurrentScreenX = std::round(m_iCurrentScreenX / TILE_SIZE) * TILE_SIZE;
 			m_iCurrentScreenY = std::round(m_iCurrentScreenY / TILE_SIZE) * TILE_SIZE;
 
-			//Code ran at the end of a move:
+			//Redo order of depth for charobjects by height
+			engine->orderCharsByHeight();
+
 		}
 		break;
 
@@ -110,8 +112,10 @@ void PlayerObject::move(int xmove, int ymove, int currentTime, int time)
 	//set flipX accordingly (only change if we switch directions)
 	if (xmove > 0) flipX = false; else if (xmove < 0) flipX = true;
 
-	((Psybc5Engine*)getEngine())->audio.playAudio("sfx/combat/fst_conc_solid_run_01.wav", -1, 0);
-	((Psybc5Engine*)getEngine())->stamina--;
+	auto pEngine = ((Psybc5Engine*)getEngine());
+
+	pEngine->audio.playAudio("sfx/combat/fst_conc_solid_run_01.wav", -1, 0);
+	pEngine->stamina--;
 
 	CharObject::move(xmove, ymove, currentTime, time);
 }
