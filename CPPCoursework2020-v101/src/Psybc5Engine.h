@@ -40,16 +40,17 @@ public:
 	virtual void virtKeyDown(int iKeyCode) override;
 
 	//RETURN PRIVATE POINTERS
-	SolidTileManager& GetTilesSolid() { return objTilesSolid; }
+	SolidTileManager* GetTilesSolid() { return &objTilesSolid; }
 	BackgroundTileManager& GetTilesBack() { return objTilesBack; }
 	InventoryTileManager& GetTilesInv() { return objInvTiles; }
 	PlayerObject* GetPlayer() { return player; }
 
 	//GAME STATES
-	enum State {stateStart, stateMain, statePause, stateEnemyTurns};
+	enum class GameState {stateStart, stateMain, statePause, stateEnemyTurn};
 
 	//HELPER FUNCTIONS
 	void moveCamera(int offsetXIncrement, int offsetYIncrement);
+	void drawBar(int x1, int y1, int y2, int maxWidth, std::string str, int value, int maxValue, int colBar, int colBack);
 
 	//PLAYER STATS
 	int maxHealth, health;
@@ -62,7 +63,7 @@ public:
 	AudioPlayer audio;
 
 private:
-	State currentState;
+	GameState currentState;
 	SolidTileManager objTilesSolid;
 	BackgroundTileManager objTilesBack;
 	InventoryTileManager objInvTiles;

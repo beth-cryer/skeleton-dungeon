@@ -16,8 +16,8 @@ EnemyObject::~EnemyObject()
 {
 }
 
-void EnemyObject::virtDoUpdate(int iCurrentTime) {
-
+void EnemyObject::virtDoUpdate(int iCurrentTime)
+{
 	//Query AI if movement is finished
 	if (currentState != CharState::stateIdle && objMovement.hasMovementFinished(iCurrentTime)) {
 		currentState = CharState::stateIdle;
@@ -25,18 +25,22 @@ void EnemyObject::virtDoUpdate(int iCurrentTime) {
 	}
 }
 
+void EnemyObject::turnStart()
+{
+	//Enemy Turn Sound
+	//((Psybc5Engine*)getEngine())->audio.playAudio("sfx/monsters/Growl.ogg", -1, 0);
+
+	//Generate path to desired location
+	PlayerObject* player = ((Psybc5Engine*)getEngine())->GetPlayer();
+	path = calcPath(player->getXPos(), player->getYPos());
+
+	AI();
+}
+
 //ALL DEFAULT AI BEHAVIOUR HERE
 //will attempt to move into attack range of player and then attack
-void EnemyObject::AI() {
-
-	//code on turn start
-	if (stamina == maxStamina) {
-		((Psybc5Engine*)getEngine())->audio.playAudio("sfx/monsters/Growl.ogg",-1,0); //(play growl by default)
-
-		//Generate path to desired location
-		PlayerObject* player = ((Psybc5Engine*)getEngine())->GetPlayer();
-		//std::list<Node*> path = calcPath(player.get);
-	}
+void EnemyObject::AI()
+{
 
 	//turn is over once stamina is used
 	if (stamina <= 0) {
@@ -47,18 +51,21 @@ void EnemyObject::AI() {
 
 	//Otherwise,
 
-	//move closer
-	/*
-
-	if (not close to player) {
-	move(...)
+	//If within range of weapon, attack
+	PlayerObject* player = ((Psybc5Engine*)getEngine())->GetPlayer();
+	if (lineOfSight(m_iCurrentScreenX, m_iCurrentScreenY, player->getXPos(), player->getYPos(), 0)) {
+		attack();
 	
-	}else{
+	//Otherwise, move towards player
+	} else {
+		Node* nextMove = path.front();
+		path.pop_front();
 
-	*/
+		//Initiate movement
+		move(m_iCurrentScreenX - nextMove->x, m_iCurrentScreenY - nextMove->y, getEngine()->getModifiedTime(), 400);
+		currentState = CharState::stateWalk;
+	}
 
-	//attack if close enough
-	//attack();
 
 }
 
@@ -102,10 +109,10 @@ std::list<Node*> EnemyObject::calcPath (int goalX, int goalY)
 		int g = lowest->g;
 
 		std::queue<Node*> children;
-		children.push(new Node(x + 64, y, g + 1, 0, lowest));
-		children.push(new Node(x - 64, y, g + 1, 0, lowest));
-		children.push(new Node(x, y + 64, g + 1, 0, lowest));
-		children.push(new Node(x, y - 64, g + 1, 0, lowest));
+		children.push(new Node(x + TILE_SIZE, y, g + TILE_SIZE, 0, lowest));
+		children.push(new Node(x - TILE_SIZE, y, g + TILE_SIZE, 0, lowest));
+		children.push(new Node(x, y + TILE_SIZE, g + TILE_SIZE, 0, lowest));
+		children.push(new Node(x, y - TILE_SIZE, g + TILE_SIZE, 0, lowest));
 
 		//for each successor
 		while (children.size() > 0) {
@@ -135,7 +142,10 @@ std::list<Node*> EnemyObject::calcPath (int goalX, int goalY)
 			}
 
 			//If a solid tile exist here, skip
-			if ( ((Psybc5Engine*)getEngine())->GetTilesSolid().isValidTilePosition(x, y) ) continue;
+			auto tiles = ((Psybc5Engine*)getEngine())->GetTilesSolid();
+			if (tiles->isValidTilePosition(x, y)) {
+				if (tiles->getMapValue(x, y) != 0) continue;
+			}
 
 			bool skip = false;
 			//if node with same <x,y> as successor exists in open_list with a lower f than successor, then skip
@@ -173,7 +183,7 @@ void EnemyObject::damage(int amount)
 	std::cout << "Enemy " << name << " took " << amount << " damage, has " << health << " health left.\n";
 
 	//DEBUG: do line of sight check
-	lineOfSight(64, 64, 256, 192, 3);
+	//lineOfSight(64, 64, 256, 192, 3);
 
 	//DEAD
 	if (health <= 0) {
@@ -184,6 +194,7 @@ void EnemyObject::damage(int amount)
 }
 
 //Override this where necessary
-void EnemyObject::attack() {
+void EnemyObject::attack()
+{
 	((Psybc5Engine*)getEngine())->health--;
 }

@@ -94,6 +94,8 @@ void PlayerObject::virtDoUpdate(int iCurrentTime)
 
 void PlayerObject::move(int xmove, int ymove, int currentTime, int time)
 {
+	//SolidTileManager tileManager = ((Psybc5Engine*)getEngine())->GetTilesSolid();
+
 	//Check for collision in the Tile we want to move into
 	if (tileManager->isValidTilePosition(m_iCurrentScreenX + xmove, m_iCurrentScreenY + ymove)) {
 		int tileX = tileManager->getMapXForScreenX(m_iCurrentScreenX + xmove);

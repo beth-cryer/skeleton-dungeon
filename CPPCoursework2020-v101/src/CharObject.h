@@ -15,12 +15,16 @@ public:
 	CharObject(int xStart, int yStart, BaseEngine* pEngine, int width, int height, bool topleft);
 	~CharObject();
 
+	int getXPos();
+	int getYPos();
+
 	void setMovement(int iStartTime, int iEndTime, int iCurrentTime, int iStartX, int iStartY, int iEndX, int iEndY);
 	virtual void move(int xmove, int ymove, int currentTime, int time);
 
+	//used for enemy aggro as well as checking if ranged attacks will hit
 	bool lineOfSight(const int x1, const int y1, const int x2, const int y2, const int range);
 
-	enum class CharState { stateIdle, stateWalk };
+	enum class CharState { stateIdle, stateWalk, stateAttack };
 
 protected:
 	MovementPosition objMovement;

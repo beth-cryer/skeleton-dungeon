@@ -11,6 +11,17 @@ CharObject::CharObject(int xStart, int yStart, BaseEngine* pEngine, int width, i
 
 CharObject::~CharObject() {}
 
+//Functions for returning the actual x/y positions, since the framework only gives you x/y center for some reason
+int CharObject::getXPos()
+{
+	return m_iCurrentScreenX;
+}
+
+int CharObject::getYPos()
+{
+	return m_iCurrentScreenY;
+}
+
 //Most bare-bones implementation of move. Extended by PlayerObject, but it's enough for EnemyObject
 void CharObject::move(int xmove, int ymove, int currentTime, int time)
 {
@@ -44,7 +55,7 @@ bool CharObject::lineOfSight(const int x1, const int y1, const int x2, const int
 	int y = y1;
 
 	for (int x = x1; x <= x2; x += TILE_SIZE) {
-		std::cout << "(" << x << "," << y << ")\n";
+		//std::cout << "(" << x << "," << y << ")\n";
 
 		los.push_back(std::make_tuple(x, y));
 
@@ -65,9 +76,13 @@ bool CharObject::lineOfSight(const int x1, const int y1, const int x2, const int
 
 	//Check if any tiles are solid, return false if any found
 	for (auto it = los.begin(); it != los.end(); it++) {
-		if (((Psybc5Engine*)getEngine())->GetTilesSolid().isValidTilePosition(std::get<0>(*it), std::get<1>(*it))) {
-			std::cout << "Line of sight blocked\n";
-			return false;
+		auto tiles = ((Psybc5Engine*)getEngine())->GetTilesSolid();
+
+		if (tiles->isValidTilePosition(std::get<0>(*it), std::get<1>(*it))) {
+			if (tiles->getMapValue(std::get<0>(*it), std::get<1>(*it)) != 0) {
+				std::cout << "Line of sight blocked\n";
+				return false;
+			}
 		}
 	}
 

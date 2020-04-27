@@ -15,7 +15,6 @@ public:
 
 	int itemId, iconId;
 	std::string name, desc;
-	enum itemType { weapon, armour, consumable };
 
 };
 

@@ -71,7 +71,7 @@ public:
 		//flip sprite sheet and apply offset in reverse
 		x = image.getWidth() - x;
 
-		x += (double) (offsetX + sprW - image.getWidth()); //not sure why I need to add sprW but it's the only way I can make it work properly
+		x += offsetX + sprW - image.getWidth(); //not sure why I need to add sprW but it's the only way I can make it work properly
 		y += offsetY;
 		
 		if (image.getPixelColour(x, y) == transCol) return false;

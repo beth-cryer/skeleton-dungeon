@@ -25,6 +25,8 @@ int AudioPlayer::audioInit()
 		return 1;
 	}
 
+	Mix_VolumeMusic(MIX_MAX_VOLUME / 4);
+
 	return 0;
 }
 
@@ -69,6 +71,7 @@ void AudioPlayer::stopMusic() {
 void AudioPlayer::closeAudio() {
 
 	//Loop through all audio and music cached and free them
+	//(doesn't seem to have memory leaks either way, but I'd rather be safe and keep track of all the mix pointers I make)
 	for (std::map<std::string, Mix_Chunk*>::iterator it = sfx.begin();
 		it != sfx.end(); ++it) {
 		Mix_FreeChunk(it->second);

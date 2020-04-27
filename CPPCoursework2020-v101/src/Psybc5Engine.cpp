@@ -5,7 +5,7 @@
 #include "EnemyZombieObject.h"
 
 Psybc5Engine::Psybc5Engine()
-	: currentState(stateStart) //Start in Initial state
+	: currentState(GameState::stateStart) //Start in Initial state
 	, player(NULL),
 	filterScaling(0, 0, this), filterTranslation(0, 0, &filterScaling),
 	maxHealth(10), health(maxHealth),
@@ -13,7 +13,7 @@ Psybc5Engine::Psybc5Engine()
 	maxMagic(1), magic(maxMagic),
 	maxAttacks(1), attacks(maxAttacks),
 	strength(1), ranged(1), defence(1),
-	exp(0), expNext(50), level(1), skillUps(0)
+	exp(25), expNext(50), level(1), skillUps(0)
 {
 	audio.audioInit();
 	fonts.loadFonts();
@@ -30,6 +30,8 @@ int Psybc5Engine::virtInitialise()
 	getBackgroundSurface()->setDrawPointsFilter(&filterTranslation);
 	getForegroundSurface()->setDrawPointsFilter(&filterTranslation);
 
+	//notifyObjectsAboutMouse(true);
+
 	//Call BaseEngine init
 	return BaseEngine::virtInitialise();
 }
@@ -43,7 +45,7 @@ void Psybc5Engine::virtSetupBackgroundBuffer() {
 
 	//Sets up the Tiles if game is starting, otherwise just draws the background
 	switch (currentState) {
-	case (stateStart):
+	case (GameState::stateStart):
 		bg.renderImage(getBackgroundSurface(), 0, 0, 0, 0, bg.getWidth(), bg.getHeight());
 		
 		{
@@ -99,13 +101,13 @@ void Psybc5Engine::virtSetupBackgroundBuffer() {
 			objInvTiles.setTopLeftPositionOnScreen(m_iWindowWidth / 2 - (w * 64) / 2, m_iWindowHeight / 2 - (h * 64) / 2 );
 
 			//Transition to regular game state
-			currentState = stateMain;
+			currentState = GameState::stateMain;
 
 			lockAndSetupBackground();
 		}
 	break;
 
-	case (stateMain):
+	case (GameState::stateMain):
 		bg.renderImage(getBackgroundSurface(), 0, 0, 0, 0, bg.getWidth(), bg.getHeight());
 
 		//Draw all tiles from the Tile Map to the background surface
@@ -125,7 +127,7 @@ void Psybc5Engine::virtDrawStringsUnderneath() {
 //REQ 6. Draw text to foreground
 void Psybc5Engine::virtDrawStringsOnTop() {
 	switch (currentState) {
-		case (statePause):
+		case (GameState::statePause):
 
 			//PAUSE MENU
 
@@ -156,35 +158,33 @@ void Psybc5Engine::virtDrawStringsOnTop() {
 
 	//INGAME UI
 
+	//EXP Bar
+	std::string printExp = "EXP: " + std::to_string(exp) + " / " + std::to_string(expNext);
+	drawBar(10, 10, 40, 300, printExp, exp, expNext, 0xfcdf03, 0xffee96);
+
 	//Health Bar
-	drawForegroundString(50, 660, "Health: ", 0xffffff, NULL);
-	int maxWidth = 200;
-	std::string printHealth = std::to_string(health) + " / " + std::to_string(maxHealth);
-
-	drawForegroundRectangle(170, 660, 170 + maxWidth, 690, 0xff8585); //bg
-	drawForegroundRectangle(170, 660, 170 + (maxWidth * ((double)health/(double)maxHealth)), 690, 0xff0303); //bar
-	drawForegroundString(180, 660, printHealth.c_str(), 0xffffff, NULL); //text
-
+	std::string printHealth = "Health: " + std::to_string(health) + " / " + std::to_string(maxHealth);
+	drawBar(10, 660, 690, 300, printHealth, health, maxHealth, 0xff0303, 0xff8585);
 
 	//Stamina Orbs
-	drawForegroundString(50, 700, "Stamina: ", 0xffffff, NULL);
+	drawForegroundString(20, 700, "Stamina: ", 0xffffff, NULL);
 	for (int i = 0; i < maxStamina; i++) {
 		//Draw circle OR greyed-out circle
 		int col = 0x0ffa5e;
 		if (i >= stamina) col = 0x91ffb6;
 
-		drawForegroundOval( 170 + (i * 40), 700, 200 + (i * 40), 730, col);
+		drawForegroundOval( 130 + (i * 40), 700, 160 + (i * 40), 730, col);
 	}
 
 
 	//Magic Orbs
-	drawForegroundString(50, 730, "Magic: ", 0xffffff, NULL);
+	drawForegroundString(20, 730, "Magic: ", 0xffffff, NULL);
 	for (int i = 0; i < maxMagic; i++) {
 		//Draw circle OR greyed-out circle
 		int col = 0x0398fc;
 		if (i >= magic) col = 0x87d0ff;
 
-		drawForegroundOval( 170 + (i*40), 740, 200 + (i*40), 770, col);
+		drawForegroundOval( 100 + (i*40), 740, 130 + (i*40), 770, col);
 	}
 
 }
@@ -194,7 +194,7 @@ void Psybc5Engine::virtMouseDown(int iButton, int iX, int iY) {
 
 	switch (currentState) {
 
-	case(stateMain):
+	case(GameState::stateMain):
 		//LEFT CLICK
 		if (iButton == SDL_BUTTON_LEFT)
 		{
@@ -232,11 +232,14 @@ void Psybc5Engine::virtMouseDown(int iButton, int iX, int iY) {
 					if (pEnemy) {
 						//std::cout << "Enemy clicked";
 
-						//just damage the enemy for now
 						if (attacks > 0) {
-							audio.playAudio("sfx/combat/Slash2.ogg", -1, 0);
-							pEnemy->damage(strength);
-							attacks--;
+
+							//Check line-of-sight from player to enemy
+							if (player->lineOfSight(player->getXPos(), player->getYPos(), pEnemy->getXPos(), pEnemy->getYPos(), 0)) {
+								audio.playAudio("sfx/combat/Slash2.ogg", -1, 0);
+								pEnemy->damage(strength);
+								attacks--;
+							}
 						}
 					}
 				}
@@ -246,7 +249,7 @@ void Psybc5Engine::virtMouseDown(int iButton, int iX, int iY) {
 
 		break;
 
-	case(statePause):
+	case(GameState::statePause):
 
 		//Check if clicked on an inventory Tile
 		if (objInvTiles.isValidTilePosition(iX, iY))
@@ -311,17 +314,17 @@ void Psybc5Engine::virtKeyDown(int iKeyCode) {
 		switch (currentState) {
 
 		//Main -> Pause
-		case (stateMain):
+		case (GameState::stateMain):
 			pause();
-			currentState = statePause;
+			currentState = GameState::statePause;
 			//Force redraw screen
 			redrawDisplay();
 		break;
 
 		//Pause -> Main
-		case (statePause):
+		case (GameState::statePause):
 			unpause();
-			currentState = stateMain;
+			currentState = GameState::stateMain;
 			//Force redraw screen
 			redrawDisplay();
 		break;
@@ -368,8 +371,10 @@ int Psybc5Engine::virtInitialiseObjects()
 	//Destroy any existing objects
 	destroyOldObjects(true);
 
+	player = new PlayerObject(this,&objTilesSolid);
+
 	createObjectArray(1); //(leave one empty element at end of array)
-	appendObjectToArray(new PlayerObject(this, &objTilesSolid));
+	appendObjectToArray(player);
 	appendObjectToArray(new EnemyZombieObject(this));
 
 	setAllObjectsVisible(true);
@@ -389,4 +394,11 @@ void Psybc5Engine::moveCamera(int offsetXIncrement, int offsetYIncrement) {
 		lockAndSetupBackground();
 		redrawDisplay();
 	//}
+}
+
+void Psybc5Engine::drawBar(int x1, int y1, int y2, int maxWidth, std::string str, int value, int maxValue, int colBar, int colBack)
+{
+	drawForegroundRectangle(x1, y1, x1 + maxWidth, y2, colBack); //bg
+	drawForegroundRectangle(x1, y1, x1 + (maxWidth * (value / maxValue)), y2, colBar); //bar
+	drawForegroundString(x1+10, y1, str.c_str(), 0xffffff, NULL); //text
 }

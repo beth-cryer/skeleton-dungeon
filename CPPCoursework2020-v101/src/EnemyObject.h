@@ -40,10 +40,11 @@ public:
 	void virtDoUpdate(int iCurrentTime) override;
 
 	void damage(int amount);
-	void attack();
+	virtual void attack();
 
 	//Decides what action to take next, continues until its stamina is depleted
-	void AI();
+	virtual void turnStart();
+	virtual void AI();
 	std::list<Node*> calcPath(int goalX, int goalY);
 	int calcHeuristic(Node n, int goalX, int goalY);
 
@@ -53,7 +54,12 @@ protected:
 	int stamina, maxStamina;
 	int expDrop;
 
+	std::list<Node*> path;
+
 	//Weapon used
 	Weapon wep;
+
+	//Attack Type weakness
+	//WepType weak;
 
 };
