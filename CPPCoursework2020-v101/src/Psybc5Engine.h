@@ -27,7 +27,6 @@ public:
 
 	//GENERIC DRAW FUNCTIONS
 	virtual void virtSetupBackgroundBuffer() override;
-
 	void virtDrawStringsOnTop() override;
 	void virtDrawStringsUnderneath() override;
 

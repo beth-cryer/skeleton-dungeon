@@ -258,10 +258,19 @@
     <ClInclude Include="Psybc5TileManager.h">
       <Filter>Header Files\Psybc5Game</Filter>
     </ClInclude>
-    <ClInclude Include="StateManager.h">
+    <ClInclude Include="CharObject.h">
+      <Filter>Header Files\Psybc5Game</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEngine.h">
       <Filter>Header Files\Psybc5Game\GameStates</Filter>
     </ClInclude>
-    <ClInclude Include="CharObject.h">
+    <ClInclude Include="BaseState.h">
+      <Filter>Header Files\Psybc5Game\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="StateMenu.h">
+      <Filter>Header Files\Psybc5Game\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="UIObjects.h">
       <Filter>Header Files\Psybc5Game</Filter>
     </ClInclude>
   </ItemGroup>
@@ -377,10 +386,19 @@
     <ClCompile Include="Psybc5TileManager.cpp">
       <Filter>Source Files\Psybc5Game</Filter>
     </ClCompile>
-    <ClCompile Include="StateManager.cpp">
+    <ClCompile Include="CharObject.cpp">
+      <Filter>Source Files\Psybc5Game</Filter>
+    </ClCompile>
+    <ClCompile Include="GameEngine.cpp">
       <Filter>Source Files\Psybc5Game\GameStates</Filter>
     </ClCompile>
-    <ClCompile Include="CharObject.cpp">
+    <ClCompile Include="BaseState.cpp">
+      <Filter>Source Files\Psybc5Game\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="StateMenu.cpp">
+      <Filter>Source Files\Psybc5Game\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="UIObjects.cpp">
       <Filter>Source Files\Psybc5Game</Filter>
     </ClCompile>
   </ItemGroup>

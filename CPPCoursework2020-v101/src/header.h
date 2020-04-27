@@ -8,6 +8,8 @@
 //Constant values used in the game
 #define TILE_SIZE 64
 #define TICK_LEN 100
+#define WIN_WIDTH 1024
+#define WIN_HEIGHT 768
 
 // Only include in windows, when in debug:
 #ifdef _DEBUG

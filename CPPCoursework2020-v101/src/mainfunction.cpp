@@ -18,7 +18,8 @@
 #include "PlayingCardsDemo.h"
 #include "JasonsDemoA.h"
 
-#include "psybc5Engine.h"
+#include "Psybc5Engine.h"
+#include "GameEngine.h"
 
 // These are passed to initialise to determine the window size
 const int BaseScreenWidth = 1024;
@@ -48,7 +49,9 @@ int doProgram(int argc, char *argv[])
 	//FlashingDemo oMain; // See WARNING above! Simple changing backgrounds
 	//ZoomingDemo oMain;	// WARNING: More flashing here! Shows the use of a filter to shift and rescale the display - this is complex and you can ignore it!
 
-	Psybc5Engine oMain;
+	//Psybc5Engine oMain;
+
+	GameEngine oMain;
 
 	char buf[1024];
 	sprintf(buf, "C++ Coursework Framework Program : Size %d x %d", BaseScreenWidth, BaseScreenHeight);

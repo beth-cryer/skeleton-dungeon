@@ -144,7 +144,9 @@
     <ClInclude Include="BouncingObject.h" />
     <ClInclude Include="SimpleTrig.h" />
     <ClInclude Include="StarfieldDemo.h" />
-    <ClInclude Include="StateManager.h" />
+    <ClInclude Include="GameEngine.h" />
+    <ClInclude Include="BaseState.h" />
+    <ClInclude Include="StateMenu.h" />
     <ClInclude Include="templates.h" />
     <ClInclude Include="TileManager.h" />
     <ClInclude Include="BouncingBall.h" />
@@ -155,6 +157,7 @@
     <ClInclude Include="SimpleDemo.h" />
     <ClInclude Include="DragableToken.h" />
     <ClInclude Include="TokenTray.h" />
+    <ClInclude Include="UIObjects.h" />
     <ClInclude Include="Weapon.h" />
     <ClInclude Include="ZoomingDemo.h" />
   </ItemGroup>
@@ -190,7 +193,9 @@
     <ClCompile Include="RawImage.cpp" />
     <ClCompile Include="SimpleDemo.cpp" />
     <ClCompile Include="StarfieldDemo.cpp" />
-    <ClCompile Include="StateManager.cpp" />
+    <ClCompile Include="GameEngine.cpp" />
+    <ClCompile Include="BaseState.cpp" />
+    <ClCompile Include="StateMenu.cpp" />
     <ClCompile Include="TileManager.cpp" />
     <ClCompile Include="BouncingBall.cpp" />
     <ClCompile Include="BouncingBallMain.cpp" />
@@ -203,6 +208,7 @@
     <ClCompile Include="MazeDemoTileManager.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="UIObjects.cpp" />
     <ClCompile Include="Weapon.cpp" />
     <ClCompile Include="ZoomingDemo.cpp" />
   </ItemGroup>

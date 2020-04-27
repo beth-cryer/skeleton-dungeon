@@ -1,0 +1,12 @@
+ok so we'll have ONE BaseEngine subclass, let's call it GameEngine
+
+Then we have a BaseState class that all states will inherit from
+
+In GameEngine, for each of the major functions, we will call a virtual function from the currently-assigned BaseState
+Those virtual functions will do whatever it is that particular state wants
+States need a pointer to GameEngine so that it can initiate state-switches and access its BaseEngine functions
+
+(might need to add more accessor functions to GameEngine, since BaseEngine makes some of it protected i think)
+
+This way, states can also subclass each other if they only change minor things
+might not need to though
