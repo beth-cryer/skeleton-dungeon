@@ -17,6 +17,7 @@ class Psybc5Engine :
 
 private:
 	PlayerObject* player;
+	Weapon* wepEquip;
 
 public:
 	Psybc5Engine();
@@ -48,9 +49,12 @@ public:
 	//GAME STATES
 	enum class GameState {stateStart, stateMain, statePause, stateEnemyTurn};
 
+	void equipItem(Weapon* wepEquip);
+
 	//HELPER FUNCTIONS
 	void moveCamera(int offsetXIncrement, int offsetYIncrement);
 	void drawBar(int x1, int y1, int y2, int maxWidth, std::string str, int value, int maxValue, int colBar, int colBack);
+	void orderCharsByHeight();
 
 	//PLAYER STATS
 	int maxHealth, health;
@@ -68,7 +72,6 @@ private:
 	BackgroundTileManager objTilesBack;
 	InventoryTileManager objInvTiles;
 	FontManager fonts;
-	std::shared_ptr<Item> heldItem = NULL; //smart pointer to the Item currently held with the cursor
 
 	//Gets smart pointer to background image
 	SimpleImage bg = ImageManager::loadImage("images/background.png", true);

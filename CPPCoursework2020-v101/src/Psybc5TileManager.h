@@ -1,6 +1,7 @@
 #pragma once
 #include "TileManager.h"
 #include "Item.h"
+#include "Weapon.h"
 
 class Psybc5TileManager :
 	public TileManager
@@ -63,11 +64,10 @@ class InventoryTileManager :
 {
 
 public:
-	InventoryTileManager(void) : TileManager(64, 64)
+	InventoryTileManager(Psybc5Engine* pEngine) : TileManager(64, 64)
 	{
 		for (int i = 0; i < invSize; i++) {
-			std::shared_ptr<Item> item(new Item());
-			invArray.push_back(item);
+			invArray.push_back(new WoodSword(pEngine));
 		}
 	}
 
@@ -77,11 +77,11 @@ public:
 
 	virtual void virtDrawTileAt(BaseEngine* pEngine, DrawingSurface* pSurface, int iMapX, int iMapY, int iStartPositionScreenX, int iStartPositionScreenY) const override;
 
-	std::shared_ptr<Item> getItemAt(int i) {
+	Item* getItemAt(int i) {
 		return invArray.at(i);
 	}
 
-	void setItemAt(int i, std::shared_ptr<Item> item) {
+	void setItemAt(int i, Item* item) {
 		invArray[i] = item;
 	}
 
@@ -92,7 +92,7 @@ private:
 	int invSize = 8;
 
 	//Vector of Smart Points to Items (Items destroyed when no longer in use)
-	std::vector<std::shared_ptr<Item>> invArray;
+	std::vector<Item*> invArray;
 
 };
 

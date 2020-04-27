@@ -1,5 +1,6 @@
 #include "header.h"
 #include "Psybc5TileManager.h"
+#include "Psybc5Engine.h"
 
 void Psybc5TileManager::virtDrawTileAt(BaseEngine* pEngine, DrawingSurface* pSurface, int iMapX, int iMapY, int iStartPositionScreenX, int iStartPositionScreenY) const
 {

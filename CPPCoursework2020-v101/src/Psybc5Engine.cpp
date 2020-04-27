@@ -2,6 +2,7 @@
 #include "Psybc5Engine.h"
 
 #include "PlayerObject.h"
+#include "Weapon.h"
 #include "EnemyZombieObject.h"
 
 Psybc5Engine::Psybc5Engine()
@@ -218,8 +219,7 @@ void Psybc5Engine::virtMouseDown(int iButton, int iX, int iY) {
 		{
 			//Iterate through all DisplayableObjects and check we clicked one
 			DisplayableObject* pObj;
-			for (int i = 0; i < getContentCount(); i++)
-			{
+			for (int i = 0; i < getContentCount(); i++) {
 				//skip null objects
 				if ((pObj = getDisplayableObject(i)) == NULL) continue;
 
@@ -229,17 +229,24 @@ void Psybc5Engine::virtMouseDown(int iButton, int iX, int iY) {
 
 					//ENEMY CLICKED?
 					EnemyObject* pEnemy = dynamic_cast<EnemyObject*> (pObj);
-					if (pEnemy) {
-						//std::cout << "Enemy clicked";
+					if (pEnemy && attacks > 0) {
+						int range = 1;
+						int damage = 1;
+						if (wepEquip) {
+							range = wepEquip->range;
+							damage = wepEquip->damage;
+						}
 
-						if (attacks > 0) {
-
-							//Check line-of-sight from player to enemy
-							if (player->lineOfSight(player->getXPos(), player->getYPos(), pEnemy->getXPos(), pEnemy->getYPos(), 0)) {
-								audio.playAudio("sfx/combat/Slash2.ogg", -1, 0);
-								pEnemy->damage(strength);
-								attacks--;
+						//Check line-of-sight from player to enemy
+						if (player->lineOfSight(player->getXPos(), player->getYPos(), pEnemy->getXPos(), pEnemy->getYPos(), range)) {
+							if (wepEquip) {
+								wepEquip->attack(pEnemy);
+							} else {
+								pEnemy->damage(damage);
+								audio.playAudio("sfx/combat/Blow7.ogg", -1, 0); //PUNCH
 							}
+
+							attacks--;
 						}
 					}
 				}
@@ -259,14 +266,14 @@ void Psybc5Engine::virtMouseDown(int iButton, int iX, int iY) {
 			int value = objTilesSolid.getMapValue(mapX, mapY);
 
 			//If holding an object, drop it
-			if (heldItem == NULL) {
+			/* if (heldItem == NULL) {
 				heldItem = objInvTiles.getItemAt(value);
 			}
 
 			//If not holding an object, pick it up
 			else {
 				objInvTiles.setItemAt(value, heldItem);
-			}
+			}*/
 		}
 
 		break;
@@ -401,4 +408,29 @@ void Psybc5Engine::drawBar(int x1, int y1, int y2, int maxWidth, std::string str
 	drawForegroundRectangle(x1, y1, x1 + maxWidth, y2, colBack); //bg
 	drawForegroundRectangle(x1, y1, x1 + (maxWidth * (value / maxValue)), y2, colBar); //bar
 	drawForegroundString(x1+10, y1, str.c_str(), 0xffffff, NULL); //text
+}
+
+void Psybc5Engine::equipItem(Weapon* wepEquip)
+{
+	this->wepEquip = wepEquip;
+}
+
+//This will be called every time a CharObject moves in the y axis
+//The object with the largest y value should be at the top, then in descending order
+void Psybc5Engine::orderCharsByHeight()
+{
+	//Iterate through all DisplayableObjects and check we clicked one
+	DisplayableObject* pObj;
+	for (int i = 0; i < getContentCount(); i++) {
+		//skip null objects
+		if ((pObj = getDisplayableObject(i)) == NULL) continue;
+
+		CharObject* pChar = dynamic_cast<CharObject*> (pObj);
+
+		//Check the object currently at the top, place pChar on top if it's lower on the screen
+		if (pChar) {
+			DisplayableObject* pTopObj = getContentItem(getContentCount());
+			if (pTopObj->getYCentre() < pChar->getYCentre()) moveToLast(pChar);
+		}
+	}
 }
