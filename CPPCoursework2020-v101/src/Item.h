@@ -5,7 +5,7 @@ class Item
 
 public:
 
-	Item();
+	Item(int iconId, std::string name, std::string desc);
 	~Item();
 
 	//Function that is executed when the Item is used

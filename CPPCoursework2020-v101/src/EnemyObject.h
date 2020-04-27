@@ -57,7 +57,7 @@ protected:
 	std::list<Node*> path;
 
 	//Weapon used
-	Weapon wep;
+	//Weapon wep;
 
 	//Attack Type weakness
 	//WepType weak;

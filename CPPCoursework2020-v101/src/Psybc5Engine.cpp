@@ -402,3 +402,23 @@ void Psybc5Engine::drawBar(int x1, int y1, int y2, int maxWidth, std::string str
 	drawForegroundRectangle(x1, y1, x1 + (maxWidth * (value / maxValue)), y2, colBar); //bar
 	drawForegroundString(x1+10, y1, str.c_str(), 0xffffff, NULL); //text
 }
+
+//This will be called every time a CharObject moves in the y axis
+//The object with the largest y value should be at the top, then in descending order
+void Psybc5Engine::orderCharsByHeight()
+{
+	//Iterate through all DisplayableObjects and check we clicked one
+	DisplayableObject* pObj;
+	for (int i = 0; i < getContentCount(); i++) {
+		//skip null objects
+		if ((pObj = getDisplayableObject(i)) == NULL) continue;
+
+		CharObject* pChar = dynamic_cast<CharObject*> (pObj);
+
+		//Check the object currently at the top, place pChar on top if it's lower on the screen
+		if (pChar) {
+			DisplayableObject* pTopObj = getContentItem(getContentCount());
+			if (pTopObj->getYCentre() < pChar->getYCentre()) moveToLast(pChar);
+		}
+	}
+}

@@ -51,6 +51,7 @@ public:
 	//HELPER FUNCTIONS
 	void moveCamera(int offsetXIncrement, int offsetYIncrement);
 	void drawBar(int x1, int y1, int y2, int maxWidth, std::string str, int value, int maxValue, int colBar, int colBack);
+	void orderCharsByHeight();
 
 	//PLAYER STATS
 	int maxHealth, health;

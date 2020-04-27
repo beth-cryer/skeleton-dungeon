@@ -1,7 +1,8 @@
 #include "header.h"
 #include "Item.h"
 
-Item::Item() : itemId(0), iconId(1) {
+Item::Item(int iconId, std::string name, std::string desc)
+	: itemId(0), iconId(iconId), name(name), desc(desc) {
 
 }
 

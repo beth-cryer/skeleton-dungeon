@@ -66,7 +66,7 @@ public:
 	InventoryTileManager(void) : TileManager(64, 64)
 	{
 		for (int i = 0; i < invSize; i++) {
-			std::shared_ptr<Item> item(new Item());
+			std::shared_ptr<Item> item(new Item(1,"Test","A test item"));
 			invArray.push_back(item);
 		}
 	}
