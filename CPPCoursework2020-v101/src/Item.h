@@ -1,13 +1,11 @@
 #pragma once
-#include "Psybc5Engine.h"
 
 class Item
 {
-protected:
-	Psybc5Engine* pEngine;
 
 public:
-	Item(Psybc5Engine* pEngine, int iconId, std::string name, std::string desc);
+
+	Item();
 	~Item();
 
 	//Function that is executed when the Item is used

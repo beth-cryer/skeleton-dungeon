@@ -95,7 +95,6 @@ void PlayerObject::virtDoUpdate(int iCurrentTime)
 void PlayerObject::move(int xmove, int ymove, int currentTime, int time)
 {
 	//SolidTileManager tileManager = ((Psybc5Engine*)getEngine())->GetTilesSolid();
-	Psybc5Engine* pEngine = ((Psybc5Engine*)getEngine());
 
 	//Check for collision in the Tile we want to move into
 	if (tileManager->isValidTilePosition(m_iCurrentScreenX + xmove, m_iCurrentScreenY + ymove)) {
@@ -111,11 +110,8 @@ void PlayerObject::move(int xmove, int ymove, int currentTime, int time)
 	//set flipX accordingly (only change if we switch directions)
 	if (xmove > 0) flipX = false; else if (xmove < 0) flipX = true;
 
-	//reorder object layers if y changed
-	if (ymove != 0) pEngine->orderCharsByHeight();
-
-	pEngine->audio.playAudio("sfx/combat/fst_conc_solid_run_01.wav", -1, 0);
-	pEngine->stamina--;
+	((Psybc5Engine*)getEngine())->audio.playAudio("sfx/combat/fst_conc_solid_run_01.wav", -1, 0);
+	((Psybc5Engine*)getEngine())->stamina--;
 
 	CharObject::move(xmove, ymove, currentTime, time);
 }
