@@ -22,8 +22,8 @@
 #include "GameEngine.h"
 
 // These are passed to initialise to determine the window size
-const int BaseScreenWidth = 1024;
-const int BaseScreenHeight = 768;
+const int BaseScreenWidth = WIN_WIDTH;
+const int BaseScreenHeight = WIN_HEIGHT;
 
 
 // This was only moved outside of main so that I can do some memory checking once it ends.

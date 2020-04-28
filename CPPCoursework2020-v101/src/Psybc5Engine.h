@@ -15,9 +15,6 @@ class Psybc5Engine :
 	public BaseEngine
 {
 
-private:
-	PlayerObject* player;
-
 public:
 	Psybc5Engine();
 	~Psybc5Engine();
@@ -63,15 +60,14 @@ public:
 	AudioPlayer audio;
 
 private:
+	PlayerObject* player;
+
 	GameState currentState;
 	SolidTileManager objTilesSolid;
 	BackgroundTileManager objTilesBack;
 	InventoryTileManager objInvTiles;
 	FontManager fonts;
 	std::shared_ptr<Item> heldItem = NULL; //smart pointer to the Item currently held with the cursor
-
-	//Gets smart pointer to background image
-	SimpleImage bg = ImageManager::loadImage("images/background.png", true);
 
 	//For scrolling and zooming the draw Surfaces
 	FilterPointsScaling filterScaling;

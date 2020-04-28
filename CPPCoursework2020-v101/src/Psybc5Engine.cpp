@@ -46,7 +46,6 @@ void Psybc5Engine::virtSetupBackgroundBuffer() {
 	//Sets up the Tiles if game is starting, otherwise just draws the background
 	switch (currentState) {
 	case (GameState::stateStart):
-		bg.renderImage(getBackgroundSurface(), 0, 0, 0, 0, bg.getWidth(), bg.getHeight());
 		
 		{
 
@@ -108,7 +107,6 @@ void Psybc5Engine::virtSetupBackgroundBuffer() {
 	break;
 
 	case (GameState::stateMain):
-		bg.renderImage(getBackgroundSurface(), 0, 0, 0, 0, bg.getWidth(), bg.getHeight());
 
 		//Draw all tiles from the Tile Map to the background surface
 		objTilesBack.drawAllTiles(this, getBackgroundSurface());
@@ -347,16 +345,16 @@ void Psybc5Engine::virtKeyDown(int iKeyCode) {
 	//MOVING CAMERA
 		//(currently doesn't move tile manager)
 	case SDLK_a:
-		moveCamera(20, 0);
+		moveCamera(50, 0);
 		break;
 	case SDLK_d:
-		moveCamera(-20, 0);
+		moveCamera(-50, 0);
 		break;
 	case SDLK_w:
-		moveCamera(0, 20);
+		moveCamera(0, 50);
 		break;
 	case SDLK_s:
-		moveCamera(0, -20);
+		moveCamera(0, -50);
 		break;
 
 	}
@@ -373,7 +371,7 @@ int Psybc5Engine::virtInitialiseObjects()
 
 	player = new PlayerObject(this,&objTilesSolid);
 
-	createObjectArray(1); //(leave one empty element at end of array)
+	createObjectArray(3); //(need to leave one empty element at end of array)
 	appendObjectToArray(player);
 	appendObjectToArray(new EnemyZombieObject(this));
 
@@ -386,13 +384,16 @@ int Psybc5Engine::virtInitialiseObjects()
 void Psybc5Engine::moveCamera(int offsetXIncrement, int offsetYIncrement) {
 	/*if (filterTranslation.getXOffset() > 0 &&
 		filterTranslation.getYOffset() > 0 &&
-		filterTranslation.getXOffset() < bg.getWidth() - (m_iWindowWidth / 2) &&
-		filterTranslation.getYOffset() < bg.getHeight() - (m_iWindowHeight / 2) ) {
+		filterTranslation.getXOffset() < 2000 &&
+		filterTranslation.getYOffset() < 1000) {
 		*/
 
 		filterTranslation.changeOffset(offsetXIncrement, offsetYIncrement);
 		lockAndSetupBackground();
-		redrawDisplay();
+
+		redrawRectangle(0, 0, WIN_WIDTH, WIN_HEIGHT); //only redraw within the current screen bounds
+
+		//redrawDisplay();
 	//}
 }
 

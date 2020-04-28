@@ -14,6 +14,7 @@
 
 class BaseState;
 class StateMenu;
+class StateCharCreate;
 
 class GameEngine :
 	public BaseEngine
@@ -42,15 +43,22 @@ public:
 	virtual void virtMouseWheel(int x, int y, int which, int timestamp) override;
 	virtual void virtKeyDown(int iKeyCode) override;
 
+	//UPDATE FUNCTIONS
+	virtual void virtMainLoopPreUpdate() override;
+	virtual void virtMainLoopPostUpdate() override;
+
 	//RETURN PRIVATE POINTERS
 	SolidTileManager* GetTilesSolid() { return &objTilesSolid; }
 	BackgroundTileManager& GetTilesBack() { return objTilesBack; }
 	InventoryTileManager& GetTilesInv() { return objInvTiles; }
 	//PlayerObject* GetPlayer() { return player; }
 
+	//Made menu state public, since any state needs to be able to get back to it
+	StateMenu* stateMenu;
+	StateCharCreate* stateCharCreate;
+
 private:
 	BaseState* currentState;
-	StateMenu* stateMenu;
 
 	AudioPlayer audio;
 

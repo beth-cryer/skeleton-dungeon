@@ -3,18 +3,27 @@
 
 #include "BaseState.h"
 #include "StateMenu.h"
+#include "StateCharCreate.h"
 
 GameEngine::GameEngine()
 {
 	//currentState = nullptr;
 
 	stateMenu = new StateMenu(this);
+	stateCharCreate = new StateCharCreate(this);
+
 	currentState = stateMenu;
 }
 
 void GameEngine::setState(BaseState* state)
 {
+	currentState->onStateExit();
+
 	this->currentState = state;
+	lockAndSetupBackground();
+	redrawDisplay();
+
+	currentState->onStateEnter();
 }
 
 BaseState* GameEngine::getState()
@@ -69,4 +78,14 @@ void GameEngine::virtKeyDown(int iKeyCode)
 int GameEngine::virtInitialiseObjects()
 {
 	return BaseEngine::virtInitialiseObjects();
+}
+
+void GameEngine::virtMainLoopPreUpdate()
+{
+	currentState->virtMainLoopPreUpdate();
+}
+
+void GameEngine::virtMainLoopPostUpdate()
+{
+	currentState->virtMainLoopPostUpdate();
 }
