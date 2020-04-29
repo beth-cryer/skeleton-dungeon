@@ -276,6 +276,9 @@
     <ClInclude Include="StateCharCreate.h">
       <Filter>Header Files\Psybc5Game\GameStates</Filter>
     </ClInclude>
+    <ClInclude Include="StateStart.h">
+      <Filter>Header Files\Psybc5Game\GameStates</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BaseEngine.cpp">
@@ -405,6 +408,9 @@
       <Filter>Source Files\Psybc5Game</Filter>
     </ClCompile>
     <ClCompile Include="StateCharCreate.cpp">
+      <Filter>Source Files\Psybc5Game\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="StateStart.cpp">
       <Filter>Source Files\Psybc5Game\GameStates</Filter>
     </ClCompile>
   </ItemGroup>

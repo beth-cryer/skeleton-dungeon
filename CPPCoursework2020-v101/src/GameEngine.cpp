@@ -6,6 +6,7 @@
 #include "StateCharCreate.h"
 
 GameEngine::GameEngine()
+	: filterScaling(0, 0, this), filterTranslation(0, 0, &filterScaling)
 {
 	//currentState = nullptr;
 
@@ -19,7 +20,7 @@ void GameEngine::setState(BaseState* state)
 {
 	currentState->onStateExit();
 
-	this->currentState = state;
+	currentState = state;
 	lockAndSetupBackground();
 	redrawDisplay();
 
@@ -36,6 +37,11 @@ BaseState* GameEngine::getState()
 
 int GameEngine::virtInitialise()
 {
+	audio.audioInit();
+
+	getBackgroundSurface()->setDrawPointsFilter(&filterTranslation);
+	getForegroundSurface()->setDrawPointsFilter(&filterTranslation);
+
 	return BaseEngine::virtInitialise();
 }
 

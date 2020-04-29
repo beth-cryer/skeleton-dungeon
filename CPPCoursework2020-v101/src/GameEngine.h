@@ -16,6 +16,8 @@ class BaseState;
 class StateMenu;
 class StateCharCreate;
 
+class PlayerObject;
+
 class GameEngine :
 	public BaseEngine
 {
@@ -49,9 +51,11 @@ public:
 
 	//RETURN PRIVATE POINTERS
 	SolidTileManager* GetTilesSolid() { return &objTilesSolid; }
-	BackgroundTileManager& GetTilesBack() { return objTilesBack; }
-	InventoryTileManager& GetTilesInv() { return objInvTiles; }
-	//PlayerObject* GetPlayer() { return player; }
+	BackgroundTileManager* GetTilesBack() { return &objTilesBack; }
+	InventoryTileManager* GetTilesInv() { return &objInvTiles; }
+	PlayerObject* GetPlayer() { return player; }
+
+	PlayerObject* player;
 
 	//Made menu state public, since any state needs to be able to get back to it
 	StateMenu* stateMenu;
@@ -65,5 +69,9 @@ private:
 	SolidTileManager objTilesSolid;
 	BackgroundTileManager objTilesBack;
 	InventoryTileManager objInvTiles;
+
+	//For scrolling and zooming the draw Surfaces
+	FilterPointsScaling filterScaling;
+	FilterPointsTranslation filterTranslation;
 
 };
