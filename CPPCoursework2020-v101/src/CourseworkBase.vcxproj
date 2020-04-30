@@ -109,6 +109,8 @@
     <ClInclude Include="DraggingDemo.h" />
     <ClInclude Include="DrawingFilters.h" />
     <ClInclude Include="DrawingSurface.h" />
+    <ClInclude Include="EnemyDragonObject.h" />
+    <ClInclude Include="EnemyElfObject.h" />
     <ClInclude Include="EnemyObject.h" />
     <ClInclude Include="EnemyZombieObject.h" />
     <ClInclude Include="FilterPoints.h" />
@@ -170,6 +172,8 @@
     <ClCompile Include="CharObject.cpp" />
     <ClCompile Include="DraggingDemo.cpp" />
     <ClCompile Include="DrawingSurface.cpp" />
+    <ClCompile Include="EnemyDragonObject.cpp" />
+    <ClCompile Include="EnemyElfObject.cpp" />
     <ClCompile Include="EnemyObject.cpp" />
     <ClCompile Include="EnemyZombieObject.cpp" />
     <ClCompile Include="FireballObject.cpp" />

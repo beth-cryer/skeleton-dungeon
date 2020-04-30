@@ -19,7 +19,8 @@ void EnemyZombieObject::virtDraw()
 	switch (currentState) {
 	case (CharState::stateIdle): animate(5, 63, 76, 0, 152); break;
 	case(CharState::stateWalk): animate(11, 63, 76, 0, 76); break;
-	//case(stateAttack): animate(4, 80, 76, 0, 304); break;
+	case(CharState::stateAttack): animate(4, 80, 76, 0, 304); break;
+	case(CharState::stateDeath): animate(7, 63, 76, 0, 456); break;
 	}
 
 	return AnimatedObject::virtDraw();

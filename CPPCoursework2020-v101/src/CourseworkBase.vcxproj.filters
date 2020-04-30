@@ -279,6 +279,12 @@
     <ClInclude Include="StateStart.h">
       <Filter>Header Files\Psybc5Game\GameStates</Filter>
     </ClInclude>
+    <ClInclude Include="EnemyDragonObject.h">
+      <Filter>Header Files\Psybc5Game\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyElfObject.h">
+      <Filter>Header Files\Psybc5Game\Enemies</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BaseEngine.cpp">
@@ -412,6 +418,12 @@
     </ClCompile>
     <ClCompile Include="StateStart.cpp">
       <Filter>Source Files\Psybc5Game\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyDragonObject.cpp">
+      <Filter>Source Files\Psybc5Game\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyElfObject.cpp">
+      <Filter>Source Files\Psybc5Game\Enemies</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
