@@ -76,7 +76,7 @@ bool CharObject::lineOfSight(const int x1, const int y1, const int x2, const int
 
 	//Check if any tiles are solid, return false if any found
 	for (auto it = los.begin(); it != los.end(); it++) {
-		auto tiles = ((Psybc5Engine*)getEngine())->GetTilesSolid();
+		auto tiles = ((GameEngine*)getEngine())->GetTilesSolid();
 
 		if (tiles->isValidTilePosition(std::get<0>(*it), std::get<1>(*it))) {
 			if (tiles->getMapValue(std::get<0>(*it), std::get<1>(*it)) != 0) {

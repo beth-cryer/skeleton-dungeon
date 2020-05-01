@@ -2,7 +2,7 @@
 #include "AnimatedObject.h"
 
 #include "MovementPosition.h"
-#include "Psybc5Engine.h"
+#include "GameEngine.h"
 
 //This class includes any functionality that is shared between ALL Characters on the board (including the Player and Enemies)
 //Inherits directly from AnimatedObject, as all characters are animated but not all AnimatedObjects are characters (hence the separation)

@@ -35,7 +35,7 @@ void PlayerObject::virtDoUpdate(int iCurrentTime)
 	if (!isVisible() || getEngine()->isPaused())
 		return;
 
-	Psybc5Engine* engine = (Psybc5Engine*)getEngine();
+	GameEngine* engine = (GameEngine*)getEngine();
 
 	//Check if we have leveled up
 	int exp = engine->exp;
@@ -112,9 +112,9 @@ void PlayerObject::move(int xmove, int ymove, int currentTime, int time)
 	//set flipX accordingly (only change if we switch directions)
 	if (xmove > 0) flipX = false; else if (xmove < 0) flipX = true;
 
-	auto pEngine = ((Psybc5Engine*)getEngine());
+	auto pEngine = ((GameEngine*)getEngine());
 
-	pEngine->audio.playAudio("sfx/combat/fst_conc_solid_run_01.wav", -1, 0);
+	pEngine->GetAudio()->playAudio("sfx/combat/fst_conc_solid_run_01.wav", -1, 0);
 	pEngine->stamina--;
 
 	CharObject::move(xmove, ymove, currentTime, time);

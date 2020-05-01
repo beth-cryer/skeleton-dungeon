@@ -22,7 +22,7 @@ void EnemyObject::virtDoUpdate(int iCurrentTime)
 	if (currentState != CharState::stateIdle && objMovement.hasMovementFinished(iCurrentTime)) {
 
 		//Redo order of depth for charobjects by height
-		((Psybc5Engine*)getEngine())->orderCharsByHeight();
+		((GameEngine*)getEngine())->orderCharsByHeight();
 
 		currentState = CharState::stateIdle;
 		AI();
@@ -35,7 +35,7 @@ void EnemyObject::turnStart()
 	//((Psybc5Engine*)getEngine())->audio.playAudio("sfx/monsters/Growl.ogg", -1, 0);
 
 	//Generate path to desired location
-	PlayerObject* player = ((Psybc5Engine*)getEngine())->GetPlayer();
+	PlayerObject* player = ((GameEngine*)getEngine())->GetPlayer();
 	path = calcPath(player->getXPos(), player->getYPos());
 
 	AI();
@@ -56,7 +56,7 @@ void EnemyObject::AI()
 	//Otherwise,
 
 	//If within range of weapon, attack
-	PlayerObject* player = ((Psybc5Engine*)getEngine())->GetPlayer();
+	PlayerObject* player = ((GameEngine*)getEngine())->GetPlayer();
 	if (lineOfSight(m_iCurrentScreenX, m_iCurrentScreenY, player->getXPos(), player->getYPos(), 0)) {
 		attack();
 	
@@ -146,7 +146,7 @@ std::list<Node*> EnemyObject::calcPath (int goalX, int goalY)
 			}
 
 			//If a solid tile exist here, skip
-			auto tiles = ((Psybc5Engine*)getEngine())->GetTilesSolid();
+			auto tiles = ((GameEngine*)getEngine())->GetTilesSolid();
 			if (tiles->isValidTilePosition(x, y)) {
 				if (tiles->getMapValue(x, y) != 0) continue;
 			}
@@ -200,5 +200,5 @@ void EnemyObject::damage(int amount)
 //Override this where necessary
 void EnemyObject::attack()
 {
-	((Psybc5Engine*)getEngine())->health--;
+	((GameEngine*)getEngine())->health--;
 }
