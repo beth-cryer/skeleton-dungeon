@@ -1,5 +1,8 @@
 #include "header.h"
 #include "StateStart.h"
+
+#include "StateRunning.h"
+
 #include "PlayerObject.h"
 #include "EnemyZombieObject.h"
 
@@ -8,11 +11,8 @@ StateStart::StateStart(GameEngine* pEngine) : BaseState(pEngine)
 
 }
 
-//All this state does is initialise everything for the Running state
-//(aka. set up object array, generate level)
-void StateStart::onStateEnter()
+void StateStart::virtSetupBackgroundBuffer()
 {
-
 	//INIT OBJECT ARRAY
 	pEngine->drawableObjectsChanged();
 
@@ -21,7 +21,7 @@ void StateStart::onStateEnter()
 
 	pEngine->player = new PlayerObject(pEngine, pEngine->GetTilesSolid());
 
-	pEngine->createObjectArray(3); //(need to leave one empty element at end of array)
+	pEngine->createObjectArray(100); //(need to leave one empty element at end of array)
 	pEngine->appendObjectToArray(pEngine->player);
 	pEngine->appendObjectToArray(new EnemyZombieObject(pEngine));
 
@@ -83,6 +83,16 @@ void StateStart::onStateEnter()
 
 	invTiles->setTopLeftPositionOnScreen(WIN_WIDTH / 2 - (w * 64) / 2, WIN_HEIGHT / 2 - (h * 64) / 2);
 
+	//Transition to Running
+	pEngine->setState(pEngine->stateRunning);
+}
+
+//All this state does is initialise everything for the Running state
+//(aka. set up object array, generate level)
+void StateStart::onStateEnter()
+{
+
+	
 }
 
 void StateStart::onStateExit()

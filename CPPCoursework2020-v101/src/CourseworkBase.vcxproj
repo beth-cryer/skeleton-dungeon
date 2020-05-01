@@ -150,6 +150,7 @@
     <ClInclude Include="BaseState.h" />
     <ClInclude Include="StateCharCreate.h" />
     <ClInclude Include="StateMenu.h" />
+    <ClInclude Include="StateRunning.h" />
     <ClInclude Include="StateStart.h" />
     <ClInclude Include="templates.h" />
     <ClInclude Include="TileManager.h" />
@@ -203,6 +204,7 @@
     <ClCompile Include="BaseState.cpp" />
     <ClCompile Include="StateCharCreate.cpp" />
     <ClCompile Include="StateMenu.cpp" />
+    <ClCompile Include="StateRunning.cpp" />
     <ClCompile Include="StateStart.cpp" />
     <ClCompile Include="TileManager.cpp" />
     <ClCompile Include="BouncingBall.cpp" />

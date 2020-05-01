@@ -343,7 +343,6 @@ void Psybc5Engine::virtKeyDown(int iKeyCode) {
 
 
 	//MOVING CAMERA
-		//(currently doesn't move tile manager)
 	case SDLK_a:
 		moveCamera(50, 0);
 		break;
@@ -418,7 +417,7 @@ void Psybc5Engine::orderCharsByHeight()
 
 		//Check the object currently at the top, place pChar on top if it's lower on the screen
 		if (pChar) {
-			DisplayableObject* pTopObj = getContentItem(getContentCount()-1);
+			DisplayableObject* pTopObj = getContentItem(getContentCount() - 1);
 			if (pTopObj->getYCentre() < pChar->getYCentre()) moveToLast(pChar);
 		}
 	}

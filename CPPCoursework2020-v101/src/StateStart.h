@@ -8,8 +8,9 @@ class StateStart :
 public:
 	StateStart(GameEngine* pEngine);
 
-	virtual void onStateEnter();
-	virtual void onStateExit();
+	virtual void virtSetupBackgroundBuffer() override;
+	virtual void onStateEnter() override;
+	virtual void onStateExit() override;
 
 };
 

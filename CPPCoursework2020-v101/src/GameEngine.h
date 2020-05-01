@@ -15,6 +15,8 @@
 class BaseState;
 class StateMenu;
 class StateCharCreate;
+class StateStart;
+class StateRunning;
 
 class PlayerObject;
 
@@ -49,17 +51,37 @@ public:
 	virtual void virtMainLoopPreUpdate() override;
 	virtual void virtMainLoopPostUpdate() override;
 
+	//Helper functions
+	void moveCamera(int offsetXIncrement, int offsetYIncrement);
+	void drawBar(int x1, int y1, int y2, int maxWidth, std::string str, int value, int maxValue, int colBar, int colBack);
+	void orderCharsByHeight();
+
 	//RETURN PRIVATE POINTERS
 	SolidTileManager* GetTilesSolid() { return &objTilesSolid; }
 	BackgroundTileManager* GetTilesBack() { return &objTilesBack; }
 	InventoryTileManager* GetTilesInv() { return &objInvTiles; }
+	AudioPlayer* GetAudio() { return &audio; }
 	PlayerObject* GetPlayer() { return player; }
 
 	PlayerObject* player;
 
+	//For scrolling and zooming the draw Surfaces
+	FilterPointsScaling filterScaling;
+	FilterPointsTranslation filterTranslation;
+
+	//PLAYER STATS
+	int maxHealth, health;
+	int maxStamina, stamina;
+	int maxMagic, magic;
+	int strength, ranged, defence;
+	int exp, expNext, level, skillUps;
+	int maxAttacks, attacks;
+
 	//Made menu state public, since any state needs to be able to get back to it
 	StateMenu* stateMenu;
 	StateCharCreate* stateCharCreate;
+	StateStart* stateStart;
+	StateRunning* stateRunning;
 
 private:
 	BaseState* currentState;
@@ -69,9 +91,5 @@ private:
 	SolidTileManager objTilesSolid;
 	BackgroundTileManager objTilesBack;
 	InventoryTileManager objInvTiles;
-
-	//For scrolling and zooming the draw Surfaces
-	FilterPointsScaling filterScaling;
-	FilterPointsTranslation filterTranslation;
 
 };

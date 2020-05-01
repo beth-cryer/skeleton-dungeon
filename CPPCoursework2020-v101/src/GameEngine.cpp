@@ -4,14 +4,26 @@
 #include "BaseState.h"
 #include "StateMenu.h"
 #include "StateCharCreate.h"
+#include "StateStart.h"
+#include "StateRunning.h"
+
+#include "CharObject.h"
 
 GameEngine::GameEngine()
-	: filterScaling(0, 0, this), filterTranslation(0, 0, &filterScaling)
+	: filterScaling(0, 0, this), filterTranslation(0, 0, &filterScaling), player(NULL),
+	maxHealth(10), health(maxHealth),
+	maxStamina(4), stamina(maxStamina),
+	maxMagic(1), magic(maxMagic),
+	maxAttacks(1), attacks(maxAttacks),
+	strength(1), ranged(1), defence(1),
+	exp(25), expNext(50), level(1), skillUps(0)
 {
 	//currentState = nullptr;
 
 	stateMenu = new StateMenu(this);
 	stateCharCreate = new StateCharCreate(this);
+	stateStart = new StateStart(this);
+	stateRunning = new StateRunning(this);
 
 	currentState = stateMenu;
 }
@@ -94,4 +106,48 @@ void GameEngine::virtMainLoopPreUpdate()
 void GameEngine::virtMainLoopPostUpdate()
 {
 	currentState->virtMainLoopPostUpdate();
+}
+
+//Check if we're at the edge of a map
+void GameEngine::moveCamera(int offsetXIncrement, int offsetYIncrement) {
+	/*if (filterTranslation.getXOffset() > 0 &&
+		filterTranslation.getYOffset() > 0 &&
+		filterTranslation.getXOffset() < 2000 &&
+		filterTranslation.getYOffset() < 1000) {
+		*/
+
+	filterTranslation.changeOffset(offsetXIncrement, offsetYIncrement);
+	lockAndSetupBackground();
+
+	redrawRectangle(0, 0, WIN_WIDTH, WIN_HEIGHT); //only redraw within the current screen bounds
+
+	//redrawDisplay();
+//}
+}
+
+void GameEngine::drawBar(int x1, int y1, int y2, int maxWidth, std::string str, int value, int maxValue, int colBar, int colBack)
+{
+	drawForegroundRectangle(x1, y1, x1 + maxWidth, y2, colBack); //bg
+	drawForegroundRectangle(x1, y1, x1 + (maxWidth * (value / maxValue)), y2, colBar); //bar
+	drawForegroundString(x1 + 10, y1, str.c_str(), 0xffffff, NULL); //text
+}
+
+//This will be called every time a CharObject moves in the y axis
+//The object with the largest y value should be at the top, then in descending order
+void GameEngine::orderCharsByHeight()
+{
+	//Iterate through all DisplayableObjects and check we clicked one
+	DisplayableObject* pObj;
+	for (int i = 0; i < getContentCount(); i++) {
+		//skip null objects
+		if ((pObj = getDisplayableObject(i)) == NULL) continue;
+
+		CharObject* pChar = dynamic_cast<CharObject*> (pObj);
+
+		//Check the object currently at the top, place pChar on top if it's lower on the screen
+		if (pChar) {
+			DisplayableObject* pTopObj = getContentItem(getContentCount() - 1);
+			if (pTopObj->getYCentre() < pChar->getYCentre()) moveToLast(pChar);
+		}
+	}
 }
