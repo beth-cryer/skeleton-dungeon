@@ -9,13 +9,13 @@ public:
 	SaveManager();
 
 	//Loading
-	void readFileContents(std::string filename);
-	std::string getData(std::string tag);
+	void loadFileContents(std::string filename);
+	std::string getSaveData(std::string tag);
 
 	//Saving
-	void openFile(const char* path);
+	std::ofstream* openFile(const char* path);
+	void writeLine(std::string tag, std::string content);
 	void closeFile();
-	void writeFile(std::string text);
 
 private:
 	std::string text;

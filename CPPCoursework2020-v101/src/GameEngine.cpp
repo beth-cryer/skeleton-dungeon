@@ -171,3 +171,29 @@ void GameEngine::orderCharsByHeight()
 		}
 	}
 }
+
+//Save function
+void GameEngine::saveGame()
+{
+	auto sm = &saveManager;
+	auto save = sm->openFile("saves/testSave.txt");
+
+	sm->writeLine("name",playerName);
+	sm->writeLine("level", std::to_string(level));
+	sm->writeLine("exp", std::to_string(exp));
+	sm->writeLine("expnext", std::to_string(expNext));
+	sm->writeLine("skillups", std::to_string(skillUps));
+
+	sm->writeLine("health", std::to_string(health));
+	sm->writeLine("maxhealth", std::to_string(maxHealth));
+	sm->writeLine("stamina", std::to_string(stamina));
+	sm->writeLine("maxstamina", std::to_string(maxStamina));
+	sm->writeLine("magic", std::to_string(magic));
+	sm->writeLine("maxmagic", std::to_string(maxMagic));
+
+	sm->writeLine("strength", std::to_string(strength));
+	sm->writeLine("ranged", std::to_string(ranged));
+	sm->writeLine("defence", std::to_string(defence));
+
+	sm->closeFile();
+}

@@ -41,27 +41,27 @@ void ButtonContinue::onClick()
 {
 	//Load save
 	auto loader = pEngine->GetSaveManager();
-	loader->readFileContents("saves/test.txt");
+	loader->loadFileContents("saves/test.txt");
 
-	pEngine->playerName = loader->getData("name");
-	pEngine->level = std::stoi(loader->getData("level"));
-	pEngine->exp = std::stoi(loader->getData("exp"));
-	pEngine->expNext = std::stoi(loader->getData("expnext"));
-	pEngine->skillUps = std::stoi(loader->getData("skillups"));
+	pEngine->playerName = loader->getSaveData("name");
+	pEngine->level = std::stoi(loader->getSaveData("level"));
+	pEngine->exp = std::stoi(loader->getSaveData("exp"));
+	pEngine->expNext = std::stoi(loader->getSaveData("expnext"));
+	pEngine->skillUps = std::stoi(loader->getSaveData("skillups"));
 
-	pEngine->maxHealth = std::stoi(loader->getData("maxhealth"));
-	pEngine->health = std::stoi(loader->getData("health"));
-	pEngine->maxStamina = std::stoi(loader->getData("maxstamina"));
-	pEngine->stamina = std::stoi(loader->getData("stamina"));
-	pEngine->maxMagic = std::stoi(loader->getData("maxmagic"));
-	pEngine->magic = std::stoi(loader->getData("magic"));
+	pEngine->maxHealth = std::stoi(loader->getSaveData("maxhealth"));
+	pEngine->health = std::stoi(loader->getSaveData("health"));
+	pEngine->maxStamina = std::stoi(loader->getSaveData("maxstamina"));
+	pEngine->stamina = std::stoi(loader->getSaveData("stamina"));
+	pEngine->maxMagic = std::stoi(loader->getSaveData("maxmagic"));
+	pEngine->magic = std::stoi(loader->getSaveData("magic"));
 
-	pEngine->strength = std::stoi(loader->getData("strength"));
-	pEngine->ranged = std::stoi(loader->getData("ranged"));
-	pEngine->defence = std::stoi(loader->getData("defence"));
+	pEngine->strength = std::stoi(loader->getSaveData("strength"));
+	pEngine->ranged = std::stoi(loader->getSaveData("ranged"));
+	pEngine->defence = std::stoi(loader->getSaveData("defence"));
 
-	std::string solidTiles = loader->getData("solid");
-	std::string solidBack = loader->getData("back");
+	std::string solidTiles = loader->getSaveData("solid");
+	std::string solidBack = loader->getSaveData("back");
 
 	pEngine->setState(pEngine->stateStart);
 }

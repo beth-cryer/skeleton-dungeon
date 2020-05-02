@@ -60,6 +60,8 @@ public:
 	void drawBar(int x1, int y1, int y2, int maxWidth, std::string str, int value, int maxValue, int colBar, int colBack);
 	void orderCharsByHeight();
 
+	void saveGame();
+
 	//RETURN PRIVATE POINTERS
 	SolidTileManager* GetTilesSolid() { return &objTilesSolid; }
 	BackgroundTileManager* GetTilesBack() { return &objTilesBack; }

@@ -1,5 +1,4 @@
-<character>
-
+Character
 <name></name>
 <level></level>
 <exp></exp>
@@ -15,17 +14,13 @@
 <maxmagic></maxmagic>
 <skillups></skillups>
 
-</character>
+Inventory
 
-<inventory>
 
-</inventory>
-
-<level>
+Level
 <solid>
 [0,0,0,0,0][0,0,0,0,0][0,1,0,0,1] etc
 </solid>
 <back>
 
 </back>
-</level>

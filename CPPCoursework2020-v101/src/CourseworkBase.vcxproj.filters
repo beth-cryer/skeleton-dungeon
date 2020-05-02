@@ -261,9 +261,6 @@
     <ClInclude Include="CharObject.h">
       <Filter>Header Files\Psybc5Game</Filter>
     </ClInclude>
-    <ClInclude Include="GameEngine.h">
-      <Filter>Header Files\Psybc5Game\GameStates</Filter>
-    </ClInclude>
     <ClInclude Include="BaseState.h">
       <Filter>Header Files\Psybc5Game\GameStates</Filter>
     </ClInclude>
@@ -286,6 +283,9 @@
       <Filter>Header Files\Psybc5Game\GameStates</Filter>
     </ClInclude>
     <ClInclude Include="SaveManager.h">
+      <Filter>Header Files\Psybc5Game</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEngine.h">
       <Filter>Header Files\Psybc5Game</Filter>
     </ClInclude>
   </ItemGroup>
@@ -404,9 +404,6 @@
     <ClCompile Include="CharObject.cpp">
       <Filter>Source Files\Psybc5Game</Filter>
     </ClCompile>
-    <ClCompile Include="GameEngine.cpp">
-      <Filter>Source Files\Psybc5Game\GameStates</Filter>
-    </ClCompile>
     <ClCompile Include="BaseState.cpp">
       <Filter>Source Files\Psybc5Game\GameStates</Filter>
     </ClCompile>
@@ -429,6 +426,9 @@
       <Filter>Source Files\Psybc5Game\GameStates</Filter>
     </ClCompile>
     <ClCompile Include="SaveManager.cpp">
+      <Filter>Source Files\Psybc5Game</Filter>
+    </ClCompile>
+    <ClCompile Include="GameEngine.cpp">
       <Filter>Source Files\Psybc5Game</Filter>
     </ClCompile>
   </ItemGroup>

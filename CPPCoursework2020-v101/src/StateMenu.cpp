@@ -60,6 +60,8 @@ void StateMenu::virtKeyDown(int iKeyCode)
 {
 	//Exit program
 	if (iKeyCode == SDLK_ESCAPE) pEngine->setExitWithCode(0);
+
+	if (iKeyCode == SDLK_s) pEngine->saveGame();
 }
 
 void StateMenu::virtMainLoopDoBeforeUpdate()
