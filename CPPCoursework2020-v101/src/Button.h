@@ -19,6 +19,13 @@ protected:
 
 };
 
+class ButtonCharCreator : public Button {
+public:
+	ButtonCharCreator(GameEngine* pEngine, int x, int y, int width, int height, int colText, int colButton, const char* text, Font* font)
+		: Button(pEngine, x, y, width, height, colText, colButton, text, font) {}
+	virtual void onClick() override;
+};
+
 class ButtonNewGame : public Button {
 public:
 	ButtonNewGame(GameEngine* pEngine, int x, int y, int width, int height, int colText, int colButton, const char* text, Font* font)

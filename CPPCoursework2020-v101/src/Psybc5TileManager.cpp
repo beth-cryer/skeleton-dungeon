@@ -38,7 +38,6 @@ void SolidTileManager::virtDrawTileAt(BaseEngine* pEngine, DrawingSurface* pSurf
 	default: Psybc5TileManager::virtDrawTileAt(pEngine, pSurface, iMapX, iMapY, iStartPositionScreenX, iStartPositionScreenY);
 	}
 
-
 }
 
 void InventoryTileManager::virtDrawTileAt(BaseEngine* pEngine, DrawingSurface* pSurface, int iMapX, int iMapY, int iStartPositionScreenX, int iStartPositionScreenY) const

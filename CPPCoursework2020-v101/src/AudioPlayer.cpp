@@ -46,19 +46,28 @@ void AudioPlayer::playAudio(const char* audioPath, int audioChannel, int loops)
 
 }
 
-void AudioPlayer::playMusic(const char* audioPath, int loops)
+void AudioPlayer::playMusic(const char* musicPath, int loops)
 {
 	//Check for an existing entry, pull pMusic from that if it exists
-	if (music.count(audioPath) > 0) {
-		Mix_PlayMusic(music.at(audioPath), loops);
-	
-	//Entry not found:
-	} else {
-		Mix_Music* pMusic = Mix_LoadMUS(audioPath);
+	if (music.count(musicPath) > 0) {
+		Mix_PlayMusic(music.at(musicPath), loops);
+
+		//Entry not found:
+	}
+	else {
+		Mix_Music* pMusic = Mix_LoadMUS(musicPath);
 		Mix_PlayMusic(pMusic, loops);
 
-		music.emplace(audioPath, pMusic); //cache pMusic
+		music.emplace(musicPath, pMusic); //cache pMusic
 	}
+
+	//Track currently-playing song, so we can check if a song is already playing before we accidentally restart it
+	currentSong = musicPath;
+}
+
+bool AudioPlayer::isSongPlaying(const char* musicPath)
+{
+	return (currentSong == musicPath);
 }
 
 void AudioPlayer::stopMusic() {

@@ -11,6 +11,7 @@ public:
 	int audioInit();
 	void playAudio(const char* audioPath, int audioChannel, int loops);
 	void playMusic(const char* musicPath, int loops);
+	bool isSongPlaying(const char* musicPath);
 	void stopMusic();
 	void closeAudio();
 
@@ -20,5 +21,7 @@ private:
 	//When the AudioPlayer is deleted, free all Mix_Chunk and Mix_Music pointers stored
 	std::map<std::string,Mix_Chunk*> sfx;
 	std::map<std::string,Mix_Music*> music;
+
+	std::string currentSong;
 };
 

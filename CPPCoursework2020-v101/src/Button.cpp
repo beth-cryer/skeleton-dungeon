@@ -3,6 +3,7 @@
 
 #include "StateMenu.h"
 #include "StateStart.h"
+#include "StateEditor.h"
 
 Button::Button(GameEngine* pEngine, int x, int y, int width, int height, int colText, int colButton, const char* text, Font* font = NULL)
 	: pEngine(pEngine), x(x), y(y), width(width), height(height), colText(colText), colButton(colButton), text(text), font(font)
@@ -30,10 +31,16 @@ bool Button::isClicked(int xClick, int yClick)
 }
 
 
-//NEW GAME
-void ButtonNewGame::onClick()
+//TO CHARACTER CREATOR
+void ButtonCharCreator::onClick()
 {
 	pEngine->setState(pEngine->stateCharCreate);
+}
+
+//START NEW GAME
+void ButtonNewGame::onClick()
+{
+	pEngine->setState(pEngine->stateStart);
 }
 
 //CONTINUE
@@ -69,7 +76,7 @@ void ButtonContinue::onClick()
 //LEVEL EDITOR
 void ButtonEditor::onClick()
 {
-	pEngine->setState(pEngine->stateStart);
+	pEngine->setState(pEngine->stateEditor);
 }
 
 //EXIT

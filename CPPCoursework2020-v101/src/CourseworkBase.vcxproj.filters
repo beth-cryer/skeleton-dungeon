@@ -288,6 +288,9 @@
     <ClInclude Include="GameEngine.h">
       <Filter>Header Files\Psybc5Game</Filter>
     </ClInclude>
+    <ClInclude Include="StateEditor.h">
+      <Filter>Header Files\Psybc5Game\GameStates</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BaseEngine.cpp">
@@ -410,9 +413,6 @@
     <ClCompile Include="StateMenu.cpp">
       <Filter>Source Files\Psybc5Game\GameStates</Filter>
     </ClCompile>
-    <ClCompile Include="Button.cpp">
-      <Filter>Source Files\Psybc5Game</Filter>
-    </ClCompile>
     <ClCompile Include="StateStart.cpp">
       <Filter>Source Files\Psybc5Game\GameStates</Filter>
     </ClCompile>
@@ -429,6 +429,12 @@
       <Filter>Source Files\Psybc5Game</Filter>
     </ClCompile>
     <ClCompile Include="GameEngine.cpp">
+      <Filter>Source Files\Psybc5Game</Filter>
+    </ClCompile>
+    <ClCompile Include="StateEditor.cpp">
+      <Filter>Source Files\Psybc5Game\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="Button.cpp">
       <Filter>Source Files\Psybc5Game</Filter>
     </ClCompile>
   </ItemGroup>

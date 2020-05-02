@@ -27,10 +27,9 @@ class BackgroundTileManager :
 	public Psybc5TileManager
 {
 public:
-	BackgroundTileManager()
+	BackgroundTileManager() : Psybc5TileManager()
 	{
 		tileSprites = ImageManager::loadImage("sprites/tiles_floor.png", true);
-		Psybc5TileManager();
 	}
 
 	virtual void virtDrawTileAt(BaseEngine* pEngine, DrawingSurface* pSurface, int iMapX, int iMapY, int iStartPositionScreenX, int iStartPositionScreenY) const override;
@@ -45,7 +44,7 @@ class SolidTileManager :
 	public Psybc5TileManager
 {
 public:
-	SolidTileManager()
+	SolidTileManager() : Psybc5TileManager()
 	{
 		tileSprites = ImageManager::loadImage("sprites/tiles.png", true);
 	}
@@ -56,7 +55,30 @@ protected:
 
 };
 
-#pragma once
+//EDITOR TILES (special tiles placed only in the editor and used for map generation, eg. enemy spawns, entrances and exits, etc.)
+class EditorTileManager :
+	public Psybc5TileManager
+{
+public:
+	EditorTileManager() : Psybc5TileManager()
+	{
+		tileSprites = ImageManager::loadImage("sprites/tiles_special.png", true);
+	}
+	//Only used to mark special tile positions in the editor
+
+	/* Notes on how tiles will be handled:
+
+	0 = ENEMY: 
+	1 = START: the place on this floor where the player spawns
+	2 = END: the tile on the floor that leads to the next floor (may require key(s) to unlock first, depending on the floor)
+	3-6 = ARROWS: transitions between rooms. once battle starts, they are locked until all enemies killed.
+		if the arrow doesn't lead to an existing room, it turns into its closest Solid tile
+
+	*/
+};
+
+
+
 //INVENTORY
 class InventoryTileManager :
 	public TileManager

@@ -16,6 +16,7 @@
 class BaseState;
 class StateMenu;
 class StateCharCreate;
+class StateEditor;
 class StateStart;
 class StateRunning;
 class StatePaused;
@@ -91,9 +92,10 @@ public:
 	//Made menu state public, since any state needs to be able to get back to it
 	StateMenu* stateMenu;
 	StateCharCreate* stateCharCreate;
+	StateEditor* stateEditor;
 	StateStart* stateStart;
 	StateRunning* stateRunning;
-	StatePaused* statePaused;
+	StatePaused* statePaused;	
 
 private:
 	BaseState* currentState;

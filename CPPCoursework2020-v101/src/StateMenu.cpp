@@ -24,10 +24,15 @@ void StateMenu::onStateEnter()
 	pEngine->resetStats();
 
 	//Create UI buttons
-	buttons.push_back(new ButtonNewGame(pEngine, 550, 250, 230, 40, 0x2159ff, 0xd4e4ff, "New Game", fntButtons));
+	buttons.push_back(new ButtonCharCreator(pEngine, 550, 250, 230, 40, 0x2159ff, 0xd4e4ff, "New Game", fntButtons));
 	buttons.push_back(new ButtonContinue(pEngine, 550, 300, 230, 40, 0x2159ff, 0xd4e4ff, "Continue", fntButtons));
 	buttons.push_back(new ButtonEditor(pEngine, 550, 350, 230, 40, 0x2159ff, 0xd4e4ff, "Level Editor", fntButtons));
 	buttons.push_back(new ButtonExit(pEngine, 550, 400, 230, 40, 0x2159ff, 0xd4e4ff, "Exit", fntButtons));
+
+	//Start menu music (if not already playing)
+	auto audio = pEngine->GetAudio();
+	auto path = "music/CharacterCreation.ogg";
+	if (!audio->isSongPlaying(path)) audio->playMusic(path,-1);
 }
 
 void StateMenu::virtSetupBackgroundBuffer()
@@ -80,7 +85,8 @@ void StateMenu::virtMainLoopDoBeforeUpdate()
 }
 
 
-//CHARACTER CREATE
+
+	//CHARACTER CREATE\\
 
 StateCharCreate::StateCharCreate(GameEngine* pEngine) : StateMenu(pEngine)
 {
@@ -94,8 +100,7 @@ StateCharCreate::~StateCharCreate()
 
 void StateCharCreate::onStateEnter()
 {
-	//Reset name entry
-	charInput->assign("");
+	buttons.push_back(new ButtonNewGame(pEngine, 500, 600, 230, 40, 0x2159ff, 0xd4e4ff, "Start", fntButtons));
 }
 
 void StateCharCreate::virtSetupBackgroundBuffer()

@@ -14,7 +14,9 @@ StateRunning::StateRunning(GameEngine* pEngine) : BaseState(pEngine)
 
 void StateRunning::onStateEnter()
 {
-
+	auto audio = pEngine->GetAudio();
+	auto path = "music/Exploration_1.ogg";
+	if (!audio->isSongPlaying(path)) audio->playMusic(path, -1);
 }
 
 void StateRunning::onStateExit()
