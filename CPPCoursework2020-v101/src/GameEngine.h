@@ -7,7 +7,7 @@
 #include "ImageManager.h"
 
 #include "AudioPlayer.h"
-#include "SaveReader.h"
+#include "SaveManager.h"
 
 
 //This class controls transitions between states
@@ -65,7 +65,7 @@ public:
 	BackgroundTileManager* GetTilesBack() { return &objTilesBack; }
 	InventoryTileManager* GetTilesInv() { return &objInvTiles; }
 	AudioPlayer* GetAudio() { return &audio; }
-	SaveReader* GetSaveReader() { return &loadSave; }
+	SaveManager* GetSaveManager() { return &saveManager; }
 	PlayerObject* GetPlayer() { return player; }
 
 	PlayerObject* player;
@@ -98,6 +98,6 @@ private:
 	BackgroundTileManager objTilesBack;
 	InventoryTileManager objInvTiles;
 
-	SaveReader loadSave;
+	SaveManager saveManager;
 
 };

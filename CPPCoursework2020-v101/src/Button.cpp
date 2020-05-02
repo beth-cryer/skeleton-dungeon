@@ -40,8 +40,8 @@ void ButtonNewGame::onClick()
 void ButtonContinue::onClick()
 {
 	//Load save
-	auto loader = pEngine->GetSaveReader();
-	loader->getFile("saves/test.txt");
+	auto loader = pEngine->GetSaveManager();
+	loader->readFileContents("saves/test.txt");
 
 	pEngine->playerName = loader->getData("name");
 	pEngine->level = std::stoi(loader->getData("level"));

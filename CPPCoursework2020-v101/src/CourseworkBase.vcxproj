@@ -136,7 +136,7 @@
     <ClInclude Include="PlayerObject.h" />
     <ClInclude Include="ProjectileObject.h" />
     <ClInclude Include="Psybc5Engine.h" />
-    <ClInclude Include="SaveReader.h" />
+    <ClInclude Include="SaveManager.h" />
     <ClInclude Include="SimpleFlashingDragableImageObject.h" />
     <ClInclude Include="SimpleImage.h" />
     <ClInclude Include="MovementPosition.h" />
@@ -192,7 +192,7 @@
     <ClCompile Include="ProjectileObject.cpp" />
     <ClCompile Include="Psybc5Engine.cpp" />
     <ClCompile Include="Psybc5TileManager.cpp" />
-    <ClCompile Include="SaveReader.cpp" />
+    <ClCompile Include="SaveManager.cpp" />
     <ClCompile Include="SimpleImage.cpp" />
     <ClCompile Include="JasonsDemoA.cpp" />
     <ClCompile Include="JasonsObjectA.cpp" />

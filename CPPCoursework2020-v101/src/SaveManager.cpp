@@ -1,15 +1,12 @@
 #include "header.h"
-#include "SaveReader.h"
+#include "SaveManager.h"
 
-#include <iostream>
-#include <fstream>
-
-SaveReader::SaveReader()
+SaveManager::SaveManager()
 {
 
 }
 
-void SaveReader::getFile(std::string filename)
+void SaveManager::readFileContents(std::string filename)
 {
     std::string buffer;
     char c;
@@ -20,12 +17,13 @@ void SaveReader::getFile(std::string filename)
     while (in.get(c)) buffer += c;
     in.close();
 
+    //Save the file contents to this object, then return it too in case something else wants to use it
     text = buffer;
 }
 
 //A very basic file reader that looks for a set of matching XML tags and returns the string between them
 //Using this method every tag has to be unique, but that's fine for our purposes
-std::string SaveReader::getData(std::string tag)
+std::string SaveManager::getData(std::string tag)
 {
     //Make the input string into a tag
     tag.insert(0, "<");
@@ -42,4 +40,20 @@ std::string SaveReader::getData(std::string tag)
 
     std::cout << out;
     return out;
+}
+
+
+void SaveManager::openFile(const char* path)
+{
+    file.open(path);
+}
+
+void SaveManager::writeFile(std::string text)
+{
+    file << text;
+}
+
+void SaveManager::closeFile()
+{
+    file.close();
 }
