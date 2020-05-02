@@ -20,6 +20,9 @@ void StateMenu::onStateEnter()
 	//Delete any existing objects
 	pEngine->destroyOldObjects(true);
 
+	//Reset player stats to default
+	pEngine->resetStats();
+
 	//Create UI buttons
 	buttons.push_back(new ButtonNewGame(pEngine, 550, 250, 230, 40, 0x2159ff, 0xd4e4ff, "New Game", fntButtons));
 	buttons.push_back(new ButtonContinue(pEngine, 550, 300, 230, 40, 0x2159ff, 0xd4e4ff, "Continue", fntButtons));
@@ -58,10 +61,14 @@ void StateMenu::virtMouseWheel(int x, int y, int which, int timestamp)
 
 void StateMenu::virtKeyDown(int iKeyCode)
 {
-	//Exit program
-	if (iKeyCode == SDLK_ESCAPE) pEngine->setExitWithCode(0);
+	switch (iKeyCode) {
 
-	if (iKeyCode == SDLK_s) pEngine->saveGame();
+		//Exit program
+	case (SDLK_ESCAPE): pEngine->setExitWithCode(0); break;
+
+		//Save current stats
+	case (SDLK_s): pEngine->saveGame(); break;
+	}
 }
 
 void StateMenu::virtMainLoopDoBeforeUpdate()

@@ -17,6 +17,7 @@ GameEngine::GameEngine()
 	strength(1), ranged(1), defence(1),
 	exp(25), expNext(50), level(1), skillUps(0)
 {
+
 	currentState = nullptr;
 
 	//Create objects for each state
@@ -24,6 +25,7 @@ GameEngine::GameEngine()
 	stateCharCreate = new StateCharCreate(this);
 	stateStart = new StateStart(this);
 	stateRunning = new StateRunning(this);
+	statePaused = new StatePaused(this);
 
 	currentState = stateMenu;
 	currentState->onStateEnter();
@@ -196,4 +198,15 @@ void GameEngine::saveGame()
 	sm->writeLine("defence", defence);
 
 	sm->closeFile();
+}
+
+void GameEngine::resetStats()
+{
+	playerName = "";
+	maxHealth = 10, health = maxHealth;
+	maxStamina = 4, stamina = maxStamina;
+	maxMagic = 1, magic = maxMagic;
+	strength= 1, ranged = 1, defence = 1;
+	exp = 0, expNext = 50, level = 1, skillUps = 0;
+	maxAttacks = 1, attacks = maxAttacks;
 }

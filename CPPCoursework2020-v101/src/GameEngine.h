@@ -18,6 +18,7 @@ class StateMenu;
 class StateCharCreate;
 class StateStart;
 class StateRunning;
+class StatePaused;
 
 class PlayerObject;
 
@@ -77,6 +78,8 @@ public:
 	FilterPointsTranslation filterTranslation;
 
 	//PLAYER STATS
+	void resetStats();
+	
 	std::string playerName;
 	int maxHealth, health;
 	int maxStamina, stamina;
@@ -90,6 +93,7 @@ public:
 	StateCharCreate* stateCharCreate;
 	StateStart* stateStart;
 	StateRunning* stateRunning;
+	StatePaused* statePaused;
 
 private:
 	BaseState* currentState;

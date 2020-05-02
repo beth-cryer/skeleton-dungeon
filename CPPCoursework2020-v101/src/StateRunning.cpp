@@ -136,6 +136,10 @@ void StateRunning::virtKeyDown(int iKeyCode)
 		pEngine->attacks = pEngine->maxAttacks;
 		break;
 
+	case(SDLK_RETURN):
+		pEngine->setState(pEngine->statePaused);
+		break;
+
 		//BACK TO MENU
 	case SDLK_ESCAPE:
 		pEngine->setState(pEngine->stateMenu);
@@ -185,4 +189,89 @@ void StateRunning::orderCharsByHeight()
 			if (pTopObj->getYCentre() < pChar->getYCentre()) pEngine->moveToLast(pChar);
 		}
 	}
+}
+
+
+//PAUSE STATE
+
+StatePaused::StatePaused(GameEngine* pEngine) : StateRunning(pEngine)
+{
+
+}
+
+void StatePaused::onStateEnter()
+{
+	pEngine->pause();
+}
+
+void StatePaused::onStateExit()
+{
+	pEngine->unpause();
+}
+
+void StatePaused::virtDrawStringsOnTop()
+{
+	//Keep drawing UI elements
+	StateRunning::virtDrawStringsOnTop();
+
+	//Draw pause menu UI
+	pEngine->drawForegroundRectangle(WIN_WIDTH / 2 - 256, WIN_HEIGHT / 2 - 256, WIN_WIDTH / 2 + 256, WIN_HEIGHT / 2 + 256, 0x816096);
+
+	pEngine->drawForegroundString(WIN_WIDTH / 2, 128, "PAUSED", 0xffffff, NULL);
+
+	std::string printStrength = "STR: " + std::to_string(pEngine->strength);
+	std::string printRanged = "RANGE: " + std::to_string(pEngine->ranged);
+	std::string printMagic = "MAG: " + std::to_string(pEngine->maxMagic);
+	std::string printDefence = "DEF: " + std::to_string(pEngine->defence);
+	pEngine->drawForegroundString(WIN_WIDTH / 2 - 128, 128 + 30, printStrength.c_str(), 0xffffff, NULL);
+	pEngine->drawForegroundString(WIN_WIDTH / 2 - 128, 128 + 50, printRanged.c_str(), 0xffffff, NULL);
+	pEngine->drawForegroundString(WIN_WIDTH / 2 - 128, 128 + 70, printMagic.c_str(), 0xffffff, NULL);
+	pEngine->drawForegroundString(WIN_WIDTH / 2 - 128, 128 + 90, printDefence.c_str(), 0xffffff, NULL);
+
+	//Drawing the Inventory here
+	pEngine->GetTilesInv()->drawAllTiles(pEngine, pEngine->getForegroundSurface());
+}
+
+void StatePaused::virtKeyDown(int iKeyCode)
+{
+	switch (iKeyCode) {
+
+		//Unpause
+	case(SDLK_RETURN):
+		pEngine->setState(pEngine->stateRunning);
+		break;
+
+	}
+}
+
+void StatePaused::virtMouseDown(int iButton, int iX, int iY)
+{
+	auto objInvTiles = pEngine->GetTilesInv();
+
+	/*
+	//Check if clicked on an inventory Tile
+	if (objInvTiles->isValidTilePosition(iX, iY))
+	{
+		int mapX = objInvTiles->getMapXForScreenX(iX);
+		int mapY = objInvTiles->getMapYForScreenY(iY);
+		int value = objInvTiles->getMapValue(mapX, mapY);
+
+		//If holding an object, drop it
+		if (pEngine->heldItem == NULL) {
+			pEngine->heldItem = objInvTiles->getItemAt(value);
+		}
+
+		//If not holding an object, pick it up
+		else {
+			objInvTiles->setItemAt(value, pEngine->heldItem);
+		}
+	}
+	*/
+
+}
+
+//Overridding zoom mechanism
+void StatePaused::virtMouseWheel(int x, int y, int which, int timestamp)
+{
+
 }
