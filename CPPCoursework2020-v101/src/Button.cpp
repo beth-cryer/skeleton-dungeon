@@ -1,6 +1,7 @@
 #include "header.h"
 #include "Button.h"
-#include "StateCharCreate.h"
+
+#include "StateMenu.h"
 #include "StateStart.h"
 
 Button::Button(GameEngine* pEngine, int x, int y, int width, int height, int colText, int colButton, const char* text, Font* font = NULL)
@@ -32,7 +33,23 @@ bool Button::isClicked(int xClick, int yClick)
 //NEW GAME
 void ButtonNewGame::onClick()
 {
-	std::cout << "NEW GAME";
-	//pEngine->setState(pEngine->stateCharCreate);
+	pEngine->setState(pEngine->stateCharCreate);
+}
+
+//CONTINUE
+void ButtonContinue::onClick()
+{
 	pEngine->setState(pEngine->stateStart);
+}
+
+//LEVEL EDITOR
+void ButtonEditor::onClick()
+{
+	pEngine->setState(pEngine->stateStart);
+}
+
+//EXIT
+void ButtonExit::onClick()
+{
+	pEngine->setExitWithCode(0);
 }

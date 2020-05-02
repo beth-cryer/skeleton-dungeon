@@ -146,7 +146,7 @@ std::list<Node*> EnemyObject::calcPath (int goalX, int goalY)
 			}
 
 			//If a solid tile exist here, skip
-			auto tiles = ((GameEngine*)getEngine())->GetTilesSolid();
+			SolidTileManager* tiles = ((GameEngine*)getEngine())->GetTilesSolid();
 			if (tiles->isValidTilePosition(x, y)) {
 				if (tiles->getMapValue(x, y) != 0) continue;
 			}

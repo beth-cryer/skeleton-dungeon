@@ -2,7 +2,7 @@
 #include "EnemyZombieObject.h"
 
 EnemyZombieObject::EnemyZombieObject(BaseEngine* pEngine)
-	: EnemyObject(320, 256, pEngine, 63, 73, true,
+	: EnemyObject(320, 256, pEngine, TILE_SIZE, TILE_SIZE, true,
 		"Zombie", "A shambling corpse, reanimated", 10, 2, 10)
 {
 	imgSprites = ImageManager::loadImage("sprites/chars/zombie.png", true);

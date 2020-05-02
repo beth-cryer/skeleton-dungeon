@@ -23,6 +23,8 @@ public:
 	virtual void virtKeyDown(int iKeyCode);
 	virtual void virtMainLoopPreUpdate();
 	virtual void virtMainLoopPostUpdate();
+	virtual void virtMainLoopDoBeforeUpdate();
+	virtual void virtMainLoopDoAfterUpdate();
 
 protected:
 	GameEngine* pEngine;

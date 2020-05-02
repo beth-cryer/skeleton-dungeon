@@ -27,6 +27,7 @@ class GameEngine :
 public:
 
 	GameEngine();
+	~GameEngine();
 
 	void setState(BaseState* state);
 	BaseState* getState();
@@ -50,6 +51,8 @@ public:
 	//UPDATE FUNCTIONS
 	virtual void virtMainLoopPreUpdate() override;
 	virtual void virtMainLoopPostUpdate() override;
+	virtual void virtMainLoopDoBeforeUpdate() override;
+	virtual void virtMainLoopDoAfterUpdate() override;
 
 	//Helper functions
 	void moveCamera(int offsetXIncrement, int offsetYIncrement);

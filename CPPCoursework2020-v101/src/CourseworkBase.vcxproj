@@ -148,7 +148,6 @@
     <ClInclude Include="StarfieldDemo.h" />
     <ClInclude Include="GameEngine.h" />
     <ClInclude Include="BaseState.h" />
-    <ClInclude Include="StateCharCreate.h" />
     <ClInclude Include="StateMenu.h" />
     <ClInclude Include="StateRunning.h" />
     <ClInclude Include="StateStart.h" />
@@ -202,7 +201,6 @@
     <ClCompile Include="StarfieldDemo.cpp" />
     <ClCompile Include="GameEngine.cpp" />
     <ClCompile Include="BaseState.cpp" />
-    <ClCompile Include="StateCharCreate.cpp" />
     <ClCompile Include="StateMenu.cpp" />
     <ClCompile Include="StateRunning.cpp" />
     <ClCompile Include="StateStart.cpp" />

@@ -11,6 +11,12 @@ CharObject::CharObject(int xStart, int yStart, BaseEngine* pEngine, int width, i
 
 CharObject::~CharObject() {}
 
+void CharObject::virtDraw()
+{
+	//Show that tile is occupied by a character
+	getEngine()->drawForegroundRectangle(m_iCurrentScreenX,m_iCurrentScreenY, m_iCurrentScreenX+getDrawWidth(), m_iCurrentScreenY+getDrawHeight(), 0);
+}
+
 //Functions for returning the actual x/y positions, since the framework only gives you x/y center for some reason
 int CharObject::getXPos()
 {

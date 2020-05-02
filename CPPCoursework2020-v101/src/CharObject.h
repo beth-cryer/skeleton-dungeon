@@ -15,6 +15,8 @@ public:
 	CharObject(int xStart, int yStart, BaseEngine* pEngine, int width, int height, bool topleft);
 	~CharObject();
 
+	void virtDraw() override;
+
 	int getXPos();
 	int getYPos();
 

@@ -3,7 +3,6 @@
 
 #include "BaseState.h"
 #include "StateMenu.h"
-#include "StateCharCreate.h"
 #include "StateStart.h"
 #include "StateRunning.h"
 
@@ -18,19 +17,30 @@ GameEngine::GameEngine()
 	strength(1), ranged(1), defence(1),
 	exp(25), expNext(50), level(1), skillUps(0)
 {
-	//currentState = nullptr;
+	currentState = nullptr;
 
+	//Create objects for each state
 	stateMenu = new StateMenu(this);
 	stateCharCreate = new StateCharCreate(this);
 	stateStart = new StateStart(this);
 	stateRunning = new StateRunning(this);
 
 	currentState = stateMenu;
+	currentState->onStateEnter();
 }
+
+GameEngine::~GameEngine()
+{
+	delete stateMenu;
+	delete stateCharCreate;
+	delete stateStart;
+	delete stateRunning;
+}
+
 
 void GameEngine::setState(BaseState* state)
 {
-	currentState->onStateExit();
+	if (currentState) currentState->onStateExit();
 
 	currentState = state;
 	lockAndSetupBackground();
@@ -106,6 +116,16 @@ void GameEngine::virtMainLoopPreUpdate()
 void GameEngine::virtMainLoopPostUpdate()
 {
 	currentState->virtMainLoopPostUpdate();
+}
+
+void GameEngine::virtMainLoopDoBeforeUpdate()
+{
+	currentState->virtMainLoopDoBeforeUpdate();
+}
+
+void GameEngine::virtMainLoopDoAfterUpdate()
+{
+	currentState->virtMainLoopDoAfterUpdate();
 }
 
 //Check if we're at the edge of a map

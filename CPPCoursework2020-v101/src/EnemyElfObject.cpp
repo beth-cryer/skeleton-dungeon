@@ -2,7 +2,7 @@
 #include "EnemyElfObject.h"
 
 EnemyElfObject::EnemyElfObject(BaseEngine* pEngine)
-	: EnemyObject(320, 256, pEngine, 63, 73, true,
+	: EnemyObject(320, 256, pEngine, 64, 64, true,
 		"Elf", "A corrupted elvish imp that wields a bow and arrow", 15, 4, 30)
 {
 	imgSprites = ImageManager::loadImage("sprites/chars/zombie.png", true);
