@@ -1,5 +1,6 @@
 #include "header.h"
 #include "StateRunning.h"
+#include "StateMenu.h"
 
 #include "AudioPlayer.h"
 #include "PlayerObject.h"
@@ -114,9 +115,9 @@ void StateRunning::virtKeyDown(int iKeyCode)
 		pEngine->attacks = pEngine->maxAttacks;
 		break;
 
-		//EXIT GAME
+		//BACK TO MENU
 	case SDLK_ESCAPE:
-		pEngine->setExitWithCode(0);
+		pEngine->setState(pEngine->stateMenu);
 		break;
 
 		//MOVING CAMERA

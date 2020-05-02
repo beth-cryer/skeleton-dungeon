@@ -7,7 +7,9 @@
 
 //MAIN MENU
 
-StateMenu::StateMenu(GameEngine* pEngine) : BaseState(pEngine)
+StateMenu::StateMenu(GameEngine* pEngine)
+	: BaseState(pEngine),
+	scrollMap(1,0)
 {
 	fntTitle = pEngine->getFont("fonts/endgame.otf",45);
 	fntButtons = pEngine->getFont("fonts/gameplay.ttf", 25);
@@ -15,6 +17,9 @@ StateMenu::StateMenu(GameEngine* pEngine) : BaseState(pEngine)
 
 void StateMenu::onStateEnter()
 {
+	//Delete any existing objects
+	pEngine->destroyOldObjects(true);
+
 	//Create UI buttons
 	buttons.push_back(new ButtonNewGame(pEngine, 550, 250, 230, 40, 0x2159ff, 0xd4e4ff, "New Game", fntButtons));
 	buttons.push_back(new ButtonContinue(pEngine, 550, 300, 230, 40, 0x2159ff, 0xd4e4ff, "Continue", fntButtons));
@@ -24,7 +29,7 @@ void StateMenu::onStateEnter()
 
 void StateMenu::virtSetupBackgroundBuffer()
 {
-	bg.renderImage(pEngine->getBackgroundSurface(), 0, 0, 0, 0, bg.getWidth(), bg.getHeight());
+	bg.renderImageApplyingMapping(pEngine,pEngine->getBackgroundSurface(), 0, 0, bg.getWidth(), bg.getHeight(), &scrollMap);
 	skeleton.renderImageWithMask(pEngine->getBackgroundSurface(), 0, 0, -20, WIN_HEIGHT-skeleton.getHeight(), skeleton.getWidth(), skeleton.getHeight(), 0xFF00FF);
 }
 
@@ -59,7 +64,10 @@ void StateMenu::virtKeyDown(int iKeyCode)
 
 void StateMenu::virtMainLoopDoBeforeUpdate()
 {
+	scrollMap.setXShift(pEngine->getModifiedTime() / 10);
 
+	pEngine->lockAndSetupBackground();
+	pEngine->redrawDisplay();
 }
 
 
@@ -77,7 +85,8 @@ StateCharCreate::~StateCharCreate()
 
 void StateCharCreate::onStateEnter()
 {
-	
+	//Reset name entry
+	charInput->assign("");
 }
 
 void StateCharCreate::virtSetupBackgroundBuffer()
@@ -97,7 +106,7 @@ void StateCharCreate::virtDrawStringsOnTop()
 	if (charInput->length() > 0) printNameInput.append(*charInput);
 
 	//Append flashing line periodically if typing activated
-	if (typing && pEngine->getModifiedTime() % 10 > 5) printNameInput.append("|");
+	if (typing && pEngine->getModifiedTime() % 300 > 150) printNameInput.append("|");
 
 	//Draw string input
 	pEngine->drawForegroundString(420, 160, printNameInput.c_str(), 0xffffff, fntButtons);

@@ -285,6 +285,9 @@
     <ClInclude Include="StateRunning.h">
       <Filter>Header Files\Psybc5Game\GameStates</Filter>
     </ClInclude>
+    <ClInclude Include="SaveReader.h">
+      <Filter>Header Files\Psybc5Game</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BaseEngine.cpp">
@@ -424,6 +427,9 @@
     </ClCompile>
     <ClCompile Include="StateRunning.cpp">
       <Filter>Source Files\Psybc5Game\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="SaveReader.cpp">
+      <Filter>Source Files\Psybc5Game</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

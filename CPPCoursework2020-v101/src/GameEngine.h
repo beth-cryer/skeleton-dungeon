@@ -7,6 +7,7 @@
 #include "ImageManager.h"
 
 #include "AudioPlayer.h"
+#include "SaveReader.h"
 
 
 //This class controls transitions between states
@@ -64,6 +65,7 @@ public:
 	BackgroundTileManager* GetTilesBack() { return &objTilesBack; }
 	InventoryTileManager* GetTilesInv() { return &objInvTiles; }
 	AudioPlayer* GetAudio() { return &audio; }
+	SaveReader* GetSaveReader() { return &loadSave; }
 	PlayerObject* GetPlayer() { return player; }
 
 	PlayerObject* player;
@@ -73,6 +75,7 @@ public:
 	FilterPointsTranslation filterTranslation;
 
 	//PLAYER STATS
+	std::string playerName;
 	int maxHealth, health;
 	int maxStamina, stamina;
 	int maxMagic, magic;
@@ -94,5 +97,7 @@ private:
 	SolidTileManager objTilesSolid;
 	BackgroundTileManager objTilesBack;
 	InventoryTileManager objInvTiles;
+
+	SaveReader loadSave;
 
 };

@@ -1,6 +1,7 @@
 #pragma once
 #include "AnimatedObject.h"
 
+#include "CollisionDetection.h"
 #include "MovementPosition.h"
 #include "GameEngine.h"
 

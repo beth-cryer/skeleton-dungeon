@@ -25,6 +25,8 @@ protected:
 	Font* fntTitle;
 	Font* fntButtons;
 
+	CoordinateMappingShiftXY scrollMap;
+
 };
 
 
