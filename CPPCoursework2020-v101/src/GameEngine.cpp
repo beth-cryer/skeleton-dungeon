@@ -175,25 +175,25 @@ void GameEngine::orderCharsByHeight()
 //Save function
 void GameEngine::saveGame()
 {
-	auto sm = &saveManager;
+	auto sm = &saveManager; //shorter pointer for easier readability
 	auto save = sm->openFile("saves/testSave.txt");
 
 	sm->writeLine("name",playerName);
-	sm->writeLine("level", std::to_string(level));
-	sm->writeLine("exp", std::to_string(exp));
-	sm->writeLine("expnext", std::to_string(expNext));
-	sm->writeLine("skillups", std::to_string(skillUps));
+	sm->writeLine("level", level);
+	sm->writeLine("exp", exp);
+	sm->writeLine("expnext", expNext);
+	sm->writeLine("skillups", skillUps);
 
-	sm->writeLine("health", std::to_string(health));
-	sm->writeLine("maxhealth", std::to_string(maxHealth));
-	sm->writeLine("stamina", std::to_string(stamina));
-	sm->writeLine("maxstamina", std::to_string(maxStamina));
-	sm->writeLine("magic", std::to_string(magic));
-	sm->writeLine("maxmagic", std::to_string(maxMagic));
+	sm->writeLine("health", health);
+	sm->writeLine("maxhealth", maxHealth);
+	sm->writeLine("stamina", stamina);
+	sm->writeLine("maxstamina", maxStamina);
+	sm->writeLine("magic", magic);
+	sm->writeLine("maxmagic", maxMagic);
 
-	sm->writeLine("strength", std::to_string(strength));
-	sm->writeLine("ranged", std::to_string(ranged));
-	sm->writeLine("defence", std::to_string(defence));
+	sm->writeLine("strength", strength);
+	sm->writeLine("ranged", ranged);
+	sm->writeLine("defence", defence);
 
 	sm->closeFile();
 }

@@ -101,7 +101,28 @@ void StateRunning::virtMouseDown(int iButton, int iX, int iY)
 
 void StateRunning::virtMouseWheel(int x, int y, int which, int timestamp)
 {
+	//Get position of the centre of the screen before the zoom
+	int iOldCentreX = pEngine->convertClickedToVirtualPixelXPosition(WIN_WIDTH / 2);
+	int iOldCentreY = pEngine->convertClickedToVirtualPixelYPosition(WIN_HEIGHT / 2);
 
+	if (y < 0) {
+		if (pEngine->filterScaling.getZoomX() <= 0) return;
+		pEngine->filterScaling.compress();
+	}
+	else if (y > 0) {
+		pEngine->filterScaling.stretch();
+	}
+
+	//Get position of the centre after the zoom
+	int iNewCentreX = pEngine->convertClickedToVirtualPixelXPosition(WIN_WIDTH / 2);
+	int iNewCentreY = pEngine->convertClickedToVirtualPixelYPosition(WIN_HEIGHT / 2);
+
+	//Apply a translation to offset so it appears to have zoomed on the centre by moving the old centre back to the centre of the screen
+	pEngine->filterTranslation.changeOffset(iNewCentreX - iOldCentreX, iNewCentreY - iOldCentreY);
+
+	//Redraw the background
+	pEngine->lockAndSetupBackground();
+	pEngine->redrawDisplay();
 }
 
 void StateRunning::virtKeyDown(int iKeyCode)

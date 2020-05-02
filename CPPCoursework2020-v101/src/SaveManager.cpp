@@ -57,20 +57,6 @@ std::ofstream* SaveManager::openFile(const char* path)
     return &file;
 }
 
-//Helper function that automatically wraps up text content inside the tag format and writes it to the save file on a new line
-void SaveManager::writeLine(std::string tag, std::string content)
-{
-    //Make the input string into a tag
-    tag.insert(0, "<");
-    tag.push_back('>');
-
-    //Copy tag but add a / for the end tag
-    std::string endTag = tag;
-    endTag.insert(1, "/");
-
-    file << tag << content << endTag << std::endl;
-}
-
 void SaveManager::closeFile()
 {
     file.close();
