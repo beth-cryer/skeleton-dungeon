@@ -16,6 +16,8 @@ public:
 
 	virtual void virtDrawTileAt(BaseEngine* pEngine, DrawingSurface* pSurface, int iMapX, int iMapY, int iStartPositionScreenX, int iStartPositionScreenY) const override;
 
+	SimpleImage& GetTileSprites() { return tileSprites; }
+
 protected:
 	//All image resources stored as smart pointers here, used repeatedly by Tile draw calls
 	SimpleImage tileSprites;

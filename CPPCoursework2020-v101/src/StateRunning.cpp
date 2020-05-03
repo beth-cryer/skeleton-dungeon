@@ -26,6 +26,8 @@ void StateRunning::onStateExit()
 
 void StateRunning::virtSetupBackgroundBuffer()
 {
+	pEngine->fillBackground(0);
+
 	//Draw all tiles from the Tile Map to the background surface
 	pEngine->GetTilesBack()->drawAllTiles(pEngine, pEngine->getBackgroundSurface());
 	pEngine->GetTilesSolid()->drawAllTiles(pEngine, pEngine->getBackgroundSurface());
@@ -276,4 +278,48 @@ void StatePaused::virtMouseDown(int iButton, int iX, int iY)
 void StatePaused::virtMouseWheel(int x, int y, int which, int timestamp)
 {
 
+}
+
+
+		//ENEMY TURN STATE\\
+//Pretty similar to Running, but the player can't do anything
+
+StateEnemyTurn::StateEnemyTurn(GameEngine* pEngine) : StateRunning(pEngine)
+{
+
+}
+
+void StateEnemyTurn::onStateEnter()
+{
+	//Get list of all enemy objects
+	DisplayableObject* pObj;
+	for (int i = 0; i < pEngine->getContentCount(); i++) {
+		if ((pObj = pEngine->getDisplayableObject(i)) == NULL) continue; //skip null objects
+
+		EnemyObject* pEnemy = dynamic_cast<EnemyObject*> (pObj);
+		if (pEnemy) enemyTurns.push_back(pEnemy); //add to list
+	}
+
+	triggerNextEnemy();
+}
+
+void StateEnemyTurn::onStateExit()
+{
+
+}
+
+//Called by an enemy at the end of its turn to signal that the next enemy should take its turn
+//Continues until enemyTurns is empty, then back to Running state
+void StateEnemyTurn::triggerNextEnemy()
+{
+	if (enemyTurns.size() > 0) {
+
+		//Trigger AI on first enemy, handing it control until its turn is finished
+		enemyTurns.front()->AI();
+		enemyTurns.pop_front(); //and remove it from the list
+
+	}
+	else {
+		pEngine->setState(pEngine->stateRunning);
+	}
 }

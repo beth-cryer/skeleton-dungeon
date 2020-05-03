@@ -22,10 +22,12 @@ private:
 	Psybc5TileManager* tileLayer; //points to the currently-active tile manager
 	int tileId = 0;
 
+	SimpleImage grid = ImageManager::loadImage("sprites/grid.png",true);
+
 	//Gonna have our own tile managers for this state. They get wiped every time you exit the state, so you have to Save them to a text file
-	SolidTileManager* tilesSolid;
-	BackgroundTileManager* tilesBack;
-	EditorTileManager* tilesEditor;
+	SolidTileManager tilesSolid;
+	BackgroundTileManager tilesBack;
+	EditorTileManager tilesEditor;
 
 };
 

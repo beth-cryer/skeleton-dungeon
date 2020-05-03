@@ -2,6 +2,7 @@
 #include "BaseState.h"
 #include "GameEngine.h"
 #include "CoordinateMapping.h"
+#include "FloorGenerator.h"
 
 class StateMenu :
 	public BaseState
@@ -26,6 +27,8 @@ protected:
 	Font* fntButtons;
 
 	CoordinateMappingShiftXY scrollMap;
+
+	FloorGenerator gentest;
 
 };
 
