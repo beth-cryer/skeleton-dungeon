@@ -182,7 +182,6 @@
     <ClCompile Include="EnemyZombieObject.cpp" />
     <ClCompile Include="FireballObject.cpp" />
     <ClCompile Include="FlashingDemo.cpp" />
-    <ClCompile Include="FloorGenerator.cpp" />
     <ClCompile Include="ImageObjectDemo.cpp" />
     <ClCompile Include="Item.cpp" />
     <ClCompile Include="ItemObject.cpp" />

@@ -440,8 +440,5 @@
     <ClCompile Include="Button.cpp">
       <Filter>Source Files\Psybc5Game</Filter>
     </ClCompile>
-    <ClCompile Include="FloorGenerator.cpp">
-      <Filter>Source Files\Psybc5Game</Filter>
-    </ClCompile>
   </ItemGroup>
 </Project>

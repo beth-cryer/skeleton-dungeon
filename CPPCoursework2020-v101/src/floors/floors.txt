@@ -1,0 +1,10 @@
+<floor1>
+
+<width></width>
+<height></height>
+
+<back></back>
+<solid></solid>
+<special></special>
+
+</floor1>
