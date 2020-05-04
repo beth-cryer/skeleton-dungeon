@@ -35,29 +35,27 @@ void PlayerObject::virtDoUpdate(int iCurrentTime)
 	if (!isVisible() || getEngine()->isPaused())
 		return;
 
-	GameEngine* engine = (GameEngine*)getEngine();
-
 	//Check if we have leveled up
-	int exp = engine->exp;
-	int expNext = engine->expNext;
+	int exp = pEngine->exp;
+	int expNext = pEngine->expNext;
 	if (exp >= expNext) {
 		//LEVEL UP!
 
 		//Exp required increases by 4% every level
-		engine->expNext += expNext * 1.04;
+		pEngine->expNext += expNext * 1.04;
 
 		//Increase level, automatically increment health, stamina and skillUps
-		engine->level++;
-		engine->maxHealth++;
-		engine->skillUps+=2;
+		pEngine->level++;
+		pEngine->maxHealth++;
+		pEngine->skillUps+=2;
 		//Every 3 levels, increase stamina
-		if (engine->level % 3 == 0) engine->maxStamina++;
+		if (pEngine->level % 3 == 0) pEngine->maxStamina++;
 	}
 
 	//REQ 4. (2/2) Keyboard input handled
 	switch (currentState) {
 	case(CharState::stateIdle):
-		if (engine->stamina > 0) {
+		if (pEngine->stamina > 0) {
 			if (getEngine()->isKeyPressed(SDLK_UP)) move(0, -64, iCurrentTime, 400);
 			if (getEngine()->isKeyPressed(SDLK_DOWN)) move(0, 64, iCurrentTime, 400);
 			if (getEngine()->isKeyPressed(SDLK_LEFT)) move(-64, 0, iCurrentTime, 400);
@@ -83,7 +81,7 @@ void PlayerObject::virtDoUpdate(int iCurrentTime)
 			m_iCurrentScreenY = std::round(m_iCurrentScreenY / TILE_SIZE) * TILE_SIZE;
 
 			//Redo order of depth for charobjects by height
-			engine->orderCharsByHeight();
+			pEngine->orderCharsByHeight();
 
 		}
 		break;
@@ -111,8 +109,6 @@ void PlayerObject::move(int xmove, int ymove, int currentTime, int time)
 
 	//set flipX accordingly (only change if we switch directions)
 	if (xmove > 0) flipX = false; else if (xmove < 0) flipX = true;
-
-	auto pEngine = ((GameEngine*)getEngine());
 
 	pEngine->GetAudio()->playAudio("sfx/combat/fst_conc_solid_run_01.wav", -1, 0);
 	pEngine->stamina--;

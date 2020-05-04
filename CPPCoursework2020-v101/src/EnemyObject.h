@@ -34,7 +34,7 @@ class EnemyObject :
 
 public:
 	EnemyObject(int xStart, int yStart, BaseEngine* pEngine, int width, int height, bool topleft,
-		std::string name, std::string desc, int maxHealth, int maxStamina, int expDrop);
+		std::string name, std::string desc, int maxHealth, int maxStamina, int expDrop, int maxAttacks);
 	~EnemyObject();
 
 	void virtDoUpdate(int iCurrentTime) override;
@@ -50,6 +50,7 @@ public:
 
 protected:
 	std::string name, desc;
+	int attacks, maxAttacks;
 	int health, maxHealth;
 	int stamina, maxStamina;
 	int expDrop;

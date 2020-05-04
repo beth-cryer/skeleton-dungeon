@@ -3,7 +3,7 @@
 
 EnemyDragonObject::EnemyDragonObject(BaseEngine* pEngine)
 	: EnemyObject(320, 256, pEngine, TILE_SIZE, TILE_SIZE, true,
-		"Black Dragon", "A black-scaled dragon that sears the flesh from its prey", 30, 6, 200)
+		"Black Dragon", "A black-scaled dragon that sears the flesh from its prey", 30, 6, 200, 2)
 {
 	imgSprites = ImageManager::loadImage("sprites/chars/dragon.png", true);
 }

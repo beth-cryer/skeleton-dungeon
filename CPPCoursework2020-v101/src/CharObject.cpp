@@ -5,7 +5,7 @@
 
 CharObject::CharObject(int xStart, int yStart, BaseEngine* pEngine, int width, int height, bool topleft)
 	: AnimatedObject(xStart, yStart, pEngine, width, height, topleft),
-	currentState(CharState::stateIdle)
+	currentState(CharState::stateIdle), pEngine((GameEngine*)pEngine)
 {
 }
 
@@ -82,7 +82,7 @@ bool CharObject::lineOfSight(const int x1, const int y1, const int x2, const int
 
 	//Check if any tiles are solid, return false if any found
 	for (auto it = los.begin(); it != los.end(); it++) {
-		auto tiles = ((GameEngine*)getEngine())->GetTilesSolid();
+		auto tiles = pEngine->GetTilesSolid();
 
 		if (tiles->isValidTilePosition(std::get<0>(*it), std::get<1>(*it))) {
 			if (tiles->getMapValue(std::get<0>(*it), std::get<1>(*it)) != 0) {

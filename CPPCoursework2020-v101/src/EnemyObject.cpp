@@ -2,12 +2,13 @@
 #include "EnemyObject.h"
 
 #include "PlayerObject.h"
+#include "StateRunning.h"
 
 
 EnemyObject::EnemyObject(int xStart, int yStart, BaseEngine* pEngine, int width, int height, bool topleft,
-	std::string name, std::string desc, int maxHealth, int maxStamina, int expDrop)
+	std::string name, std::string desc, int maxHealth, int maxStamina, int expDrop, int maxAttacks)
 	: CharObject(xStart, yStart, pEngine, width, height, topleft),
-	name(name), desc(desc), maxHealth(maxHealth), health(maxHealth), maxStamina(maxStamina), stamina(maxStamina), expDrop(expDrop)
+	name(name), desc(desc), maxHealth(maxHealth), health(maxHealth), maxStamina(maxStamina), stamina(maxStamina), expDrop(expDrop), maxAttacks(maxAttacks), attacks(maxAttacks)
 {
 	
 }
@@ -22,7 +23,7 @@ void EnemyObject::virtDoUpdate(int iCurrentTime)
 	if (currentState != CharState::stateIdle && objMovement.hasMovementFinished(iCurrentTime)) {
 
 		//Redo order of depth for charobjects by height
-		((GameEngine*)getEngine())->orderCharsByHeight();
+		pEngine->orderCharsByHeight();
 
 		currentState = CharState::stateIdle;
 		AI();
@@ -35,7 +36,7 @@ void EnemyObject::turnStart()
 	//((Psybc5Engine*)getEngine())->audio.playAudio("sfx/monsters/Growl.ogg", -1, 0);
 
 	//Generate path to desired location
-	PlayerObject* player = ((GameEngine*)getEngine())->GetPlayer();
+	PlayerObject* player = pEngine->GetPlayer();
 	path = calcPath(player->getXPos(), player->getYPos());
 
 	AI();
@@ -46,17 +47,25 @@ void EnemyObject::turnStart()
 void EnemyObject::AI()
 {
 
-	//turn is over once stamina is used
-	if (stamina <= 0) {
+	//turn is over once stamina is used and no more attacks are left
+	if (stamina <= 0 && attacks <= 0) {
+		stamina = maxStamina;
+
 		//signal to Engine that it's the next enemy's turn
-	
+		auto e = dynamic_cast<StateEnemyTurn*>(pEngine->getState());
+
+		if (e)
+			e->triggerNextEnemy(); //next enemy turn
+		else
+			std::cout << "Should be in Enemy Turn state, but we ain't. Something is terribly wrong <0__0>"; //ERROR TIME (wrong state)
+
 		return;
 	}
 
 	//Otherwise,
 
 	//If within range of weapon, attack
-	PlayerObject* player = ((GameEngine*)getEngine())->GetPlayer();
+	PlayerObject* player = pEngine->GetPlayer();
 	if (lineOfSight(m_iCurrentScreenX, m_iCurrentScreenY, player->getXPos(), player->getYPos(), 0)) {
 		attack();
 	
@@ -146,7 +155,7 @@ std::list<Node*> EnemyObject::calcPath (int goalX, int goalY)
 			}
 
 			//If a solid tile exist here, skip
-			SolidTileManager* tiles = ((GameEngine*)getEngine())->GetTilesSolid();
+			SolidTileManager* tiles = pEngine->GetTilesSolid();
 			if (tiles->isValidTilePosition(x, y)) {
 				if (tiles->getMapValue(x, y) != 0) continue;
 			}
@@ -200,5 +209,5 @@ void EnemyObject::damage(int amount)
 //Override this where necessary
 void EnemyObject::attack()
 {
-	((GameEngine*)getEngine())->health--;
+	pEngine->health--;
 }

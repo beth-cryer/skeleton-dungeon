@@ -30,6 +30,8 @@ public:
 	enum class CharState { stateIdle, stateWalk, stateAttack, stateDeath };
 
 protected:
+	GameEngine* pEngine;
+
 	MovementPosition objMovement;
 	CharState currentState;
 

@@ -3,7 +3,7 @@
 
 EnemyElfObject::EnemyElfObject(BaseEngine* pEngine)
 	: EnemyObject(320, 256, pEngine, 64, 64, true,
-		"Elf", "A corrupted elvish imp that wields a bow and arrow", 15, 4, 30)
+		"Elf", "A corrupted elvish imp that wields a bow and arrow", 15, 4, 30, 1)
 {
 	imgSprites = ImageManager::loadImage("sprites/chars/zombie.png", true);
 }

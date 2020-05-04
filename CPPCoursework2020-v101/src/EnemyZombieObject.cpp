@@ -3,7 +3,7 @@
 
 EnemyZombieObject::EnemyZombieObject(BaseEngine* pEngine)
 	: EnemyObject(320, 256, pEngine, TILE_SIZE, TILE_SIZE, true,
-		"Zombie", "A shambling corpse, reanimated", 10, 2, 10)
+		"Zombie", "A shambling corpse, reanimated", 10, 2, 10, 1)
 {
 	imgSprites = ImageManager::loadImage("sprites/chars/zombie.png", true);
 }

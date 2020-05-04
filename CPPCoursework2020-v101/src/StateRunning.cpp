@@ -314,12 +314,11 @@ void StateEnemyTurn::triggerNextEnemy()
 {
 	if (enemyTurns.size() > 0) {
 
-		//Trigger AI on first enemy, handing it control until its turn is finished
-		enemyTurns.front()->AI();
+		//Trigger turn on first enemy, handing it control until its turn is finished
+		enemyTurns.front()->turnStart();
 		enemyTurns.pop_front(); //and remove it from the list
 
-	}
-	else {
+	} else {
 		pEngine->setState(pEngine->stateRunning);
 	}
 }
