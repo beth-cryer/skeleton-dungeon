@@ -12,7 +12,8 @@
 class Node
 {
 public:
-	Node(int x, int y, int g, int f, Node* parent) {
+	Node(int x, int y, int g, int f, std::shared_ptr<Node> parent)
+	{
 		this->x = x;
 		this->y = y;
 		this->g = g;
@@ -20,11 +21,13 @@ public:
 		this->parent = parent;
 	}
 
-	~Node() { };
+	~Node()
+	{
+	};
 
 	int x, y;
 	int g, f;
-	Node* parent;
+	std::shared_ptr<Node> parent;
 };
 
 //Generic Enemy class
@@ -46,7 +49,7 @@ public:
 	//Decides what action to take next, continues until its stamina is depleted
 	virtual void turnStart();
 	virtual void AI();
-	std::list<Node*> calcPath(int goalX, int goalY);
+	std::list<std::shared_ptr<Node>> calcPath(int goalX, int goalY);
 	int calcHeuristic(Node n, int goalX, int goalY);
 
 protected:
@@ -57,7 +60,7 @@ protected:
 	int strength, ranged;
 	int expDrop;
 
-	std::list<Node*> path;
+	std::list<std::shared_ptr<Node>> path;
 
 	//Weapon used
 	//Weapon wep;

@@ -80,7 +80,7 @@ void EnemyObject::AI()
 	else if (stamina >= 0 && path.size() > 1 ) {
 
 		//Initiate movement
-		Node* nextMove = path.front();
+		std::shared_ptr<Node> nextMove = path.front();
 		path.pop_front();
 
 		//Print current move
@@ -113,29 +113,29 @@ void EnemyObject::AI()
 }
 
 
-std::list<Node*> EnemyObject::calcPath (int goalX, int goalY)
+std::list<std::shared_ptr<Node>> EnemyObject::calcPath (int goalX, int goalY)
 {
 #define MAX_ITERATIONS 1000
 
 	int its = 0;
 
 	//Create and initialise lists
-	std::list<Node*> open_list;
-	std::list<Node*> closed_list;
+	std::list<std::shared_ptr<Node>> open_list;
+	std::list<std::shared_ptr<Node>> closed_list;
 
 	open_list.clear();
 	closed_list.clear();
 
 	//Push starting node to open list
-	open_list.push_back(new Node(m_iCurrentScreenX, m_iCurrentScreenY, 0, 0, nullptr));
+	open_list.push_back(std::shared_ptr<Node>(new Node(m_iCurrentScreenX, m_iCurrentScreenY, 0, 0, nullptr)));
 
 	//While open list not empty
 	while (open_list.size() > 0) {
 
 		//find lowest f value element in open list
-		Node* lowest = open_list.front();
-		for (std::list<Node*>::iterator it = open_list.begin(); it != open_list.end(); it++) {
-			Node* current = *it;
+		auto lowest = open_list.front();
+		for (auto it = open_list.begin(); it != open_list.end(); it++) {
+			auto current = *it;
 
 			if (current->f < lowest->f) lowest = current;
 		}
@@ -151,15 +151,15 @@ std::list<Node*> EnemyObject::calcPath (int goalX, int goalY)
 		int y = lowest->y;
 		int g = lowest->g;
 
-		std::queue<Node*> children;
-		children.push(new Node(x + TILE_SIZE, y, g + TILE_SIZE, 0, lowest));
-		children.push(new Node(x - TILE_SIZE, y, g + TILE_SIZE, 0, lowest));
-		children.push(new Node(x, y + TILE_SIZE, g + TILE_SIZE, 0, lowest));
-		children.push(new Node(x, y - TILE_SIZE, g + TILE_SIZE, 0, lowest));
+		std::queue<std::shared_ptr<Node>> children;
+		children.push(std::shared_ptr<Node>(new Node(x + TILE_SIZE, y, g + TILE_SIZE, 0, lowest)));
+		children.push(std::shared_ptr<Node>(new Node(x - TILE_SIZE, y, g + TILE_SIZE, 0, lowest)));
+		children.push(std::shared_ptr<Node>(new Node(x, y + TILE_SIZE, g + TILE_SIZE, 0, lowest)));
+		children.push(std::shared_ptr<Node>(new Node(x, y - TILE_SIZE, g + TILE_SIZE, 0, lowest)));
 
 		//for each successor
 		while (children.size() > 0) {
-			Node* child = children.front();
+			auto child = children.front();
 			children.pop();
 
 			int x = child->x;
@@ -172,9 +172,9 @@ std::list<Node*> EnemyObject::calcPath (int goalX, int goalY)
 			//if successor is goal, stop here
 			if (x == goalX && y == goalY) {
 				//Return a list containing the full path
-				std::list<Node*> path;
+				std::list<std::shared_ptr<Node>> path;
 
-				Node* current = child;
+				std::shared_ptr<Node> current = child;
 				while (current != nullptr) {
 					path.push_back(current);
 					current = current->parent;
@@ -204,12 +204,12 @@ std::list<Node*> EnemyObject::calcPath (int goalX, int goalY)
 			if (skip) continue;
 
 			//if node with same <x,y> as successor exists in open_list with a lower f than successor, then skip
-			for (std::list<Node*>::iterator it = open_list.begin(); it != open_list.end(); it++) {
+			for (auto it = open_list.begin(); it != open_list.end(); it++) {
 				if ((*it) == child && (*it)->f < f) skip = true;
 			}
 			
 			//if node with same <x,y> as successor exists in closed_list with a lower f than successor, then skip
-			for (std::list<Node*>::iterator it = closed_list.begin(); it != closed_list.end(); it++) {
+			for (auto it = closed_list.begin(); it != closed_list.end(); it++) {
 				if ((*it) == child && (*it)->f < f) skip = true;
 			}
 			
