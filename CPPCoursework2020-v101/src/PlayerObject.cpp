@@ -46,7 +46,7 @@ void PlayerObject::virtDoUpdate(int iCurrentTime)
 
 		//Increase level, automatically increment health, stamina and skillUps
 		pEngine->level++;
-		pEngine->maxHealth++;
+		pEngine->maxHealth+=2;
 		pEngine->skillUps+=2;
 		//Every 3 levels, increase stamina
 		if (pEngine->level % 3 == 0) pEngine->maxStamina++;

@@ -4,8 +4,9 @@
 #include "StateRunning.h"
 
 #include "PlayerObject.h"
-#include "EnemyZombieObject.h"
-#include "EnemyDragonObject.h"
+#include "EnemyZombie.h"
+#include "EnemyDragon.h"
+#include "EnemyCultist.h"
 
 StateStart::StateStart(GameEngine* pEngine) : BaseState(pEngine)
 {
@@ -24,8 +25,9 @@ void StateStart::virtSetupBackgroundBuffer()
 
 	pEngine->createObjectArray(100); //(need to leave one empty element at end of array)
 	pEngine->appendObjectToArray(pEngine->player);
-	pEngine->appendObjectToArray(new EnemyZombieObject(pEngine, 320, 256));
-	pEngine->appendObjectToArray(new EnemyDragonObject(pEngine, 448, 256));
+	pEngine->appendObjectToArray(new EnemyZombie(pEngine, 320, 256));
+	pEngine->appendObjectToArray(new EnemyCultist(pEngine, 640, 448));
+	pEngine->appendObjectToArray(new EnemyDragon(pEngine, 448, 256));
 
 	pEngine->setAllObjectsVisible(true);
 

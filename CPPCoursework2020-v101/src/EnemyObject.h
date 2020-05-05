@@ -20,7 +20,7 @@ public:
 		this->parent = parent;
 	}
 
-	~Node() {};
+	~Node() { };
 
 	int x, y;
 	int g, f;

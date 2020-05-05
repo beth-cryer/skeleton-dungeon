@@ -2,7 +2,7 @@
 #include "Psybc5Engine.h"
 
 #include "PlayerObject.h"
-#include "EnemyZombieObject.h"
+#include "EnemyZombie.h"
 
 Psybc5Engine::Psybc5Engine()
 	: currentState(GameState::stateStart) //Start in Initial state
@@ -372,7 +372,7 @@ int Psybc5Engine::virtInitialiseObjects()
 
 	createObjectArray(3); //(need to leave one empty element at end of array)
 	appendObjectToArray(player);
-	//appendObjectToArray(new EnemyZombieObject(this));
+	//appendObjectToArray(new EnemyZombie(this));
 
 	setAllObjectsVisible(true);
 
