@@ -20,6 +20,7 @@ class StateEditor;
 class StateStart;
 class StateRunning;
 class StatePaused;
+class StateEnemyTurn;
 
 class PlayerObject;
 
@@ -95,7 +96,8 @@ public:
 	StateEditor* stateEditor;
 	StateStart* stateStart;
 	StateRunning* stateRunning;
-	StatePaused* statePaused;	
+	StatePaused* statePaused;
+	StateEnemyTurn* stateEnemyTurn;
 
 private:
 	BaseState* currentState;

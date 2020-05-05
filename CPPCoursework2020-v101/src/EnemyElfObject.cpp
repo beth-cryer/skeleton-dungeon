@@ -13,6 +13,13 @@ EnemyElfObject::~EnemyElfObject()
 
 }
 
+void EnemyElfObject::turnStart()
+{
+	//pEngine->GetAudio()->playAudio("sfx/monsters/Growl.ogg", -1, 0);
+
+	EnemyObject::turnStart();
+}
+
 void EnemyElfObject::virtDraw()
 {
 	//Handles the animation for each enemy state

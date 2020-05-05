@@ -17,6 +17,9 @@ void StateRunning::onStateEnter()
 	auto audio = pEngine->GetAudio();
 	auto path = "music/Exploration_1.ogg";
 	if (!audio->isSongPlaying(path)) audio->playMusic(path, -1);
+
+	pEngine->stamina = pEngine->maxStamina;
+	pEngine->attacks = pEngine->maxAttacks;
 }
 
 void StateRunning::onStateExit()
@@ -135,11 +138,11 @@ void StateRunning::virtKeyDown(int iKeyCode)
 
 		//NEXT TURN
 	case(SDLK_SPACE):
+		pEngine->setState(pEngine->stateEnemyTurn);
 		
-		pEngine->stamina = pEngine->maxStamina;
-		pEngine->attacks = pEngine->maxAttacks;
 		break;
 
+		//PAUSE
 	case(SDLK_RETURN):
 		pEngine->setState(pEngine->statePaused);
 		break;
@@ -291,6 +294,8 @@ StateEnemyTurn::StateEnemyTurn(GameEngine* pEngine) : StateRunning(pEngine)
 
 void StateEnemyTurn::onStateEnter()
 {
+	enemyTurns.clear();
+
 	//Get list of all enemy objects
 	DisplayableObject* pObj;
 	for (int i = 0; i < pEngine->getContentCount(); i++) {
@@ -300,6 +305,7 @@ void StateEnemyTurn::onStateEnter()
 		if (pEnemy) enemyTurns.push_back(pEnemy); //add to list
 	}
 
+	//Trigger first enemy turn
 	triggerNextEnemy();
 }
 
@@ -307,6 +313,28 @@ void StateEnemyTurn::onStateExit()
 {
 
 }
+
+void StateEnemyTurn::virtDrawStringsOnTop()
+{
+	//Keep drawing UI elements
+	StateRunning::virtDrawStringsOnTop();
+
+	pEngine->drawForegroundString(0,0,"ENEMY TURN",0,NULL);
+}
+
+
+void StateEnemyTurn::virtKeyDown(int iKeyCode)
+{
+	switch (iKeyCode) {
+
+		//PAUSE
+	case(SDLK_RETURN):
+		pEngine->setState(pEngine->statePaused);
+		break;
+
+	}
+}
+
 
 //Called by an enemy at the end of its turn to signal that the next enemy should take its turn
 //Continues until enemyTurns is empty, then back to Running state
@@ -318,7 +346,8 @@ void StateEnemyTurn::triggerNextEnemy()
 		enemyTurns.front()->turnStart();
 		enemyTurns.pop_front(); //and remove it from the list
 
-	} else {
+	}
+	else {
 		pEngine->setState(pEngine->stateRunning);
 	}
 }

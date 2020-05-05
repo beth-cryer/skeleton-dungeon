@@ -53,6 +53,7 @@ protected:
 	int attacks, maxAttacks;
 	int health, maxHealth;
 	int stamina, maxStamina;
+	int strength, ranged;
 	int expDrop;
 
 	std::list<Node*> path;

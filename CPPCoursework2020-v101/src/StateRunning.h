@@ -50,12 +50,10 @@ public:
 	virtual void onStateEnter() override;
 	virtual void onStateExit() override;
 
-	/*
 	virtual void virtDrawStringsOnTop() override;
-	virtual void virtMouseDown(int iButton, int iX, int iY) override;
+	//virtual void virtMouseDown(int iButton, int iX, int iY) override;
 	virtual void virtKeyDown(int iKeyCode) override;
-	virtual void virtMouseWheel(int x, int y, int which, int timestamp) override;
-	*/
+	//virtual void virtMouseWheel(int x, int y, int which, int timestamp) override;
 
 	void triggerNextEnemy();
 	

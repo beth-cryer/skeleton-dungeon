@@ -8,6 +8,8 @@ public:
 	EnemyElfObject(BaseEngine* pEngine);
 	~EnemyElfObject();
 
+	virtual void turnStart() override;
+
 	void virtDraw() override;
 
 };

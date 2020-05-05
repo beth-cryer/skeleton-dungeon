@@ -13,6 +13,13 @@ EnemyZombieObject::~EnemyZombieObject()
 
 }
 
+void EnemyZombieObject::turnStart()
+{
+	pEngine->GetAudio()->playAudio("sfx/monsters/Monster2.ogg", -1, 0);
+
+	EnemyObject::turnStart();
+}
+
 void EnemyZombieObject::virtDraw()
 {
 	//Handles the animation for each enemy state

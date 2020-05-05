@@ -25,6 +25,9 @@ void EnemyObject::virtDoUpdate(int iCurrentTime)
 		//Redo order of depth for charobjects by height
 		pEngine->orderCharsByHeight();
 
+		//Reduce stamina
+		stamina--;
+
 		currentState = CharState::stateIdle;
 		AI();
 	}
@@ -33,11 +36,16 @@ void EnemyObject::virtDoUpdate(int iCurrentTime)
 void EnemyObject::turnStart()
 {
 	//Enemy Turn Sound
-	//((Psybc5Engine*)getEngine())->audio.playAudio("sfx/monsters/Growl.ogg", -1, 0);
+	//pEngine->GetAudio()->playAudio("sfx/monsters/Growl.ogg", -1, 0);
 
 	//Generate path to desired location
 	PlayerObject* player = pEngine->GetPlayer();
 	path = calcPath(player->getXPos(), player->getYPos());
+
+	//Print path
+	for (auto it = path.begin(); it != path.end(); it++) {
+		std::cout << '(' << (*it)->x << ',' << (*it)->y << ')' << std::endl;
+	}
 
 	AI();
 }
@@ -46,39 +54,50 @@ void EnemyObject::turnStart()
 //will attempt to move into attack range of player and then attack
 void EnemyObject::AI()
 {
-
-	//turn is over once stamina is used and no more attacks are left
-	if (stamina <= 0 && attacks <= 0) {
-		stamina = maxStamina;
-
-		//signal to Engine that it's the next enemy's turn
-		auto e = dynamic_cast<StateEnemyTurn*>(pEngine->getState());
-
-		if (e)
-			e->triggerNextEnemy(); //next enemy turn
-		else
-			std::cout << "Should be in Enemy Turn state, but we ain't. Something is terribly wrong <0__0>"; //ERROR TIME (wrong state)
-
-		return;
-	}
-
-	//Otherwise,
-
-	//If within range of weapon, attack
+	//If within range of weapon with attack(s) left, attack
 	PlayerObject* player = pEngine->GetPlayer();
-	if (lineOfSight(m_iCurrentScreenX, m_iCurrentScreenY, player->getXPos(), player->getYPos(), 0)) {
+	if (attacks > 0 && lineOfSight(m_iCurrentScreenX, m_iCurrentScreenY, player->getXPos(), player->getYPos(), 2)) {
+		attacks--;
 		attack();
-	
-	//Otherwise, move towards player
-	} else {
+
+		AI();
+		return;
+
+	}
+	//Otherwise, if stamina left then move towards player (unless already next to them)
+	else if (stamina > 0 && path.size() > 1 ) {
+
 		Node* nextMove = path.front();
 		path.pop_front();
+
+		//Print current move
+		std::cout << '(' << nextMove->x << ',' << nextMove->y << ')' << std::endl;
 
 		//Initiate movement
 		move(m_iCurrentScreenX - nextMove->x, m_iCurrentScreenY - nextMove->y, getEngine()->getModifiedTime(), 400);
 		currentState = CharState::stateWalk;
+
+		return;
 	}
 
+	//Enemies will try and stay at their max attack range
+	//Enemy will attack instead of moving if possible
+	//If enemy runs out of attacks while inside their range, they just end their turn instead of moving closer
+
+
+	//Turn is over if not moving or attacking
+
+	//Reset stamina n attacks
+	stamina = maxStamina;
+	attacks = maxAttacks;
+
+	//Signal to Engine that it's the next enemy's turn
+	auto e = dynamic_cast<StateEnemyTurn*>(pEngine->getState());
+	if (e) e->triggerNextEnemy();
+	else
+		std::cout << "Should be in Enemy Turn state, but we ain't. Something is terribly wrong <0__0>"; //ERROR TIME (wrong state)
+
+	return;
 
 }
 
@@ -157,7 +176,10 @@ std::list<Node*> EnemyObject::calcPath (int goalX, int goalY)
 			//If a solid tile exist here, skip
 			SolidTileManager* tiles = pEngine->GetTilesSolid();
 			if (tiles->isValidTilePosition(x, y)) {
-				if (tiles->getMapValue(x, y) != 0) continue;
+				if (tiles->getMapValue(x, y) != 0) {
+					std::cout << "solid hit";
+					continue;
+				}
 			}
 
 			bool skip = false;
@@ -193,6 +215,8 @@ std::list<Node*> EnemyObject::calcPath (int goalX, int goalY)
 	
 	}
 
+	std::cout << "Error: Could not find route" << std::endl;
+
 }
 
 //Using Manhattan Distance - aka. total distance travelled using right-angles only, since no diagonal moves are permitted
@@ -220,5 +244,6 @@ void EnemyObject::damage(int amount)
 //Override this where necessary
 void EnemyObject::attack()
 {
+	std::cout << "Enemy attack";
 	pEngine->health--;
 }

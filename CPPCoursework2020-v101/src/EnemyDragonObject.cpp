@@ -13,6 +13,13 @@ EnemyDragonObject::~EnemyDragonObject()
 
 }
 
+void EnemyDragonObject::turnStart()
+{
+	pEngine->GetAudio()->playAudio("sfx/monsters/Monster4.ogg", -1, 0);
+
+	EnemyObject::turnStart();
+}
+
 void EnemyDragonObject::virtDraw()
 {
 	CharObject::virtDraw();

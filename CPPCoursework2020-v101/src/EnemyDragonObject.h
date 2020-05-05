@@ -8,6 +8,8 @@ public:
 	EnemyDragonObject(BaseEngine* pEngine);
 	~EnemyDragonObject();
 
+	virtual void turnStart() override;
+
 	void virtDraw() override;
 
 };

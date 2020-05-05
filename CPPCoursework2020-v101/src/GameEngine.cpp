@@ -28,6 +28,7 @@ GameEngine::GameEngine()
 	stateStart = new StateStart(this);
 	stateRunning = new StateRunning(this);
 	statePaused = new StatePaused(this);
+	stateEnemyTurn = new StateEnemyTurn(this);
 
 	currentState = stateMenu;
 	currentState->onStateEnter();

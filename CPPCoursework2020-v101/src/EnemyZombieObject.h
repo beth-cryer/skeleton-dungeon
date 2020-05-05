@@ -8,6 +8,8 @@ public:
 	EnemyZombieObject(BaseEngine* pEngine);
 	~EnemyZombieObject();
 
+	virtual void turnStart() override;
+
 	void virtDraw() override;
 
 };
