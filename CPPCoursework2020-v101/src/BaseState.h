@@ -35,7 +35,7 @@ protected:
 	std::list<DisplayableObject*> objects;
 
 	//List of buttons in the state's UI
-	std::list<Button*> buttons;
+	std::list<std::unique_ptr<Button>> buttons;
 
 };
 

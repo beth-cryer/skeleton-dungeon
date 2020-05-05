@@ -38,8 +38,11 @@ GameEngine::~GameEngine()
 {
 	delete stateMenu;
 	delete stateCharCreate;
+	delete stateEditor;
 	delete stateStart;
 	delete stateRunning;
+	delete statePaused;
+	delete stateEnemyTurn;
 }
 
 

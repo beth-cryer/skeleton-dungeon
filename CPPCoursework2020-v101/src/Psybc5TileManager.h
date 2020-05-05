@@ -97,6 +97,7 @@ public:
 
 	~InventoryTileManager(void)
 	{
+
 	}
 
 	virtual void virtDrawTileAt(BaseEngine* pEngine, DrawingSurface* pSurface, int iMapX, int iMapY, int iStartPositionScreenX, int iStartPositionScreenY) const override;
