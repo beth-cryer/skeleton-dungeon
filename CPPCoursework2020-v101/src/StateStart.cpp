@@ -35,19 +35,19 @@ void StateStart::virtSetupBackgroundBuffer()
 	BackgroundTileManager* bgTiles = pEngine->GetTilesBack();
 	InventoryTileManager* invTiles = pEngine->GetTilesInv();
 
-	int w = 8, h = 8;
+	int w = 7, h = 7;
 	solidTiles->setMapSize(w, h);
 	bgTiles->setMapSize(8, 8);
 
-	const int level[8][8] =
+	std::vector<std::vector<int>> level =
 	{
-		{11,11,11,11,11,11,11},
-		{11,00,00,00,00,00,11},
-		{11,00,00,00,00,00,11},
-		{11,00,00,00,00,00,11},
-		{11,00,00,00,00,00,11},
-		{11,11,00,00,00,11,11},
-		{00,00,00,00,00,00,00}
+			{11,11,11,11,11,11,11},
+			{11,00,00,00,00,00,11},
+			{11,00,00,00,00,00,11},
+			{11,00,00,00,00,00,11},
+			{11,00,00,00,00,00,11},
+			{11,11,00,00,00,11,11},
+			{00,00,00,00,00,00,00}
 	};
 
 	//Translate level data into values in a Tile Map

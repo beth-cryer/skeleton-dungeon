@@ -187,15 +187,12 @@ std::list<Node*> EnemyObject::calcPath (int goalX, int goalY)
 			}
 
 			//If a solid tile exist here, skip
-			/*
 			SolidTileManager* tiles = pEngine->GetTilesSolid();
 			if (tiles->isValidTilePosition(x, y)) {
-				std::cout << '(' << x << ',' << y << ')';
-				if (tiles->getMapValue(x, y) != 0) {
-					std::cout << "solid hit";
+				if (tiles->getMapValue(tiles->getMapXForScreenX(x), tiles->getMapYForScreenY(y)) != 0) {
 					continue;
 				}
-			}*/
+			}
 
 			bool skip = false;
 

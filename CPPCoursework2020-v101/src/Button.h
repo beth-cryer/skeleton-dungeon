@@ -19,6 +19,70 @@ protected:
 
 };
 
+//Changes the given variable by the given value, and then calls a passed function (which can be null)
+template <class T>
+class ButtonValueChange : public Button {
+public:
+	ButtonValueChange(GameEngine* pEngine, int x, int y, int width, int height, int colText, int colButton, const char* text, Font* font, T* var, T amount)
+		: Button(pEngine, x, y, width, height, colText, colButton, text, font), var(var), amount(amount)
+	{
+	}
+	
+	virtual void onClick() override
+	{
+		*var += amount;
+	}
+protected:
+	T* var;
+	T amount;
+
+};
+
+template <class T>
+class ButtonAllocateSkill : public ButtonValueChange<T> {
+public:
+	ButtonAllocateSkill(GameEngine* pEngine, int x, int y, int width, int height, int colText, int colButton, const char* text, Font* font, T* var, T amount, int* skillUps)
+		: ButtonValueChange(pEngine, x, y, width, height, colText, colButton, text, font, var, amount), skillUps(skillUps)
+	{
+	}
+
+	virtual void onClick() override
+	{
+		//Making sure var and skillUps don't go below zero
+		if ((amount > 0 && *skillUps > 0) || (amount < 0 && *var > 1)) {
+
+			//If we're OK, then apply opposite to skillUps and call parent function
+			*skillUps -= amount;
+
+			ButtonValueChange::onClick();
+
+		}
+
+	}
+
+private:
+	int* skillUps;
+
+};
+
+template <class T>
+class ButtonValueSet : public Button {
+public:
+	ButtonValueSet(GameEngine* pEngine, int x, int y, int width, int height, int colText, int colButton, const char* text, Font* font, T* var, T amount)
+		: Button(pEngine, x, y, width, height, colText, colButton, text), var(var), amount(amount) {}
+
+	virtual void onClick() override
+	{
+		*var = amount;
+	}
+protected:
+	T* var;
+	T amount;
+};
+
+
+//STATE CHANGERS
+
 class ButtonCharCreator : public Button {
 public:
 	ButtonCharCreator(GameEngine* pEngine, int x, int y, int width, int height, int colText, int colButton, const char* text, Font* font)

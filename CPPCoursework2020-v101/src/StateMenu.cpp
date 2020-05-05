@@ -122,6 +122,20 @@ StateCharCreate::~StateCharCreate()
 void StateCharCreate::onStateEnter()
 {
 	buttons.push_back(std::unique_ptr<Button> (new ButtonNewGame(pEngine, 500, 600, 230, 40, 0x2159ff, 0xd4e4ff, "Start", fntButtons)));
+
+	//Attribute change buttons
+	auto skillUps = &(pEngine->skillUps);
+	buttons.push_back(std::unique_ptr<Button>(new ButtonAllocateSkill<int>(pEngine, 420, 235, 40, 40, 0x2159ff, 0xd4e4ff, "+", fntButtons, &(pEngine->strength), 1, skillUps)));
+	buttons.push_back(std::unique_ptr<Button>(new ButtonAllocateSkill<int>(pEngine, 470, 235, 40, 40, 0x2159ff, 0xd4e4ff, "-", fntButtons, &(pEngine->strength), -1, skillUps)));
+
+	buttons.push_back(std::unique_ptr<Button>(new ButtonAllocateSkill<int>(pEngine, 420, 285, 40, 40, 0x2159ff, 0xd4e4ff, "+", fntButtons, &(pEngine->ranged), 1, skillUps)));
+	buttons.push_back(std::unique_ptr<Button>(new ButtonAllocateSkill<int>(pEngine, 470, 285, 40, 40, 0x2159ff, 0xd4e4ff, "-", fntButtons, &(pEngine->ranged), -1, skillUps)));
+
+	buttons.push_back(std::unique_ptr<Button>(new ButtonAllocateSkill<int>(pEngine, 420, 335, 40, 40, 0x2159ff, 0xd4e4ff, "+", fntButtons, &(pEngine->maxMagic), 1, skillUps)));
+	buttons.push_back(std::unique_ptr<Button>(new ButtonAllocateSkill<int>(pEngine, 470, 335, 40, 40, 0x2159ff, 0xd4e4ff, "-", fntButtons, &(pEngine->maxMagic), -1, skillUps)));
+
+	buttons.push_back(std::unique_ptr<Button>(new ButtonAllocateSkill<int>(pEngine, 420, 385, 40, 40, 0x2159ff, 0xd4e4ff, "+", fntButtons, &(pEngine->defence), 1, skillUps)));
+	buttons.push_back(std::unique_ptr<Button>(new ButtonAllocateSkill<int>(pEngine, 470, 385, 40, 40, 0x2159ff, 0xd4e4ff, "-", fntButtons, &(pEngine->defence), -1, skillUps)));
 }
 
 void StateCharCreate::virtSetupBackgroundBuffer()
@@ -149,12 +163,15 @@ void StateCharCreate::virtDrawStringsOnTop()
 	//Draw stats
 	std::string printStrength = "STR: " + std::to_string(pEngine->strength);
 	std::string printRanged = "RANGE: " + std::to_string(pEngine->ranged);
-	std::string printMagic = "MAG: " + std::to_string(pEngine->magic);
+	std::string printMagic = "MAG: " + std::to_string(pEngine->maxMagic);
 	std::string printDefence = "DEF: " + std::to_string(pEngine->defence);
-	pEngine->drawForegroundString(420, 190 + 50, printStrength.c_str(), 0xffffff, fntButtons);
-	pEngine->drawForegroundString(420, 190 + 100, printRanged.c_str(), 0xffffff, fntButtons);
-	pEngine->drawForegroundString(420, 190 + 150, printMagic.c_str(), 0xffffff, fntButtons);
-	pEngine->drawForegroundString(420, 190 + 200, printDefence.c_str(), 0xffffff, fntButtons);
+	std::string printSkillUps = "Points: " + std::to_string(pEngine->skillUps);
+	pEngine->drawForegroundString(520, 190 + 50, printStrength.c_str(), 0xffffff, fntButtons);
+	pEngine->drawForegroundString(520, 190 + 100, printRanged.c_str(), 0xffffff, fntButtons);
+	pEngine->drawForegroundString(520, 190 + 150, printMagic.c_str(), 0xffffff, fntButtons);
+	pEngine->drawForegroundString(520, 190 + 200, printDefence.c_str(), 0xffffff, fntButtons);
+
+	pEngine->drawForegroundString(420, 190 + 300, printSkillUps.c_str(), 0xffffff, fntButtons);
 }
 
 void StateCharCreate::virtKeyDown(int iKeyCode)

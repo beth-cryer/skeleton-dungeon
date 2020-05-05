@@ -47,6 +47,9 @@ public:
 	virtual void virtKeyDown(int iKeyCode) override;
 	virtual void virtMainLoopDoBeforeUpdate() override;
 
+	void incSkillUps() { pEngine->skillUps++; }
+	void decSkillUps() { pEngine->skillUps--; }
+
 private:
 	std::string* charInput;
 	bool typing = true;

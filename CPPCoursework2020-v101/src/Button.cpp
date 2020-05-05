@@ -31,6 +31,8 @@ bool Button::isClicked(int xClick, int yClick)
 }
 
 
+	//State change buttons:
+
 //TO CHARACTER CREATOR
 void ButtonCharCreator::onClick()
 {

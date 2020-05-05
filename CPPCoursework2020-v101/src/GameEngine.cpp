@@ -214,4 +214,5 @@ void GameEngine::resetStats()
 	strength= 1, ranged = 1, defence = 1;
 	exp = 0, expNext = 50, level = 1, skillUps = 0;
 	maxAttacks = 1, attacks = maxAttacks;
+	skillUps = 5;
 }
