@@ -12,9 +12,6 @@ public:
 	void loadFileContents(std::string filename);
 	std::string getSaveData(std::string tag);
 
-	//version of getSaveData that specifies the string to get tag contents from. This allows you to call it multiple times on the result of previous fetches
-	std::string getTagContents(std::string text, std::string tag);
-
 	//Saving
 	std::ofstream* openFile(const char* path);
 	

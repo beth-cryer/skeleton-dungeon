@@ -183,17 +183,6 @@ std::list<Node*> EnemyObject::calcPath (int goalX, int goalY)
 			}
 
 			bool skip = false;
-
-			//Or if another CharObject occupies this space, also skip
-			DisplayableObject* pObj;
-			for (int i = 0; i < pEngine->getContentCount(); i++) {
-				if ((pObj = pEngine->getDisplayableObject(i)) == NULL) continue; //skip null objects
-				CharObject* pChar = dynamic_cast<CharObject*> (pObj);
-				if (pChar && pChar->getXPos() == x && pChar->getYPos() == y) skip = true; //check if cast worked, then check if object is at the position we want to move to
-			}
-			if (skip) continue;
-
-			
 			//if node with same <x,y> as successor exists in open_list with a lower f than successor, then skip
 			for (std::list<Node*>::iterator it = open_list.begin(); it != open_list.end(); it++) {
 				if ((*it) == child && (*it)->f < f) skip = true;
