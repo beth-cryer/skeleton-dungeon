@@ -39,8 +39,6 @@ void EnemyObject::virtDoUpdate(int iCurrentTime)
 			//Redo order of depth for charobjects by height
 			pEngine->orderCharsByHeight();
 
-			std::cout << "pos = " << m_iCurrentScreenX << ',' << m_iCurrentScreenY << std::endl;
-
 			AI();
 		}
 	}
@@ -79,7 +77,7 @@ void EnemyObject::AI()
 
 	}
 	//Otherwise, if stamina left then move towards player (unless already next to them)
-	else if (stamina > 0 && path.size() > 1 ) {
+	else if (stamina >= 0 && path.size() > 1 ) {
 
 		//Initiate movement
 		Node* nextMove = path.front();
@@ -264,6 +262,9 @@ void EnemyObject::attack()
 void EnemyObject::move(int xmove, int ymove, int currentTime, int time)
 {
 	stamina--;
+
+	//set flipX accordingly (only change if we switch directions)
+	if (xmove > 0) flipX = false; else if (xmove < 0) flipX = true;
 
 	CharObject::move(xmove, ymove, currentTime, time);
 }

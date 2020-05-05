@@ -372,7 +372,7 @@ int Psybc5Engine::virtInitialiseObjects()
 
 	createObjectArray(3); //(need to leave one empty element at end of array)
 	appendObjectToArray(player);
-	appendObjectToArray(new EnemyZombieObject(this));
+	//appendObjectToArray(new EnemyZombieObject(this));
 
 	setAllObjectsVisible(true);
 

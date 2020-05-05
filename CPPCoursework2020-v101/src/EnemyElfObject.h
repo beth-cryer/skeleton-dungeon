@@ -5,7 +5,7 @@ class EnemyElfObject :
 	public EnemyObject
 {
 public:
-	EnemyElfObject(BaseEngine* pEngine);
+	EnemyElfObject(BaseEngine* pEngine, int xStart, int yStart);
 	~EnemyElfObject();
 
 	virtual void turnStart() override;

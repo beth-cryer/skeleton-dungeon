@@ -5,7 +5,7 @@ class EnemyDragonObject :
 	public EnemyObject
 {
 public:
-	EnemyDragonObject(BaseEngine* pEngine);
+	EnemyDragonObject(BaseEngine* pEngine, int xStart, int yStart);
 	~EnemyDragonObject();
 
 	virtual void turnStart() override;

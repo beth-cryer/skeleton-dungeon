@@ -13,6 +13,8 @@ StateMenu::StateMenu(GameEngine* pEngine)
 {
 	fntTitle = pEngine->getFont("fonts/endgame.otf",45);
 	fntButtons = pEngine->getFont("fonts/gameplay.ttf", 25);
+
+	
 }
 
 void StateMenu::onStateEnter()
@@ -24,6 +26,7 @@ void StateMenu::onStateEnter()
 	pEngine->resetStats();
 
 	//Create UI buttons
+	buttons.clear();
 	buttons.push_back(std::unique_ptr<Button>(new ButtonCharCreator(pEngine, 550, 250, 230, 40, 0x2159ff, 0xd4e4ff, "New Game", fntButtons)));
 	buttons.push_back(std::unique_ptr<Button>(new ButtonContinue(pEngine, 550, 300, 230, 40, 0x2159ff, 0xd4e4ff, "Continue", fntButtons)));
 	buttons.push_back(std::unique_ptr<Button>(new ButtonEditor(pEngine, 550, 350, 230, 40, 0x2159ff, 0xd4e4ff, "Level Editor", fntButtons)));
@@ -112,16 +115,9 @@ void StateMenu::virtMainLoopDoBeforeUpdate()
 StateCharCreate::StateCharCreate(GameEngine* pEngine) : StateMenu(pEngine)
 {
 	charInput = new std::string();
-}
 
-StateCharCreate::~StateCharCreate()
-{
-	delete charInput;
-}
-
-void StateCharCreate::onStateEnter()
-{
-	buttons.push_back(std::unique_ptr<Button> (new ButtonNewGame(pEngine, 500, 600, 230, 40, 0x2159ff, 0xd4e4ff, "Start", fntButtons)));
+	buttons.clear();
+	buttons.push_back(std::unique_ptr<Button>(new ButtonNewGame(pEngine, 500, 600, 230, 40, 0x2159ff, 0xd4e4ff, "Start", fntButtons)));
 
 	//Attribute change buttons
 	auto skillUps = &(pEngine->skillUps);
@@ -136,6 +132,16 @@ void StateCharCreate::onStateEnter()
 
 	buttons.push_back(std::unique_ptr<Button>(new ButtonAllocateSkill<int>(pEngine, 420, 385, 40, 40, 0x2159ff, 0xd4e4ff, "+", fntButtons, &(pEngine->defence), 1, skillUps)));
 	buttons.push_back(std::unique_ptr<Button>(new ButtonAllocateSkill<int>(pEngine, 470, 385, 40, 40, 0x2159ff, 0xd4e4ff, "-", fntButtons, &(pEngine->defence), -1, skillUps)));
+}
+
+StateCharCreate::~StateCharCreate()
+{
+	delete charInput;
+}
+
+void StateCharCreate::onStateEnter()
+{
+	
 }
 
 void StateCharCreate::virtSetupBackgroundBuffer()

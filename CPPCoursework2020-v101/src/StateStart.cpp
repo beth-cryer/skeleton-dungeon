@@ -24,7 +24,8 @@ void StateStart::virtSetupBackgroundBuffer()
 
 	pEngine->createObjectArray(100); //(need to leave one empty element at end of array)
 	pEngine->appendObjectToArray(pEngine->player);
-	pEngine->appendObjectToArray(new EnemyDragonObject(pEngine));
+	pEngine->appendObjectToArray(new EnemyZombieObject(pEngine, 320, 256));
+	pEngine->appendObjectToArray(new EnemyDragonObject(pEngine, 448, 256));
 
 	pEngine->setAllObjectsVisible(true);
 

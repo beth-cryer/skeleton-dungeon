@@ -17,6 +17,7 @@ void BaseState::onStateExit()
 {
 }
 
+
 void BaseState::virtSetupBackgroundBuffer()
 {
 }
