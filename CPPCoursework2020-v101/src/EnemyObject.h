@@ -39,6 +39,7 @@ public:
 
 	void virtDoUpdate(int iCurrentTime) override;
 
+	void move(int xmove, int ymove, int currentTime, int time) override;
 	void damage(int amount);
 	virtual void attack();
 

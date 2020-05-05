@@ -19,18 +19,33 @@ EnemyObject::~EnemyObject()
 
 void EnemyObject::virtDoUpdate(int iCurrentTime)
 {
+
 	//Query AI if movement is finished
-	if (currentState != CharState::stateIdle && objMovement.hasMovementFinished(iCurrentTime)) {
+	if (currentState == CharState::stateWalk) {
+		objMovement.calculate(iCurrentTime);
+		m_iCurrentScreenX = objMovement.getX();
+		m_iCurrentScreenY = objMovement.getY();
 
-		//Redo order of depth for charobjects by height
-		pEngine->orderCharsByHeight();
+		if (objMovement.hasMovementFinished(iCurrentTime)) {
+			currentState = CharState::stateIdle;
 
-		//Reduce stamina
-		stamina--;
+			m_iCurrentScreenX = objMovement.getX();
+			m_iCurrentScreenY = objMovement.getY();
 
-		currentState = CharState::stateIdle;
-		AI();
+			//Snap to grid in case we strayed a couple pixels somehow
+			m_iCurrentScreenX = std::round(m_iCurrentScreenX / TILE_SIZE) * TILE_SIZE;
+			m_iCurrentScreenY = std::round(m_iCurrentScreenY / TILE_SIZE) * TILE_SIZE;
+
+			//Redo order of depth for charobjects by height
+			pEngine->orderCharsByHeight();
+
+			std::cout << "pos = " << m_iCurrentScreenX << ',' << m_iCurrentScreenY << std::endl;
+
+			AI();
+		}
 	}
+	//Ensure that the objects get redrawn on the display
+	redrawDisplay();
 }
 
 void EnemyObject::turnStart()
@@ -43,9 +58,10 @@ void EnemyObject::turnStart()
 	path = calcPath(player->getXPos(), player->getYPos());
 
 	//Print path
+	/*
 	for (auto it = path.begin(); it != path.end(); it++) {
 		std::cout << '(' << (*it)->x << ',' << (*it)->y << ')' << std::endl;
-	}
+	}*/
 
 	AI();
 }
@@ -57,9 +73,7 @@ void EnemyObject::AI()
 	//If within range of weapon with attack(s) left, attack
 	PlayerObject* player = pEngine->GetPlayer();
 	if (attacks > 0 && lineOfSight(m_iCurrentScreenX, m_iCurrentScreenY, player->getXPos(), player->getYPos(), 2)) {
-		attacks--;
 		attack();
-
 		AI();
 		return;
 
@@ -67,15 +81,14 @@ void EnemyObject::AI()
 	//Otherwise, if stamina left then move towards player (unless already next to them)
 	else if (stamina > 0 && path.size() > 1 ) {
 
+		//Initiate movement
 		Node* nextMove = path.front();
 		path.pop_front();
 
 		//Print current move
 		std::cout << '(' << nextMove->x << ',' << nextMove->y << ')' << std::endl;
 
-		//Initiate movement
-		move(m_iCurrentScreenX - nextMove->x, m_iCurrentScreenY - nextMove->y, getEngine()->getModifiedTime(), 400);
-		currentState = CharState::stateWalk;
+		move((nextMove->x) - m_iCurrentScreenX, (nextMove->y) - m_iCurrentScreenY, getEngine()->getModifiedTime(), 400);
 
 		return;
 	}
@@ -174,15 +187,27 @@ std::list<Node*> EnemyObject::calcPath (int goalX, int goalY)
 			}
 
 			//If a solid tile exist here, skip
+			/*
 			SolidTileManager* tiles = pEngine->GetTilesSolid();
 			if (tiles->isValidTilePosition(x, y)) {
+				std::cout << '(' << x << ',' << y << ')';
 				if (tiles->getMapValue(x, y) != 0) {
 					std::cout << "solid hit";
 					continue;
 				}
-			}
+			}*/
 
 			bool skip = false;
+
+			//If a CharObject exists here, skip
+			DisplayableObject* pObj;
+			for (int i = 0; i < pEngine->getContentCount(); i++) {
+				if ((pObj = pEngine->getDisplayableObject(i)) == NULL) continue; //skip null objects
+				CharObject* pChar = dynamic_cast<CharObject*> (pObj);
+				if (pChar && pChar->getXPos() == x && pChar->getYPos() == y) skip = true;
+			}
+			if (skip) continue;
+
 			//if node with same <x,y> as successor exists in open_list with a lower f than successor, then skip
 			for (std::list<Node*>::iterator it = open_list.begin(); it != open_list.end(); it++) {
 				if ((*it) == child && (*it)->f < f) skip = true;
@@ -233,6 +258,15 @@ void EnemyObject::damage(int amount)
 //Override this where necessary
 void EnemyObject::attack()
 {
+	attacks--;
+
 	std::cout << "Enemy attack";
 	pEngine->health--;
+}
+
+void EnemyObject::move(int xmove, int ymove, int currentTime, int time)
+{
+	stamina--;
+
+	CharObject::move(xmove, ymove, currentTime, time);
 }

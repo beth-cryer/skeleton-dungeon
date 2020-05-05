@@ -35,11 +35,11 @@ void StateStart::virtSetupBackgroundBuffer()
 	BackgroundTileManager* bgTiles = pEngine->GetTilesBack();
 	InventoryTileManager* invTiles = pEngine->GetTilesInv();
 
-	int w = 8, h = 6;
+	int w = 8, h = 8;
 	solidTiles->setMapSize(w, h);
-	bgTiles->setMapSize(24, 16);
+	bgTiles->setMapSize(8, 8);
 
-	int level[6][8] =
+	const int level[8][8] =
 	{
 		{11,11,11,11,11,11,11},
 		{11,00,00,00,00,00,11},
@@ -47,6 +47,7 @@ void StateStart::virtSetupBackgroundBuffer()
 		{11,00,00,00,00,00,11},
 		{11,00,00,00,00,00,11},
 		{11,11,00,00,00,11,11},
+		{00,00,00,00,00,00,00}
 	};
 
 	//Translate level data into values in a Tile Map
@@ -57,14 +58,14 @@ void StateStart::virtSetupBackgroundBuffer()
 	}
 
 	//Floor example (all background tiles set to same value)
-	for (int x = 0; x < 24; x++) {
-		for (int y = 0; y < 16; y++) {
+	for (int x = 0; x < 8; x++) {
+		for (int y = 0; y < 8; y++) {
 			bgTiles->setMapValue(x, y, 1);
 		}
 	}
 
 	//Set coordinates at which to place the Tile Map (anchored at top-left corner)
-	solidTiles->setTopLeftPositionOnScreen(256, 64);
+	solidTiles->setTopLeftPositionOnScreen(0, 0);
 	bgTiles->setTopLeftPositionOnScreen(0, 0);
 
 	//SETUP INVENTORY

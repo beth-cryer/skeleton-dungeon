@@ -83,6 +83,7 @@ public:
 			{2,2,2,0,0,0,0,0,0},
 			{2,2,2,0,0,0,0,0,0},
 			{2,2,2,0,0,0,0,0,0},
+			{2,2,2,0,0,0,0,0,0},
 			{2,2,2,2,2,2,2,2,2},
 			{2,2,2,2,2,2,2,2,2},
 			{2,2,2,2,2,2,2,2,2}
@@ -150,7 +151,7 @@ public:
 			for (int x = 0; x < sector-1; x++) {
 				for (int y = 0; y < sector-1; y++) {
 					//check if within vector
-					if (size < ystart + y + 2 || size < xstart + x + 1) continue;
+					if (size < ystart + y + 1 || size < xstart + x + 1) continue;
 
 					if (floor[ystart + y][xstart + x] == 2)
 						floor[ystart + y][xstart + x] = 1; //if within generation bounds, create a hole

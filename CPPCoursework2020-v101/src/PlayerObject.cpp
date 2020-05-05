@@ -107,6 +107,14 @@ void PlayerObject::move(int xmove, int ymove, int currentTime, int time)
 
 	}
 
+	//Can't move onto other CharObjects' occupied tiles
+	DisplayableObject* pObj;
+	for (int i = 0; i < pEngine->getContentCount(); i++) {
+		if ((pObj = pEngine->getDisplayableObject(i)) == NULL) continue; //skip null objects
+		CharObject* pChar = dynamic_cast<CharObject*> (pObj);
+		if (pChar && pChar->getXPos() == m_iCurrentScreenX + xmove && pChar->getYPos() == m_iCurrentScreenY + ymove) return; //check if cast worked, then check if object is at the position we want to move to
+	}
+
 	//set flipX accordingly (only change if we switch directions)
 	if (xmove > 0) flipX = false; else if (xmove < 0) flipX = true;
 

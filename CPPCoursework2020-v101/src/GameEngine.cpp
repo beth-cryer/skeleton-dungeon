@@ -18,7 +18,6 @@ GameEngine::GameEngine()
 	strength(1), ranged(1), defence(1),
 	exp(25), expNext(50), level(1), skillUps(0)
 {
-
 	currentState = nullptr;
 
 	//Create objects for each state

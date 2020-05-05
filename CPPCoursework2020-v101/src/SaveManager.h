@@ -11,6 +11,7 @@ public:
 	//Loading
 	void loadFileContents(std::string filename);
 	std::string getSaveData(std::string tag);
+	std::string getTagContents(std::string text, std::string tag);
 
 	//Saving
 	std::ofstream* openFile(const char* path);

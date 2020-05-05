@@ -42,6 +42,25 @@ std::string SaveManager::getSaveData(std::string tag)
     return out;
 }
 
+//Same as above, but text is passed as a parameter
+std::string SaveManager::getTagContents(std::string text, std::string tag)
+{
+    //Make the input string into a tag
+    tag.insert(0, "<");
+    tag.push_back('>');
+
+    //Copy tag but add a / for the end tag
+    std::string endTag = tag;
+    endTag.insert(1, "/");
+
+    //Get the substring between the start and end tag
+    size_t start = text.find(tag) + tag.length();
+    size_t end = text.find(endTag);
+    std::string out = text.substr(start, end - start);
+
+    return out;
+}
+
 //Opens file (after checking if it exists, and creating it if not)
 std::ofstream* SaveManager::openFile(const char* path)
 {
