@@ -95,9 +95,7 @@ void StateRunning::virtMouseDown(int iButton, int iX, int iY)
 					//Check line-of-sight from player to enemy
 					if (pEngine->GetPlayer()->lineOfSight(pEngine->GetPlayer()->getXPos(), pEngine->GetPlayer()->getYPos(), pEnemy->getXPos(), pEnemy->getYPos(), 0)) {
 						//Attack if in range
-						pEngine->GetAudio()->playAudio("sfx/combat/Slash2.ogg", -1, 0);
-						pEnemy->damage(pEngine->strength);
-						pEngine->attacks--;
+						pEngine->GetPlayer()->attack(pEnemy);
 					}
 				}
 			}

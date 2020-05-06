@@ -1,6 +1,8 @@
 #include "header.h"
 #include "PlayerObject.h"
 
+#include "EnemyObject.h"
+
 #include <list>
 
 
@@ -22,7 +24,9 @@ void PlayerObject::virtDraw()
 	//Set max frames in animation depending on which animation state we're in
 	switch (currentState) {
 	case (CharState::stateIdle): animate(4, 96, 100, 0, 0, 16, 36); break;
+	case(CharState::stateAttack): animate(3, 96, 100, 0, 300, 16, 36); break;
 	case(CharState::stateWalk): animate(8, 96, 100, 0, 100, 16, 36); break;
+	case(CharState::stateDeath): animate(6, 96, 100, 0, 500, 16, 36); break;
 	}
 
 	return AnimatedObject::virtDraw();
@@ -48,7 +52,7 @@ void PlayerObject::virtDoUpdate(int iCurrentTime)
 		pEngine->level++;
 		pEngine->maxHealth+=2;
 		pEngine->skillUps+=2;
-		//Every 3 levels, increase stamina
+		//Every 3 levels, increase stamina by 1
 		if (pEngine->level % 3 == 0) pEngine->maxStamina++;
 	}
 
@@ -86,10 +90,27 @@ void PlayerObject::virtDoUpdate(int iCurrentTime)
 		}
 		break;
 
+	case(CharState::stateAttack):
+		if (anim_end) {
+			currentState = CharState::stateIdle;
+		}
+		break;
+
 	}
 
 	//Ensure that the objects get redrawn on the display
 	redrawDisplay();
+}
+
+void PlayerObject::attack(EnemyObject* pEnemy)
+{
+	currentState = CharState::stateAttack;
+	anim_frame = 0;
+
+	pEngine->GetAudio()->playAudio("sfx/combat/Slash2.ogg", -1, 0);
+	pEngine->attacks--;
+
+	pEnemy->damage(pEngine->strength);
 }
 
 void PlayerObject::move(int xmove, int ymove, int currentTime, int time)
