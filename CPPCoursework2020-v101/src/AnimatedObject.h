@@ -24,8 +24,9 @@ public:
 protected:
 	int anim_frame = 0;
 	int last_frame = 0;
-	SimpleImage imgSprites;
+	bool anim_end = false;
 
+	SimpleImage imgSprites;
 	CoordinateMappingFlipSheet mapFlipX;
 	bool flipX = false;
 

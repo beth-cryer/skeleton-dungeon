@@ -20,17 +20,15 @@ EnemyObject::~EnemyObject()
 void EnemyObject::virtDoUpdate(int iCurrentTime)
 {
 
-	//Query AI if movement is finished
 	if (currentState == CharState::stateWalk) {
+
 		objMovement.calculate(iCurrentTime);
 		m_iCurrentScreenX = objMovement.getX();
 		m_iCurrentScreenY = objMovement.getY();
 
+		//Query AI if movement is finished
 		if (objMovement.hasMovementFinished(iCurrentTime)) {
 			currentState = CharState::stateIdle;
-
-			m_iCurrentScreenX = objMovement.getX();
-			m_iCurrentScreenY = objMovement.getY();
 
 			//Snap to grid in case we strayed a couple pixels somehow
 			m_iCurrentScreenX = std::round(m_iCurrentScreenX / TILE_SIZE) * TILE_SIZE;
@@ -42,6 +40,17 @@ void EnemyObject::virtDoUpdate(int iCurrentTime)
 			AI();
 		}
 	}
+
+	//Check if attack animation is finished
+	if (currentState == CharState::stateAttack) {
+
+		if (anim_end) {
+			currentState = CharState::stateIdle;
+			attack();
+			AI();
+		}
+	}
+
 	//Ensure that the objects get redrawn on the display
 	redrawDisplay();
 }
@@ -71,8 +80,10 @@ void EnemyObject::AI()
 	//If within range of weapon with attack(s) left, attack
 	PlayerObject* player = pEngine->GetPlayer();
 	if (attacks > 0 && lineOfSight(m_iCurrentScreenX, m_iCurrentScreenY, player->getXPos(), player->getYPos(), 2)) {
-		attack();
-		AI();
+		anim_frame = 0;
+		std::cout << "Enemy " << name << " attacks!\n";
+		
+		currentState = CharState::stateAttack;
 		return;
 
 	}
@@ -84,7 +95,8 @@ void EnemyObject::AI()
 		path.pop_front();
 
 		//Print current move
-		std::cout << '(' << nextMove->x << ',' << nextMove->y << ')' << std::endl;
+		std::cout << "Enemy " << name << " moves towards you!\n";
+		//std::cout << '(' << nextMove->x << ',' << nextMove->y << ')' << std::endl;
 
 		move((nextMove->x) - m_iCurrentScreenX, (nextMove->y) - m_iCurrentScreenY, getEngine()->getModifiedTime(), 400);
 
@@ -225,6 +237,10 @@ std::list<std::shared_ptr<Node>> EnemyObject::calcPath (int goalX, int goalY)
 	}
 
 	std::cout << "Error: Could not find route" << std::endl;
+	std::list<std::shared_ptr<Node>> error;
+	error.push_back(std::shared_ptr<Node>(new Node(m_iCurrentScreenX, m_iCurrentScreenY, 0, 0, nullptr)));
+
+	return error;
 
 }
 
@@ -255,7 +271,7 @@ void EnemyObject::attack()
 {
 	attacks--;
 
-	std::cout << "Enemy attack";
+	std::cout << "Enemy " << name << " hits you!\n";
 	pEngine->health--;
 }
 

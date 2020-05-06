@@ -22,6 +22,8 @@ void AnimatedObject::virtDraw()
 	if (getEngine()->getModifiedTime() - last_frame >= TICK_LEN) {
 		anim_frame++;
 		last_frame = getEngine()->getModifiedTime(); //update "last frame change" variable
+
+		anim_end = false; //reset anim_end flag each tick
 	}
 
 	//Because this system uses GetModifiedTime, the animations will pause when the pause() function is called on Psybc5Engine
@@ -31,7 +33,10 @@ void AnimatedObject::virtDraw()
 void AnimatedObject::animate(int numFrames, int width, int height, int xPos, int yPos, int xOffset, int yOffset)
 {
 	//Resets frame counter to 0 if over maximum: triggered when animation reaches loop point OR if a new animation has started that has lower numFrames than the previous
-	if (anim_frame > numFrames) anim_frame = 0;
+	if (anim_frame > numFrames) {
+		anim_frame = 0;
+		anim_end = true;
+	}
 
 	//Set background transparency
 	imgSprites.setTransparencyColour(0xFF00FF);
