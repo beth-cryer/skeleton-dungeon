@@ -81,6 +81,10 @@ void EnemyObject::AI()
 	PlayerObject* player = pEngine->GetPlayer();
 	if (attacks > 0 && lineOfSight(m_iCurrentScreenX, m_iCurrentScreenY, player->getXPos(), player->getYPos(), 2)) {
 		anim_frame = 0;
+
+		//face player
+		if (player->getXPos() > m_iCurrentScreenX) flipX = false; else if(player->getXPos() < m_iCurrentScreenX) flipX = true;
+
 		std::cout << "Enemy " << name << " attacks!\n";
 		
 		currentState = CharState::stateAttack;
@@ -182,7 +186,8 @@ std::list<std::shared_ptr<Node>> EnemyObject::calcPath (int goalX, int goalY)
 			child->f = f;
 
 			//if successor is goal, stop here
-			if (x == goalX && y == goalY) {
+			//OR if we've looped a bunch and can't reach the target, in which case just return the best path we have so far
+			if ((x == goalX && y == goalY) || its >= MAX_ITERATIONS) {
 				//Return a list containing the full path
 				std::list<std::shared_ptr<Node>> path;
 
@@ -231,16 +236,11 @@ std::list<std::shared_ptr<Node>> EnemyObject::calcPath (int goalX, int goalY)
 
 		}
 
-		//Break out of an infinite loop at some point
-		if (++its > MAX_ITERATIONS) break;
+		its++;
+
+		//Will break out of an infinite loop at some point, then return the best path it has
 	
 	}
-
-	std::cout << "Error: Could not find route" << std::endl;
-	std::list<std::shared_ptr<Node>> error;
-	error.push_back(std::shared_ptr<Node>(new Node(m_iCurrentScreenX, m_iCurrentScreenY, 0, 0, nullptr)));
-
-	return error;
 
 }
 

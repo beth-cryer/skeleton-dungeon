@@ -325,14 +325,7 @@ void StateEnemyTurn::virtDrawStringsOnTop()
 
 void StateEnemyTurn::virtKeyDown(int iKeyCode)
 {
-	switch (iKeyCode) {
 
-		//PAUSE
-	case(SDLK_RETURN):
-		pEngine->setState(pEngine->statePaused);
-		break;
-
-	}
 }
 
 
