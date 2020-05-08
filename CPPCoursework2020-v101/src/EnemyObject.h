@@ -3,8 +3,6 @@
 
 #include "MovementPosition.h"
 
-#include "Weapon.h"
-
 #include <queue>
 #include <list>
 
@@ -37,7 +35,7 @@ class EnemyObject :
 
 public:
 	EnemyObject(int xStart, int yStart, BaseEngine* pEngine, int width, int height, bool topleft,
-		std::string name, std::string desc, int maxHealth, int maxStamina, int expDrop, int maxAttacks);
+		std::shared_ptr<Weapon> wep, std::string name, std::string desc, int maxHealth, int maxStamina, int expDrop, int maxAttacks);
 	~EnemyObject();
 
 	void virtDoUpdate(int iCurrentTime) override;
@@ -63,9 +61,6 @@ protected:
 	int expDrop;
 
 	std::list<std::shared_ptr<Node>> path;
-
-	//Weapon used
-	//Weapon wep;
 
 	//Attack Type weakness
 	//WepType weak;

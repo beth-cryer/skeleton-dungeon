@@ -2,6 +2,9 @@
 #include "header.h"
 #include "Item.h"
 
+class GameEngine;
+class CharObject;
+
 class Weapon :
 	public Item
 {
@@ -32,7 +35,7 @@ class WoodSword :
 	public Weapon
 {
 public:
-	WoodSword(GameEngine* pEngine) : Weapon(pEngine, 1, "Wooden Sword", "A sword of wood.", 3, 2, WepType::phys, "sfx/combat/Slash2.ogg") {}
+	WoodSword(GameEngine* pEngine) : Weapon(pEngine, 1, "Wooden Sword", "A sword of wood.", 2, 2, WepType::phys, "sfx/combat/Slash2.ogg") {}
 
 };
 
@@ -40,7 +43,7 @@ class Bow :
 	public Weapon
 {
 public:
-	Bow(GameEngine* pEngine) : Weapon(pEngine, 2, "Bow", "A bent twig with a string attached - deadlier than it looks.", 2, 5, WepType::phys, "sfx/combat/Slash2.ogg") {}
+	Bow(GameEngine* pEngine) : Weapon(pEngine, 2, "Bow", "A bent twig with a string attached - deadlier than it looks.", 1, 5, WepType::phys, "sfx/combat/Slash2.ogg") {}
 	void attack(CharObject* origin, CharObject* target) override;
 
 };

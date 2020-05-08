@@ -1,5 +1,7 @@
 #include "Weapon.h"
 #include "ProjectileObject.h"
+#include "CharObject.h"
+#include "GameEngine.h"
 
 //WEAPON
 
@@ -31,5 +33,6 @@ void Bow::attack(CharObject* origin, CharObject* target)
 	//pEnemy->damage(damage);
 	//pEngine->audio.playAudio(sndAttack, -1, 0);
 
+	//Create Arrow object
 	pEngine->appendObjectToArray(new ProjectileObject(pEngine, "", origin, target));
 }

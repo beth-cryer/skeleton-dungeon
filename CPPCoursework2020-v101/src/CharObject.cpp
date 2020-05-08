@@ -3,9 +3,9 @@
 
 #include <list>
 
-CharObject::CharObject(int xStart, int yStart, BaseEngine* pEngine, int width, int height, bool topleft)
+CharObject::CharObject(int xStart, int yStart, BaseEngine* pEngine, int width, int height, bool topleft, std::shared_ptr<Weapon> wep)
 	: AnimatedObject(xStart, yStart, pEngine, width, height, topleft),
-	currentState(CharState::stateIdle), pEngine((GameEngine*)pEngine)
+	currentState(CharState::stateIdle), pEngine((GameEngine*)pEngine), wep(wep)
 {
 }
 
@@ -50,7 +50,6 @@ void CharObject::setMovement(int iStartTime, int iEndTime, int iCurrentTime,
 
 void CharObject::onProjectileHit(CharObject* target)
 {
-
 }
 
 //Using Bresenham's Line Algorithm to find the list of tiles between two points, then returning false if any of those tiles are solid

@@ -21,7 +21,7 @@ void StateStart::virtSetupBackgroundBuffer()
 	//Destroy any existing objects
 	pEngine->destroyOldObjects(true);
 
-	pEngine->player = new PlayerObject(pEngine, pEngine->GetTilesSolid());
+	pEngine->player = new PlayerObject(pEngine, std::shared_ptr<Weapon>(nullptr));
 
 	pEngine->createObjectArray(100); //(need to leave one empty element at end of array)
 	pEngine->appendObjectToArray(pEngine->player);

@@ -6,9 +6,9 @@
 
 
 EnemyObject::EnemyObject(int xStart, int yStart, BaseEngine* pEngine, int width, int height, bool topleft,
-	std::string name, std::string desc, int maxHealth, int maxStamina, int expDrop, int maxAttacks)
-	: CharObject(xStart, yStart, pEngine, width, height, topleft),
-	name(name), desc(desc), maxHealth(maxHealth), health(maxHealth), maxStamina(maxStamina), stamina(maxStamina), expDrop(expDrop), maxAttacks(maxAttacks), attacks(maxAttacks)
+	std::shared_ptr<Weapon> wep, std::string name, std::string desc, int maxHealth, int maxStamina, int expDrop, int maxAttacks)
+	: CharObject(xStart, yStart, pEngine, width, height, topleft, wep),
+	 name(name), desc(desc), maxHealth(maxHealth), health(maxHealth), maxStamina(maxStamina), stamina(maxStamina), expDrop(expDrop), maxAttacks(maxAttacks), attacks(maxAttacks)
 {
 	
 }
@@ -46,7 +46,10 @@ void EnemyObject::virtDoUpdate(int iCurrentTime)
 
 		if (anim_end) {
 			currentState = CharState::stateIdle;
-			attack();
+			attacks--;
+
+			wep->attack(this,pEngine->GetPlayer());
+			//attack();
 			AI();
 		}
 	}
@@ -79,7 +82,7 @@ void EnemyObject::AI()
 {
 	//If within range of weapon with attack(s) left, attack
 	PlayerObject* player = pEngine->GetPlayer();
-	if (attacks > 0 && lineOfSight(m_iCurrentScreenX, m_iCurrentScreenY, player->getXPos(), player->getYPos(), 2)) {
+	if (attacks > 0 && lineOfSight(m_iCurrentScreenX, m_iCurrentScreenY, player->getXPos(), player->getYPos(), wep->range)) {
 		anim_frame = 0;
 
 		//face player
@@ -269,10 +272,8 @@ void EnemyObject::damage(int amount)
 //Override this where necessary
 void EnemyObject::attack()
 {
-	attacks--;
-
 	std::cout << "Enemy " << name << " hits you!\n";
-	pEngine->health--;
+	pEngine->health -= wep->damage;
 }
 
 void EnemyObject::move(int xmove, int ymove, int currentTime, int time)

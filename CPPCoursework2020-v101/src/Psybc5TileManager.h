@@ -2,12 +2,14 @@
 #include "TileManager.h"
 #include "Item.h"
 
+class GameEngine;
+
 class Psybc5TileManager :
 	public TileManager
 {
 
 public:
-	Psybc5TileManager() : TileManager(64, 64)
+	Psybc5TileManager() : TileManager(TILE_SIZE, TILE_SIZE)
 	{
 	}
 	~Psybc5TileManager(void)
@@ -87,10 +89,12 @@ class InventoryTileManager :
 {
 
 public:
-	InventoryTileManager(void) : TileManager(64, 64)
+	InventoryTileManager(GameEngine *pEngine)
+		: TileManager(64, 64),
+		pEngine(pEngine)
 	{
 		for (int i = 0; i < invSize; i++) {
-			std::shared_ptr<Item> item(new Item(1,"Test","A test item"));
+			std::shared_ptr<Item> item(new Item(pEngine, 1,"Test","A test item"));
 			invArray.push_back(item);
 		}
 	}
@@ -111,6 +115,8 @@ public:
 	}
 
 private:
+	GameEngine* pEngine;
+
 	SimpleImage invSlot = ImageManager::loadImage("sprites/invSlot.png", true);
 	SimpleImage invSprites = ImageManager::loadImage("sprites/items.png", true);
 

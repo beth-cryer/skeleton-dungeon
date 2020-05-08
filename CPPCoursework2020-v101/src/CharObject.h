@@ -5,6 +5,8 @@
 #include "MovementPosition.h"
 #include "GameEngine.h"
 
+#include "Weapon.h"
+
 //This class includes any functionality that is shared between ALL Characters on the board (including the Player and Enemies)
 //Inherits directly from AnimatedObject, as all characters are animated but not all AnimatedObjects are characters (hence the separation)
 
@@ -13,7 +15,7 @@ class CharObject :
 {
 public:
 
-	CharObject(int xStart, int yStart, BaseEngine* pEngine, int width, int height, bool topleft);
+	CharObject(int xStart, int yStart, BaseEngine* pEngine, int width, int height, bool topleft, std::shared_ptr<Weapon> wep);
 	~CharObject();
 
 	void virtDraw() override;
@@ -36,6 +38,9 @@ protected:
 
 	MovementPosition objMovement;
 	CharState currentState;
+
+	//Equipped weapon
+	std::shared_ptr<Weapon> wep;
 
 };
 

@@ -11,7 +11,7 @@ class PlayerObject :
 {
 
 public:
-	PlayerObject(BaseEngine* pEngine, Psybc5TileManager* pTiles);
+	PlayerObject(BaseEngine* pEngine, std::shared_ptr<Weapon> wep);
 	~PlayerObject();
 
 	void virtDraw() override;
@@ -23,9 +23,6 @@ public:
 	void onProjectileHit(CharObject* target) override;
 
 	bool adjacentTo(int x, int y, int squareSize);
-
-protected:
-	Psybc5TileManager* tileManager;
 
 };
 

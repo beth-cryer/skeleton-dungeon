@@ -6,9 +6,8 @@
 #include <list>
 
 
-PlayerObject::PlayerObject(BaseEngine* pEngine, Psybc5TileManager* pTiles)
-	: CharObject(64, 64, pEngine, 64, 64, true),
-	tileManager(pTiles)
+PlayerObject::PlayerObject(BaseEngine* pEngine, std::shared_ptr<Weapon> wep)
+	: CharObject(64, 64, pEngine, 64, 64, true, wep)
 {
 	imgSprites = ImageManager::loadImage("sprites/chars/skeleton.png", true);
 }
@@ -149,6 +148,7 @@ void PlayerObject::onProjectileHit(CharObject* target)
 void PlayerObject::move(int xmove, int ymove, int currentTime, int time)
 {
 	//SolidTileManager tileManager = ((Psybc5Engine*)getEngine())->GetTilesSolid();
+	auto tileManager = pEngine->GetTilesSolid();
 
 	//Check for collision in the Tile we want to move into
 	if (tileManager->isValidTilePosition(m_iCurrentScreenX + xmove, m_iCurrentScreenY + ymove)) {

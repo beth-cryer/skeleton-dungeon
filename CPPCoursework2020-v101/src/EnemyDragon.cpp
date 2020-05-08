@@ -3,7 +3,7 @@
 
 EnemyDragon::EnemyDragon(BaseEngine* pEngine, int xStart, int yStart)
 	: EnemyObject(xStart, yStart, pEngine, TILE_SIZE, TILE_SIZE, true,
-		"Black Dragon", "A black-scaled dragon that sears the flesh from its prey", 30, 4, 200, 2)
+		std::shared_ptr<Weapon>(new WoodSword((GameEngine*)pEngine)), "Black Dragon", "A black-scaled dragon that sears the flesh from its prey", 30, 4, 200, 2)
 {
 	imgSprites = ImageManager::loadImage("sprites/chars/dragon.png", true);
 }

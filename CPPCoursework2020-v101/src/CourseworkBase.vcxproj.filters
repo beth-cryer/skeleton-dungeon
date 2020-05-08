@@ -231,9 +231,6 @@
     <ClInclude Include="ProjectileObject.h">
       <Filter>Header Files\Psybc5Game</Filter>
     </ClInclude>
-    <ClInclude Include="Psybc5Engine.h">
-      <Filter>Header Files\Psybc5Game</Filter>
-    </ClInclude>
     <ClInclude Include="AnimatedObject.h">
       <Filter>Header Files\Psybc5Game</Filter>
     </ClInclude>
@@ -384,9 +381,6 @@
       <Filter>Source Files\Psybc5Game</Filter>
     </ClCompile>
     <ClCompile Include="ProjectileObject.cpp">
-      <Filter>Source Files\Psybc5Game</Filter>
-    </ClCompile>
-    <ClCompile Include="Psybc5Engine.cpp">
       <Filter>Source Files\Psybc5Game</Filter>
     </ClCompile>
     <ClCompile Include="AnimatedObject.cpp">

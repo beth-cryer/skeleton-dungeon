@@ -1,6 +1,6 @@
 #pragma once
-#include "GameEngine.h"
-#include "CharObject.h"
+
+class GameEngine;
 
 class Item
 {
