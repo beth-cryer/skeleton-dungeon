@@ -284,3 +284,8 @@ void EnemyObject::move(int xmove, int ymove, int currentTime, int time)
 
 	CharObject::move(xmove, ymove, currentTime, time);
 }
+
+void EnemyObject::onProjectileHit(CharObject* target)
+{
+	attack();
+}

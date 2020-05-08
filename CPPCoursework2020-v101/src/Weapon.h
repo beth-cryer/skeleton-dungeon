@@ -8,11 +8,11 @@ class Weapon :
 public:
 	enum class WepType { phys, mag };
 
-	Weapon(int iconId, std::string name, std::string desc, int damage, int range, WepType type, const char* sndAttack);
+	Weapon(GameEngine* pEngine, int iconId, std::string name, std::string desc, int damage, int range, WepType type, const char* sndAttack);
 	~Weapon();
 
 	void virtItemUse() override; //equip
-	virtual void attack();
+	virtual void attack(CharObject* origin, CharObject* target);
 
 	int damage, range;
 
@@ -32,6 +32,15 @@ class WoodSword :
 	public Weapon
 {
 public:
-	WoodSword() : Weapon(1, "Wooden Sword", "A sword of wood.", 5, 4, WepType::phys, "sfx/combat/Slash2.ogg") {}
+	WoodSword(GameEngine* pEngine) : Weapon(pEngine, 1, "Wooden Sword", "A sword of wood.", 3, 2, WepType::phys, "sfx/combat/Slash2.ogg") {}
+
+};
+
+class Bow :
+	public Weapon
+{
+public:
+	Bow(GameEngine* pEngine) : Weapon(pEngine, 2, "Bow", "A bent twig with a string attached - deadlier than it looks.", 2, 5, WepType::phys, "sfx/combat/Slash2.ogg") {}
+	void attack(CharObject* origin, CharObject* target) override;
 
 };

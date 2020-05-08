@@ -48,6 +48,11 @@ void CharObject::setMovement(int iStartTime, int iEndTime, int iCurrentTime,
 }
 
 
+void CharObject::onProjectileHit(CharObject* target)
+{
+
+}
+
 //Using Bresenham's Line Algorithm to find the list of tiles between two points, then returning false if any of those tiles are solid
 //Also returns false if there are too many tiles between the points (ie. out of the given range)
 bool CharObject::lineOfSight(const int x1, const int y1, const int x2, const int y2, const int range) {

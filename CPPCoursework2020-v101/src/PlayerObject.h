@@ -16,9 +16,11 @@ public:
 
 	void virtDraw() override;
 	void virtDoUpdate(int iCurrentTime) override;
+	void virtMouseDown(int iButton, int iX, int iY) override;
 
 	void move(int xmove, int ymove, int currentTime, int time) override;
 	void attack(EnemyObject* pEnemy);
+	void onProjectileHit(CharObject* target) override;
 
 	bool adjacentTo(int x, int y, int squareSize);
 

@@ -24,6 +24,8 @@ public:
 	void setMovement(int iStartTime, int iEndTime, int iCurrentTime, int iStartX, int iStartY, int iEndX, int iEndY);
 	virtual void move(int xmove, int ymove, int currentTime, int time);
 
+	virtual void onProjectileHit(CharObject* target);
+
 	//used for enemy aggro as well as checking if ranged attacks will hit
 	bool lineOfSight(const int x1, const int y1, const int x2, const int y2, const int range);
 

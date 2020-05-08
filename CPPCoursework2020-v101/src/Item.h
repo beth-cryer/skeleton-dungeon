@@ -1,11 +1,13 @@
 #pragma once
+#include "GameEngine.h"
+#include "CharObject.h"
 
 class Item
 {
 
 public:
 
-	Item(int iconId, std::string name, std::string desc);
+	Item(GameEngine* pEngine, int iconId, std::string name, std::string desc);
 	~Item();
 
 	//Function that is executed when the Item is used
@@ -15,6 +17,9 @@ public:
 
 	int itemId, iconId;
 	std::string name, desc;
+
+protected:
+	GameEngine* pEngine;
 
 };
 

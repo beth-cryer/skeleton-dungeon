@@ -2,26 +2,27 @@
 #include "CharObject.h"
 #include "CoordinateMapping.h"
 
+//Class can be used generically, with the image passed in constructor for different projectiles, or overridden to give it special properties eg. different flight patterns
 class ProjectileObject :
-	public AnimatedObject
+	public DisplayableObject
 {
 
 public:
-	ProjectileObject(BaseEngine* pEngine);
+	ProjectileObject(BaseEngine* pEngine, const char* imagePath, CharObject* origin, CharObject* target);
 	~ProjectileObject();
 
-
 	void virtDraw() override;
-	//void virtDoUpdate(int iCurrentTime) override;
+	void virtDoUpdate(int iCurrentTime) override;
 
-	void animate(int numFrames, int width, int height, int xPos, int yPos, int xOffset = 0, int yOffset = 0) override;
+	void setMovement(int iStartTime, int iEndTime, int iCurrentTime, int iStartX, int iStartY, int iEndX, int iEndY);
 
 	CharObject *origin, *target;
 
 protected:
-	SimpleImage imgSprites = ImageManager::loadImage("sprites/objects/arrow.png", true);
+	SimpleImage imgSprite;
 
 	CoordinateMappingRotate rotator;
+	MovementPosition objMovement;
 
 };
 

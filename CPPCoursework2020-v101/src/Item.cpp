@@ -1,8 +1,8 @@
 #include "header.h"
 #include "Item.h"
 
-Item::Item(int iconId, std::string name, std::string desc)
-	: itemId(0), iconId(iconId), name(name), desc(desc) {
+Item::Item(GameEngine* pEngine, int iconId, std::string name, std::string desc)
+	: pEngine(pEngine), itemId(0), iconId(iconId), name(name), desc(desc) {
 
 }
 

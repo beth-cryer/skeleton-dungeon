@@ -80,28 +80,6 @@ void StateRunning::virtDrawStringsUnderneath()
 void StateRunning::virtMouseDown(int iButton, int iX, int iY)
 {
 	BaseState::virtMouseDown(iButton, iX, iY);
-
-	if (iButton == SDL_BUTTON_RIGHT) {
-		//Iterate through all DisplayableObjects and check we clicked one
-		DisplayableObject* pObj;
-		for (int i = 0; i < pEngine->getContentCount(); i++) {
-			//skip null objects
-			if ((pObj = pEngine->getDisplayableObject(i)) == NULL) continue;
-
-			if (pObj->virtIsPositionWithinObject(iX, iY)) {
-				//ENEMY CLICKED?
-				EnemyObject* pEnemy = dynamic_cast<EnemyObject*> (pObj);
-				if (pEnemy && pEngine->attacks > 0) {
-					//Check line-of-sight from player to enemy
-					if (pEngine->GetPlayer()->lineOfSight(pEngine->GetPlayer()->getXPos(), pEngine->GetPlayer()->getYPos(), pEnemy->getXPos(), pEnemy->getYPos(), 0)) {
-						//Attack if in range
-						pEngine->GetPlayer()->attack(pEnemy);
-					}
-				}
-			}
-
-		}
-	}
 }
 
 void StateRunning::virtMouseWheel(int x, int y, int which, int timestamp)

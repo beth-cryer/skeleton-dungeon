@@ -46,6 +46,8 @@ public:
 	void damage(int amount);
 	virtual void attack();
 
+	void onProjectileHit(CharObject* target) override;
+
 	//Decides what action to take next, continues until its stamina is depleted
 	virtual void turnStart();
 	virtual void AI();

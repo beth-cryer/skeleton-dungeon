@@ -91,9 +91,7 @@ void PlayerObject::virtDoUpdate(int iCurrentTime)
 		break;
 
 	case(CharState::stateAttack):
-		if (anim_end) {
-			currentState = CharState::stateIdle;
-		}
+		if (anim_end) currentState = CharState::stateIdle; //back to idle once attack animation done
 		break;
 
 	}
@@ -102,15 +100,50 @@ void PlayerObject::virtDoUpdate(int iCurrentTime)
 	redrawDisplay();
 }
 
+void PlayerObject::virtMouseDown(int iButton, int iX, int iY)
+{
+	if (iButton == SDL_BUTTON_RIGHT) {
+		//Iterate through all DisplayableObjects and check we clicked one
+		DisplayableObject* pObj;
+		for (int i = 0; i < pEngine->getContentCount(); i++) {
+			//skip null objects
+			if ((pObj = pEngine->getDisplayableObject(i)) == NULL) continue;
+
+			if (pObj->virtIsPositionWithinObject(iX, iY)) {
+				//ENEMY CLICKED?
+				EnemyObject* pEnemy = dynamic_cast<EnemyObject*> (pObj);
+				if (pEnemy && pEngine->attacks > 0) {
+					//Check line-of-sight from player to enemy
+					if (lineOfSight(pEngine->GetPlayer()->getXPos(), pEngine->GetPlayer()->getYPos(), pEnemy->getXPos(), pEnemy->getYPos(), 0)) {
+						//Attack if in range
+						currentState = CharState::stateAttack;
+						anim_frame = 0;
+
+						pEngine->GetAudio()->playAudio("sfx/combat/Slash2.ogg", -1, 0);
+						pEngine->attacks--;
+
+						//For melee, just do the attack immediately
+						attack(pEnemy);
+
+						//else, fire projectile, which will trigger attack() on hit
+					}
+				}
+			}
+
+		}
+	}
+}
+
+//Applies attack damage
 void PlayerObject::attack(EnemyObject* pEnemy)
 {
-	currentState = CharState::stateAttack;
-	anim_frame = 0;
-
-	pEngine->GetAudio()->playAudio("sfx/combat/Slash2.ogg", -1, 0);
-	pEngine->attacks--;
-
 	pEnemy->damage(pEngine->strength);
+}
+
+//Called by ProjectileObject at the end of its movement - this just implements CharObject's virtual function, telling it to call our attack() function on the target
+void PlayerObject::onProjectileHit(CharObject* target)
+{
+	attack((EnemyObject*)target);
 }
 
 void PlayerObject::move(int xmove, int ymove, int currentTime, int time)
