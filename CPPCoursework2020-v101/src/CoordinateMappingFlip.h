@@ -99,3 +99,51 @@ private:
 	int transCol;
 
 };
+
+class CoordinateMappingRotateTransparent :
+	public CoordinateMapping
+{
+public:
+	CoordinateMappingRotateTransparent(double r, int transCol)
+		: rotation(r), transCol(transCol)
+	{
+	}
+
+	virtual bool mapCoordinates(double& x, double& y, const SimpleImage& image) override
+	{
+
+		// Shift offset to the centre of the image, so we can rotate around centre
+		x -= image.getWidth() / 2;
+		y -= image.getHeight() / 2;
+
+		// Rotate it
+		double dAngle = atan(y / (x + 0.0001));
+		if (x < 0)
+			dAngle += M_PI;
+		double hyp = ::sqrt(x * x + y * y);
+		dAngle += (double)rotation;
+
+		x = hyp * ::cos(dAngle);
+		y = hyp * ::sin(dAngle);
+
+		// Shift offset back to the corner
+		x += image.getWidth() / 2;
+		y += image.getHeight() / 2;
+
+		if (image.getPixelColour((int)x, (int)y) == transCol) return false;
+		if (x < 0) return false;
+		if (y < 0) return false;
+		if (x >= (image.getWidth() - 0.5)) return false;
+		if (y >= (image.getHeight() - 0.5)) return false;
+
+		return true;
+	}
+
+	double getRotation() { return rotation; }
+	void setRotation(double r) { rotation = r; }
+
+protected:
+	double rotation;
+	int transCol;
+
+};

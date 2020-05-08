@@ -1,6 +1,6 @@
 #pragma once
 #include "CharObject.h"
-#include "CoordinateMapping.h"
+#include "CoordinateMappingFlip.h"
 
 //Class can be used generically, with the image passed in constructor for different projectiles, or overridden to give it special properties eg. different flight patterns
 class ProjectileObject :
@@ -19,9 +19,10 @@ public:
 	CharObject *origin, *target;
 
 protected:
-	SimpleImage imgSprite;
+	GameEngine* pEngine;
 
-	CoordinateMappingRotate rotator;
+	SimpleImage imgSprite;
+	CoordinateMappingRotateTransparent rotator;
 	MovementPosition objMovement;
 
 };

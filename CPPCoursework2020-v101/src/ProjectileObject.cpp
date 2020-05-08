@@ -3,8 +3,10 @@
 
 ProjectileObject::ProjectileObject(BaseEngine* pEngine, const char* imagePath, CharObject* origin, CharObject* target)
 	: DisplayableObject(0, 0, pEngine, 64, 64, true),
-	rotator(0.0), origin(origin), target(target)
+	pEngine((GameEngine*)pEngine), rotator(0.0, 0xFF00FF), origin(origin), target(target)
 {
+#define PI 3.14159265
+
 	imgSprite = ImageManager::loadImage("sprites/objects/arrow.png", true);
 
 	//Get angle from origin to target
@@ -13,19 +15,24 @@ ProjectileObject::ProjectileObject(BaseEngine* pEngine, const char* imagePath, C
 	int x2 = target->getXCentre();
 	int y2 = target->getYCentre();
 
-	int dot_product = x1 * x2 + y1 * y2;
-	double L1 = std::sqrt(x1 ^ 2 * y1 ^ 2);
-	double L2 = std::sqrt(x2 ^ 2 * y2 ^ 2);
+	double x = std::pow(x1 - x2, 2);
+	double y = std::pow(y1 - y2, 2);
+	double d = std::abs(std::sqrt(x + y));
 
-	double angle = std::acos(dot_product / (L1 * L2));
+	//Get degrees in radians and convert to degrees
+	double angle = std::atan2(y,x) * 180.0 / PI;
 
-	//Set rotattion mapping angle
+	//Set rotation mapping angle
 	rotator.setRotation(angle);
+
+	//Set movement path
+	setMovement(pEngine->getModifiedTime(), pEngine->getModifiedTime() + 400, pEngine->getModifiedTime(), x1, y1, x2, y2);
 }
 
 ProjectileObject::~ProjectileObject()
 {
-	
+	//Remove from object array on deletion
+	pEngine->removeDisplayableObject(this);
 }
 
 //Takes the required parameters and calculates a new movement path using the objMovement object
@@ -58,6 +65,6 @@ void ProjectileObject::virtDoUpdate(int iCurrentTime)
 
 		//Call attack() on owner, passing target as parameter
 		origin->onProjectileHit(target);
-
+		delete this;
 	}
 }
