@@ -92,12 +92,8 @@ public:
 
 	//Made menu state public, since any state needs to be able to get back to it
 	StateMenu* stateMenu;
-	StateCharCreate* stateCharCreate;
-	StateEditor* stateEditor;
 	StateStart* stateStart;
 	StateRunning* stateRunning;
-	StatePaused* statePaused;
-	StateEnemyTurn* stateEnemyTurn;
 
 private:
 	BaseState* currentState;

@@ -4,11 +4,16 @@
 #include "CoordinateMapping.h"
 #include "FloorGenerator.h"
 
+class StateInfo;
+class StateCharCreate;
+class StateEditor;
+
 class StateMenu :
 	public BaseState
 {
 public:
 	StateMenu(GameEngine* pEngine);
+	~StateMenu();
 
 	virtual void onStateEnter() override;
 	virtual void virtSetupBackgroundBuffer() override;
@@ -18,6 +23,11 @@ public:
 	virtual void virtMouseWheel(int x, int y, int which, int timestamp) override;
 	virtual void virtKeyDown(int iKeyCode) override;
 	virtual void virtMainLoopDoBeforeUpdate() override;
+
+private:
+	StateInfo* stateInfo = nullptr;
+	StateCharCreate* stateCharCreate = nullptr;
+	StateEditor* stateEditor = nullptr;
 
 protected:
 	SimpleImage bg = ImageManager::loadImage("images/menuBG.png", true);
@@ -47,12 +57,27 @@ public:
 	virtual void virtKeyDown(int iKeyCode) override;
 	virtual void virtMainLoopDoBeforeUpdate() override;
 
-	void incSkillUps() { pEngine->skillUps++; }
-	void decSkillUps() { pEngine->skillUps--; }
 
 private:
 	std::string* charInput;
 	bool typing = true;
+
+};
+
+
+class StateInfo :
+	public StateMenu
+{
+public:
+	StateInfo(GameEngine* pEngine);
+
+	virtual void onStateEnter() override;
+	virtual void virtSetupBackgroundBuffer() override;
+	virtual void virtDrawStringsOnTop() override;
+	virtual void virtKeyDown(int iKeyCode) override;
+
+private:
+	Font* fntInfo;
 
 };
 

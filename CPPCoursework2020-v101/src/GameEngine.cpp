@@ -5,7 +5,6 @@
 #include "StateMenu.h"
 #include "StateStart.h"
 #include "StateRunning.h"
-#include "StateEditor.h"
 
 #include "CharObject.h"
 
@@ -24,12 +23,8 @@ GameEngine::GameEngine()
 
 	//Create objects for each state
 	stateMenu = new StateMenu(this);
-	stateCharCreate = new StateCharCreate(this);
-	stateEditor = new StateEditor(this);
 	stateStart = new StateStart(this);
 	stateRunning = new StateRunning(this);
-	statePaused = new StatePaused(this);
-	stateEnemyTurn = new StateEnemyTurn(this);
 
 	currentState = stateMenu;
 	currentState->onStateEnter();
@@ -38,12 +33,8 @@ GameEngine::GameEngine()
 GameEngine::~GameEngine()
 {
 	delete stateMenu;
-	delete stateCharCreate;
-	delete stateEditor;
 	delete stateStart;
 	delete stateRunning;
-	delete statePaused;
-	delete stateEnemyTurn;
 }
 
 

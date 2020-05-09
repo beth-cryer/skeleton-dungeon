@@ -3,11 +3,15 @@
 
 class EnemyObject;
 
+class StatePaused;
+class StateEnemyTurn;
+
 class StateRunning :
 	public BaseState
 {
 public:
 	StateRunning(GameEngine* pEngine);
+	~StateRunning();
 
 	virtual void onStateEnter() override;
 	virtual void onStateExit() override;
@@ -22,6 +26,10 @@ public:
 	virtual void virtMainLoopPostUpdate() override;
 
 	void orderCharsByHeight();
+
+private:
+	StatePaused* statePaused = nullptr;
+	StateEnemyTurn* stateEnemyTurn = nullptr;
 
 };
 

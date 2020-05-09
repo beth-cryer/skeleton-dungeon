@@ -1,13 +1,11 @@
 #include "header.h"
 #include "ProjectileObject.h"
 
-ProjectileObject::ProjectileObject(BaseEngine* pEngine, const char* imagePath, CharObject* origin, CharObject* target)
+ProjectileObject::ProjectileObject(BaseEngine* pEngine, CharObject* origin, CharObject* target)
 	: DisplayableObject(0, 0, pEngine, 64, 64, true),
 	pEngine((GameEngine*)pEngine), rotator(0.0, 0xFF00FF), origin(origin), target(target)
 {
 #define PI 3.14159265
-
-	imgSprite = ImageManager::loadImage("sprites/objects/arrow.png", true);
 
 	//Get angle from origin to target
 	int x1 = origin->getXCentre();
@@ -27,6 +25,13 @@ ProjectileObject::ProjectileObject(BaseEngine* pEngine, const char* imagePath, C
 
 	//Set movement path
 	setMovement(pEngine->getModifiedTime(), pEngine->getModifiedTime() + 400, pEngine->getModifiedTime(), x1, y1, x2, y2);
+}
+
+//Allow an image to be set manually too
+ProjectileObject::ProjectileObject(BaseEngine* pEngine, CharObject* origin, CharObject* target, const char* imagePath)
+	: ProjectileObject(pEngine, origin, target)
+{
+	imgSprite = ImageManager::loadImage("sprites/objects/arrow.png", true);
 }
 
 ProjectileObject::~ProjectileObject()

@@ -8,7 +8,8 @@ class ProjectileObject :
 {
 
 public:
-	ProjectileObject(BaseEngine* pEngine, const char* imagePath, CharObject* origin, CharObject* target);
+	ProjectileObject(BaseEngine* pEngine, CharObject* origin, CharObject* target);
+	ProjectileObject(BaseEngine* pEngine, CharObject* origin, CharObject* target, const char* imagePath);
 	~ProjectileObject();
 
 	void virtDraw() override;
@@ -27,3 +28,11 @@ protected:
 
 };
 
+class ArrowProjectile : public ProjectileObject
+{
+public:
+	ArrowProjectile(BaseEngine* pEngine, CharObject* origin, CharObject* target) : ProjectileObject(pEngine, origin, target)
+	{
+		imgSprite = ImageManager::loadImage("sprites/objects/arrow.png", true);
+	}
+};

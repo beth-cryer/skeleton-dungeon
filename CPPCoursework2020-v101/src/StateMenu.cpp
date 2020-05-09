@@ -2,6 +2,7 @@
 #include "StateMenu.h"
 
 #include "StateStart.h"
+#include "StateEditor.h"
 
 #include <ctype.h>
 
@@ -13,12 +14,25 @@ StateMenu::StateMenu(GameEngine* pEngine)
 {
 	fntTitle = pEngine->getFont("fonts/endgame.otf",45);
 	fntButtons = pEngine->getFont("fonts/gameplay.ttf", 25);
+}
 
-	
+StateMenu::~StateMenu()
+{
+	delete stateInfo;
+	delete stateCharCreate;
+	delete stateEditor;
 }
 
 void StateMenu::onStateEnter()
 {
+	//Create state objects if not already created
+	if (stateInfo == nullptr)
+	{
+		stateInfo = new StateInfo(pEngine);
+		stateCharCreate = new StateCharCreate(pEngine);
+		stateEditor = new StateEditor(pEngine);
+	}
+
 	//Delete any existing objects
 	pEngine->destroyOldObjects(true);
 
@@ -27,10 +41,11 @@ void StateMenu::onStateEnter()
 
 	//Create UI buttons
 	buttons.clear();
-	buttons.push_back(std::unique_ptr<Button>(new ButtonCharCreator(pEngine, 550, 250, 230, 40, 0x2159ff, 0xd4e4ff, "New Game", fntButtons)));
+	buttons.push_back(std::unique_ptr<Button>(new ButtonChangeState(pEngine, stateCharCreate, 550, 250, 230, 40, 0x2159ff, 0xd4e4ff, "New Game", fntButtons)));
 	buttons.push_back(std::unique_ptr<Button>(new ButtonContinue(pEngine, 550, 300, 230, 40, 0x2159ff, 0xd4e4ff, "Continue", fntButtons)));
-	buttons.push_back(std::unique_ptr<Button>(new ButtonEditor(pEngine, 550, 350, 230, 40, 0x2159ff, 0xd4e4ff, "Level Editor", fntButtons)));
-	buttons.push_back(std::unique_ptr<Button>(new ButtonExit(pEngine, 550, 400, 230, 40, 0x2159ff, 0xd4e4ff, "Exit", fntButtons)));
+	buttons.push_back(std::unique_ptr<Button>(new ButtonChangeState(pEngine, stateInfo, 550, 350, 230, 40, 0x2159ff, 0xd4e4ff, "Info", fntButtons)));
+	buttons.push_back(std::unique_ptr<Button>(new ButtonChangeState(pEngine, stateEditor, 550, 400, 230, 40, 0x2159ff, 0xd4e4ff, "Level Editor", fntButtons)));
+	buttons.push_back(std::unique_ptr<Button>(new ButtonExit(pEngine, 550, 450, 230, 40, 0x2159ff, 0xd4e4ff, "Exit", fntButtons)));
 
 	//Start menu music (if not already playing)
 	auto audio = pEngine->GetAudio();
@@ -108,6 +123,36 @@ void StateMenu::virtMainLoopDoBeforeUpdate()
 	pEngine->redrawDisplay();
 }
 
+	//INFO\\
+
+StateInfo::StateInfo(GameEngine* pEngine) : StateMenu(pEngine)
+{
+	fntInfo = pEngine->getFont("fonts/gameplay.ttf", 15);
+}
+
+void StateInfo::onStateEnter()
+{
+
+}
+
+void StateInfo::virtSetupBackgroundBuffer()
+{
+	bg.renderImageApplyingMapping(pEngine, pEngine->getBackgroundSurface(), 0, 0, bg.getWidth(), bg.getHeight(), &scrollMap);
+}
+
+void StateInfo::virtDrawStringsOnTop()
+{
+	pEngine->drawForegroundString(300, 100, "Info", 0xffffff, fntTitle);
+	pEngine->drawForegroundString(50, 200, "You are an skeletal undead, born in the upper levels of the Great Dungeon.", 0xffffff, fntInfo);
+	pEngine->drawForegroundString(50, 230, "Recently however, the denizens of the dungeon have been suffering from a terrible spell that pilots their flesh like a puppeteer.", 0xffffff, fntInfo);
+	pEngine->drawForegroundString(50, 260, "Your bones are immune to the spell, and so it falls onto you to venture deep into the dungeon and discover the source of the affliction...", 0xffffff, fntInfo);
+}
+
+void StateInfo::virtKeyDown(int iKeyCode)
+{
+	//Back to menu
+	if (iKeyCode == SDLK_ESCAPE) pEngine->setState(pEngine->stateMenu);
+}
 
 
 	//CHARACTER CREATE\\
@@ -117,7 +162,7 @@ StateCharCreate::StateCharCreate(GameEngine* pEngine) : StateMenu(pEngine)
 	charInput = new std::string();
 
 	buttons.clear();
-	buttons.push_back(std::unique_ptr<Button>(new ButtonNewGame(pEngine, 500, 600, 230, 40, 0x2159ff, 0xd4e4ff, "Start", fntButtons)));
+	buttons.push_back(std::unique_ptr<Button>(new ButtonChangeState(pEngine, pEngine->stateStart, 500, 600, 230, 40, 0x2159ff, 0xd4e4ff, "Start", fntButtons)));
 
 	//Attribute change buttons
 	auto skillUps = &(pEngine->skillUps);

@@ -34,5 +34,5 @@ void Bow::attack(CharObject* origin, CharObject* target)
 	//pEngine->audio.playAudio(sndAttack, -1, 0);
 
 	//Create Arrow object
-	pEngine->appendObjectToArray(new ProjectileObject(pEngine, "", origin, target));
+	pEngine->appendObjectToArray(new ArrowProjectile(pEngine, origin, target));
 }

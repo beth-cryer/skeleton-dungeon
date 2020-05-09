@@ -30,21 +30,6 @@ bool Button::isClicked(int xClick, int yClick)
 	return false;
 }
 
-
-	//State change buttons:
-
-//TO CHARACTER CREATOR
-void ButtonCharCreator::onClick()
-{
-	pEngine->setState(pEngine->stateCharCreate);
-}
-
-//START NEW GAME
-void ButtonNewGame::onClick()
-{
-	pEngine->setState(pEngine->stateStart);
-}
-
 //CONTINUE
 void ButtonContinue::onClick()
 {
@@ -73,12 +58,6 @@ void ButtonContinue::onClick()
 	std::string solidBack = loader->getSaveData("back");
 
 	pEngine->setState(pEngine->stateStart);
-}
-
-//LEVEL EDITOR
-void ButtonEditor::onClick()
-{
-	pEngine->setState(pEngine->stateEditor);
 }
 
 //EXIT

@@ -12,8 +12,21 @@ StateRunning::StateRunning(GameEngine* pEngine) : BaseState(pEngine)
 
 }
 
+StateRunning::~StateRunning()
+{
+	delete statePaused;
+	delete stateEnemyTurn;
+}
+
 void StateRunning::onStateEnter()
 {
+	//Create state objects
+	if (statePaused == nullptr)
+	{
+		statePaused = new StatePaused(pEngine);
+		stateEnemyTurn = new StateEnemyTurn(pEngine);
+	}
+
 	auto audio = pEngine->GetAudio();
 	auto path = "music/Exploration_1.ogg";
 	if (!audio->isSongPlaying(path)) audio->playMusic(path, -1);
@@ -114,13 +127,13 @@ void StateRunning::virtKeyDown(int iKeyCode)
 
 		//NEXT TURN
 	case(SDLK_SPACE):
-		pEngine->setState(pEngine->stateEnemyTurn);
+		pEngine->setState(stateEnemyTurn);
 		
 		break;
 
 		//PAUSE
 	case(SDLK_RETURN):
-		pEngine->setState(pEngine->statePaused);
+		pEngine->setState(statePaused);
 		break;
 
 		//BACK TO MENU
