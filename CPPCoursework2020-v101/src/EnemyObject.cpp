@@ -258,9 +258,6 @@ void EnemyObject::damage(int amount)
 	health -= amount;
 	std::cout << "Enemy " << name << " took " << amount << " damage, has " << health << " health left.\n";
 
-	//DEBUG: do line of sight check
-	//lineOfSight(64, 64, 256, 192, 3);
-
 	//DEAD
 	if (health <= 0) {
 		std::cout << "Enemy " << name << " was killed.\n";
