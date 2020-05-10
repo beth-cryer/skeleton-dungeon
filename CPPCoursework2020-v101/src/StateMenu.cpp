@@ -94,22 +94,14 @@ void StateMenu::virtKeyDown(int iKeyCode)
 
 		//Test floor generator
 	case (SDLK_f):
+		/*
 		auto floor = gentest.genFloor(9,3);
 
 		//print
 		for (const std::vector<int>& v : floor) {
 			for (int x : v) std::cout << x << ',';
 			std::cout << std::endl;
-		}
-
-		/*
-		for (int x = 0; x < 9; x++) {
-			for (int y = 0; y < 9; y++) {
-				std::cout << floor[y][x] << ",";
-			}
-			std::cout << std::endl;
 		}*/
-
 
 		break;
 	}

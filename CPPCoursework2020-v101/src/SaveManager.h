@@ -2,6 +2,7 @@
 #include <string>
 #include <iostream>
 #include <fstream>
+#include <vector>
 
 class SaveManager
 {
@@ -9,9 +10,11 @@ public:
 	SaveManager();
 
 	//Loading
-	void loadFileContents(std::string filename);
+	std::string loadFileContents(std::string filename);
 	std::string getSaveData(std::string tag);
 	std::string getTagContents(std::string text, std::string tag);
+	std::vector<std::string> splitContentBetween(std::string text, char start, char end);
+	std::vector<std::string> splitContentBy(std::string text, char split);
 
 	//Saving
 	std::ofstream* openFile(const char* path);

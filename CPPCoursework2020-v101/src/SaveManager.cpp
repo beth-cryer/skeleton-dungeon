@@ -6,7 +6,7 @@ SaveManager::SaveManager()
 
 }
 
-void SaveManager::loadFileContents(std::string filename)
+std::string SaveManager::loadFileContents(std::string filename)
 {
     std::string buffer;
     char c;
@@ -36,7 +36,7 @@ std::string SaveManager::getSaveData(std::string tag)
     //Get the substring between the start and end tag
     size_t start = text.find(tag) + tag.length();
     size_t end = text.find(endTag);
-    std::string out = text.substr(start, end-start);
+    std::string out = text.substr(start, end - start);
 
     std::cout << out;
     return out;
@@ -60,6 +60,64 @@ std::string SaveManager::getTagContents(std::string text, std::string tag)
 
     return out;
 }
+
+//Returns a vector of each substring contained between the given start and end characters
+std::vector<std::string> SaveManager::splitContentBetween(std::string text, char start, char end)
+{
+    std::vector<std::string> substrs;
+    std::string buf;
+
+    //Loop through the text:
+    for (auto it = text.begin(); it != text.end(); it++) {
+
+        //Ignore whitespace and newlines
+        if (*it == ' ' || *it == '\n') continue;
+
+        //Start of brackets - reset buffer
+        if (*it == start)
+            buf.clear();
+
+        //End of brackets - add buffer to substrs
+        else if (*it == end)
+            substrs.push_back(buf);
+
+        else {
+
+            //If within the start and end bounds, add to buffer
+            buf.push_back(*it);
+        }
+    }
+
+    return substrs;
+}
+
+//Returns a vector of each substring in the text separated by a given char (eg. comma)
+std::vector<std::string> SaveManager::splitContentBy(std::string text, char split)
+{
+    std::vector<std::string> substrs;
+    std::string buf;
+
+    //Loop through the text:
+    for (auto it = text.begin(); it != text.end(); it++) {
+
+        //Ignore whitespace and newlines
+        if (*it == ' ' || *it == '\n') continue;
+
+        //Start of brackets - reset buffer
+        if (*it == split) {
+            substrs.push_back(buf);
+            buf.clear();
+        } else {
+
+            //Add to buffer
+            buf.push_back(*it);
+        }
+    }
+    return substrs;
+}
+
+
+//Writing
 
 //Opens file (after checking if it exists, and creating it if not)
 std::ofstream* SaveManager::openFile(const char* path)

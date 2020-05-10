@@ -9,20 +9,16 @@
 #include "AudioPlayer.h"
 #include "SaveManager.h"
 
-
 //This class controls transitions between states
 //Also responsible for holding any data that must persist between states or be stored for later use, ie. game objects, inventory, tiles, etc.
 
 class BaseState;
 class StateMenu;
-class StateCharCreate;
-class StateEditor;
 class StateStart;
 class StateRunning;
-class StatePaused;
-class StateEnemyTurn;
 
 class PlayerObject;
+class FloorGenerator;
 
 class GameEngine :
 	public BaseEngine
@@ -71,6 +67,7 @@ public:
 	InventoryTileManager* GetTilesInv() { return &objInvTiles; }
 	AudioPlayer* GetAudio() { return &audio; }
 	SaveManager* GetSaveManager() { return &saveManager; }
+	//FloorGenerator* GetFloorGenerator() { return &gen; }
 	PlayerObject* GetPlayer() { return player; }
 
 	PlayerObject* player;
@@ -105,5 +102,6 @@ private:
 	InventoryTileManager objInvTiles;
 
 	SaveManager saveManager;
+	//FloorGenerator gen;
 
 };

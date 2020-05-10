@@ -1,11 +1,13 @@
 #pragma once
 #include "header.h"
-#include "PlayerObject.h"
 
 #include <vector>
 #include <list>
 #include <tuple>
 #include <time.h>
+
+#include "PlayerObject.h"
+#include "GameEngine.h"
 
 class Room
 {
@@ -64,7 +66,7 @@ public:
 	//Defines a 2D grid of ints
 	typedef std::vector<std::vector<int>> grid;
 
-	grid genFloor(int size, int sector)
+	grid genFloor(int sizex, int sizey, int sector)
 	{
 		//Set generation seed (do this before every gen)
 		srand(time(NULL));
@@ -96,8 +98,8 @@ public:
 
 		//foreach (sector*sector) area, pick a random element and check if it's (sector+1) tiles from every other dig node
 		//keep generating till we get a valid tile
-		for (int sx = 0; sx < size; sx += sector) {
-			for (int sy = 0; sy < size; sy += sector) {
+		for (int sx = 0; sx < sizex; sx += sector) {
+			for (int sy = 0; sy < sizey; sy += sector) {
 
 				if (floor[sy][sx] == 0) continue;
 
@@ -151,7 +153,7 @@ public:
 			for (int x = 0; x < sector-1; x++) {
 				for (int y = 0; y < sector-1; y++) {
 					//check if within vector
-					if (size < ystart + y + 1 || size < xstart + x + 1) continue;
+					if (sizey < ystart + y + 1 || sizex < xstart + x + 1) continue;
 
 					if (floor[ystart + y][xstart + x] == 2)
 						floor[ystart + y][xstart + x] = 1; //if within generation bounds, create a hole
