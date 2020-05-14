@@ -20,6 +20,8 @@ GameEngine::GameEngine()
 {
 	notifyObjectsAboutMouse(true);
 
+	gen = new FloorGenerator();
+
 	currentState = nullptr;
 
 	//Create objects for each state

@@ -67,7 +67,7 @@ public:
 	InventoryTileManager* GetTilesInv() { return &objInvTiles; }
 	AudioPlayer* GetAudio() { return &audio; }
 	SaveManager* GetSaveManager() { return &saveManager; }
-	//FloorGenerator* GetFloorGenerator() { return &gen; }
+	FloorGenerator* GetFloorGenerator() { return gen; }
 	PlayerObject* GetPlayer() { return player; }
 
 	PlayerObject* player;
@@ -102,6 +102,6 @@ private:
 	InventoryTileManager objInvTiles;
 
 	SaveManager saveManager;
-	//FloorGenerator gen;
+	FloorGenerator* gen;
 
 };

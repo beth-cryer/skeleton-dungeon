@@ -9,8 +9,10 @@ class SaveManager
 public:
 	SaveManager();
 
+	std::string getText() { return text; }
+
 	//Loading
-	std::string loadFileContents(std::string filename);
+	void loadFileContents(std::string filename);
 	std::string getSaveData(std::string tag);
 	std::string getTagContents(std::string text, std::string tag);
 	std::vector<std::string> splitContentBetween(std::string text, char start, char end);

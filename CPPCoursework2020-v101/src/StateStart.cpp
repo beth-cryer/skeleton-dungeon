@@ -111,7 +111,9 @@ void StateStart::onStateEnter()
 	//Randomly pick from all Floor layout templates
 	srand(time(NULL));
 
-	std::string content = save->loadFileContents("gen/floors.txt");
+	save->loadFileContents("gen/floors.txt");
+
+	std::string content = save->getText();
 	std::string i_floors = save->getTagContents(content,"floors"); //number of floors stored
 
 	int i_rand = std::stoi(i_floors);
@@ -144,7 +146,6 @@ void StateStart::onStateEnter()
 
 	std::vector<std::vector<int>> floor = gen->genFloor(rows,cols,3);
 	*/
-
 	
 }
 

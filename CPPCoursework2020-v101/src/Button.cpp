@@ -34,7 +34,6 @@ bool Button::isClicked(int xClick, int yClick)
 void ButtonContinue::onClick()
 {
 	//Load save
-	/*
 	auto loader = pEngine->GetSaveManager();
 	loader->loadFileContents("saves/test.txt");
 
@@ -57,7 +56,6 @@ void ButtonContinue::onClick()
 
 	std::string solidTiles = loader->getSaveData("solid");
 	std::string solidBack = loader->getSaveData("back");
-	*/
 
 	pEngine->setState(pEngine->stateStart);
 }

@@ -6,7 +6,7 @@ SaveManager::SaveManager()
 
 }
 
-std::string SaveManager::loadFileContents(std::string filename)
+void SaveManager::loadFileContents(std::string filename)
 {
     std::string buffer;
     char c;

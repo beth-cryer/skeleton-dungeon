@@ -63,6 +63,9 @@ class FloorGenerator
 {
 public:
 
+	FloorGenerator() {}
+	~FloorGenerator() {}
+
 	//Defines a 2D grid of ints
 	typedef std::vector<std::vector<int>> grid;
 
