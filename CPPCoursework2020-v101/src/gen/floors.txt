@@ -1,4 +1,4 @@
-<floors>15</floors>
+<floors>9</floors>
 
 <floor1>
 [2,0,0]

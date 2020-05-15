@@ -219,9 +219,6 @@
     <ClInclude Include="AudioPlayer.h">
       <Filter>Header Files\Psybc5Game</Filter>
     </ClInclude>
-    <ClInclude Include="FireballObject.h">
-      <Filter>Header Files\Psybc5Game</Filter>
-    </ClInclude>
     <ClInclude Include="header.h">
       <Filter>Header Files\Psybc5Game</Filter>
     </ClInclude>
@@ -369,9 +366,6 @@
       <Filter>Source Files\2 More Advanced Demos</Filter>
     </ClCompile>
     <ClCompile Include="AudioPlayer.cpp">
-      <Filter>Source Files\Psybc5Game</Filter>
-    </ClCompile>
-    <ClCompile Include="FireballObject.cpp">
       <Filter>Source Files\Psybc5Game</Filter>
     </ClCompile>
     <ClCompile Include="mainfunction.cpp">

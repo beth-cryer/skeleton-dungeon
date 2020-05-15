@@ -91,6 +91,8 @@ void StateStart::virtSetupBackgroundBuffer()
 
 	invTiles->setTopLeftPositionOnScreen(WIN_WIDTH / 2 - (w * 64) / 2, WIN_HEIGHT / 2 - (h * 64) / 2);
 
+	onStateEnter();
+
 	//Transition to Running
 	pEngine->setState(pEngine->stateRunning);
 }
@@ -100,11 +102,12 @@ void StateStart::virtSetupBackgroundBuffer()
 //(aka. set up object array, generate level)
 void StateStart::onStateEnter()
 {
+	std::cout << "GENERATING FLOOR" << std::endl;
 
 	//ROOM GENERATION CODE. WILL PROBABLY MOVE SOMEWHERE ELSE LATER
 	
-	/*
-	//Generate array of Rooms
+		//Generate array of Rooms
+
 	auto gen = pEngine->GetFloorGenerator();
 	auto save = pEngine->GetSaveManager();
 
@@ -116,37 +119,81 @@ void StateStart::onStateEnter()
 	std::string content = save->getText();
 	std::string i_floors = save->getTagContents(content,"floors"); //number of floors stored
 
+		std::cout << "Number of floor templates found: " << i_floors << std::endl;
+
 	int i_rand = std::stoi(i_floors);
-	int f = 1 + rand() % i_rand;
+	i_rand = 1 + rand() % i_rand;
+
+		std::cout << "Floor template ID picked: " << i_rand << std::endl;
 	
 	//Get tag of random floor generated
-	std::string f_template = save->getTagContents(content,"floor"+f);
+	std::string floor_tag = "floor";
+	floor_tag.append(std::to_string(i_rand));
+
+	std::string f_template = save->getTagContents(content,floor_tag);
 
 	//Return list of the content in []
 	std::vector<std::string> str = save->splitContentBetween(f_template,'[',']');
 
+	
 	//Split content by comma
-	std::vector<std::vector<int>> i_template;
+	std::vector<std::vector<int>> i_temp;
 	int i = 0;
 	for (auto it = str.begin(); it != str.end(); it++) {
-		std::vector<int> row;
 		auto split = save->splitContentBy(*it, ',');
 
-		//Convert to int first
+		std::cout << "[";
+		//(And convert to int along the way)
+		std::vector<int> row;
 		for (auto sit = split.begin(); sit != split.end(); sit++) {
 			row.push_back(std::stoi(*sit));
+			std::cout << *sit << ",";
 		}
+		std::cout << "]";
 
-		i_template[i++] = row;
+		//Push the row
+		i_temp.push_back(row);
+
+		i++;
 	}
 
-	//Get width and height of new vector
-	int rows = i_template.size() / i_template[0].size();
-	int cols = i_template[0].size();
+	//Expand each tile to become a 3x3
+	std::vector<std::vector<int>> i_grid;
+	for (auto it = i_temp.begin(); it != i_temp.end(); it++)
+	{
+		//For each row, repeat every element 3 times
+		std::vector<int> row;
+		for (auto sit = (*it).begin(); sit != (*it).end(); sit++) {
+			for (int i = 0; i < 3; i++) row.push_back(*sit);
+		}
 
-	std::vector<std::vector<int>> floor = gen->genFloor(rows,cols,3);
+		//Then repeat the modified row for the next 3 rows of our result
+		for (int i = 0; i < 3; i++) {
+			i_grid.push_back(row);
+		}
+	}
+
+	/* Print expanded version
+	std::cout << std::endl;
+	for (const std::vector<int>& v : i_grid) {
+		for (int x : v) std::cout << x << ',';
+		std::cout << std::endl;
+	}
 	*/
+
+	//Get width and height of new vector
+	int cols = i_grid[0].size();
+	int rows = i_grid.size();
+	std::cout << "\nRows = " << rows << ", Columns = " << cols << std::endl;
+
+	//Generate floor grid from the processed template
+	std::vector<std::vector<int>> floor = gen->genFloor(i_grid,cols,rows,3);
 	
+	//PRINT
+	for (const std::vector<int>& v : floor) {
+		for (int x : v) std::cout << x << ',';
+		std::cout << std::endl;
+	}
 }
 
 void StateStart::onStateExit()

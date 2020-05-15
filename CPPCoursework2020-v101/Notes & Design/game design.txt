@@ -71,6 +71,19 @@ Entrance
 Exit (can only be opened by a key dropped by a random enemy in the room, or found in a chest)
 
 
+FLOOR PROPERTIES
+enemies get stronger for every floor cleared
+following properties are random, but have a higher chance at deeper levels:
+1 - (CAVE) no special properties
+2 - (LABYRINTH) bigger level, weaker enemies
+3 - (SAND) need to move every turn or lose health to quicksand. enemies also take passive damage though
+4 - (POISON) lose health at the end of every turn, but magic does more damage
+5 - (ANTIMAGIC) mana is halved, but melee is stronger
+6 - (ICE) stamina is halved, but you move two tiles at a time
+7 - (ABYSS) must finish before a certain number of turns. floor has more treasure
+8 - (BLOOD) all damage taken is doubled, but so is exp gained
+number represents both rarity and deadliness
+
 MARKING CRITERIA
 1. will have a state manager that handles different states within battles
 2. will save player and enemy positions, along with player stats and inventory (maybe)

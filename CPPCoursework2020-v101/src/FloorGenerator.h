@@ -69,30 +69,15 @@ public:
 	//Defines a 2D grid of ints
 	typedef std::vector<std::vector<int>> grid;
 
-	grid genFloor(int sizex, int sizey, int sector)
+	grid genFloor(grid floor, int sizex, int sizey, int sector)
 	{
 		//Set generation seed (do this before every gen)
 		srand(time(NULL));
 
-		//Starting floor
+		//Floor Template data:
 		//0 represents areas outside the bounds of the generation shape
 		//1 represents empty tiles
 		//2 represents a room
-
-		//An example we'll use is an L-shaped space in a 9x9 grid
-		//Each sector of the grid is 3x3, will have a single dig node placed in each later
-
-		grid floor = {
-			{2,2,2,0,0,0,0,0,0},
-			{2,2,2,0,0,0,0,0,0},
-			{2,2,2,0,0,0,0,0,0},
-			{2,2,2,0,0,0,0,0,0},
-			{2,2,2,0,0,0,0,0,0},
-			{2,2,2,0,0,0,0,0,0},
-			{2,2,2,2,2,2,2,2,2},
-			{2,2,2,2,2,2,2,2,2},
-			{2,2,2,2,2,2,2,2,2}
-		};
 
 		//List of dig nodes (where we will remove chunks)
 		std::vector<std::tuple<int, int>> digNodes;

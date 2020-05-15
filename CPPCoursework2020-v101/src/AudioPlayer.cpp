@@ -81,13 +81,11 @@ void AudioPlayer::closeAudio() {
 
 	//Loop through all audio and music cached and free them
 	//(doesn't seem to have memory leaks either way, but I'd rather be safe and keep track of all the mix pointers I make)
-	for (std::map<std::string, Mix_Chunk*>::iterator it = sfx.begin();
-		it != sfx.end(); ++it) {
+	for (auto it = sfx.begin(); it != sfx.end(); ++it) {
 		Mix_FreeChunk(it->second);
 	}
 
-	for (std::map<std::string, Mix_Music*>::iterator it = music.begin();
-		it != music.end(); ++it) {
+	for (auto it = music.begin(); it != music.end(); ++it) {
 		Mix_FreeMusic(it->second);
 	}
 

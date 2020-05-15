@@ -115,7 +115,6 @@
     <ClInclude Include="EnemyObject.h" />
     <ClInclude Include="EnemyZombie.h" />
     <ClInclude Include="FilterPoints.h" />
-    <ClInclude Include="FireballObject.h" />
     <ClInclude Include="FlashingDemo.h" />
     <ClInclude Include="FloorGenerator.h" />
     <ClInclude Include="header.h" />
@@ -181,7 +180,6 @@
     <ClCompile Include="EnemyElf.cpp" />
     <ClCompile Include="EnemyObject.cpp" />
     <ClCompile Include="EnemyZombie.cpp" />
-    <ClCompile Include="FireballObject.cpp" />
     <ClCompile Include="FlashingDemo.cpp" />
     <ClCompile Include="ImageObjectDemo.cpp" />
     <ClCompile Include="Item.cpp" />

@@ -113,6 +113,8 @@ std::vector<std::string> SaveManager::splitContentBy(std::string text, char spli
             buf.push_back(*it);
         }
     }
+    if (buf.length() > 0) substrs.push_back(buf); //push last substring IF text doesn't end with the split character
+
     return substrs;
 }
 
