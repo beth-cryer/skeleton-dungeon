@@ -3331,6 +3331,7 @@
  0002:000128ac       ??_7EditorTileManager@@6B@ 0047b8ac     StateEditor.obj
  0002:000128b8       ??_C@_0BK@DGEMIDMD@sprites?1tiles_special?4png@ 0047b8b8     StateEditor.obj
  0002:000128dc       ??_7StateEditor@@6B@       0047b8dc     StateEditor.obj
+ 0002:00012fc0       ??_C@_1BCM@BMJMJMGN@?$AAs?$AAt?$AAd?$AA?3?$AA?3?$AAv?$AAe?$AAc?$AAt?$AAo?$AAr?$AA?$DM?$AAc?$AAl?$AAa@ 0047bfc0     StateMenu.obj
  0002:00013114       ??_7ButtonChangeState@@6B@ 0047c114     StateMenu.obj
  0002:00013124       ??_7ButtonContinue@@6B@    0047c124     StateMenu.obj
  0002:00013134       ??_7ButtonExit@@6B@        0047c134     StateMenu.obj
@@ -3340,8 +3341,7 @@
  0002:000131d4       ??_7StateInfo@@6B@         0047c1d4     StateMenu.obj
  0002:00013214       ??_7?$ButtonValueChange@H@@6B@ 0047c214     StateMenu.obj
  0002:00013224       ??_7?$ButtonAllocateSkill@H@@6B@ 0047c224     StateMenu.obj
- 0002:00013230       ??_C@_1HC@HBCEAHKD@?$AAs?$AAt?$AAd?$AA?3?$AA?3?$AAv?$AAe?$AAc?$AAt?$AAo?$AAr?$AA?$DM?$AAi?$AAn?$AAt@ 0047c230     StateMenu.obj
- 0002:000132b8       ??_C@_1BCM@BMJMJMGN@?$AAs?$AAt?$AAd?$AA?3?$AA?3?$AAv?$AAe?$AAc?$AAt?$AAo?$AAr?$AA?$DM?$AAc?$AAl?$AAa@ 0047c2b8     StateMenu.obj
+ 0002:000132b8       ??_C@_1HC@HBCEAHKD@?$AAs?$AAt?$AAd?$AA?3?$AA?3?$AAv?$AAe?$AAc?$AAt?$AAo?$AAr?$AA?$DM?$AAi?$AAn?$AAt@ 0047c2b8     StateMenu.obj
  0002:00013420       ??_C@_0CB@EJBNKHHC@invalid?5to?5pop_back?5empty?5strin@ 0047c420     StateMenu.obj
  0002:00013448       ??_C@_1LI@HCBEBID@?$AAs?$AAt?$AAd?$AA?3?$AA?3?$AAb?$AAa?$AAs?$AAi?$AAc?$AA_?$AAs?$AAt?$AAr?$AAi@ 0047c448     StateMenu.obj
  0002:00013528       ??_C@_1EG@GNALHNOG@?$AA?$CC?$AAi?$AAn?$AAv?$AAa?$AAl?$AAi?$AAd?$AA?5?$AAt?$AAo?$AA?5?$AAp?$AAo?$AAp@ 0047c528     StateMenu.obj
@@ -8725,36 +8725,36 @@
  0002:00001420       $SG84974                   0046a420     AudioPlayer.obj
  0002:00001448       $SG85062                   0046a448     AudioPlayer.obj
  0002:000014b0       $SG73632                   0046a4b0     AudioPlayer.obj
- 0002:00002c70       $SG110366                  0046bc70     Button.obj
- 0002:00002c84       $SG110367                  0046bc84     Button.obj
- 0002:00002c88       $SG110368                  0046bc88     Button.obj
- 0002:00002cf0       $SG110369                  0046bcf0     Button.obj
- 0002:00002dc0       $SG110370                  0046bdc0     Button.obj
- 0002:00002e10       $SG110371                  0046be10     Button.obj
- 0002:00002e38       $SG111123                  0046be38     Button.obj
- 0002:00002ea0       $SG111400                  0046bea0     Button.obj
- 0002:00002ebc       $SG111401                  0046bebc     Button.obj
- 0002:00002ec0       $SG111402                  0046bec0     Button.obj
- 0002:00002f2c       $SG111404                  0046bf2c     Button.obj
- 0002:00002f58       $SG111403                  0046bf58     Button.obj
- 0002:0000302c       $SG111405                  0046c02c     Button.obj
- 0002:00003064       $SG95907                   0046c064     Button.obj
- 0002:00003074       $SG95908                   0046c074     Button.obj
- 0002:0000307c       $SG95909                   0046c07c     Button.obj
- 0002:00003084       $SG95910                   0046c084     Button.obj
- 0002:00003088       $SG95911                   0046c088     Button.obj
- 0002:00003090       $SG95912                   0046c090     Button.obj
- 0002:0000309c       $SG95913                   0046c09c     Button.obj
- 0002:000030a8       $SG95914                   0046c0a8     Button.obj
- 0002:000030b0       $SG95915                   0046c0b0     Button.obj
- 0002:000030bc       $SG95916                   0046c0bc     Button.obj
- 0002:000030c4       $SG95917                   0046c0c4     Button.obj
- 0002:000030d0       $SG95918                   0046c0d0     Button.obj
- 0002:000030d8       $SG95919                   0046c0d8     Button.obj
- 0002:000030e4       $SG95920                   0046c0e4     Button.obj
- 0002:000030ec       $SG95921                   0046c0ec     Button.obj
- 0002:000030f4       $SG95922                   0046c0f4     Button.obj
- 0002:000030fc       $SG95923                   0046c0fc     Button.obj
+ 0002:00002c70       $SG115104                  0046bc70     Button.obj
+ 0002:00002cd8       $SG115338                  0046bcd8     Button.obj
+ 0002:00002cf4       $SG115339                  0046bcf4     Button.obj
+ 0002:00002cf8       $SG115340                  0046bcf8     Button.obj
+ 0002:00002d64       $SG115342                  0046bd64     Button.obj
+ 0002:00002d90       $SG115341                  0046bd90     Button.obj
+ 0002:00002e64       $SG115343                  0046be64     Button.obj
+ 0002:00002e9c       $SG97482                   0046be9c     Button.obj
+ 0002:00002eac       $SG97483                   0046beac     Button.obj
+ 0002:00002eb4       $SG97484                   0046beb4     Button.obj
+ 0002:00002ebc       $SG97485                   0046bebc     Button.obj
+ 0002:00002ec0       $SG97486                   0046bec0     Button.obj
+ 0002:00002ec8       $SG97487                   0046bec8     Button.obj
+ 0002:00002ed4       $SG97488                   0046bed4     Button.obj
+ 0002:00002ee0       $SG97489                   0046bee0     Button.obj
+ 0002:00002ee8       $SG97490                   0046bee8     Button.obj
+ 0002:00002ef4       $SG97491                   0046bef4     Button.obj
+ 0002:00002efc       $SG97492                   0046befc     Button.obj
+ 0002:00002f08       $SG97493                   0046bf08     Button.obj
+ 0002:00002f10       $SG97494                   0046bf10     Button.obj
+ 0002:00002f1c       $SG97495                   0046bf1c     Button.obj
+ 0002:00002f24       $SG97496                   0046bf24     Button.obj
+ 0002:00002f2c       $SG97497                   0046bf2c     Button.obj
+ 0002:00002f34       $SG97498                   0046bf34     Button.obj
+ 0002:00002f3c       $SG113946                  0046bf3c     Button.obj
+ 0002:00002f50       $SG113947                  0046bf50     Button.obj
+ 0002:00002f58       $SG113948                  0046bf58     Button.obj
+ 0002:00002fc0       $SG113949                  0046bfc0     Button.obj
+ 0002:00003090       $SG113950                  0046c090     Button.obj
+ 0002:000030e0       $SG113951                  0046c0e0     Button.obj
  0002:00003238       $SG91429                   0046c238     CharObject.obj
  0002:00003250       $SG91434                   0046c250     CharObject.obj
  0002:00003268       $SG104874                  0046c268     CharObject.obj
@@ -9213,35 +9213,35 @@
  0002:00010f9c       $SG95517                   00479f9c     StarfieldDemo.obj
  0002:00010fc8       $SG95516                   00479fc8     StarfieldDemo.obj
  0002:0001109c       $SG95518                   0047a09c     StarfieldDemo.obj
- 0002:00011268       $SG111318                  0047a268     GameEngine.obj
- 0002:00011279       $SG96828                   0047a279     GameEngine.obj
- 0002:0001127c       $SG111319                  0047a27c     GameEngine.obj
- 0002:00011280       $SG111320                  0047a280     GameEngine.obj
- 0002:000112e8       $SG111321                  0047a2e8     GameEngine.obj
- 0002:000113b8       $SG111322                  0047a3b8     GameEngine.obj
- 0002:00011408       $SG111323                  0047a408     GameEngine.obj
- 0002:00011430       $SG112075                  0047a430     GameEngine.obj
- 0002:00011498       $SG112352                  0047a498     GameEngine.obj
- 0002:000114b4       $SG112353                  0047a4b4     GameEngine.obj
- 0002:000114b8       $SG112354                  0047a4b8     GameEngine.obj
- 0002:00011524       $SG112356                  0047a524     GameEngine.obj
- 0002:00011550       $SG112355                  0047a550     GameEngine.obj
- 0002:00011624       $SG112357                  0047a624     GameEngine.obj
- 0002:0001165c       $SG96810                   0047a65c     GameEngine.obj
- 0002:00011670       $SG96811                   0047a670     GameEngine.obj
- 0002:00011678       $SG96812                   0047a678     GameEngine.obj
- 0002:00011680       $SG96813                   0047a680     GameEngine.obj
- 0002:00011684       $SG96814                   0047a684     GameEngine.obj
- 0002:0001168c       $SG96815                   0047a68c     GameEngine.obj
- 0002:00011698       $SG96816                   0047a698     GameEngine.obj
- 0002:000116a0       $SG96817                   0047a6a0     GameEngine.obj
- 0002:000116ac       $SG96818                   0047a6ac     GameEngine.obj
- 0002:000116b4       $SG96819                   0047a6b4     GameEngine.obj
- 0002:000116c0       $SG96820                   0047a6c0     GameEngine.obj
- 0002:000116c8       $SG96821                   0047a6c8     GameEngine.obj
- 0002:000116d4       $SG96822                   0047a6d4     GameEngine.obj
- 0002:000116e0       $SG96823                   0047a6e0     GameEngine.obj
- 0002:000116e8       $SG96824                   0047a6e8     GameEngine.obj
+ 0002:00011268       $SG98385                   0047a268     GameEngine.obj
+ 0002:0001127b       $SG98403                   0047a27b     GameEngine.obj
+ 0002:0001127c       $SG98386                   0047a27c     GameEngine.obj
+ 0002:00011284       $SG98387                   0047a284     GameEngine.obj
+ 0002:0001128c       $SG98388                   0047a28c     GameEngine.obj
+ 0002:00011290       $SG98389                   0047a290     GameEngine.obj
+ 0002:00011298       $SG98390                   0047a298     GameEngine.obj
+ 0002:000112a4       $SG98391                   0047a2a4     GameEngine.obj
+ 0002:000112ac       $SG98392                   0047a2ac     GameEngine.obj
+ 0002:000112b8       $SG98393                   0047a2b8     GameEngine.obj
+ 0002:000112c0       $SG98394                   0047a2c0     GameEngine.obj
+ 0002:000112cc       $SG98395                   0047a2cc     GameEngine.obj
+ 0002:000112d4       $SG98396                   0047a2d4     GameEngine.obj
+ 0002:000112e0       $SG98397                   0047a2e0     GameEngine.obj
+ 0002:000112ec       $SG98398                   0047a2ec     GameEngine.obj
+ 0002:000112f4       $SG98399                   0047a2f4     GameEngine.obj
+ 0002:000112fc       $SG114898                  0047a2fc     GameEngine.obj
+ 0002:00011310       $SG114899                  0047a310     GameEngine.obj
+ 0002:00011314       $SG116290                  0047a314     GameEngine.obj
+ 0002:00011330       $SG114900                  0047a330     GameEngine.obj
+ 0002:00011398       $SG114901                  0047a398     GameEngine.obj
+ 0002:00011468       $SG114902                  0047a468     GameEngine.obj
+ 0002:000114b8       $SG114903                  0047a4b8     GameEngine.obj
+ 0002:000114e0       $SG116056                  0047a4e0     GameEngine.obj
+ 0002:00011548       $SG116291                  0047a548     GameEngine.obj
+ 0002:0001154c       $SG116294                  0047a54c     GameEngine.obj
+ 0002:00011578       $SG116292                  0047a578     GameEngine.obj
+ 0002:000115e4       $SG116295                  0047a5e4     GameEngine.obj
+ 0002:00011620       $SG116293                  0047a620     GameEngine.obj
  0002:000119d0       $SG103731                  0047a9d0     BaseState.obj
  0002:000119e4       $SG103732                  0047a9e4     BaseState.obj
  0002:000119e8       $SG103733                  0047a9e8     BaseState.obj
@@ -9255,117 +9255,117 @@
  0002:00011c8c       $SG104361                  0047ac8c     BaseState.obj
  0002:00011cb8       $SG104360                  0047acb8     BaseState.obj
  0002:00011d8c       $SG104362                  0047ad8c     BaseState.obj
- 0002:000123c8       $SG110341                  0047b3c8     StateEditor.obj
- 0002:000123dc       $SG110342                  0047b3dc     StateEditor.obj
- 0002:000123e0       $SG110343                  0047b3e0     StateEditor.obj
- 0002:00012448       $SG110344                  0047b448     StateEditor.obj
- 0002:00012518       $SG110345                  0047b518     StateEditor.obj
- 0002:00012568       $SG110346                  0047b568     StateEditor.obj
- 0002:00012590       $SG111098                  0047b590     StateEditor.obj
- 0002:000125f8       $SG111375                  0047b5f8     StateEditor.obj
- 0002:00012614       $SG111376                  0047b614     StateEditor.obj
- 0002:00012618       $SG111377                  0047b618     StateEditor.obj
- 0002:00012684       $SG111379                  0047b684     StateEditor.obj
- 0002:000126b0       $SG111378                  0047b6b0     StateEditor.obj
- 0002:00012784       $SG111380                  0047b784     StateEditor.obj
- 0002:000127bc       $SG95817                   0047b7bc     StateEditor.obj
- 0002:000127d0       $SG95850                   0047b7d0     StateEditor.obj
- 0002:00012918       $SG112128                  0047b918     StateMenu.obj
- 0002:0001292c       $SG112129                  0047b92c     StateMenu.obj
- 0002:00012930       $SG112130                  0047b930     StateMenu.obj
- 0002:00012998       $SG112131                  0047b998     StateMenu.obj
- 0002:00012a68       $SG112132                  0047ba68     StateMenu.obj
- 0002:00012ab8       $SG112133                  0047bab8     StateMenu.obj
- 0002:00012ae0       $SG95840                   0047bae0     StateMenu.obj
- 0002:00012af4       $SG95841                   0047baf4     StateMenu.obj
- 0002:00012b0c       $SG95842                   0047bb0c     StateMenu.obj
- 0002:00012b20       $SG95843                   0047bb20     StateMenu.obj
- 0002:00012b34       $SG96149                   0047bb34     StateMenu.obj
- 0002:00012b40       $SG96151                   0047bb40     StateMenu.obj
- 0002:00012b4c       $SG96153                   0047bb4c     StateMenu.obj
- 0002:00012b54       $SG96155                   0047bb54     StateMenu.obj
- 0002:00012b64       $SG96157                   0047bb64     StateMenu.obj
- 0002:00012b6c       $SG96158                   0047bb6c     StateMenu.obj
- 0002:00012b88       $SG96166                   0047bb88     StateMenu.obj
- 0002:00012ba4       $SG96341                   0047bba4     StateMenu.obj
- 0002:00012bb8       $SG96351                   0047bbb8     StateMenu.obj
- 0002:00012bc0       $SG96352                   0047bbc0     StateMenu.obj
- 0002:00012c0c       $SG96533                   0047bc0c     StateMenu.obj
- 0002:00012c10       $SG96353                   0047bc10     StateMenu.obj
- 0002:00012c94       $SG96535                   0047bc94     StateMenu.obj
- 0002:00012c98       $SG96354                   0047bc98     StateMenu.obj
- 0002:00012d24       $SG96537                   0047bd24     StateMenu.obj
- 0002:00012d28       $SG112914                  0047bd28     StateMenu.obj
- 0002:00012d90       $SG96531                   0047bd90     StateMenu.obj
- 0002:00012d98       $SG96539                   0047bd98     StateMenu.obj
- 0002:00012d9c       $SG96541                   0047bd9c     StateMenu.obj
- 0002:00012da0       $SG96543                   0047bda0     StateMenu.obj
- 0002:00012da4       $SG96545                   0047bda4     StateMenu.obj
- 0002:00012da8       $SG96547                   0047bda8     StateMenu.obj
- 0002:00012dac       $SG96581                   0047bdac     StateMenu.obj
- 0002:00012dc0       $SG96582                   0047bdc0     StateMenu.obj
- 0002:00012dc8       $SG96585                   0047bdc8     StateMenu.obj
- 0002:00012dcc       $SG96586                   0047bdcc     StateMenu.obj
- 0002:00012dd4       $SG96587                   0047bdd4     StateMenu.obj
- 0002:00012ddc       $SG96588                   0047bddc     StateMenu.obj
- 0002:00012de4       $SG96589                   0047bde4     StateMenu.obj
- 0002:00012dec       $SG96590                   0047bdec     StateMenu.obj
- 0002:00012df8       $SG113163                  0047bdf8     StateMenu.obj
- 0002:00012e14       $SG113164                  0047be14     StateMenu.obj
- 0002:00012e18       $SG113165                  0047be18     StateMenu.obj
- 0002:00012e84       $SG113167                  0047be84     StateMenu.obj
- 0002:00012eb0       $SG113166                  0047beb0     StateMenu.obj
- 0002:00012f84       $SG113168                  0047bf84     StateMenu.obj
- 0002:000138f0       $SG114696                  0047c8f0     StateRunning.obj
- 0002:00013958       $SG114977                  0047c958     StateRunning.obj
- 0002:00013974       $SG114978                  0047c974     StateRunning.obj
- 0002:00013978       $SG114979                  0047c978     StateRunning.obj
- 0002:000139e4       $SG114981                  0047c9e4     StateRunning.obj
- 0002:00013a10       $SG114980                  0047ca10     StateRunning.obj
- 0002:00013ae4       $SG114982                  0047cae4     StateRunning.obj
- 0002:00013b1c       $SG98747                   0047cb1c     StateRunning.obj
- 0002:00013b34       $SG98782                   0047cb34     StateRunning.obj
- 0002:00013b38       $SG98783                   0047cb38     StateRunning.obj
- 0002:00013b40       $SG98784                   0047cb40     StateRunning.obj
- 0002:00013b44       $SG98785                   0047cb44     StateRunning.obj
- 0002:00013b50       $SG98786                   0047cb50     StateRunning.obj
- 0002:00013b5c       $SG98788                   0047cb5c     StateRunning.obj
- 0002:00013b64       $SG98874                   0047cb64     StateRunning.obj
- 0002:00013b6c       $SG98875                   0047cb6c     StateRunning.obj
- 0002:00013b74       $SG98876                   0047cb74     StateRunning.obj
- 0002:00013b7c       $SG98877                   0047cb7c     StateRunning.obj
- 0002:00013b84       $SG98878                   0047cb84     StateRunning.obj
- 0002:00013b8c       $SG98923                   0047cb8c     StateRunning.obj
- 0002:00013b98       $SG113919                  0047cb98     StateRunning.obj
- 0002:00013bac       $SG113920                  0047cbac     StateRunning.obj
- 0002:00013bb0       $SG113921                  0047cbb0     StateRunning.obj
- 0002:00013c18       $SG113922                  0047cc18     StateRunning.obj
- 0002:00013ce8       $SG113923                  0047cce8     StateRunning.obj
- 0002:00013d38       $SG113924                  0047cd38     StateRunning.obj
- 0002:00014098       $SG116127                  0047d098     StateStart.obj
- 0002:000140ac       $SG116128                  0047d0ac     StateStart.obj
- 0002:000140b0       $SG116129                  0047d0b0     StateStart.obj
- 0002:00014118       $SG116130                  0047d118     StateStart.obj
- 0002:000141e8       $SG116131                  0047d1e8     StateStart.obj
- 0002:00014238       $SG116132                  0047d238     StateStart.obj
- 0002:00014260       $SG100077                  0047d260     StateStart.obj
- 0002:00014274       $SG100078                  0047d274     StateStart.obj
- 0002:00014284       $SG100079                  0047d284     StateStart.obj
- 0002:0001428c       $SG100080                  0047d28c     StateStart.obj
- 0002:000142b0       $SG100081                  0047d2b0     StateStart.obj
- 0002:000142cc       $SG100082                  0047d2cc     StateStart.obj
- 0002:000142d4       $SG100084                  0047d2d4     StateStart.obj
- 0002:000142d8       $SG100086                  0047d2d8     StateStart.obj
- 0002:000142dc       $SG100087                  0047d2dc     StateStart.obj
- 0002:000142e0       $SG100090                  0047d2e0     StateStart.obj
- 0002:000142f0       $SG100091                  0047d2f0     StateStart.obj
- 0002:000142fc       $SG117298                  0047d2fc     StateStart.obj
- 0002:00014318       $SG117057                  0047d318     StateStart.obj
- 0002:00014380       $SG117299                  0047d380     StateStart.obj
- 0002:00014384       $SG117302                  0047d384     StateStart.obj
- 0002:000143b0       $SG117300                  0047d3b0     StateStart.obj
- 0002:0001441c       $SG117303                  0047d41c     StateStart.obj
- 0002:00014458       $SG117301                  0047d458     StateStart.obj
+ 0002:000123c8       $SG115079                  0047b3c8     StateEditor.obj
+ 0002:00012430       $SG115313                  0047b430     StateEditor.obj
+ 0002:0001244c       $SG115314                  0047b44c     StateEditor.obj
+ 0002:00012450       $SG115315                  0047b450     StateEditor.obj
+ 0002:000124bc       $SG115317                  0047b4bc     StateEditor.obj
+ 0002:000124e8       $SG115316                  0047b4e8     StateEditor.obj
+ 0002:000125bc       $SG115318                  0047b5bc     StateEditor.obj
+ 0002:000125f4       $SG97392                   0047b5f4     StateEditor.obj
+ 0002:00012608       $SG97425                   0047b608     StateEditor.obj
+ 0002:00012610       $SG113921                  0047b610     StateEditor.obj
+ 0002:00012624       $SG113922                  0047b624     StateEditor.obj
+ 0002:00012628       $SG113923                  0047b628     StateEditor.obj
+ 0002:00012690       $SG113924                  0047b690     StateEditor.obj
+ 0002:00012760       $SG113925                  0047b760     StateEditor.obj
+ 0002:000127b0       $SG113926                  0047b7b0     StateEditor.obj
+ 0002:00012918       $SG115383                  0047b918     StateMenu.obj
+ 0002:0001292c       $SG115384                  0047b92c     StateMenu.obj
+ 0002:00012930       $SG115385                  0047b930     StateMenu.obj
+ 0002:00012998       $SG115386                  0047b998     StateMenu.obj
+ 0002:00012a68       $SG115387                  0047ba68     StateMenu.obj
+ 0002:00012ab8       $SG115388                  0047bab8     StateMenu.obj
+ 0002:00012ae0       $SG116565                  0047bae0     StateMenu.obj
+ 0002:00012b48       $SG116813                  0047bb48     StateMenu.obj
+ 0002:00012b64       $SG116814                  0047bb64     StateMenu.obj
+ 0002:00012b68       $SG116815                  0047bb68     StateMenu.obj
+ 0002:00012bd4       $SG116817                  0047bbd4     StateMenu.obj
+ 0002:00012c00       $SG116816                  0047bc00     StateMenu.obj
+ 0002:00012cd4       $SG116818                  0047bcd4     StateMenu.obj
+ 0002:00012d0c       $SG97415                   0047bd0c     StateMenu.obj
+ 0002:00012d20       $SG97416                   0047bd20     StateMenu.obj
+ 0002:00012d38       $SG97417                   0047bd38     StateMenu.obj
+ 0002:00012d4c       $SG97418                   0047bd4c     StateMenu.obj
+ 0002:00012d60       $SG97724                   0047bd60     StateMenu.obj
+ 0002:00012d6c       $SG97726                   0047bd6c     StateMenu.obj
+ 0002:00012d78       $SG97728                   0047bd78     StateMenu.obj
+ 0002:00012d80       $SG97730                   0047bd80     StateMenu.obj
+ 0002:00012d90       $SG97732                   0047bd90     StateMenu.obj
+ 0002:00012d98       $SG97733                   0047bd98     StateMenu.obj
+ 0002:00012db4       $SG97741                   0047bdb4     StateMenu.obj
+ 0002:00012dd0       $SG97882                   0047bdd0     StateMenu.obj
+ 0002:00012de4       $SG97892                   0047bde4     StateMenu.obj
+ 0002:00012dec       $SG98072                   0047bdec     StateMenu.obj
+ 0002:00012df4       $SG98074                   0047bdf4     StateMenu.obj
+ 0002:00012df8       $SG97893                   0047bdf8     StateMenu.obj
+ 0002:00012e44       $SG98076                   0047be44     StateMenu.obj
+ 0002:00012e48       $SG97894                   0047be48     StateMenu.obj
+ 0002:00012ecc       $SG98078                   0047becc     StateMenu.obj
+ 0002:00012ed0       $SG97895                   0047bed0     StateMenu.obj
+ 0002:00012f5c       $SG98080                   0047bf5c     StateMenu.obj
+ 0002:00012f60       $SG98082                   0047bf60     StateMenu.obj
+ 0002:00012f64       $SG98084                   0047bf64     StateMenu.obj
+ 0002:00012f68       $SG98086                   0047bf68     StateMenu.obj
+ 0002:00012f6c       $SG98088                   0047bf6c     StateMenu.obj
+ 0002:00012f70       $SG98122                   0047bf70     StateMenu.obj
+ 0002:00012f84       $SG98123                   0047bf84     StateMenu.obj
+ 0002:00012f8c       $SG98126                   0047bf8c     StateMenu.obj
+ 0002:00012f90       $SG98127                   0047bf90     StateMenu.obj
+ 0002:00012f98       $SG98128                   0047bf98     StateMenu.obj
+ 0002:00012fa0       $SG98129                   0047bfa0     StateMenu.obj
+ 0002:00012fa8       $SG98130                   0047bfa8     StateMenu.obj
+ 0002:00012fb0       $SG98131                   0047bfb0     StateMenu.obj
+ 0002:000138f0       $SG100322                  0047c8f0     StateRunning.obj
+ 0002:00013908       $SG100357                  0047c908     StateRunning.obj
+ 0002:0001390c       $SG100358                  0047c90c     StateRunning.obj
+ 0002:00013914       $SG100359                  0047c914     StateRunning.obj
+ 0002:00013918       $SG100360                  0047c918     StateRunning.obj
+ 0002:00013924       $SG100361                  0047c924     StateRunning.obj
+ 0002:00013930       $SG100363                  0047c930     StateRunning.obj
+ 0002:00013938       $SG100449                  0047c938     StateRunning.obj
+ 0002:00013940       $SG100450                  0047c940     StateRunning.obj
+ 0002:00013948       $SG100451                  0047c948     StateRunning.obj
+ 0002:00013950       $SG100452                  0047c950     StateRunning.obj
+ 0002:00013958       $SG100453                  0047c958     StateRunning.obj
+ 0002:00013960       $SG100498                  0047c960     StateRunning.obj
+ 0002:0001396c       $SG117499                  0047c96c     StateRunning.obj
+ 0002:00013980       $SG117500                  0047c980     StateRunning.obj
+ 0002:00013984       $SG118915                  0047c984     StateRunning.obj
+ 0002:000139a0       $SG117501                  0047c9a0     StateRunning.obj
+ 0002:00013a08       $SG117502                  0047ca08     StateRunning.obj
+ 0002:00013ad8       $SG117503                  0047cad8     StateRunning.obj
+ 0002:00013b28       $SG117504                  0047cb28     StateRunning.obj
+ 0002:00013b50       $SG118677                  0047cb50     StateRunning.obj
+ 0002:00013bb8       $SG118916                  0047cbb8     StateRunning.obj
+ 0002:00013bbc       $SG118919                  0047cbbc     StateRunning.obj
+ 0002:00013be8       $SG118917                  0047cbe8     StateRunning.obj
+ 0002:00013c54       $SG118920                  0047cc54     StateRunning.obj
+ 0002:00013c90       $SG118918                  0047cc90     StateRunning.obj
+ 0002:00014098       $SG100890                  0047d098     StateStart.obj
+ 0002:000140ac       $SG100891                  0047d0ac     StateStart.obj
+ 0002:000140bc       $SG100892                  0047d0bc     StateStart.obj
+ 0002:000140c4       $SG100893                  0047d0c4     StateStart.obj
+ 0002:000140e8       $SG100894                  0047d0e8     StateStart.obj
+ 0002:00014104       $SG100895                  0047d104     StateStart.obj
+ 0002:0001410c       $SG100897                  0047d10c     StateStart.obj
+ 0002:00014110       $SG100899                  0047d110     StateStart.obj
+ 0002:00014114       $SG100900                  0047d114     StateStart.obj
+ 0002:00014118       $SG100903                  0047d118     StateStart.obj
+ 0002:00014128       $SG100904                  0047d128     StateStart.obj
+ 0002:00014134       $SG118383                  0047d134     StateStart.obj
+ 0002:00014148       $SG118384                  0047d148     StateStart.obj
+ 0002:0001414c       $SG119855                  0047d14c     StateStart.obj
+ 0002:00014168       $SG118385                  0047d168     StateStart.obj
+ 0002:000141d0       $SG118386                  0047d1d0     StateStart.obj
+ 0002:000142a0       $SG118387                  0047d2a0     StateStart.obj
+ 0002:000142f0       $SG118388                  0047d2f0     StateStart.obj
+ 0002:00014318       $SG119615                  0047d318     StateStart.obj
+ 0002:00014380       $SG119856                  0047d380     StateStart.obj
+ 0002:00014384       $SG119859                  0047d384     StateStart.obj
+ 0002:000143b0       $SG119857                  0047d3b0     StateStart.obj
+ 0002:0001441c       $SG119860                  0047d41c     StateStart.obj
+ 0002:00014458       $SG119858                  0047d458     StateStart.obj
  0002:00015260       $SG95129                   0047e260     TileManager.obj
  0002:00015274       $SG95130                   0047e274     TileManager.obj
  0002:00015278       $SG95131                   0047e278     TileManager.obj
@@ -9819,6 +9819,8 @@
  0002:0001e004       __ehfuncinfo$??0SaveManager@@QAE@XZ 00487004     SaveManager.obj
  0002:0001e028       __unwindtable$?splitContentBy@SaveManager@@QAE?AV?$vector@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@std@@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@3@D@Z 00487028     SaveManager.obj
  0002:0001e050       __unwindtable$?splitContentBetween@SaveManager@@QAE?AV?$vector@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@std@@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@3@DD@Z 00487050     SaveManager.obj
+ 0002:0001e078       __unwindtable$??E?$_Vector_iterator@V?$_Vector_val@U?$_Simple_types@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@std@@@std@@@std@@QAE?AV01@H@Z 00487078     StateStart.obj
+ 0002:0001e080       __ehfuncinfo$??E?$_Vector_iterator@V?$_Vector_val@U?$_Simple_types@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@std@@@std@@@std@@QAE?AV01@H@Z 00487080     StateStart.obj
  0002:0001e0a4       __unwindtable$??0?$basic_ofstream@DU?$char_traits@D@std@@@std@@QAE@XZ 004870a4     SaveManager.obj
  0002:0001e0b4       __ehfuncinfo$??0?$basic_ofstream@DU?$char_traits@D@std@@@std@@QAE@XZ 004870b4     SaveManager.obj
  0002:0001e0e0       __unwindtable$??0?$basic_ofstream@DU?$char_traits@D@std@@@std@@QAE@PBDHH@Z 004870e0     SaveManager.obj
@@ -9958,24 +9960,22 @@
  0002:0001f170       __tryblocktable$??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@D@Z 00488170     StateMenu.obj
  0002:0001f184       __unwindtable$??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@D@Z 00488184     StateMenu.obj
  0002:0001f19c       __ehfuncinfo$??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@D@Z 0048819c     StateMenu.obj
- 0002:0001f1cc       __ehfuncinfo$?genFloor@FloorGenerator@@QAE?AV?$vector@V?$vector@HV?$allocator@H@std@@@std@@V?$allocator@V?$vector@HV?$allocator@H@std@@@std@@@2@@std@@V23@HHH@Z 004881cc     StateMenu.obj
- 0002:0001f1f0       __unwindtable$?genFloor@FloorGenerator@@QAE?AV?$vector@V?$vector@HV?$allocator@H@std@@@std@@V?$allocator@V?$vector@HV?$allocator@H@std@@@std@@@2@@std@@V23@HHH@Z 004881f0     StateMenu.obj
- 0002:0001f228       __unwindtable$??0?$vector@V?$vector@HV?$allocator@H@std@@@std@@V?$allocator@V?$vector@HV?$allocator@H@std@@@std@@@2@@std@@QAE@V?$initializer_list@V?$vector@HV?$allocator@H@std@@@std@@@1@ABV?$allocator@V?$vector@HV?$allocator@H@std@@@std@@@1@@Z 00488228     StateMenu.obj
- 0002:0001f230       __ehfuncinfo$??0?$vector@V?$vector@HV?$allocator@H@std@@@std@@V?$allocator@V?$vector@HV?$allocator@H@std@@@std@@@2@@std@@QAE@V?$initializer_list@V?$vector@HV?$allocator@H@std@@@std@@@1@ABV?$allocator@V?$vector@HV?$allocator@H@std@@@std@@@1@@Z 00488230     StateMenu.obj
- 0002:0001f258       __unwindtable$??0?$vector@V?$vector@HV?$allocator@H@std@@@std@@V?$allocator@V?$vector@HV?$allocator@H@std@@@std@@@2@@std@@QAE@ABV01@@Z 00488258     StateMenu.obj
- 0002:0001f268       __ehfuncinfo$??0?$vector@V?$vector@HV?$allocator@H@std@@@std@@V?$allocator@V?$vector@HV?$allocator@H@std@@@std@@@2@@std@@QAE@ABV01@@Z 00488268     StateMenu.obj
- 0002:0001f294       __ehfuncinfo$??0?$vector@V?$vector@HV?$allocator@H@std@@@std@@V?$allocator@V?$vector@HV?$allocator@H@std@@@std@@@2@@std@@QAE@$$QAV01@@Z 00488294     StateMenu.obj
- 0002:0001f2bc       __ehfuncinfo$??1?$vector@V?$vector@HV?$allocator@H@std@@@std@@V?$allocator@V?$vector@HV?$allocator@H@std@@@std@@@2@@std@@QAE@XZ 004882bc     StateMenu.obj
- 0002:0001f2e4       __ehfuncinfo$?_Tidy@?$vector@V?$vector@HV?$allocator@H@std@@@std@@V?$allocator@V?$vector@HV?$allocator@H@std@@@std@@@2@@std@@AAEXXZ 004882e4     StateMenu.obj
- 0002:0001f30c       __ehfuncinfo$??0?$vector@V?$tuple@HH@std@@V?$allocator@V?$tuple@HH@std@@@2@@std@@QAE@XZ 0048830c     StateMenu.obj
- 0002:0001f334       __ehfuncinfo$??1?$vector@V?$tuple@HH@std@@V?$allocator@V?$tuple@HH@std@@@2@@std@@QAE@XZ 00488334     StateMenu.obj
- 0002:0001f35c       __ehfuncinfo$?_Tidy@?$vector@V?$tuple@HH@std@@V?$allocator@V?$tuple@HH@std@@@2@@std@@AAEXXZ 0048835c     StateMenu.obj
- 0002:0001f384       __unwindtable$??0?$vector@HV?$allocator@H@std@@@std@@QAE@V?$initializer_list@H@1@ABV?$allocator@H@1@@Z 00488384     StateMenu.obj
- 0002:0001f38c       __ehfuncinfo$??0?$vector@HV?$allocator@H@std@@@std@@QAE@V?$initializer_list@H@1@ABV?$allocator@H@1@@Z 0048838c     StateMenu.obj
- 0002:0001f3b4       __unwindtable$??0?$vector@HV?$allocator@H@std@@@std@@QAE@ABV01@@Z 004883b4     StateMenu.obj
- 0002:0001f3c4       __ehfuncinfo$??0?$vector@HV?$allocator@H@std@@@std@@QAE@ABV01@@Z 004883c4     StateMenu.obj
- 0002:0001f3f0       __ehfuncinfo$??1?$vector@HV?$allocator@H@std@@@std@@QAE@XZ 004883f0     StateMenu.obj
- 0002:0001f418       __ehfuncinfo$?_Tidy@?$vector@HV?$allocator@H@std@@@std@@AAEXXZ 00488418     StateMenu.obj
+ 0002:0001f1cc       __unwindtable$??0?$vector@HV?$allocator@H@std@@@std@@QAE@V?$initializer_list@H@1@ABV?$allocator@H@1@@Z 004881cc     StateMenu.obj
+ 0002:0001f1d4       __ehfuncinfo$??0?$vector@HV?$allocator@H@std@@@std@@QAE@V?$initializer_list@H@1@ABV?$allocator@H@1@@Z 004881d4     StateMenu.obj
+ 0002:0001f1f8       __unwindtable$??0?$vector@HV?$allocator@H@std@@@std@@QAE@ABV01@@Z 004881f8     StateMenu.obj
+ 0002:0001f208       __ehfuncinfo$??0?$vector@HV?$allocator@H@std@@@std@@QAE@ABV01@@Z 00488208     StateMenu.obj
+ 0002:0001f22c       __unwindtable$??0?$vector@V?$vector@HV?$allocator@H@std@@@std@@V?$allocator@V?$vector@HV?$allocator@H@std@@@std@@@2@@std@@QAE@V?$initializer_list@V?$vector@HV?$allocator@H@std@@@std@@@1@ABV?$allocator@V?$vector@HV?$allocator@H@std@@@std@@@1@@Z 0048822c     StateMenu.obj
+ 0002:0001f234       __ehfuncinfo$??0?$vector@V?$vector@HV?$allocator@H@std@@@std@@V?$allocator@V?$vector@HV?$allocator@H@std@@@std@@@2@@std@@QAE@V?$initializer_list@V?$vector@HV?$allocator@H@std@@@std@@@1@ABV?$allocator@V?$vector@HV?$allocator@H@std@@@std@@@1@@Z 00488234     StateMenu.obj
+ 0002:0001f258       __ehfuncinfo$??1?$vector@HV?$allocator@H@std@@@std@@QAE@XZ 00488258     StateMenu.obj
+ 0002:0001f294       __ehfuncinfo$?_Tidy@?$vector@HV?$allocator@H@std@@@std@@AAEXXZ 00488294     StateMenu.obj
+ 0002:0001f2b8       __unwindtable$??0?$vector@V?$vector@HV?$allocator@H@std@@@std@@V?$allocator@V?$vector@HV?$allocator@H@std@@@std@@@2@@std@@QAE@ABV01@@Z 004882b8     StateMenu.obj
+ 0002:0001f2c8       __ehfuncinfo$??0?$vector@V?$vector@HV?$allocator@H@std@@@std@@V?$allocator@V?$vector@HV?$allocator@H@std@@@std@@@2@@std@@QAE@ABV01@@Z 004882c8     StateMenu.obj
+ 0002:0001f334       __ehfuncinfo$??0?$vector@V?$vector@HV?$allocator@H@std@@@std@@V?$allocator@V?$vector@HV?$allocator@H@std@@@std@@@2@@std@@QAE@$$QAV01@@Z 00488334     StateMenu.obj
+ 0002:0001f35c       __ehfuncinfo$??1?$vector@V?$vector@HV?$allocator@H@std@@@std@@V?$allocator@V?$vector@HV?$allocator@H@std@@@std@@@2@@std@@QAE@XZ 0048835c     StateMenu.obj
+ 0002:0001f384       __ehfuncinfo$?_Tidy@?$vector@V?$vector@HV?$allocator@H@std@@@std@@V?$allocator@V?$vector@HV?$allocator@H@std@@@std@@@2@@std@@AAEXXZ 00488384     StateMenu.obj
+ 0002:0001f3b4       __ehfuncinfo$??0?$vector@V?$tuple@HH@std@@V?$allocator@V?$tuple@HH@std@@@2@@std@@QAE@XZ 004883b4     StateMenu.obj
+ 0002:0001f3f0       __ehfuncinfo$??1?$vector@V?$tuple@HH@std@@V?$allocator@V?$tuple@HH@std@@@2@@std@@QAE@XZ 004883f0     StateMenu.obj
+ 0002:0001f418       __ehfuncinfo$?_Tidy@?$vector@V?$tuple@HH@std@@V?$allocator@V?$tuple@HH@std@@@2@@std@@AAEXXZ 00488418     StateMenu.obj
  0002:0001f440       __unwindtable$??E?$_Vector_iterator@V?$_Vector_val@U?$_Simple_types@V?$tuple@HH@std@@@std@@@std@@@std@@QAE?AV01@H@Z 00488440     StateMenu.obj
  0002:0001f448       __ehfuncinfo$??E?$_Vector_iterator@V?$_Vector_val@U?$_Simple_types@V?$tuple@HH@std@@@std@@@std@@@std@@QAE?AV01@H@Z 00488448     StateMenu.obj
  0002:0001f470       __unwindtable$??0StateInfo@@QAE@PAVGameEngine@@@Z 00488470     StateMenu.obj
@@ -9991,14 +9991,10 @@
  0002:0001f638       __unwindtable$?virtDrawStringsOnTop@StateCharCreate@@UAEXXZ 00488638     StateMenu.obj
  0002:0001f6b8       __unwindtable$??0StateCharCreate@@QAE@PAVGameEngine@@@Z 004886b8     StateMenu.obj
  0002:0001f79c       __ehfuncinfo$?release@?$unique_ptr@VButton@@U?$default_delete@VButton@@@std@@@std@@QAEPAVButton@@XZ 0048879c     StateMenu.obj
- 0002:0001f7c4       __unwindtable$??$_Range_construct_or_tidy@PBH@?$vector@HV?$allocator@H@std@@@std@@AAEXPBH0Uforward_iterator_tag@1@@Z 004887c4     StateMenu.obj
- 0002:0001f7cc       __ehfuncinfo$??$_Range_construct_or_tidy@PBH@?$vector@HV?$allocator@H@std@@@std@@AAEXPBH0Uforward_iterator_tag@1@@Z 004887cc     StateMenu.obj
- 0002:0001f7f4       __catchsym$??$_Emplace_reallocate@V?$tuple@HH@std@@@?$vector@V?$tuple@HH@std@@V?$allocator@V?$tuple@HH@std@@@2@@std@@QAEPAV?$tuple@HH@1@QAV21@$$QAV21@@Z$2 004887f4     StateMenu.obj
- 0002:0001f804       __unwindtable$??$_Emplace_reallocate@V?$tuple@HH@std@@@?$vector@V?$tuple@HH@std@@V?$allocator@V?$tuple@HH@std@@@2@@std@@QAEPAV?$tuple@HH@1@QAV21@$$QAV21@@Z 00488804     StateMenu.obj
- 0002:0001f814       __tryblocktable$??$_Emplace_reallocate@V?$tuple@HH@std@@@?$vector@V?$tuple@HH@std@@V?$allocator@V?$tuple@HH@std@@@2@@std@@QAEPAV?$tuple@HH@1@QAV21@$$QAV21@@Z 00488814     StateMenu.obj
- 0002:0001f828       __ehfuncinfo$??$_Emplace_reallocate@V?$tuple@HH@std@@@?$vector@V?$tuple@HH@std@@V?$allocator@V?$tuple@HH@std@@@2@@std@@QAEPAV?$tuple@HH@1@QAV21@$$QAV21@@Z 00488828     StateMenu.obj
- 0002:0001f854       __unwindtable$??$_Range_construct_or_tidy@PBV?$vector@HV?$allocator@H@std@@@std@@@?$vector@V?$vector@HV?$allocator@H@std@@@std@@V?$allocator@V?$vector@HV?$allocator@H@std@@@std@@@2@@std@@AAEXPBV?$vector@HV?$allocator@H@std@@@1@0Uforward_iterator_tag@1@@Z 00488854     StateMenu.obj
- 0002:0001f85c       __ehfuncinfo$??$_Range_construct_or_tidy@PBV?$vector@HV?$allocator@H@std@@@std@@@?$vector@V?$vector@HV?$allocator@H@std@@@std@@V?$allocator@V?$vector@HV?$allocator@H@std@@@std@@@2@@std@@AAEXPBV?$vector@HV?$allocator@H@std@@@1@0Uforward_iterator_tag@1@@Z 0048885c     StateMenu.obj
+ 0002:0001f7f4       __unwindtable$??$_Range_construct_or_tidy@PBV?$vector@HV?$allocator@H@std@@@std@@@?$vector@V?$vector@HV?$allocator@H@std@@@std@@V?$allocator@V?$vector@HV?$allocator@H@std@@@std@@@2@@std@@AAEXPBV?$vector@HV?$allocator@H@std@@@1@0Uforward_iterator_tag@1@@Z 004887f4     StateMenu.obj
+ 0002:0001f7fc       __ehfuncinfo$??$_Range_construct_or_tidy@PBV?$vector@HV?$allocator@H@std@@@std@@@?$vector@V?$vector@HV?$allocator@H@std@@@std@@V?$allocator@V?$vector@HV?$allocator@H@std@@@std@@@2@@std@@AAEXPBV?$vector@HV?$allocator@H@std@@@1@0Uforward_iterator_tag@1@@Z 004887fc     StateMenu.obj
+ 0002:0001f854       __unwindtable$??$_Range_construct_or_tidy@PBH@?$vector@HV?$allocator@H@std@@@std@@AAEXPBH0Uforward_iterator_tag@1@@Z 00488854     StateMenu.obj
+ 0002:0001f85c       __ehfuncinfo$??$_Range_construct_or_tidy@PBH@?$vector@HV?$allocator@H@std@@@std@@AAEXPBH0Uforward_iterator_tag@1@@Z 0048885c     StateMenu.obj
  0002:0001f884       __ehfuncinfo$??$_Destroy_range@V?$allocator@V?$vector@HV?$allocator@H@std@@@std@@@std@@@std@@YAXPAV?$vector@HV?$allocator@H@std@@@0@QAV10@AAV?$allocator@V?$vector@HV?$allocator@H@std@@@std@@@0@@Z 00488884     StateMenu.obj
  0002:0001f8ac       __unwindtable$??$_Uninitialized_copy@PAV?$vector@HV?$allocator@H@std@@@std@@V?$allocator@V?$vector@HV?$allocator@H@std@@@std@@@2@@std@@YAPAV?$vector@HV?$allocator@H@std@@@0@QAV10@0PAV10@AAV?$allocator@V?$vector@HV?$allocator@H@std@@@std@@@0@@Z 004888ac     StateMenu.obj
  0002:0001f8b4       __ehfuncinfo$??$_Uninitialized_copy@PAV?$vector@HV?$allocator@H@std@@@std@@V?$allocator@V?$vector@HV?$allocator@H@std@@@std@@@2@@std@@YAPAV?$vector@HV?$allocator@H@std@@@0@QAV10@0PAV10@AAV?$allocator@V?$vector@HV?$allocator@H@std@@@std@@@0@@Z 004888b4     StateMenu.obj
@@ -10030,27 +10026,25 @@
  0002:0001fca0       __ehfuncinfo$?virtSetupBackgroundBuffer@StateStart@@UAEXXZ 00488ca0     StateStart.obj
  0002:0001fcc4       __unwindtable$?virtSetupBackgroundBuffer@StateStart@@UAEXXZ 00488cc4     StateStart.obj
  0002:0001fd2c       __unwindtable$?onStateEnter@StateStart@@UAEXXZ 00488d2c     StateStart.obj
- 0002:0001fe00       __ehfuncinfo$??0?$vector@V?$vector@HV?$allocator@H@std@@@std@@V?$allocator@V?$vector@HV?$allocator@H@std@@@std@@@2@@std@@QAE@XZ 00488e00     StateStart.obj
- 0002:0001fe28       __ehfuncinfo$??0?$vector@HV?$allocator@H@std@@@std@@QAE@XZ 00488e28     StateStart.obj
- 0002:0001fe50       __ehfuncinfo$??0?$vector@HV?$allocator@H@std@@@std@@QAE@$$QAV01@@Z 00488e50     StateStart.obj
- 0002:0001fe78       __unwindtable$??E?$_Vector_iterator@V?$_Vector_val@U?$_Simple_types@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@std@@@std@@@std@@QAE?AV01@H@Z 00488e78     StateStart.obj
- 0002:0001fe80       __ehfuncinfo$??E?$_Vector_iterator@V?$_Vector_val@U?$_Simple_types@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@std@@@std@@@std@@QAE?AV01@H@Z 00488e80     StateStart.obj
+ 0002:0001fe00       __ehfuncinfo$??0?$vector@HV?$allocator@H@std@@@std@@QAE@XZ 00488e00     StateStart.obj
+ 0002:0001fe28       __ehfuncinfo$??0?$vector@HV?$allocator@H@std@@@std@@QAE@$$QAV01@@Z 00488e28     StateStart.obj
+ 0002:0001fe78       __ehfuncinfo$??0?$vector@V?$vector@HV?$allocator@H@std@@@std@@V?$allocator@V?$vector@HV?$allocator@H@std@@@std@@@2@@std@@QAE@XZ 00488e78     StateStart.obj
  0002:0001fea8       __unwindtable$??E?$_Vector_iterator@V?$_Vector_val@U?$_Simple_types@V?$vector@HV?$allocator@H@std@@@std@@@std@@@std@@@std@@QAE?AV01@H@Z 00488ea8     StateStart.obj
  0002:0001feb0       __ehfuncinfo$??E?$_Vector_iterator@V?$_Vector_val@U?$_Simple_types@V?$vector@HV?$allocator@H@std@@@std@@@std@@@std@@@std@@QAE?AV01@H@Z 00488eb0     StateStart.obj
  0002:0001fed8       __unwindtable$??E?$_Vector_iterator@V?$_Vector_val@U?$_Simple_types@H@std@@@std@@@std@@QAE?AV01@H@Z 00488ed8     StateStart.obj
  0002:0001fee0       __ehfuncinfo$??E?$_Vector_iterator@V?$_Vector_val@U?$_Simple_types@H@std@@@std@@@std@@QAE?AV01@H@Z 00488ee0     StateStart.obj
- 0002:0001ff08       __catchsym$??$_Emplace_reallocate@H@?$vector@HV?$allocator@H@std@@@std@@QAEPAHQAH$$QAH@Z$2 00488f08     StateStart.obj
- 0002:0001ff18       __unwindtable$??$_Emplace_reallocate@H@?$vector@HV?$allocator@H@std@@@std@@QAEPAHQAH$$QAH@Z 00488f18     StateStart.obj
- 0002:0001ff28       __tryblocktable$??$_Emplace_reallocate@H@?$vector@HV?$allocator@H@std@@@std@@QAEPAHQAH$$QAH@Z 00488f28     StateStart.obj
- 0002:0001ff3c       __ehfuncinfo$??$_Emplace_reallocate@H@?$vector@HV?$allocator@H@std@@@std@@QAEPAHQAH$$QAH@Z 00488f3c     StateStart.obj
- 0002:0001ff68       __catchsym$??$_Emplace_reallocate@ABH@?$vector@HV?$allocator@H@std@@@std@@QAEPAHQAHABH@Z$2 00488f68     StateStart.obj
- 0002:0001ff78       __unwindtable$??$_Emplace_reallocate@ABH@?$vector@HV?$allocator@H@std@@@std@@QAEPAHQAHABH@Z 00488f78     StateStart.obj
- 0002:0001ff88       __tryblocktable$??$_Emplace_reallocate@ABH@?$vector@HV?$allocator@H@std@@@std@@QAEPAHQAHABH@Z 00488f88     StateStart.obj
- 0002:0001ff9c       __ehfuncinfo$??$_Emplace_reallocate@ABH@?$vector@HV?$allocator@H@std@@@std@@QAEPAHQAHABH@Z 00488f9c     StateStart.obj
- 0002:0001ffc8       __catchsym$??$_Emplace_reallocate@ABV?$vector@HV?$allocator@H@std@@@std@@@?$vector@V?$vector@HV?$allocator@H@std@@@std@@V?$allocator@V?$vector@HV?$allocator@H@std@@@std@@@2@@std@@QAEPAV?$vector@HV?$allocator@H@std@@@1@QAV21@ABV21@@Z$2 00488fc8     StateStart.obj
- 0002:0001ffd8       __unwindtable$??$_Emplace_reallocate@ABV?$vector@HV?$allocator@H@std@@@std@@@?$vector@V?$vector@HV?$allocator@H@std@@@std@@V?$allocator@V?$vector@HV?$allocator@H@std@@@std@@@2@@std@@QAEPAV?$vector@HV?$allocator@H@std@@@1@QAV21@ABV21@@Z 00488fd8     StateStart.obj
- 0002:0001ffe8       __tryblocktable$??$_Emplace_reallocate@ABV?$vector@HV?$allocator@H@std@@@std@@@?$vector@V?$vector@HV?$allocator@H@std@@@std@@V?$allocator@V?$vector@HV?$allocator@H@std@@@std@@@2@@std@@QAEPAV?$vector@HV?$allocator@H@std@@@1@QAV21@ABV21@@Z 00488fe8     StateStart.obj
- 0002:0001fffc       __ehfuncinfo$??$_Emplace_reallocate@ABV?$vector@HV?$allocator@H@std@@@std@@@?$vector@V?$vector@HV?$allocator@H@std@@@std@@V?$allocator@V?$vector@HV?$allocator@H@std@@@std@@@2@@std@@QAEPAV?$vector@HV?$allocator@H@std@@@1@QAV21@ABV21@@Z 00488ffc     StateStart.obj
+ 0002:0001ff08       __catchsym$??$_Emplace_reallocate@ABV?$vector@HV?$allocator@H@std@@@std@@@?$vector@V?$vector@HV?$allocator@H@std@@@std@@V?$allocator@V?$vector@HV?$allocator@H@std@@@std@@@2@@std@@QAEPAV?$vector@HV?$allocator@H@std@@@1@QAV21@ABV21@@Z$2 00488f08     StateStart.obj
+ 0002:0001ff18       __unwindtable$??$_Emplace_reallocate@ABV?$vector@HV?$allocator@H@std@@@std@@@?$vector@V?$vector@HV?$allocator@H@std@@@std@@V?$allocator@V?$vector@HV?$allocator@H@std@@@std@@@2@@std@@QAEPAV?$vector@HV?$allocator@H@std@@@1@QAV21@ABV21@@Z 00488f18     StateStart.obj
+ 0002:0001ff28       __tryblocktable$??$_Emplace_reallocate@ABV?$vector@HV?$allocator@H@std@@@std@@@?$vector@V?$vector@HV?$allocator@H@std@@@std@@V?$allocator@V?$vector@HV?$allocator@H@std@@@std@@@2@@std@@QAEPAV?$vector@HV?$allocator@H@std@@@1@QAV21@ABV21@@Z 00488f28     StateStart.obj
+ 0002:0001ff3c       __ehfuncinfo$??$_Emplace_reallocate@ABV?$vector@HV?$allocator@H@std@@@std@@@?$vector@V?$vector@HV?$allocator@H@std@@@std@@V?$allocator@V?$vector@HV?$allocator@H@std@@@std@@@2@@std@@QAEPAV?$vector@HV?$allocator@H@std@@@1@QAV21@ABV21@@Z 00488f3c     StateStart.obj
+ 0002:0001ff68       __catchsym$??$_Emplace_reallocate@H@?$vector@HV?$allocator@H@std@@@std@@QAEPAHQAH$$QAH@Z$2 00488f68     StateStart.obj
+ 0002:0001ff78       __unwindtable$??$_Emplace_reallocate@H@?$vector@HV?$allocator@H@std@@@std@@QAEPAHQAH$$QAH@Z 00488f78     StateStart.obj
+ 0002:0001ff88       __tryblocktable$??$_Emplace_reallocate@H@?$vector@HV?$allocator@H@std@@@std@@QAEPAHQAH$$QAH@Z 00488f88     StateStart.obj
+ 0002:0001ff9c       __ehfuncinfo$??$_Emplace_reallocate@H@?$vector@HV?$allocator@H@std@@@std@@QAEPAHQAH$$QAH@Z 00488f9c     StateStart.obj
+ 0002:0001ffc8       __catchsym$??$_Emplace_reallocate@ABH@?$vector@HV?$allocator@H@std@@@std@@QAEPAHQAHABH@Z$2 00488fc8     StateStart.obj
+ 0002:0001ffd8       __unwindtable$??$_Emplace_reallocate@ABH@?$vector@HV?$allocator@H@std@@@std@@QAEPAHQAHABH@Z 00488fd8     StateStart.obj
+ 0002:0001ffe8       __tryblocktable$??$_Emplace_reallocate@ABH@?$vector@HV?$allocator@H@std@@@std@@QAEPAHQAHABH@Z 00488fe8     StateStart.obj
+ 0002:0001fffc       __ehfuncinfo$??$_Emplace_reallocate@ABH@?$vector@HV?$allocator@H@std@@@std@@QAEPAHQAHABH@Z 00488ffc     StateStart.obj
  0002:00020028       __unwindtable$??$_Uninitialized_move@PAV?$vector@HV?$allocator@H@std@@@std@@V?$allocator@V?$vector@HV?$allocator@H@std@@@std@@@2@@std@@YAPAV?$vector@HV?$allocator@H@std@@@0@QAV10@0PAV10@AAV?$allocator@V?$vector@HV?$allocator@H@std@@@std@@@0@@Z 00489028     StateStart.obj
  0002:00020030       __ehfuncinfo$??$_Uninitialized_move@PAV?$vector@HV?$allocator@H@std@@@std@@V?$allocator@V?$vector@HV?$allocator@H@std@@@std@@@2@@std@@YAPAV?$vector@HV?$allocator@H@std@@@0@QAV10@0PAV10@AAV?$allocator@V?$vector@HV?$allocator@H@std@@@std@@@0@@Z 00489030     StateStart.obj
  0002:00020058       __unwindtable$??0BouncingBall1@@QAE@PAVBouncingBallMain@@HHHHPBDHHPAVTileManager@@@Z 00489058     BouncingBall.obj
@@ -10087,6 +10081,12 @@
  0002:00020530       __sehtable$___scrt_is_nonwritable_in_current_image 00489530     MSVCRTD:utility.obj
  0002:00020550       __sehtable$??_M@YGXPAXIIP6EX0@Z@Z 00489550     MSVCRTD:ehvecdtr.obj
  0002:00020570       __sehtable$?__ArrayUnwind@@YGXPAXIIP6EX0@Z@Z 00489570     MSVCRTD:ehvecdtr.obj
+ 0002:000205b0       __ehfuncinfo$?genFloor@FloorGenerator@@QAE?AV?$vector@V?$vector@HV?$allocator@H@std@@@std@@V?$allocator@V?$vector@HV?$allocator@H@std@@@std@@@2@@std@@V23@HHH@Z 004895b0     StateMenu.obj
+ 0002:000205d4       __unwindtable$?genFloor@FloorGenerator@@QAE?AV?$vector@V?$vector@HV?$allocator@H@std@@@std@@V?$allocator@V?$vector@HV?$allocator@H@std@@@std@@@2@@std@@V23@HHH@Z 004895d4     StateMenu.obj
+ 0002:00020604       __catchsym$??$_Emplace_reallocate@V?$tuple@HH@std@@@?$vector@V?$tuple@HH@std@@V?$allocator@V?$tuple@HH@std@@@2@@std@@QAEPAV?$tuple@HH@1@QAV21@$$QAV21@@Z$2 00489604     StateMenu.obj
+ 0002:00020614       __unwindtable$??$_Emplace_reallocate@V?$tuple@HH@std@@@?$vector@V?$tuple@HH@std@@V?$allocator@V?$tuple@HH@std@@@2@@std@@QAEPAV?$tuple@HH@1@QAV21@$$QAV21@@Z 00489614     StateMenu.obj
+ 0002:00020624       __tryblocktable$??$_Emplace_reallocate@V?$tuple@HH@std@@@?$vector@V?$tuple@HH@std@@V?$allocator@V?$tuple@HH@std@@@2@@std@@QAEPAV?$tuple@HH@1@QAV21@$$QAV21@@Z 00489624     StateMenu.obj
+ 0002:00020638       __ehfuncinfo$??$_Emplace_reallocate@V?$tuple@HH@std@@@?$vector@V?$tuple@HH@std@@V?$allocator@V?$tuple@HH@std@@@2@@std@@QAEPAV?$tuple@HH@1@QAV21@$$QAV21@@Z 00489638     StateMenu.obj
  0003:00000000       ?firstClick@?1??handleEvent@BaseEngine@@QAE_NPATSDL_Event@@@Z@4_NA 0048a000     BaseEngine.obj
  0003:00000640       ??_R0?AV<lambda_65cff766c8a77bd75b2cde071ecf01ea>@@@8 0048a640     JigsawDemo.obj
  0003:00000684       ??_R0?AV<lambda_49b18892c6b3ed5a4451de18a0d37a11>@@@8 0048a684     JigsawDemo.obj

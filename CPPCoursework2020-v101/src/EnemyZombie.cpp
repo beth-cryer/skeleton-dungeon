@@ -3,7 +3,7 @@
 
 EnemyZombie::EnemyZombie(BaseEngine* pEngine, int xStart, int yStart)
 	: EnemyObject(xStart, yStart, pEngine, TILE_SIZE, TILE_SIZE, true,
-		std::shared_ptr<Weapon>(new WoodSword((GameEngine*)pEngine)), "Zombie", "A shambling corpse, reanimated", 10, 2, 10, 1)
+		std::shared_ptr<Weapon>(new WoodSword((GameEngine*)pEngine)), "Zombie", "A shambling corpse, reanimated", 10, 2, 4, 1, 10, 1)
 {
 	imgSprites = ImageManager::loadImage("sprites/chars/zombie.png", true);
 }

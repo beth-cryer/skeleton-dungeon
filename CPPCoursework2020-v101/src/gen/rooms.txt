@@ -4,7 +4,7 @@ Wx = Wall number x, aka a solid wall tile. X is the id of this floor's designate
 Fx = Floor number x, aka a background tile. X is the id of this floor's designated background tiles to use
 sx = Special tile x, can be in <back> or <solid> tags
 
-<rooms>1</rooms>
+<rooms>6</rooms>
 
 	<room0>
 	Empty

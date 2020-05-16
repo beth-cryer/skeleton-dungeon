@@ -2,7 +2,7 @@
 #include "BaseState.h"
 #include "GameEngine.h"
 #include "CoordinateMapping.h"
-#include "FloorGenerator.h"
+#include "FloorManager.h"
 
 class StateInfo;
 class StateCharCreate;
@@ -38,7 +38,7 @@ protected:
 
 	CoordinateMappingShiftXY scrollMap;
 
-	FloorGenerator gentest;
+	FloorManager gentest;
 
 };
 

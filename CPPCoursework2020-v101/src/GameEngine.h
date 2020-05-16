@@ -18,7 +18,7 @@ class StateStart;
 class StateRunning;
 
 class PlayerObject;
-class FloorGenerator;
+class FloorManager;
 
 class GameEngine :
 	public BaseEngine
@@ -67,7 +67,7 @@ public:
 	InventoryTileManager* GetTilesInv() { return &objInvTiles; }
 	AudioPlayer* GetAudio() { return &audio; }
 	SaveManager* GetSaveManager() { return &saveManager; }
-	FloorGenerator* GetFloorGenerator() { return gen; }
+	FloorManager* GetFloorManager() { return gen; }
 	PlayerObject* GetPlayer() { return player; }
 
 	PlayerObject* player;
@@ -102,6 +102,6 @@ private:
 	InventoryTileManager objInvTiles;
 
 	SaveManager saveManager;
-	FloorGenerator* gen;
+	FloorManager* gen;
 
 };

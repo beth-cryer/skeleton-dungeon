@@ -7,7 +7,7 @@
 #include "StateRunning.h"
 
 #include "CharObject.h"
-#include "FloorGenerator.h"
+#include "FloorManager.h"
 
 GameEngine::GameEngine()
 	: filterScaling(0, 0, this), filterTranslation(0, 0, &filterScaling), player(NULL),
@@ -20,7 +20,7 @@ GameEngine::GameEngine()
 {
 	notifyObjectsAboutMouse(true);
 
-	gen = new FloorGenerator();
+	gen = new FloorManager();
 
 	currentState = nullptr;
 

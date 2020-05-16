@@ -9,7 +9,7 @@
 #include "EnemyCultist.h"
 
 #include "SaveManager.h"
-#include "FloorGenerator.h"
+#include "FloorManager.h"
 
 StateStart::StateStart(GameEngine* pEngine) : BaseState(pEngine)
 {
@@ -108,7 +108,7 @@ void StateStart::onStateEnter()
 	
 		//Generate array of Rooms
 
-	auto gen = pEngine->GetFloorGenerator();
+	auto gen = pEngine->GetFloorManager();
 	auto save = pEngine->GetSaveManager();
 
 	//Randomly pick from all Floor layout templates
