@@ -298,3 +298,97 @@ void FloorManager::genRooms(GameEngine* pEngine, grid floorLayout)
 	//Set this object's floor attribute to the newly-generated one
 	this->floor = floor;
 }
+
+
+//Using genFloor in combination with the SaveManager to load and modify a randomly-selected template floor layout
+std::vector<std::vector<int>> FloorManager::genRandomFloor(SaveManager* save)
+{
+	//Generate array of Rooms
+	std::cout << "GENERATING FLOOR" << std::endl;
+
+	//Randomly pick from all Floor layout templates
+	srand(time(NULL));
+
+	save->loadFileContents("gen/floors.txt");
+
+	std::string content = save->getText();
+	std::string i_floors = save->getTagContents(content, "floors"); //number of floors stored
+
+	std::cout << "Number of floor templates found: " << i_floors << std::endl;
+
+	int i_rand = std::stoi(i_floors);
+	i_rand = 1 + rand() % i_rand;
+
+	std::cout << "Floor template ID picked: " << i_rand << std::endl;
+
+	//Get tag of random floor generated
+	std::string floor_tag = "floor";
+	floor_tag.append(std::to_string(i_rand));
+
+	std::string f_template = save->getTagContents(content, floor_tag);
+
+	//Return list of the content in []
+	std::vector<std::string> str = save->splitContentBetween(f_template, '[', ']');
+
+
+	//Split content by comma
+	std::vector<std::vector<int>> i_temp;
+	int i = 0;
+	for (auto it = str.begin(); it != str.end(); it++) {
+		auto split = save->splitContentBy(*it, ',');
+
+		std::cout << "[";
+		//(And convert to int along the way)
+		std::vector<int> row;
+		for (auto sit = split.begin(); sit != split.end(); sit++) {
+			row.push_back(std::stoi(*sit));
+			std::cout << *sit << ",";
+		}
+		std::cout << "]";
+
+		//Push the row
+		i_temp.push_back(row);
+
+		i++;
+	}
+
+	//Expand each tile to become a 3x3
+	std::vector<std::vector<int>> i_grid;
+	for (auto it = i_temp.begin(); it != i_temp.end(); it++)
+	{
+		//For each row, repeat every element 3 times
+		std::vector<int> row;
+		for (auto sit = (*it).begin(); sit != (*it).end(); sit++) {
+			for (int i = 0; i < 3; i++) row.push_back(*sit);
+		}
+
+		//Then repeat the modified row for the next 3 rows of our result
+		for (int i = 0; i < 3; i++) {
+			i_grid.push_back(row);
+		}
+	}
+
+	/* Print expanded version
+	std::cout << std::endl;
+	for (const std::vector<int>& v : i_grid) {
+		for (int x : v) std::cout << x << ',';
+		std::cout << std::endl;
+	}
+	*/
+
+	//Get width and height of new vector
+	int cols = i_grid[0].size();
+	int rows = i_grid.size();
+	std::cout << "\nRows = " << rows << ", Columns = " << cols << std::endl;
+
+	//Generate floor grid from the processed template
+	std::vector<std::vector<int>> floor = genFloor(i_grid, cols, rows, 3);
+
+	//PRINT
+	for (const std::vector<int>& v : floor) {
+		for (int x : v) std::cout << x << ',';
+		std::cout << std::endl;
+	}
+
+	return floor;
+}

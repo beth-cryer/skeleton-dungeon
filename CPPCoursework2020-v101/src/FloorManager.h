@@ -84,6 +84,9 @@ public:
 	grid genFloor(grid floor, int sizex, int sizey, int sector);
 	void genRooms(GameEngine* pEngine, grid floorLayout);
 
+	//Uses the savemanager to load a random floor layout and modify it using genFloor
+	std::vector<std::vector<int>> genRandomFloor(SaveManager* save);
+
 private:
 	std::vector<std::vector<Room*>> floor;
 
