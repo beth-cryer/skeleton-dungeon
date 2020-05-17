@@ -39,15 +39,7 @@ GameEngine::GameEngine()
 
 GameEngine::~GameEngine()
 {
-	delete stateMenu;
-	delete stateStart;
-	delete stateRunning;
-
-	//Free everything in Floor
-	/*
-	for (const std::vector<Room*>& v : floor) {
-		for (Room* x : v) delete x;
-	}*/
+	
 }
 
 
@@ -77,12 +69,35 @@ int GameEngine::virtInitialise()
 	getBackgroundSurface()->setDrawPointsFilter(&filterTranslation);
 	getForegroundSurface()->setDrawPointsFilter(&filterTranslation);
 
+	createObjectArray(1000);
+
 	return BaseEngine::virtInitialise();
 }
 
 void GameEngine::virtCleanUp()
 {
 	audio.closeAudio();
+
+	delete stateMenu;
+	delete stateStart;
+	delete stateRunning;
+
+	delete gen;
+
+	clearObjects();
+}
+
+void GameEngine::clearObjects()
+{
+	//Free everything in object container
+	destroyOldObjects(true);
+
+	//THEN free everything in Floor
+	for (const std::vector<Room*>& v : floor) {
+		for (Room* x : v) {
+			delete x;
+		}
+	}
 }
 
 void GameEngine::virtSetupBackgroundBuffer()

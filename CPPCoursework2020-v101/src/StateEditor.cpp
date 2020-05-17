@@ -18,10 +18,10 @@ void StateEditor::onStateEnter()
 	tilesBack.setMapSize(w, h);
 	tilesEditor.setMapSize(w, h);
 
-	for (int x = 0; x < w; x++) {
-		for (int y = 0; y < h; y++) {
+	for (int y = 0; y < h; y++) {
+		for (int x = 0; x < w; x++) {
+			tilesBack.setMapValue(x, y, 21);
 			tilesSolid.setMapValue(x, y, 0);
-			tilesBack.setMapValue(x, y, 0);
 			tilesEditor.setMapValue(x, y, 0);
 		}
 	}
@@ -31,7 +31,7 @@ void StateEditor::onStateEnter()
 	tilesEditor.setTopLeftPositionOnScreen(0, 0);
 
 	pEngine->lockAndSetupBackground();
-
+	pEngine->redrawDisplay();
 }
 
 void StateEditor::onStateExit()
@@ -49,11 +49,12 @@ void StateEditor::virtSetupBackgroundBuffer()
 	tilesEditor.drawAllTiles(pEngine, pEngine->getBackgroundSurface());
 
 	//Draw grid system
+	/*
 	for (int y = 0; y < WIN_HEIGHT / TILE_SIZE; y += TILE_SIZE) {
 		for (int x = 0; x < WIN_WIDTH / TILE_SIZE; x += TILE_SIZE) {
 			grid.renderImageWithMask(pEngine->getBackgroundSurface(), 0, 0, x, y, TILE_SIZE, TILE_SIZE, 0xFF00FF);
 		}
-	}
+	}*/
 	
 }
 
@@ -90,7 +91,7 @@ void StateEditor::virtMouseDown(int iButton, int iX, int iY)
 
 	//Click to place tile
 	case(SDL_BUTTON_LEFT):
-		tileLayer->setAndRedrawMapValueAt(mapX, mapY, tileId,pEngine,pEngine->getBackgroundSurface());
+		tileLayer->setMapValue(mapX, mapY, tileId);
 		pEngine->lockAndSetupBackground();
 		pEngine->redrawDisplay();
 		break;

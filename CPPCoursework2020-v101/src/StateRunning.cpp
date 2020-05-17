@@ -137,7 +137,7 @@ void StateRunning::virtKeyDown(int iKeyCode)
 
 		//BACK TO MENU
 	case SDLK_ESCAPE:
-		pEngine->setState(pEngine->stateMenu);
+		pEngine->setExitWithCode(0);
 		break;
 
 		//MOVING CAMERA
@@ -267,7 +267,7 @@ void StatePaused::virtDrawStringsOnTop()
 	}
 
 	//Draw Map
-	std::vector<std::vector<std::shared_ptr<Room>>> map = pEngine->floor;
+	std::vector<std::vector<Room*>> map = pEngine->floor;
 
 	int ystart = WIN_CENTREY - 256 + 32;
 	int xstart = 32;
@@ -287,6 +287,10 @@ void StatePaused::virtDrawStringsOnTop()
 				//In current room?
 				if (pEngine->currentRoom != nullptr && pEngine->currentRoom == map[y][x])
 					roomCol = 0xFF00FF;
+
+				//Highlight exit room
+				if (map[y][x]->exit)
+					roomCol = 0xFF0000;
 
 				pEngine->drawForegroundRectangle(xpos, ypos, xpos + roomSize - 4, ypos + roomSize - 4, roomCol);
 			}
@@ -326,7 +330,7 @@ void StatePaused::virtKeyDown(int iKeyCode)
 
 		//BACK TO MENU
 	case SDLK_ESCAPE:
-		pEngine->setState(pEngine->stateMenu);
+		pEngine->setExitWithCode(0);
 		break;
 
 	}

@@ -7,7 +7,9 @@ CharObject::CharObject(int xStart, int yStart, BaseEngine* pEngine, int width, i
 	: AnimatedObject(xStart, yStart, pEngine, width, height, topleft),
 	currentState(CharState::stateIdle), pEngine((GameEngine*)pEngine), wep(wep)
 {
-	setShouldDeleteOnRemoval(true);
+	//Setting this to false, because when the program ends we want to first remove all objects in the container and then delete any remaining objects bound to Rooms
+	//If I don't control the order the deletes happen, it messes things up :(
+	setShouldDeleteOnRemoval(false);
 }
 
 CharObject::~CharObject() {}

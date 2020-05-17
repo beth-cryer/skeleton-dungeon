@@ -167,7 +167,7 @@ std::list<std::shared_ptr<Node>> EnemyObject::calcPath (int goalX, int goalY)
 	closed_list.clear();
 
 	//Push starting node to open list
-	open_list.push_back(std::shared_ptr<Node>(new Node(m_iCurrentScreenX, m_iCurrentScreenY, 0, 0, nullptr)));
+	open_list.push_back(std::make_shared<Node>(m_iCurrentScreenX, m_iCurrentScreenY, 0, 0, nullptr));
 
 	//While open list not empty
 	while (open_list.size() > 0) {

@@ -61,6 +61,7 @@ public:
 	void orderCharsByHeight();
 
 	void saveGame();
+	void clearObjects();
 
 	//RETURN PRIVATE POINTERS
 	std::shared_ptr<SolidTileManager> GetTilesSolid() { return objTilesSolid; }
@@ -93,8 +94,8 @@ public:
 	int maxAttacks, attacks;
 
 	//Current floor
-	std::vector<std::vector<std::shared_ptr<Room>>> floor;
-	std::shared_ptr<Room> currentRoom = nullptr;
+	std::vector<std::vector<Room*>> floor;
+	Room* currentRoom = nullptr;
 
 	//Made menu state public, since any state needs to be able to get back to it
 	StateMenu* stateMenu;

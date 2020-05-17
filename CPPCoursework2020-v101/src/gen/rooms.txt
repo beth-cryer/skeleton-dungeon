@@ -4,7 +4,7 @@ Wx = Wall number x, aka a solid wall tile. X is the id of this floor's designate
 Fx = Floor number x, aka a background tile. X is the id of this floor's designated background tiles to use
 sx = Special tile x, can be in <back> or <solid> tags
 
-<rooms>6</rooms>
+<rooms>4</rooms>
 
 	<room0>
 	Empty
@@ -148,7 +148,7 @@ sx = Special tile x, can be in <back> or <solid> tags
 <solid>
 [__,__,__,__,__,w0,w0,w0,w0,w0,w0,__,__,__,__,__]
 [__,__,__,__,__,w0,__,__,__,__,w0,__,__,__,__,__]
-[__,__,__,__,w0,w0,__,__,__,__,w0,w0,__,__,__,__]
+[__,__,__,__,w0,w0,__,s2,s3,__,w0,w0,__,__,__,__]
 [__,__,__,w0,w0,__,__,__,__,__,__,w0,w0,__,__,__]
 [w0,w0,w0,w0,__,__,s1,__,__,s1,__,__,w0,w0,w0,w0]
 [w0,__,__,__,__,__,__,s8,s8,__,__,__,__,__,__,w0]
@@ -186,7 +186,7 @@ sx = Special tile x, can be in <back> or <solid> tags
 
 <solid>
 [__,__,__,__,__,w0,w0,w0,w0,w0,w0,w0,w0,w0,w0,w0]
-[__,__,__,__,__,w0,__,__,__,__,__,__,__,__,__,w0]
+[__,__,__,__,__,w0,__,s2,s3,__,__,__,__,__,__,w0]
 [__,__,__,__,__,w0,__,__,__,__,__,__,__,__,__,w0]
 [w0,w0,w0,w0,w0,w0,w0,w0,w0,w0,w0,w0,w0,__,__,w0]
 [w0,__,__,__,__,__,__,s1,__,__,__,__,w0,__,__,w0]
@@ -235,8 +235,8 @@ sx = Special tile x, can be in <back> or <solid> tags
 [w0,__,w0,__,w0,__,w0,__,w0,w0,w0,w0,w0,w0,w0,w0]
 [w0,__,w0,__,s1,__,w0,__,w0,__,__,__,__,__,__,w0]
 [w0,__,w0,w0,w0,__,w0,__,w0,__,w0,w0,w0,w0,__,w0]
-[w0,__,s1,__,w0,__,w0,__,w0,__,w0,__,s8,w0,__,w0]
-[w0,__,w0,__,w0,__,w0,__,w0,__,w0,__,__,w0,__,w0]
+[w0,__,s1,__,w0,__,w0,s2,w0,__,w0,__,s8,w0,__,w0]
+[w0,__,w0,__,w0,__,w0,s3,w0,__,w0,__,__,w0,__,w0]
 [w0,__,w0,__,w0,__,w0,__,w0,__,w0,__,__,w0,w0,w0]
 [w0,__,w0,__,w0,__,w0,__,w0,__,w0,__,__,__,__,w0]
 [w0,__,w0,__,w0,__,w0,__,w0,__,w0,__,__,__,__,w0]

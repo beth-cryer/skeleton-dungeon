@@ -7,6 +7,8 @@
 #include "ExitObject.h"
 #include "DoorObject.h"
 
+#include "StateRunning.h"
+
 	//ROOM FUNCTIONS
 
 void Room::genRoom()
@@ -14,7 +16,7 @@ void Room::genRoom()
 	auto save = pEngine->GetSaveManager();
 
 	//Randomly pick from all Room templates
-	srand(time(NULL));
+	
 
 	save->loadFileContents("gen/rooms.txt");
 
@@ -89,12 +91,10 @@ void Room::setSpecialTiles(int x, int y, int id)
 		break; //EXIT
 
 	//DOORS
-	/*
-	case(4): objects.push_back(new DoorObject(pEngine, this, 0, 30, x, y)); break; //RIGHT
-	case(5): objects.push_back(new DoorObject(pEngine, this, 1, 30, x, y)); break; //DOWN
-	case(6): objects.push_back(new DoorObject(pEngine, this, 2, 30, x, y)); break; //UP
-	case(7): objects.push_back(new DoorObject(pEngine, this, 3, 30, x, y)); break; //LEFT
-	*/
+	case(4): objects.push_back(new DoorObject(pEngine, this, 0, 31, x * TILE_SIZE, y * TILE_SIZE)); break; //RIGHT
+	case(5): objects.push_back(new DoorObject(pEngine, this, 1, 31, x * TILE_SIZE, y * TILE_SIZE)); break; //DOWN
+	case(6): objects.push_back(new DoorObject(pEngine, this, 2, 31, x * TILE_SIZE, y * TILE_SIZE)); break; //UP
+	case(7): objects.push_back(new DoorObject(pEngine, this, 3, 31, x * TILE_SIZE, y * TILE_SIZE)); break; //LEFT
 
 	case(8): break; //TREASURE
 	}
@@ -138,7 +138,7 @@ std::vector<std::vector<std::string>> Room::getTileData(SaveManager* save, std::
 	return i_temp;
 }
 
-void Room::onEnter() {
+void Room::onEnter(int dir) {
 	std::cout << "Entering Room";
 
 	//First, overwrite GameEngine tile managers with this room's managers
@@ -148,14 +148,33 @@ void Room::onEnter() {
 	//Update object array in GameEngine
 	pEngine->drawableObjectsChanged();
 
-	//Destroy any existing objects
-	pEngine->destroyOldObjects(true);
-
-	pEngine->createObjectArray(100);
+	//Destroy any existing objects (but don't free their memory, except for Player)
+	pEngine->destroyOldObjects(false);
+	if (pEngine->player != nullptr) delete pEngine->player;
 
 	//Add player to the room in starting position
 	pEngine->player = new PlayerObject(pEngine, std::make_shared<WoodSword>(pEngine));
-	pEngine->player->setPosition(xEnter,yEnter);
+	//Get position to place:
+	int x = xEnter; int y = yEnter; //(starting pos by default, if no door id is given)
+	for (auto it = objects.begin(); it != objects.end(); it++) { //Find matching door
+
+		DoorObject* door = dynamic_cast<DoorObject*>(*it);
+		if (door && door->doorType == dir) {
+			int doorX = door->getXPos();
+			int doorY = door->getYPos();
+
+			//check whether to place player next to, above or below entrance point
+			switch (dir) {
+			case 3: x = doorX + TILE_SIZE; y = doorY; break;
+			case 2: x = doorX; y = doorY + TILE_SIZE; break;
+			case 1: x = doorX; y = doorY - TILE_SIZE; break;
+			case 0: x = doorX - TILE_SIZE; y = doorY; break;
+			}
+		}
+	}
+
+	pEngine->player->setPosition(x,y);
+
 	pEngine->appendObjectToArray(pEngine->player);
 
 	//Add all objects to the room
@@ -164,6 +183,14 @@ void Room::onEnter() {
 	}
 
 	pEngine->setAllObjectsVisible(true);
+
+	pEngine->currentRoom = this;
+
+	//only redraw if in running state
+	if (dynamic_cast<StateRunning*>(pEngine->getState())) {
+		pEngine->lockAndSetupBackground();
+		pEngine->redrawDisplay();
+	}
 }
 
 void Room::onExit()
@@ -259,20 +286,20 @@ grid FloorManager::genFloor(grid floor, int sizex, int sizey, int sector)
 
 void FloorManager::genRooms(GameEngine* pEngine, grid floorLayout)
 {
-	std::vector<std::vector<std::shared_ptr<Room>>> floor;
+	std::vector<std::vector<Room*>> floor;
 
 	int cols = floorLayout[0].size();
 	int rows = floorLayout.size();
 
 	//We're gonna go through every tile in the floor and create a list of new Room()s, leaving them empty for now
 	for (int y = 0; y < rows; y++) {
-		std::vector<std::shared_ptr<Room>> row;
+		std::vector<Room*> row;
 
 		//Create list of Rooms for the current row
 		for (int x = 0; x < cols; x++) {
 			//set new Room to true if it is an allocated room tile
 			if (floorLayout[y][x] == 2) {
-				row.push_back(std::shared_ptr<Room> (new Room(pEngine))); //Room tiles are generated automatically on construction
+				row.push_back(new Room(pEngine)); //Room tiles are generated automatically on construction
 			}
 			else {
 				//else set to null
@@ -293,10 +320,10 @@ void FloorManager::genRooms(GameEngine* pEngine, grid floorLayout)
 
 				//Check each of the four adjacent elements to see if there is a Room pointer
 				//If so, assign the appropriate room pointer in currentRoom
-				if (x + 1 < cols && floor[y][x + 1] != nullptr) currentRoom->rooms[0] = floor[y][x + 1];
-				if (x - 1 > 0 && floor[y][x - 1] != nullptr) currentRoom->rooms[1] = floor[y][x - 1];
-				if (y + 1 < rows && floor[y + 1][x] != nullptr) currentRoom->rooms[2] = floor[y + 1][x];
-				if (y - 1 > 0 && floor[y - 1][x] != nullptr) currentRoom->rooms[3] = floor[y - 1][x];
+				if (x + 1 < cols && floor[y][x + 1] != nullptr) currentRoom->rooms[0] = floor[y][x + 1]; //RIGHT
+				if (x - 1 >= 0 && floor[y][x - 1] != nullptr) currentRoom->rooms[3] = floor[y][x - 1]; //LEFT
+				if (y + 1 < rows && floor[y + 1][x] != nullptr) currentRoom->rooms[1] = floor[y + 1][x]; //DOWN
+				if (y - 1 >= 0 && floor[y - 1][x] != nullptr) currentRoom->rooms[2] = floor[y - 1][x]; //UP
 			}
 		}
 	}

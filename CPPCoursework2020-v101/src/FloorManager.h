@@ -28,6 +28,11 @@ public:
 		}
 	}
 
+	void clearObjects()
+	{
+		
+	}
+
 	//Randomly picks a room template and sets this Room's Tile Manager objects
 	//Also places Special tiles/objects like enemies and chests
 	void genRoom();
@@ -42,7 +47,7 @@ public:
 	//Fetches a 2D vector of the data inside brackets, separated by commas
 	std::vector<std::vector<std::string>> getTileData(SaveManager* save, std::string text, std::string tag);
 
-	void onEnter();
+	void onEnter(int dir);
 
 	//Remove all room objects from the engine's object array
 	void onExit();
@@ -56,7 +61,7 @@ public:
 	int xExit = 0, yExit = 0;
 
 	//Connected rooms (right,up,down,left)
-	std::shared_ptr<Room> rooms[4] = { nullptr, nullptr, nullptr, nullptr };
+	Room* rooms[4] = { nullptr, nullptr, nullptr, nullptr };
 
 	//List of tile IDs for this room's walls and floors
 	std::vector<int> wallIDs;
@@ -86,7 +91,7 @@ public:
 	~FloorManager() {}
 
 	//Getter for this object's Floor structure
-	std::vector<std::vector<std::shared_ptr<Room>>> getFloor() { return floor;  }
+	std::vector<std::vector<Room*>> getFloor() { return floor;  }
 
 	//Defines a 2D grid of ints
 	typedef std::vector<std::vector<int>> grid;
@@ -98,6 +103,6 @@ public:
 	std::vector<std::vector<int>> genRandomFloor(SaveManager* save);
 
 private:
-	std::vector<std::vector<std::shared_ptr<Room>>> floor;
+	std::vector<std::vector<Room*>> floor;
 
 };
