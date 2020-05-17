@@ -9,7 +9,7 @@
 
 StateRunning::StateRunning(GameEngine* pEngine) : BaseState(pEngine)
 {
-
+	fntText = pEngine->getFont("fonts/gameplay.ttf", 15);
 }
 
 StateRunning::~StateRunning()
@@ -192,7 +192,19 @@ void StateRunning::orderCharsByHeight()
 
 StatePaused::StatePaused(GameEngine* pEngine) : StateRunning(pEngine)
 {
+	//Attribute change buttons
+	auto skillUps = &(pEngine->skillUps);
+	buttons.push_back(std::unique_ptr<Button>(new ButtonAllocateSkill<int>(pEngine, WIN_CENTREX + 10, 128 + 30, 20, 20, 0x2159ff, 0xd4e4ff, "+", fntText, &(pEngine->strength), 1, skillUps)));
+	//buttons.push_back(std::unique_ptr<Button>(new ButtonAllocateSkill<int>(pEngine, WIN_CENTREX + 30, 128 + 30, 20, 20, 0x2159ff, 0xd4e4ff, "-", fntText, &(pEngine->strength), -1, skillUps)));
 
+	buttons.push_back(std::unique_ptr<Button>(new ButtonAllocateSkill<int>(pEngine, WIN_CENTREX + 10, 128 + 50, 20, 20, 0x2159ff, 0xd4e4ff, "+", fntText, &(pEngine->ranged), 1, skillUps)));
+	//buttons.push_back(std::unique_ptr<Button>(new ButtonAllocateSkill<int>(pEngine, WIN_CENTREX + 30, 128 + 50, 20, 20, 0x2159ff, 0xd4e4ff, "-", fntText, &(pEngine->ranged), -1, skillUps)));
+
+	buttons.push_back(std::unique_ptr<Button>(new ButtonAllocateSkill<int>(pEngine, WIN_CENTREX + 10, 128 + 70, 20, 20, 0x2159ff, 0xd4e4ff, "+", fntText, &(pEngine->maxMagic), 1, skillUps)));
+	//buttons.push_back(std::unique_ptr<Button>(new ButtonAllocateSkill<int>(pEngine, WIN_CENTREX + 30, 128 + 70, 20, 20, 0x2159ff, 0xd4e4ff, "-", fntText, &(pEngine->maxMagic), -1, skillUps)));
+
+	buttons.push_back(std::unique_ptr<Button>(new ButtonAllocateSkill<int>(pEngine, WIN_CENTREX + 10, 128 + 90, 20, 20, 0x2159ff, 0xd4e4ff, "+", fntText, &(pEngine->defence), 1, skillUps)));
+	//buttons.push_back(std::unique_ptr<Button>(new ButtonAllocateSkill<int>(pEngine, WIN_CENTREX + 30, 128 + 90, 20, 20, 0x2159ff, 0xd4e4ff, "-", fntText, &(pEngine->defence), -1, skillUps)));
 }
 
 void StatePaused::onStateEnter()
@@ -211,10 +223,11 @@ void StatePaused::virtDrawStringsOnTop()
 	StateRunning::virtDrawStringsOnTop();
 
 	//Draw pause menu UI
-	pEngine->drawForegroundRectangle(0, WIN_CENTREY - 256, WIN_WIDTH, WIN_CENTREY + 256, 0x000000);
+	pEngine->drawForegroundRectangle(0, WIN_CENTREY - 256, WIN_WIDTH, WIN_CENTREY + 256, 0x000000); //Background panel
 
 	pEngine->drawForegroundString(WIN_CENTREX - 128, 128, "PAUSED", 0xffffff, NULL);
 
+	std::string printSkillUps = "PTS: " + std::to_string(pEngine->skillUps);
 	std::string printStrength = "STR: " + std::to_string(pEngine->strength);
 	std::string printRanged = "RANGE: " + std::to_string(pEngine->ranged);
 	std::string printMagic = "MAG: " + std::to_string(pEngine->maxMagic);
@@ -223,6 +236,8 @@ void StatePaused::virtDrawStringsOnTop()
 	pEngine->drawForegroundString(WIN_CENTREX - 128, 128 + 50, printRanged.c_str(), 0xffffff, NULL);
 	pEngine->drawForegroundString(WIN_CENTREX - 128, 128 + 70, printMagic.c_str(), 0xffffff, NULL);
 	pEngine->drawForegroundString(WIN_CENTREX - 128, 128 + 90, printDefence.c_str(), 0xffffff, NULL);
+
+	pEngine->drawForegroundString(WIN_CENTREX - 128, 128 + 130, printSkillUps.c_str(), 0xffffff, NULL);
 
 	//Drawing the Inventory Tiles here
 	pEngine->GetTilesInv()->drawAllTiles(pEngine, pEngine->getForegroundSurface());
@@ -236,8 +251,48 @@ void StatePaused::virtDrawStringsOnTop()
 		auto item = inv->getItemAt(mousedItemID);
 
 		//item shouldn't be null, but check just in case
-		if (item != nullptr) pEngine->drawForegroundString(WIN_CENTREX + 192, WIN_CENTREY - 192, item->name.c_str(), 0x000000, NULL);
+		if (item != nullptr) {
+			pEngine->drawForegroundString(WIN_CENTREX + 195, WIN_CENTREY - 250, item->name.c_str(), 0x000000, fntText);
+			pEngine->drawForegroundString(WIN_CENTREX + 195, WIN_CENTREY - 250 + 32, item->desc.c_str(), 0x000000, fntText);
+
+			//Weapon stats
+			Weapon* wep = dynamic_cast<Weapon*> (item.get());
+			if(wep) {
+				std::string printDamage = "Damage: " + std::to_string(wep->damage);
+				std::string printRange = "Range: " + std::to_string(wep->range);
+				pEngine->drawForegroundString(WIN_CENTREX + 195, WIN_CENTREY - 250 + 64, printDamage.c_str(), 0x000000, fntText);
+				pEngine->drawForegroundString(WIN_CENTREX + 195, WIN_CENTREY - 250 + 80, printRange.c_str(), 0x000000, fntText);
+			}
+
+		}
 	}
+
+	//Draw Map
+	std::vector<std::vector<int>> map = pEngine->floor;
+
+	int ystart = WIN_CENTREY - 256 + 32;
+	int xstart = 32;
+	int roomSize = 32;
+
+	int cols = map[0].size();
+	int rows = map.size();
+
+	for (int y = 0; y < rows; y++) {
+		for (int x = 0; x < cols; x++) {
+			//Draw rect for each valid room
+			if (map[y][x] == 2) {
+				int xpos = xstart + (roomSize * x);
+				int ypos = ystart + (roomSize * y);
+				pEngine->drawForegroundRectangle(xpos, ypos, xpos + roomSize - 4, ypos + roomSize - 4, 0xFFFFFF);
+			}
+				
+		}
+	}
+
+
+	//We wanna draw buttons on top
+	if (pEngine->skillUps > 0)
+		BaseState::virtDrawStringsOnTop();
 
 
 	//Draw currently picked-up item
@@ -264,12 +319,22 @@ void StatePaused::virtKeyDown(int iKeyCode)
 		pEngine->setState(pEngine->stateRunning);
 		break;
 
+		//BACK TO MENU
+	case SDLK_ESCAPE:
+		pEngine->setState(pEngine->stateMenu);
+		break;
+
 	}
 }
 
 void StatePaused::virtMouseDown(int iButton, int iX, int iY)
 {
-	//Left-click to move
+	//Allow button clicking
+	if (pEngine->skillUps > 0)
+		BaseState::virtMouseDown(iButton, iX, iY);
+
+
+	//Left-click to move item
 	if (iButton == SDL_BUTTON_LEFT) {
 
 		auto inv = pEngine->GetTilesInv();
@@ -335,7 +400,9 @@ void StatePaused::virtMouseWheel(int x, int y, int which, int timestamp)
 }
 
 
+
 		//ENEMY TURN STATE\\
+
 //Pretty similar to Running, but the player can't do anything
 
 StateEnemyTurn::StateEnemyTurn(GameEngine* pEngine) : StateRunning(pEngine)

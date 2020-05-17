@@ -89,7 +89,31 @@ void StateStart::virtSetupBackgroundBuffer()
 			invTiles->setMapValue(x, y, inv[y][x]);
 	}
 
-	invTiles->setTopLeftPositionOnScreen(WIN_CENTREX - (w * 64) / 2, WIN_CENTREY - (h * 64) / 2);
+	invTiles->setTopLeftPositionOnScreen(WIN_CENTREX - (w * 64) / 2, WIN_CENTREY + 32 - (h * 64) / 2);
+
+
+	//CREATE TEST FLOOR
+	std::vector<std::vector<int>> temp = {
+			{2,2,2,0,0,0,0,0,0},
+			{2,2,2,0,0,0,0,0,0},
+			{2,2,2,0,0,0,0,0,0},
+			{2,2,2,0,0,0,0,0,0},
+			{2,2,2,0,0,0,0,0,0},
+			{2,2,2,0,0,0,0,0,0},
+			{2,2,2,2,2,2,2,2,2},
+			{2,2,2,2,2,2,2,2,2},
+			{2,2,2,2,2,2,2,2,2}
+	};
+
+	auto floor = pEngine->GetFloorManager()->genFloor(temp, 9, 9, 3);
+
+	//print
+	for (const std::vector<int>& v : floor) {
+		for (int x : v) std::cout << x << ',';
+		std::cout << std::endl;
+	}
+
+	pEngine->floor = floor;
 
 	//onStateEnter();
 

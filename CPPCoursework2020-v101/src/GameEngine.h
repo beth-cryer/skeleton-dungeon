@@ -19,6 +19,7 @@ class StateRunning;
 
 class PlayerObject;
 class FloorManager;
+class Room;
 
 class GameEngine :
 	public BaseEngine
@@ -86,6 +87,9 @@ public:
 	int strength, ranged, defence;
 	int exp, expNext, level, skillUps;
 	int maxAttacks, attacks;
+
+	//Current floor
+	std::vector<std::vector<int>> floor;
 
 	//Made menu state public, since any state needs to be able to get back to it
 	StateMenu* stateMenu;

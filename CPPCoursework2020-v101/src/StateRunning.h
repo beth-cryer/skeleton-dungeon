@@ -27,6 +27,9 @@ public:
 
 	void orderCharsByHeight();
 
+protected:
+	Font* fntText;
+
 private:
 	StatePaused* statePaused = nullptr;
 	StateEnemyTurn* stateEnemyTurn = nullptr;

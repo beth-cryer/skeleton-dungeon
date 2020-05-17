@@ -187,6 +187,7 @@ grid FloorManager::genFloor(grid floor, int sizex, int sizey, int sector)
 
 			if (floor[sy][sx] == 0) continue;
 
+			int max_loops = 100;
 			bool valid; int rx, ry;
 			do {
 				//Generate random position within the sector
@@ -206,6 +207,9 @@ grid FloorManager::genFloor(grid floor, int sizex, int sizey, int sector)
 					//Also don't want nodes to be placed diagonal to another, can cut off passages when we expand the hole
 					if (xdist == ydist) valid = false;
 				}
+
+				
+				if (max_loops-- <= 0) break; //Give up eventually if something goes wrong
 
 				//Now it'll repeat until dist >= 3
 			} while (!valid);

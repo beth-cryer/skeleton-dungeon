@@ -92,29 +92,6 @@ void StateMenu::virtKeyDown(int iKeyCode)
 		//Save current stats
 	case (SDLK_s): pEngine->saveGame(); break;
 
-		//Test floor generator
-	case (SDLK_f):
-		
-		std::vector<std::vector<int>> temp = {
-			{2,2,2,0,0,0,0,0,0},
-			{2,2,2,0,0,0,0,0,0},
-			{2,2,2,0,0,0,0,0,0},
-			{2,2,2,0,0,0,0,0,0},
-			{2,2,2,0,0,0,0,0,0},
-			{2,2,2,0,0,0,0,0,0},
-			{2,2,2,2,2,2,2,2,2},
-			{2,2,2,2,2,2,2,2,2},
-			{2,2,2,2,2,2,2,2,2}
-		};
-
-		auto floor = gentest.genFloor(temp,9,9,3);
-
-		//print
-		for (const std::vector<int>& v : floor) {
-			for (int x : v) std::cout << x << ',';
-			std::cout << std::endl;
-		}
-		break;
 	}
 }
 

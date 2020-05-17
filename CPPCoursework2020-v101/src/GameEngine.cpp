@@ -38,6 +38,14 @@ GameEngine::~GameEngine()
 	delete stateMenu;
 	delete stateStart;
 	delete stateRunning;
+
+	//Free everything in Floor
+	/*
+	for (const std::vector<Room*>& v : *floor) {
+		for (Room* x : v) delete x;
+	}
+	*/
+	
 }
 
 
