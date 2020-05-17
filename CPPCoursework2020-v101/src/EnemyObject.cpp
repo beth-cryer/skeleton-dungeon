@@ -192,10 +192,10 @@ std::list<std::shared_ptr<Node>> EnemyObject::calcPath (int goalX, int goalY)
 		int g = lowest->g;
 
 		std::queue<std::shared_ptr<Node>> children;
-		children.push(std::shared_ptr<Node>(new Node(x + TILE_SIZE, y, g + TILE_SIZE, 0, lowest)));
-		children.push(std::shared_ptr<Node>(new Node(x - TILE_SIZE, y, g + TILE_SIZE, 0, lowest)));
-		children.push(std::shared_ptr<Node>(new Node(x, y + TILE_SIZE, g + TILE_SIZE, 0, lowest)));
-		children.push(std::shared_ptr<Node>(new Node(x, y - TILE_SIZE, g + TILE_SIZE, 0, lowest)));
+		children.push(std::make_shared<Node>(x + TILE_SIZE, y, g + TILE_SIZE, 0, lowest));
+		children.push(std::make_shared<Node>(x - TILE_SIZE, y, g + TILE_SIZE, 0, lowest));
+		children.push(std::make_shared<Node>(x, y + TILE_SIZE, g + TILE_SIZE, 0, lowest));
+		children.push(std::make_shared<Node>(x, y - TILE_SIZE, g + TILE_SIZE, 0, lowest));
 
 		//for each successor
 		while (children.size() > 0) {
@@ -226,7 +226,7 @@ std::list<std::shared_ptr<Node>> EnemyObject::calcPath (int goalX, int goalY)
 			}
 
 			//If a solid tile exist here, skip
-			SolidTileManager* tiles = pEngine->GetTilesSolid();
+			std::shared_ptr<SolidTileManager> tiles = pEngine->GetTilesSolid();
 			if (tiles->isValidTilePosition(x, y)) {
 				if (tiles->getMapValue(tiles->getMapXForScreenX(x), tiles->getMapYForScreenY(y)) != 0) {
 					continue;

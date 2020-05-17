@@ -14,7 +14,18 @@ public:
 	Room(GameEngine* pEngine, std::vector<int> wallIDs = { 21 }, std::vector<int> floorIDs = { 21 } )
 		: pEngine(pEngine), wallIDs(wallIDs), floorIDs(floorIDs)
 	{
+		backTiles = std::make_shared<BackgroundTileManager>();
+		solidTiles = std::make_shared<SolidTileManager>();
+
 		genRoom();
+	}
+
+	~Room()
+	{
+		//Clear objects vector
+		for (auto it = objects.begin(); it != objects.end(); it++) {
+			delete* it;
+		}
 	}
 
 	//Randomly picks a room template and sets this Room's Tile Manager objects
@@ -45,7 +56,7 @@ public:
 	int xExit = 0, yExit = 0;
 
 	//Connected rooms (right,up,down,left)
-	Room* rooms[4] = { nullptr, nullptr, nullptr, nullptr };
+	std::shared_ptr<Room> rooms[4] = { nullptr, nullptr, nullptr, nullptr };
 
 	//List of tile IDs for this room's walls and floors
 	std::vector<int> wallIDs;
@@ -60,9 +71,8 @@ private:
 	GameEngine* pEngine;
 
 	//Tile Managers
-	SolidTileManager* solidTiles;
-	BackgroundTileManager* backTiles;
-	Psybc5TileManager specialTiles; //temporary, is used by FloorManager to determine where to put number-limited objects on the floor
+	std::shared_ptr<SolidTileManager> solidTiles;
+	std::shared_ptr<BackgroundTileManager> backTiles;
 
 };
 
@@ -76,7 +86,7 @@ public:
 	~FloorManager() {}
 
 	//Getter for this object's Floor structure
-	std::vector<std::vector<Room*>> getFloor() { return floor;  }
+	std::vector<std::vector<std::shared_ptr<Room>>> getFloor() { return floor;  }
 
 	//Defines a 2D grid of ints
 	typedef std::vector<std::vector<int>> grid;
@@ -88,6 +98,6 @@ public:
 	std::vector<std::vector<int>> genRandomFloor(SaveManager* save);
 
 private:
-	std::vector<std::vector<Room*>> floor;
+	std::vector<std::vector<std::shared_ptr<Room>>> floor;
 
 };

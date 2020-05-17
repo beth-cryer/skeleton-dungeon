@@ -128,7 +128,6 @@ void StateRunning::virtKeyDown(int iKeyCode)
 		//NEXT TURN
 	case(SDLK_SPACE):
 		pEngine->setState(stateEnemyTurn);
-		
 		break;
 
 		//PAUSE
@@ -159,7 +158,7 @@ void StateRunning::virtKeyDown(int iKeyCode)
 
 void StateRunning::virtMainLoopPreUpdate()
 {
-
+	
 }
 
 void StateRunning::virtMainLoopPostUpdate()
@@ -268,7 +267,7 @@ void StatePaused::virtDrawStringsOnTop()
 	}
 
 	//Draw Map
-	std::vector<std::vector<Room*>> map = pEngine->floor;
+	std::vector<std::vector<std::shared_ptr<Room>>> map = pEngine->floor;
 
 	int ystart = WIN_CENTREY - 256 + 32;
 	int xstart = 32;
@@ -446,7 +445,7 @@ void StateEnemyTurn::virtDrawStringsOnTop()
 	//Keep drawing UI elements
 	StateRunning::virtDrawStringsOnTop();
 
-	pEngine->drawForegroundString(WIN_CENTREX,0,"ENEMY TURN",0x000000,NULL);
+	pEngine->drawForegroundString(WIN_CENTREX - 64, 0, "ENEMY TURN", 0xFFFFFF, NULL);
 }
 
 

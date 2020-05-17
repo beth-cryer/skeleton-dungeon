@@ -63,17 +63,17 @@ public:
 	void saveGame();
 
 	//RETURN PRIVATE POINTERS
-	SolidTileManager* GetTilesSolid() { return objTilesSolid; }
-	BackgroundTileManager* GetTilesBack() { return objTilesBack; }
-	InventoryTileManager* GetTilesInv() { return objInvTiles; }
+	std::shared_ptr<SolidTileManager> GetTilesSolid() { return objTilesSolid; }
+	std::shared_ptr<BackgroundTileManager> GetTilesBack() { return objTilesBack; }
+	std::shared_ptr<InventoryTileManager> GetTilesInv() { return objInvTiles; }
 	AudioPlayer* GetAudio() { return &audio; }
 	SaveManager* GetSaveManager() { return &saveManager; }
 	FloorManager* GetFloorManager() { return gen; }
 	PlayerObject* GetPlayer() { return player; }
 
 	//SET TILEMANAGER POINTERS TO NEW ONES
-	void SetTilesSolid(SolidTileManager* newTiles) { objTilesSolid = newTiles; }
-	void SetTilesBack(BackgroundTileManager* newTiles) { objTilesBack = newTiles; }
+	void SetTilesSolid(std::shared_ptr<SolidTileManager> newTiles) { objTilesSolid = newTiles; }
+	void SetTilesBack(std::shared_ptr<BackgroundTileManager> newTiles) { objTilesBack = newTiles; }
 
 	PlayerObject* player;
 
@@ -93,8 +93,8 @@ public:
 	int maxAttacks, attacks;
 
 	//Current floor
-	std::vector<std::vector<Room*>> floor;
-	Room* currentRoom = nullptr;
+	std::vector<std::vector<std::shared_ptr<Room>>> floor;
+	std::shared_ptr<Room> currentRoom = nullptr;
 
 	//Made menu state public, since any state needs to be able to get back to it
 	StateMenu* stateMenu;
@@ -103,12 +103,11 @@ public:
 
 private:
 	BaseState* currentState;
-
 	AudioPlayer audio;
 
-	SolidTileManager* objTilesSolid;
-	BackgroundTileManager* objTilesBack;
-	InventoryTileManager* objInvTiles;
+	std::shared_ptr<SolidTileManager> objTilesSolid;
+	std::shared_ptr<BackgroundTileManager> objTilesBack;
+	std::shared_ptr<InventoryTileManager> objInvTiles;
 
 	SaveManager saveManager;
 	FloorManager* gen;

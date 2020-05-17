@@ -7,7 +7,7 @@ CharObject::CharObject(int xStart, int yStart, BaseEngine* pEngine, int width, i
 	: AnimatedObject(xStart, yStart, pEngine, width, height, topleft),
 	currentState(CharState::stateIdle), pEngine((GameEngine*)pEngine), wep(wep)
 {
-	
+	setShouldDeleteOnRemoval(true);
 }
 
 CharObject::~CharObject() {}

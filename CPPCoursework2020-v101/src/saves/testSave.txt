@@ -1,8 +1,8 @@
 <name></name>
 <level>1</level>
-<exp>25</exp>
+<exp>0</exp>
 <expnext>50</expnext>
-<skillups>0</skillups>
+<skillups>5</skillups>
 <health>10</health>
 <maxhealth>10</maxhealth>
 <stamina>4</stamina>

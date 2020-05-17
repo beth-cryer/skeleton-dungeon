@@ -41,7 +41,7 @@ void StateStart::virtSetupBackgroundBuffer()
 
 	//SolidTileManager* solidTiles = pEngine->GetTilesSolid();
 	//BackgroundTileManager* bgTiles = pEngine->GetTilesBack();
-	InventoryTileManager* invTiles = pEngine->GetTilesInv();
+	std::shared_ptr<InventoryTileManager> invTiles = pEngine->GetTilesInv();
 
 	/*
 	int w = 7, h = 7;
@@ -132,15 +132,16 @@ void StateStart::virtSetupBackgroundBuffer()
 	pEngine->floor = fman->getFloor();
 
 	//Pick a random room to start in
-	Room* startRoom = nullptr;
+	std::shared_ptr<Room> startRoom = nullptr;
 	auto floor = pEngine->floor;
 
 	int cols = floor[0].size();
 	int rows = floor.size();
 
 	//Keep generating till we get a valid room to start in
-	while (startRoom == nullptr) {
+	while (true) {
 		startRoom = floor[rand() % rows][rand() % cols];
+		if (startRoom != nullptr && startRoom->yEnter != 0) break;
 	}
 
 	pEngine->currentRoom = startRoom;

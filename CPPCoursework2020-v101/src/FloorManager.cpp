@@ -35,7 +35,7 @@ void Room::genRoom()
 	std::string room = save->getTagContents(content, floor_tag);
 
 	//Look in both tile tags
-	std::vector<std::string> tileList = { "back","solid" };
+	std::vector<std::string> tileList = { "back", "solid" };
 	for (auto it = tileList.begin(); it != tileList.end(); it++) {
 		auto tiles = getTileData(save, room, *it);
 
@@ -45,15 +45,9 @@ void Room::genRoom()
 		int cols = tiles[0].size();
 		int rows = tiles.size();
 
-		backTiles = new BackgroundTileManager();
-		solidTiles = new SolidTileManager();
-
-		backTiles->setMapSize(cols, rows);
-		solidTiles->setMapSize(cols, rows);
-		specialTiles.setMapSize(cols, rows);
-
 		//Set referenced tile manager
-		Psybc5TileManager* tileManager; if (*it == "back") tileManager = backTiles; else tileManager = solidTiles;
+		std::shared_ptr<Psybc5TileManager> tileManager; if (*it == "back") tileManager = backTiles; else tileManager = solidTiles;
+		tileManager->setMapSize(cols, rows);		
 
 		//Go through each tile and add it to the Room's corresponding tile manager
 		for (int y = 0; y < rows; y++) {
@@ -70,8 +64,8 @@ void Room::genRoom()
 
 		solidTiles->setTopLeftPositionOnScreen(0, 0);
 		backTiles->setTopLeftPositionOnScreen(0, 0);
-
 	}
+
 	//JOB DONE
 }
 
@@ -160,7 +154,7 @@ void Room::onEnter() {
 	pEngine->createObjectArray(100);
 
 	//Add player to the room in starting position
-	pEngine->player = new PlayerObject(pEngine, std::shared_ptr<Weapon>(new WoodSword(pEngine)));
+	pEngine->player = new PlayerObject(pEngine, std::make_shared<WoodSword>(pEngine));
 	pEngine->player->setPosition(xEnter,yEnter);
 	pEngine->appendObjectToArray(pEngine->player);
 
@@ -265,20 +259,20 @@ grid FloorManager::genFloor(grid floor, int sizex, int sizey, int sector)
 
 void FloorManager::genRooms(GameEngine* pEngine, grid floorLayout)
 {
-	std::vector<std::vector<Room*>> floor;
+	std::vector<std::vector<std::shared_ptr<Room>>> floor;
 
 	int cols = floorLayout[0].size();
 	int rows = floorLayout.size();
 
 	//We're gonna go through every tile in the floor and create a list of new Room()s, leaving them empty for now
 	for (int y = 0; y < rows; y++) {
-		std::vector<Room*> row;
+		std::vector<std::shared_ptr<Room>> row;
 
 		//Create list of Rooms for the current row
 		for (int x = 0; x < cols; x++) {
 			//set new Room to true if it is an allocated room tile
 			if (floorLayout[y][x] == 2) {
-				row.push_back(new Room(pEngine)); //Room tiles are generated automatically on construction
+				row.push_back(std::shared_ptr<Room> (new Room(pEngine))); //Room tiles are generated automatically on construction
 			}
 			else {
 				//else set to null

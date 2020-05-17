@@ -22,9 +22,9 @@ GameEngine::GameEngine()
 
 	gen = new FloorManager();
 
-	objTilesSolid = new SolidTileManager();
-	objTilesBack = new BackgroundTileManager();
-	objInvTiles = new InventoryTileManager(this);
+	objTilesSolid = std::make_shared<SolidTileManager>();
+	objTilesBack = std::make_shared<BackgroundTileManager>();
+	objInvTiles = std::make_shared<InventoryTileManager>(this);
 
 	currentState = nullptr;
 
@@ -44,10 +44,10 @@ GameEngine::~GameEngine()
 	delete stateRunning;
 
 	//Free everything in Floor
+	/*
 	for (const std::vector<Room*>& v : floor) {
 		for (Room* x : v) delete x;
-	}
-	
+	}*/
 }
 
 
