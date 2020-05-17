@@ -84,6 +84,7 @@ public:
 
 
 //INVENTORY
+//Like the other tile managers, but with some extra data for Item objects - it is the indexes in this vector that the tile IDs are actually referencing here
 class InventoryTileManager :
 	public TileManager
 {
@@ -93,7 +94,10 @@ public:
 		: TileManager(64, 64),
 		pEngine(pEngine)
 	{
-		for (int i = 0; i < invSize; i++) {
+		std::shared_ptr<Item> item(nullptr);
+		invArray.push_back(item);
+
+		for (int i = 1; i < invSize; i++) {
 			std::shared_ptr<Item> item(new Item(pEngine, 1,"Test","A test item"));
 			invArray.push_back(item);
 		}
@@ -106,10 +110,12 @@ public:
 
 	virtual void virtDrawTileAt(BaseEngine* pEngine, DrawingSurface* pSurface, int iMapX, int iMapY, int iStartPositionScreenX, int iStartPositionScreenY) const override;
 
+	//Get item from array
 	std::shared_ptr<Item> getItemAt(int i) {
 		return invArray.at(i);
 	}
 
+	//Set item in array
 	void setItemAt(int i, std::shared_ptr<Item> item) {
 		invArray[i] = item;
 	}
@@ -123,6 +129,7 @@ private:
 	int invSize = 8;
 
 	//Vector of Smart Points to Items (Items destroyed when no longer in use)
+	//Using shared_ptr since item pointers get copied all the time (they are transferred to and from from ItemObjects when picking up and dropping)
 	std::vector<std::shared_ptr<Item>> invArray;
 
 };

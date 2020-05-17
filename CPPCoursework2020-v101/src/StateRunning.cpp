@@ -211,7 +211,7 @@ void StatePaused::virtDrawStringsOnTop()
 	StateRunning::virtDrawStringsOnTop();
 
 	//Draw pause menu UI
-	pEngine->drawForegroundRectangle(WIN_WIDTH / 2 - 256, WIN_HEIGHT / 2 - 256, WIN_WIDTH / 2 + 256, WIN_HEIGHT / 2 + 256, 0x816096);
+	pEngine->drawForegroundRectangle(WIN_WIDTH / 2 - 256, WIN_HEIGHT / 2 - 256, WIN_WIDTH / 2 + 256, WIN_HEIGHT / 2 + 256, 0x000000);
 
 	pEngine->drawForegroundString(WIN_WIDTH / 2, 128, "PAUSED", 0xffffff, NULL);
 
@@ -263,6 +263,12 @@ void StatePaused::virtMouseDown(int iButton, int iX, int iY)
 		}
 	}
 	*/
+
+}
+
+void StatePaused::virtMainLoopPreUpdate()
+{
+	//Update currently moused-over item
 
 }
 

@@ -46,6 +46,7 @@ public:
 	virtual void virtMouseDown(int iButton, int iX, int iY) override;
 	virtual void virtKeyDown(int iKeyCode) override;
 	virtual void virtMouseWheel(int x, int y, int which, int timestamp) override;
+	virtual void virtMainLoopPreUpdate() override;
 
 };
 

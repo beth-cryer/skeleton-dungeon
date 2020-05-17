@@ -86,7 +86,7 @@ void StateStart::virtSetupBackgroundBuffer()
 	invTiles->setMapSize(w, h);
 	for (int x = 0; x < w; x++) {
 		for (int y = 0; y < h; y++)
-			invTiles->setMapValue(x, y, y + x);
+			invTiles->setMapValue(x, y, inv[y][x]);
 	}
 
 	invTiles->setTopLeftPositionOnScreen(WIN_WIDTH / 2 - (w * 64) / 2, WIN_HEIGHT / 2 - (h * 64) / 2);

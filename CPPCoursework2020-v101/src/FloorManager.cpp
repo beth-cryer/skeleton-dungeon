@@ -60,7 +60,7 @@ void Room::genRoom()
 				case('_'): tileManager->setMapValue(x, y, 0); //blank tile is same for solid and back, so set it on the right tileManager
 				case('f'): backTiles.setMapValue(x, y, getTileID(&floorIDs, tiles[y][x][1] - '0')); // (- 0 converts char to int)
 				case('w'): solidTiles.setMapValue(x, y, getTileID(&wallIDs, tiles[y][x][1] - '0'));
-					//case('s'): specialTiles.setMapValue(x, y, tiles[y][x][1]); //Special tiles
+				case('s'): setSpecialTiles(x, y, tiles[y][x][1]); //Special tiles
 				}
 			}
 		}
@@ -69,7 +69,7 @@ void Room::genRoom()
 	//JOB DONE
 }
 
-void Room::setSpecialTiles(int id, int x, int y)
+void Room::setSpecialTiles(int x, int y, int id)
 {
 	switch (id)
 	{
@@ -77,15 +77,19 @@ void Room::setSpecialTiles(int id, int x, int y)
 		objects.push_back(new EnemyZombie(pEngine, x, y));
 		break;
 
-	case(2): break; //ENTRANCE
+	case(2):
+
+		break; //ENTRANCE
+
 	case(3):
 		objects.push_back(new ExitObject(pEngine, x, y));
 		break; //EXIT
 
-	case(4): objects.push_back(new DoorObject(pEngine,this,0,x,y)); break; //RIGHT
-	case(5): break; //DOWN
-	case(6): break; //UP
-	case(7): break; //LEFT
+	//DOORS
+	case(4): objects.push_back(new DoorObject(pEngine, this, 0, 30, x, y)); break; //RIGHT
+	case(5): objects.push_back(new DoorObject(pEngine, this, 1, 30, x, y)); break; //DOWN
+	case(6): objects.push_back(new DoorObject(pEngine, this, 2, 30, x, y)); break; //UP
+	case(7): objects.push_back(new DoorObject(pEngine, this, 3, 30, x, y)); break; //LEFT
 
 	case(8): break; //TREASURE
 	}
@@ -150,6 +154,11 @@ void Room::onEnter() {
 	}
 
 	pEngine->setAllObjectsVisible(true);
+}
+
+void Room::onExit()
+{
+
 }
 
 
@@ -231,7 +240,7 @@ grid FloorManager::genFloor(grid floor, int sizex, int sizey, int sector)
 	return floor;
 }
 
-std::vector<Room*> FloorManager::genRooms(GameEngine* pEngine, grid floorLayout)
+void FloorManager::genRooms(GameEngine* pEngine, grid floorLayout)
 {
 	std::vector<std::vector<Room*>> floor;
 
@@ -267,10 +276,10 @@ std::vector<Room*> FloorManager::genRooms(GameEngine* pEngine, grid floorLayout)
 
 				//Check each of the four adjacent elements to see if there is a Room pointer
 				//If so, assign the appropriate room pointer in currentRoom
-				if (x + 1 < cols && floor[y][x + 1] != nullptr) currentRoom->roomRight = floor[y][x + 1];
-				if (x - 1 > 0 && floor[y][x - 1] != nullptr) currentRoom->roomLeft = floor[y][x - 1];
-				if (y + 1 < rows && floor[y + 1][x] != nullptr) currentRoom->roomDown = floor[y + 1][x];
-				if (y - 1 > 0 && floor[y - 1][x] != nullptr) currentRoom->roomUp = floor[y - 1][x];
+				if (x + 1 < cols && floor[y][x + 1] != nullptr) currentRoom->rooms[0] = floor[y][x + 1];
+				if (x - 1 > 0 && floor[y][x - 1] != nullptr) currentRoom->rooms[1] = floor[y][x - 1];
+				if (y + 1 < rows && floor[y + 1][x] != nullptr) currentRoom->rooms[2] = floor[y + 1][x];
+				if (y - 1 > 0 && floor[y - 1][x] != nullptr) currentRoom->rooms[3] = floor[y - 1][x];
 			}
 		}
 	}
@@ -281,4 +290,7 @@ std::vector<Room*> FloorManager::genRooms(GameEngine* pEngine, grid floorLayout)
 	//Next place objects that require a set amount per Room:
 		//loop through every room and place
 
+
+	//Set this object's floor attribute to the newly-generated one
+	this->floor = floor;
 }

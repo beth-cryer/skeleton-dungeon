@@ -26,7 +26,7 @@ public:
 	int getTileID(std::vector<int>* list, int n);
 
 	//Adds a special tile to the Room's object vector
-	void setSpecialTiles(int id, int x, int y);
+	void setSpecialTiles(int x, int y, int id);
 	
 	//Fetches a 2D vector of the data inside brackets, separated by commas
 	std::vector<std::vector<std::string>> getTileData(SaveManager* save, std::string text, std::string tag);
@@ -44,8 +44,8 @@ public:
 	int xEnter, yEnter;
 	int xExit, yExit;
 
-	//Connected rooms
-	Room* roomRight = nullptr, * roomLeft = nullptr, * roomUp = nullptr, * roomDown = nullptr;
+	//Connected rooms (right,up,down,left)
+	Room* rooms[4] = { nullptr, nullptr, nullptr, nullptr };
 
 	//List of tile IDs for this room's walls and floors
 	std::vector<int> wallIDs;
@@ -75,11 +75,16 @@ public:
 	FloorManager() {}
 	~FloorManager() {}
 
+	//Getter for this object's Floor structure
+	std::vector<std::vector<Room*>> *getFloor() { return &floor;  }
+
 	//Defines a 2D grid of ints
 	typedef std::vector<std::vector<int>> grid;
 
 	grid genFloor(grid floor, int sizex, int sizey, int sector);
+	void genRooms(GameEngine* pEngine, grid floorLayout);
 
-	std::vector<Room*> genRooms(GameEngine* pEngine, grid floorLayout);
+private:
+	std::vector<std::vector<Room*>> floor;
 
 };

@@ -102,6 +102,7 @@
     <ClInclude Include="CollisionDetection.h" />
     <ClInclude Include="CoordinateMappingFlip.h" />
     <ClInclude Include="DisplayableObjectContainer.h" />
+    <ClInclude Include="DoorObject.h" />
     <ClInclude Include="DragableImageObject.h" />
     <ClInclude Include="DragableTokenContainer.h" />
     <ClInclude Include="DragableObject.h" />
@@ -114,9 +115,10 @@
     <ClInclude Include="EnemyElf.h" />
     <ClInclude Include="EnemyObject.h" />
     <ClInclude Include="EnemyZombie.h" />
+    <ClInclude Include="ExitObject.h" />
     <ClInclude Include="FilterPoints.h" />
     <ClInclude Include="FlashingDemo.h" />
-    <ClInclude Include="FloorGenerator.h" />
+    <ClInclude Include="FloorManager.h" />
     <ClInclude Include="header.h" />
     <ClInclude Include="BaseEngine.h" />
     <ClInclude Include="DisplayableObject.h" />
@@ -173,6 +175,7 @@
     <ClCompile Include="AudioPlayer.cpp" />
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="CharObject.cpp" />
+    <ClCompile Include="DoorObject.cpp" />
     <ClCompile Include="DraggingDemo.cpp" />
     <ClCompile Include="DrawingSurface.cpp" />
     <ClCompile Include="EnemyCultist.cpp" />
@@ -180,7 +183,9 @@
     <ClCompile Include="EnemyElf.cpp" />
     <ClCompile Include="EnemyObject.cpp" />
     <ClCompile Include="EnemyZombie.cpp" />
+    <ClCompile Include="ExitObject.cpp" />
     <ClCompile Include="FlashingDemo.cpp" />
+    <ClCompile Include="FloorManager.cpp" />
     <ClCompile Include="ImageObjectDemo.cpp" />
     <ClCompile Include="Item.cpp" />
     <ClCompile Include="ItemObject.cpp" />

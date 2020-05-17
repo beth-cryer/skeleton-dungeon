@@ -273,9 +273,6 @@
     <ClInclude Include="StateEditor.h">
       <Filter>Header Files\Psybc5Game\GameStates</Filter>
     </ClInclude>
-    <ClInclude Include="FloorGenerator.h">
-      <Filter>Header Files\Psybc5Game</Filter>
-    </ClInclude>
     <ClInclude Include="EnemyCultist.h">
       <Filter>Header Files\Psybc5Game\Enemies</Filter>
     </ClInclude>
@@ -290,6 +287,15 @@
     </ClInclude>
     <ClInclude Include="EnemyElf.h">
       <Filter>Header Files\Psybc5Game\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="ExitObject.h">
+      <Filter>Header Files\Psybc5Game</Filter>
+    </ClInclude>
+    <ClInclude Include="DoorObject.h">
+      <Filter>Header Files\Psybc5Game</Filter>
+    </ClInclude>
+    <ClInclude Include="FloorManager.h">
+      <Filter>Header Files\Psybc5Game</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -433,6 +439,15 @@
     </ClCompile>
     <ClCompile Include="EnemyElf.cpp">
       <Filter>Source Files\Psybc5Game\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="ExitObject.cpp">
+      <Filter>Source Files\Psybc5Game</Filter>
+    </ClCompile>
+    <ClCompile Include="DoorObject.cpp">
+      <Filter>Source Files\Psybc5Game</Filter>
+    </ClCompile>
+    <ClCompile Include="FloorManager.cpp">
+      <Filter>Source Files\Psybc5Game</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
