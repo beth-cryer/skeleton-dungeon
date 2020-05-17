@@ -10,6 +10,7 @@ Item::Item(GameEngine* pEngine, int iconId, std::string name, std::string desc)
 Item::~Item() {}
 
 void Item::virtItemUse() {
+	std::cout << "Item used\n";
 }
 
 void Item::virtItemExamine() {

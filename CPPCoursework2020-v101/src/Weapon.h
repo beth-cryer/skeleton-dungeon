@@ -6,7 +6,7 @@ class GameEngine;
 class CharObject;
 
 class Weapon :
-	public Item
+	public Item, public std::enable_shared_from_this<Weapon>
 {
 public:
 	enum class WepType { phys, mag };

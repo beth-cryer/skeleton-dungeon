@@ -29,7 +29,7 @@ public:
 	virtual void onProjectileHit(CharObject* target);
 
 	//used for enemy aggro as well as checking if ranged attacks will hit
-	bool lineOfSight(const int x1, const int y1, const int x2, const int y2, const int range);
+	bool lineOfSight(int x1, int y1, int x2, int y2, const int range);
 
 	enum class CharState { stateIdle, stateWalk, stateAttack, stateDeath };
 

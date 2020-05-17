@@ -54,6 +54,8 @@ public:
 	std::list<std::shared_ptr<Node>> calcPath(int goalX, int goalY);
 	int calcHeuristic(Node n, int goalX, int goalY);
 
+	bool aggroed = false;
+
 protected:
 	std::string name, desc;
 	int attacks, maxAttacks;

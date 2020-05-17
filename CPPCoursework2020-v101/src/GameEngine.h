@@ -72,11 +72,10 @@ public:
 	FloorManager* GetFloorManager() { return gen; }
 	PlayerObject* GetPlayer() { return player; }
 
-	//SET TILEMANAGER POINTERS TO NEW ONES
+	//SETTERS
 	void SetTilesSolid(std::shared_ptr<SolidTileManager> newTiles) { objTilesSolid = newTiles; }
 	void SetTilesBack(std::shared_ptr<BackgroundTileManager> newTiles) { objTilesBack = newTiles; }
-
-	PlayerObject* player;
+	void SetPlayer(PlayerObject* newPlayer) { player = newPlayer; }
 
 	//For scrolling and zooming the draw Surfaces
 	FilterPointsScaling filterScaling;
@@ -105,6 +104,8 @@ public:
 private:
 	BaseState* currentState;
 	AudioPlayer audio;
+
+	PlayerObject* player = nullptr;
 
 	std::shared_ptr<SolidTileManager> objTilesSolid;
 	std::shared_ptr<BackgroundTileManager> objTilesBack;

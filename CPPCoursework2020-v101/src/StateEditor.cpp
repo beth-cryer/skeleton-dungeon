@@ -49,8 +49,9 @@ void StateEditor::virtSetupBackgroundBuffer()
 	tilesEditor.drawAllTiles(pEngine, pEngine->getBackgroundSurface());
 
 	//Draw grid system
-	/*
-	for (int y = 0; y < WIN_HEIGHT / TILE_SIZE; y += TILE_SIZE) {
+	//(doesn't seem to work except for the first tile. Maybe you can't render an image multiple times at once? idk)
+
+	/* for (int y = 0; y < WIN_HEIGHT / TILE_SIZE; y += TILE_SIZE) {
 		for (int x = 0; x < WIN_WIDTH / TILE_SIZE; x += TILE_SIZE) {
 			grid.renderImageWithMask(pEngine->getBackgroundSurface(), 0, 0, x, y, TILE_SIZE, TILE_SIZE, 0xFF00FF);
 		}
@@ -70,7 +71,7 @@ void StateEditor::virtDrawStringsOnTop()
 	if (tileId != 0)
 		tileLayer->GetTileSprites().renderImageWithMask(pEngine->getBackgroundSurface(), 0,0, 0, TILE_SIZE, TILE_SIZE, TILE_SIZE, 0xFF00FF);
 
-	//tileLayer->GetTileSprites().renderImageWithMask(pEngine->getBackgroundSurface(), TILE_SIZE * (tileId % 11), TILE_SIZE * std::floor(tileId / 10), 0, TILE_SIZE, TILE_SIZE, TILE_SIZE, 0xFF00FF);
+	tileLayer->GetTileSprites().renderImageWithMask(pEngine->getBackgroundSurface(), TILE_SIZE * (tileId % 11), TILE_SIZE * std::floor(tileId / 10), 0, TILE_SIZE, TILE_SIZE, TILE_SIZE, 0xFF00FF);
 }
 
 void StateEditor::virtMouseDown(int iButton, int iX, int iY)

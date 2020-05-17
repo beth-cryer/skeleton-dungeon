@@ -6,17 +6,18 @@
 #include "StateStart.h"
 #include "StateRunning.h"
 
+#include "PlayerObject.h"
 #include "CharObject.h"
 #include "FloorManager.h"
 
 GameEngine::GameEngine()
-	: filterScaling(0, 0, this), filterTranslation(0, 0, &filterScaling), player(NULL),
+	: filterScaling(0, 0, this), filterTranslation(0, 0, &filterScaling),
 	maxHealth(10), health(maxHealth),
 	maxStamina(4), stamina(maxStamina),
 	maxMagic(1), magic(maxMagic),
 	maxAttacks(1), attacks(maxAttacks),
 	strength(1), ranged(1), defence(1),
-	exp(25), expNext(50), level(1), skillUps(0)
+	exp(0), expNext(50), level(1), skillUps(0)
 {
 	notifyObjectsAboutMouse(true);
 
@@ -69,8 +70,6 @@ int GameEngine::virtInitialise()
 	getBackgroundSurface()->setDrawPointsFilter(&filterTranslation);
 	getForegroundSurface()->setDrawPointsFilter(&filterTranslation);
 
-	createObjectArray(1000);
-
 	return BaseEngine::virtInitialise();
 }
 
@@ -91,6 +90,8 @@ void GameEngine::clearObjects()
 {
 	//Free everything in object container
 	destroyOldObjects(true);
+
+	delete player;
 
 	//THEN free everything in Floor
 	for (const std::vector<Room*>& v : floor) {

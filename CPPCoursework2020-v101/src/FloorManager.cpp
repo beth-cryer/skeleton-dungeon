@@ -150,32 +150,36 @@ void Room::onEnter(int dir) {
 
 	//Destroy any existing objects (but don't free their memory, except for Player)
 	pEngine->destroyOldObjects(false);
-	if (pEngine->player != nullptr) delete pEngine->player;
+	if (pEngine->GetPlayer() != nullptr) delete pEngine->GetPlayer();
 
 	//Add player to the room in starting position
-	pEngine->player = new PlayerObject(pEngine, std::make_shared<WoodSword>(pEngine));
+	pEngine->SetPlayer(new PlayerObject(pEngine, std::make_shared<WoodSword>(pEngine)));
+
 	//Get position to place:
 	int x = xEnter; int y = yEnter; //(starting pos by default, if no door id is given)
 	for (auto it = objects.begin(); it != objects.end(); it++) { //Find matching door
 
 		DoorObject* door = dynamic_cast<DoorObject*>(*it);
-		if (door && door->doorType == dir) {
-			int doorX = door->getXPos();
-			int doorY = door->getYPos();
+		if (door) {
+			//(also make invisible if doorType doesn't lead anywhere)
+			if (rooms[door->doorType] == nullptr) door->valid = false;
+			
+			if (door->doorType == dir) {
+				int doorX = door->getXPos();
+				int doorY = door->getYPos();
 
-			//check whether to place player next to, above or below entrance point
-			switch (dir) {
-			case 3: x = doorX + TILE_SIZE; y = doorY; break;
-			case 2: x = doorX; y = doorY + TILE_SIZE; break;
-			case 1: x = doorX; y = doorY - TILE_SIZE; break;
-			case 0: x = doorX - TILE_SIZE; y = doorY; break;
+				//check whether to place player next to, above or below entrance point
+				switch (dir) {
+				case 3: x = doorX + TILE_SIZE; y = doorY; break;
+				case 2: x = doorX; y = doorY + TILE_SIZE; break;
+				case 1: x = doorX; y = doorY - TILE_SIZE; break;
+				case 0: x = doorX - TILE_SIZE; y = doorY; break;
+				}
 			}
 		}
 	}
-
-	pEngine->player->setPosition(x,y);
-
-	pEngine->appendObjectToArray(pEngine->player);
+	pEngine->GetPlayer()->setPosition(x,y);
+	pEngine->appendObjectToArray(pEngine->GetPlayer());
 
 	//Add all objects to the room
 	for (auto it = objects.begin(); it != objects.end(); it++) {

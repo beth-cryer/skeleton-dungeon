@@ -28,11 +28,6 @@ public:
 		}
 	}
 
-	void clearObjects()
-	{
-		
-	}
-
 	//Randomly picks a room template and sets this Room's Tile Manager objects
 	//Also places Special tiles/objects like enemies and chests
 	void genRoom();

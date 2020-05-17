@@ -67,6 +67,8 @@ void EnemyObject::turnStart()
 	//Enemy Turn Sound
 	//pEngine->GetAudio()->playAudio("sfx/monsters/Growl.ogg", -1, 0);
 
+	aggroed = true;
+
 	//Generate path to desired location
 	PlayerObject* player = pEngine->GetPlayer();
 	path = calcPath(player->getXPos(), player->getYPos());

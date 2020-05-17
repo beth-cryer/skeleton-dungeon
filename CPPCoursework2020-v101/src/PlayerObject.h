@@ -21,8 +21,7 @@ public:
 	void move(int xmove, int ymove, int currentTime, int time) override;
 	void attack(EnemyObject* pEnemy);
 	void onProjectileHit(CharObject* target) override;
-
-	bool adjacentTo(int x, int y, int squareSize);
+	void equipWep(std::shared_ptr<Weapon> wep);
 
 };
 

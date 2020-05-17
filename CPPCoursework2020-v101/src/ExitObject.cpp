@@ -17,6 +17,8 @@ void ExitObject::virtDoUpdate(int iCurrentTime)
 //Click to move to next floor
 void ExitObject::virtMouseDown(int iButton, int iX, int iY)
 {
+	if (!isVisible() || pEngine->isPaused()) return;
+
 	if (iButton == SDL_BUTTON_RIGHT && virtIsPositionWithinObject(iX, iY)) {
 
 		auto player = pEngine->GetPlayer();

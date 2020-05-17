@@ -123,6 +123,8 @@ void StateRunning::virtMouseWheel(int x, int y, int which, int timestamp)
 
 void StateRunning::virtKeyDown(int iKeyCode)
 {
+	PlayerObject* pl = pEngine->GetPlayer();
+
 	switch (iKeyCode) {
 
 		//NEXT TURN
@@ -138,6 +140,11 @@ void StateRunning::virtKeyDown(int iKeyCode)
 		//BACK TO MENU
 	case SDLK_ESCAPE:
 		pEngine->setExitWithCode(0);
+		break;
+
+		//Testing line-of-sight
+	case SDLK_l:
+		pl->lineOfSight(64, 64, 512, 128, 0);
 		break;
 
 		//MOVING CAMERA
@@ -194,16 +201,9 @@ StatePaused::StatePaused(GameEngine* pEngine) : StateRunning(pEngine)
 	//Attribute change buttons
 	auto skillUps = &(pEngine->skillUps);
 	buttons.push_back(std::unique_ptr<Button>(new ButtonAllocateSkill<int>(pEngine, WIN_CENTREX + 10, 128 + 30, 20, 20, 0x2159ff, 0xd4e4ff, "+", fntText, &(pEngine->strength), 1, skillUps)));
-	//buttons.push_back(std::unique_ptr<Button>(new ButtonAllocateSkill<int>(pEngine, WIN_CENTREX + 30, 128 + 30, 20, 20, 0x2159ff, 0xd4e4ff, "-", fntText, &(pEngine->strength), -1, skillUps)));
-
 	buttons.push_back(std::unique_ptr<Button>(new ButtonAllocateSkill<int>(pEngine, WIN_CENTREX + 10, 128 + 50, 20, 20, 0x2159ff, 0xd4e4ff, "+", fntText, &(pEngine->ranged), 1, skillUps)));
-	//buttons.push_back(std::unique_ptr<Button>(new ButtonAllocateSkill<int>(pEngine, WIN_CENTREX + 30, 128 + 50, 20, 20, 0x2159ff, 0xd4e4ff, "-", fntText, &(pEngine->ranged), -1, skillUps)));
-
 	buttons.push_back(std::unique_ptr<Button>(new ButtonAllocateSkill<int>(pEngine, WIN_CENTREX + 10, 128 + 70, 20, 20, 0x2159ff, 0xd4e4ff, "+", fntText, &(pEngine->maxMagic), 1, skillUps)));
-	//buttons.push_back(std::unique_ptr<Button>(new ButtonAllocateSkill<int>(pEngine, WIN_CENTREX + 30, 128 + 70, 20, 20, 0x2159ff, 0xd4e4ff, "-", fntText, &(pEngine->maxMagic), -1, skillUps)));
-
 	buttons.push_back(std::unique_ptr<Button>(new ButtonAllocateSkill<int>(pEngine, WIN_CENTREX + 10, 128 + 90, 20, 20, 0x2159ff, 0xd4e4ff, "+", fntText, &(pEngine->defence), 1, skillUps)));
-	//buttons.push_back(std::unique_ptr<Button>(new ButtonAllocateSkill<int>(pEngine, WIN_CENTREX + 30, 128 + 90, 20, 20, 0x2159ff, 0xd4e4ff, "-", fntText, &(pEngine->defence), -1, skillUps)));
 }
 
 void StatePaused::onStateEnter()
@@ -223,9 +223,9 @@ void StatePaused::virtDrawStringsOnTop()
 
 	//Draw pause menu UI
 	pEngine->drawForegroundRectangle(0, WIN_CENTREY - 256, WIN_WIDTH, WIN_CENTREY + 256, 0x000000); //Background panel
-
 	pEngine->drawForegroundString(WIN_CENTREX - 128, 128, "PAUSED", 0xffffff, NULL);
 
+	//STATS
 	std::string printSkillUps = "PTS: " + std::to_string(pEngine->skillUps);
 	std::string printStrength = "STR: " + std::to_string(pEngine->strength);
 	std::string printRanged = "RANGE: " + std::to_string(pEngine->ranged);
@@ -238,11 +238,12 @@ void StatePaused::virtDrawStringsOnTop()
 
 	pEngine->drawForegroundString(WIN_CENTREX - 128, 128 + 130, printSkillUps.c_str(), 0xffffff, NULL);
 
-	//Drawing the Inventory Tiles here
+
+	//INVENTORY TILES
 	pEngine->GetTilesInv()->drawAllTiles(pEngine, pEngine->getForegroundSurface());
 
 
-	//Drawing the Item Card here
+	//MOUSED-OVER ITEM DETAILS
 	pEngine->drawForegroundRectangle(WIN_CENTREX + 192, WIN_CENTREY - 256, WIN_CENTREX + 384, WIN_CENTREY, 0xFFFFFF);
 	//Get currently moused-over item
 	auto inv = pEngine->GetTilesInv();
@@ -266,7 +267,10 @@ void StatePaused::virtDrawStringsOnTop()
 		}
 	}
 
-	//Draw Map
+	//EQUIPPED WEAPON DETAILS
+
+
+	//MAP
 	std::vector<std::vector<Room*>> map = pEngine->floor;
 
 	int ystart = WIN_CENTREY - 256 + 32;
@@ -298,11 +302,9 @@ void StatePaused::virtDrawStringsOnTop()
 		}
 	}
 
-
 	//We wanna draw buttons on top
 	if (pEngine->skillUps > 0)
 		BaseState::virtDrawStringsOnTop();
-
 
 	//Draw currently picked-up item
 	if (heldItemID != -1) {
@@ -343,18 +345,23 @@ void StatePaused::virtMouseDown(int iButton, int iX, int iY)
 		BaseState::virtMouseDown(iButton, iX, iY);
 
 
-	//Left-click to move item
-	if (iButton == SDL_BUTTON_LEFT) {
+	auto inv = pEngine->GetTilesInv();
+	int mapX = 0, mapY = 0, value = 0;
+	bool moused = false;
 
-		auto inv = pEngine->GetTilesInv();
+	//Check if clicked on an inventory Tile
+	if (inv->isValidTilePosition(iX, iY))
+	{
+		mapX = inv->getMapXForScreenX(iX);
+		mapY = inv->getMapYForScreenY(iY);
+		value = inv->getMapValue(mapX, mapY);
+		moused = true;
+	}
 
-		//Check if clicked on an inventory Tile
-		if (inv->isValidTilePosition(iX, iY))
-		{
-			int mapX = inv->getMapXForScreenX(iX);
-			int mapY = inv->getMapYForScreenY(iY);
-			int value = inv->getMapValue(mapX, mapY);
+	if (moused) {
 
+		//Left-click to move item
+		if (iButton == SDL_BUTTON_LEFT) {
 			//If holding an object, drop it
 			if (heldItemID != -1) {
 				int tempItemID = inv->getMapValue(mapX, mapY); //Get current map value at selection
@@ -371,7 +378,6 @@ void StatePaused::virtMouseDown(int iButton, int iX, int iY)
 				}
 
 			}
-
 			//If not holding an object, pick it up
 			else {
 				heldItemID = inv->getMapValue(mapX, mapY);
@@ -379,10 +385,19 @@ void StatePaused::virtMouseDown(int iButton, int iX, int iY)
 			}
 		}
 
+		//Right click to use item
+		if (iButton == SDL_BUTTON_RIGHT) {
+			//Execute useItem on moused-over item
+			int itemID = inv->getMapValue(mapX, mapY);
+
+			if (itemID != -1) {
+				auto item = inv->getItemAt(itemID);
+				if (item != nullptr) item->virtItemUse();
+			}
+
+		}
+
 	}
-
-	//Right click to use item
-
 }
 
 void StatePaused::virtMainLoopPreUpdate()
@@ -465,9 +480,22 @@ void StateEnemyTurn::triggerNextEnemy()
 {
 	if (enemyTurns.size() > 0) {
 
-		//Trigger turn on first enemy, handing it control until its turn is finished
-		enemyTurns.front()->turnStart();
+		auto enemy = enemyTurns.front();
+		auto player = pEngine->GetPlayer();
+
 		enemyTurns.pop_front(); //and remove it from the list
+
+		//Trigger turn on first enemy, handing it control until its turn is finished
+		//(only if aggroed OR player is in line of sight)
+		if (enemy->aggroed == true || enemy->lineOfSight(player->getXCentre(), player->getYCentre(), enemy->getXCentre(), enemy->getYCentre(), 10)) //range is 10 tiles
+		{
+			enemy->turnStart();
+		}
+		else {
+			triggerNextEnemy();
+		}
+
+		
 
 	}
 	else {

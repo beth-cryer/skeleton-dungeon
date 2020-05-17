@@ -138,7 +138,7 @@ void PlayerObject::virtMouseDown(int iButton, int iX, int iY)
 //Applies attack damage
 void PlayerObject::attack(EnemyObject* pEnemy)
 {
-	pEnemy->damage(pEngine->strength);
+	pEnemy->damage(pEngine->strength + wep->damage);
 }
 
 //Called by ProjectileObject at the end of its movement - this just implements CharObject's virtual function, telling it to call our attack() function on the target
@@ -180,11 +180,7 @@ void PlayerObject::move(int xmove, int ymove, int currentTime, int time)
 	CharObject::move(xmove, ymove, currentTime, time);
 }
 
-//Check if the position is within a certain radius of tiles from the Player
-//(basically checks a box around the player that stretches 'squareSize' tiles from the player in each direction)
-bool PlayerObject::adjacentTo(int x, int y, int squareSize) {
-	return (x > m_iCurrentScreenX - squareSize*64 &&
-		x < m_iCurrentScreenX + squareSize * 64 &&
-		y > m_iCurrentScreenY - squareSize * 64 &&
-		y < m_iCurrentScreenY + squareSize * 64);
+void PlayerObject::equipWep(std::shared_ptr<Weapon> wep)
+{
+	this->wep = wep;
 }
