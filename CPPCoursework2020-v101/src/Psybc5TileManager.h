@@ -2,6 +2,8 @@
 #include "TileManager.h"
 #include "Item.h"
 
+#include <ctime>
+
 class GameEngine;
 
 class Psybc5TileManager :
@@ -94,11 +96,10 @@ public:
 		: TileManager(64, 64),
 		pEngine(pEngine)
 	{
-		std::shared_ptr<Item> item(nullptr);
-		invArray.push_back(item);
+		srand(time(NULL));
 
-		for (int i = 1; i < invSize; i++) {
-			std::shared_ptr<Item> item(new Item(pEngine, 1,"Test","A test item"));
+		for (int i = 0; i < invSize; i++) {
+			std::shared_ptr<Item> item(new Item(pEngine, rand() % 5,"Test","A test item"));
 			invArray.push_back(item);
 		}
 	}

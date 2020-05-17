@@ -150,12 +150,9 @@ void GameEngine::moveCamera(int offsetXIncrement, int offsetYIncrement) {
 
 void GameEngine::drawBar(int x1, int y1, int y2, int maxWidth, std::string str, int value, int maxValue, int colBar, int colBack)
 {
-	//drawForegroundRectangle(x1, y1, x1 + maxWidth, y2, colBack); //bg
-	//drawForegroundRectangle(x1, y1, x1 + std::floor(maxWidth * (value / maxValue)), y2, colBar); //bar
-
 	int barWidth = std::floor((double)maxWidth * ((double)value / (double)maxValue));
 
-	drawForegroundRectangle(x1 + barWidth, y1, x1 + maxWidth, y2, colBack); //bg
+	drawForegroundRectangle(x1, y1, x1 + maxWidth, y2, colBack); //bg
 	drawForegroundRectangle(x1, y1, x1 + barWidth, y2, colBar); //bar
 
 	drawForegroundString(x1 + 10, y1, str.c_str(), 0xffffff, NULL); //TEXT

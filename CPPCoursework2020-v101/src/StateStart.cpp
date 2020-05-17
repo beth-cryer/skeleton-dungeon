@@ -76,10 +76,10 @@ void StateStart::virtSetupBackgroundBuffer()
 
 	//SETUP INVENTORY
 	int inv[4][4] = {
-		{1,0,1,2},
-		{0,3,0,0},
-		{0,2,2,2},
-		{0,0,1,2}
+		{1,-1,1,2},
+		{0,3,-1,-1},
+		{-1,2,2,2},
+		{-1,-1,1,2}
 	};
 
 	w = 4; h = 4;
@@ -89,9 +89,9 @@ void StateStart::virtSetupBackgroundBuffer()
 			invTiles->setMapValue(x, y, inv[y][x]);
 	}
 
-	invTiles->setTopLeftPositionOnScreen(WIN_WIDTH / 2 - (w * 64) / 2, WIN_HEIGHT / 2 - (h * 64) / 2);
+	invTiles->setTopLeftPositionOnScreen(WIN_CENTREX - (w * 64) / 2, WIN_CENTREY - (h * 64) / 2);
 
-	onStateEnter();
+	//onStateEnter();
 
 	//Transition to Running
 	pEngine->setState(pEngine->stateRunning);

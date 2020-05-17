@@ -51,7 +51,7 @@ void InventoryTileManager::virtDrawTileAt(BaseEngine* pEngine, DrawingSurface* p
 	int mapVal = getMapValue(iMapX, iMapY);
 
 	//If item exists at tile:
-	if (invArray[mapVal] != nullptr) {
+	if (mapVal != -1 && invArray[mapVal] != nullptr) {
 		int iconVal = invArray[mapVal]->iconId;
 		invSprites.renderImageWithMask(pSurface, m_iTileWidth * (iconVal % 21), m_iTileWidth * std::floor(iconVal / 20), iStartPositionScreenX, iStartPositionScreenY, m_iTileWidth, m_iTileHeight, 0xFF00FF);
 	}

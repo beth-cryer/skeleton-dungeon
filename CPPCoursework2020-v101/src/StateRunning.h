@@ -48,6 +48,11 @@ public:
 	virtual void virtMouseWheel(int x, int y, int which, int timestamp) override;
 	virtual void virtMainLoopPreUpdate() override;
 
+private:
+	int mousedItemID = 0;
+	int heldItemID = -1;
+	SimpleImage invSprites = ImageManager::loadImage("sprites/items.png", true);
+
 };
 
 class StateEnemyTurn :

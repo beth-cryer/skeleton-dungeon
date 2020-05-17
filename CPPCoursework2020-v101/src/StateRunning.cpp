@@ -98,8 +98,8 @@ void StateRunning::virtMouseDown(int iButton, int iX, int iY)
 void StateRunning::virtMouseWheel(int x, int y, int which, int timestamp)
 {
 	//Get position of the centre of the screen before the zoom
-	int iOldCentreX = pEngine->convertClickedToVirtualPixelXPosition(WIN_WIDTH / 2);
-	int iOldCentreY = pEngine->convertClickedToVirtualPixelYPosition(WIN_HEIGHT / 2);
+	int iOldCentreX = pEngine->convertClickedToVirtualPixelXPosition(WIN_CENTREX);
+	int iOldCentreY = pEngine->convertClickedToVirtualPixelYPosition(WIN_CENTREY);
 
 	if (y < 0) {
 		if (pEngine->filterScaling.getZoomX() <= 0) return;
@@ -110,8 +110,8 @@ void StateRunning::virtMouseWheel(int x, int y, int which, int timestamp)
 	}
 
 	//Get position of the centre after the zoom
-	int iNewCentreX = pEngine->convertClickedToVirtualPixelXPosition(WIN_WIDTH / 2);
-	int iNewCentreY = pEngine->convertClickedToVirtualPixelYPosition(WIN_HEIGHT / 2);
+	int iNewCentreX = pEngine->convertClickedToVirtualPixelXPosition(WIN_CENTREX);
+	int iNewCentreY = pEngine->convertClickedToVirtualPixelYPosition(WIN_CENTREY);
 
 	//Apply a translation to offset so it appears to have zoomed on the centre by moving the old centre back to the centre of the screen
 	pEngine->filterTranslation.changeOffset(iNewCentreX - iOldCentreX, iNewCentreY - iOldCentreY);
@@ -211,21 +211,48 @@ void StatePaused::virtDrawStringsOnTop()
 	StateRunning::virtDrawStringsOnTop();
 
 	//Draw pause menu UI
-	pEngine->drawForegroundRectangle(WIN_WIDTH / 2 - 256, WIN_HEIGHT / 2 - 256, WIN_WIDTH / 2 + 256, WIN_HEIGHT / 2 + 256, 0x000000);
+	pEngine->drawForegroundRectangle(0, WIN_CENTREY - 256, WIN_WIDTH, WIN_CENTREY + 256, 0x000000);
 
-	pEngine->drawForegroundString(WIN_WIDTH / 2, 128, "PAUSED", 0xffffff, NULL);
+	pEngine->drawForegroundString(WIN_CENTREX - 128, 128, "PAUSED", 0xffffff, NULL);
 
 	std::string printStrength = "STR: " + std::to_string(pEngine->strength);
 	std::string printRanged = "RANGE: " + std::to_string(pEngine->ranged);
 	std::string printMagic = "MAG: " + std::to_string(pEngine->maxMagic);
 	std::string printDefence = "DEF: " + std::to_string(pEngine->defence);
-	pEngine->drawForegroundString(WIN_WIDTH / 2 - 128, 128 + 30, printStrength.c_str(), 0xffffff, NULL);
-	pEngine->drawForegroundString(WIN_WIDTH / 2 - 128, 128 + 50, printRanged.c_str(), 0xffffff, NULL);
-	pEngine->drawForegroundString(WIN_WIDTH / 2 - 128, 128 + 70, printMagic.c_str(), 0xffffff, NULL);
-	pEngine->drawForegroundString(WIN_WIDTH / 2 - 128, 128 + 90, printDefence.c_str(), 0xffffff, NULL);
+	pEngine->drawForegroundString(WIN_CENTREX - 128, 128 + 30, printStrength.c_str(), 0xffffff, NULL);
+	pEngine->drawForegroundString(WIN_CENTREX - 128, 128 + 50, printRanged.c_str(), 0xffffff, NULL);
+	pEngine->drawForegroundString(WIN_CENTREX - 128, 128 + 70, printMagic.c_str(), 0xffffff, NULL);
+	pEngine->drawForegroundString(WIN_CENTREX - 128, 128 + 90, printDefence.c_str(), 0xffffff, NULL);
 
-	//Drawing the Inventory here
+	//Drawing the Inventory Tiles here
 	pEngine->GetTilesInv()->drawAllTiles(pEngine, pEngine->getForegroundSurface());
+
+
+	//Drawing the Item Card here
+	pEngine->drawForegroundRectangle(WIN_CENTREX + 192, WIN_CENTREY - 256, WIN_CENTREX + 384, WIN_CENTREY, 0xFFFFFF);
+	//Get currently moused-over item
+	auto inv = pEngine->GetTilesInv();
+	if (mousedItemID != -1) {
+		auto item = inv->getItemAt(mousedItemID);
+
+		//item shouldn't be null, but check just in case
+		if (item != nullptr) pEngine->drawForegroundString(WIN_CENTREX + 192, WIN_CENTREY - 192, item->name.c_str(), 0x000000, NULL);
+	}
+
+
+	//Draw currently picked-up item
+	if (heldItemID != -1) {
+		auto item = inv->getItemAt(heldItemID);
+
+		//If item array points to valid item:
+		if (item != nullptr) {
+			int mouseX = pEngine->getCurrentMouseX();
+			int mouseY = pEngine->getCurrentMouseY();
+			int iconID = item->iconId;
+			invSprites.renderImageWithMask(pEngine->getForegroundSurface(), TILE_SIZE * (iconID % 21), TILE_SIZE * std::floor(iconID / 20), mouseX - TILE_SIZE/2, mouseY - TILE_SIZE/2, TILE_SIZE, TILE_SIZE, 0xFF00FF);
+		}
+
+	}
 }
 
 void StatePaused::virtKeyDown(int iKeyCode)
@@ -242,33 +269,62 @@ void StatePaused::virtKeyDown(int iKeyCode)
 
 void StatePaused::virtMouseDown(int iButton, int iX, int iY)
 {
-	auto objInvTiles = pEngine->GetTilesInv();
+	//Left-click to move
+	if (iButton == SDL_BUTTON_LEFT) {
 
-	/*
-	//Check if clicked on an inventory Tile
-	if (objInvTiles->isValidTilePosition(iX, iY))
-	{
-		int mapX = objInvTiles->getMapXForScreenX(iX);
-		int mapY = objInvTiles->getMapYForScreenY(iY);
-		int value = objInvTiles->getMapValue(mapX, mapY);
+		auto inv = pEngine->GetTilesInv();
 
-		//If holding an object, drop it
-		if (pEngine->heldItem == NULL) {
-			pEngine->heldItem = objInvTiles->getItemAt(value);
+		//Check if clicked on an inventory Tile
+		if (inv->isValidTilePosition(iX, iY))
+		{
+			int mapX = inv->getMapXForScreenX(iX);
+			int mapY = inv->getMapYForScreenY(iY);
+			int value = inv->getMapValue(mapX, mapY);
+
+			//If holding an object, drop it
+			if (heldItemID != -1) {
+				int tempItemID = inv->getMapValue(mapX, mapY); //Get current map value at selection
+
+				//Set moused tile to held item
+				inv->setMapValue(mapX, mapY, heldItemID);
+
+				//Pick up existing item if necessary, else set held item to empty
+				if (tempItemID != -1) {
+					heldItemID = tempItemID;
+				}
+				else {
+					heldItemID = -1;
+				}
+
+			}
+
+			//If not holding an object, pick it up
+			else {
+				heldItemID = inv->getMapValue(mapX, mapY);
+				inv->setMapValue(mapX, mapY, -1);
+			}
 		}
 
-		//If not holding an object, pick it up
-		else {
-			objInvTiles->setItemAt(value, pEngine->heldItem);
-		}
 	}
-	*/
+
+	//Right click to use item
 
 }
 
 void StatePaused::virtMainLoopPreUpdate()
 {
 	//Update currently moused-over item
+	int mouseX = pEngine->getCurrentMouseX();
+	int mouseY = pEngine->getCurrentMouseY();
+	auto inv = pEngine->GetTilesInv();
+
+	//Get tile at mouse position
+	if (inv->isValidTilePosition(mouseX, mouseY)) {
+		int clickedX = inv->getMapXForScreenX(mouseX);
+		int clickedY = inv->getMapYForScreenY(mouseY);
+
+		mousedItemID = inv->getMapValue(clickedX, clickedY);
+	}
 
 }
 
@@ -314,7 +370,7 @@ void StateEnemyTurn::virtDrawStringsOnTop()
 	//Keep drawing UI elements
 	StateRunning::virtDrawStringsOnTop();
 
-	pEngine->drawForegroundString(0,0,"ENEMY TURN",0,NULL);
+	pEngine->drawForegroundString(WIN_CENTREX,0,"ENEMY TURN",0x000000,NULL);
 }
 
 

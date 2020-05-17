@@ -10,6 +10,8 @@
 #define TICK_LEN 100
 #define WIN_WIDTH 1024
 #define WIN_HEIGHT 768
+#define WIN_CENTREX 512
+#define WIN_CENTREY 384
 
 // Only include in windows, when in debug:
 #ifdef _DEBUG
