@@ -57,10 +57,10 @@ void Room::genRoom()
 			for (int x = 0; x < cols; x++) {
 				//Get type of tile by the first character, and set the ID according to the second character
 				switch (tiles[y][x][0]) {
-				case('_'): tileManager->setMapValue(x, y, 0); //blank tile is same for solid and back, so set it on the right tileManager
-				case('f'): backTiles.setMapValue(x, y, getTileID(&floorIDs, tiles[y][x][1] - '0')); // (- 0 converts char to int)
-				case('w'): solidTiles.setMapValue(x, y, getTileID(&wallIDs, tiles[y][x][1] - '0'));
-				case('s'): setSpecialTiles(x, y, tiles[y][x][1]); //Special tiles
+				case('_'): tileManager->setMapValue(x, y, 0); break; //blank tile is same for solid and back, so set it on the right tileManager
+				case('f'): backTiles.setMapValue(x, y, getTileID(&floorIDs, tiles[y][x][1] - '0')); break; // (- 0 converts char to int)
+				case('w'): solidTiles.setMapValue(x, y, getTileID(&wallIDs, tiles[y][x][1] - '0')); break;
+				case('s'): setSpecialTiles(x, y, tiles[y][x][1]); break; //Special tiles
 				}
 			}
 		}
@@ -98,7 +98,7 @@ void Room::setSpecialTiles(int x, int y, int id)
 int Room::getTileID(std::vector<int>* list, int n)
 {
 	//Make sure n within bounds of our list
-	if (list->size() > n) return 1;
+	if (list->size() < n) return 1;
 	if (n < 0) return 1;
 
 	return list->at(n);
@@ -148,7 +148,7 @@ void Room::onEnter() {
 	pEngine->createObjectArray(100);
 	pEngine->appendObjectToArray(pEngine->player);
 
-	//Add all objects
+	//Add all objects to the room
 	for (auto it = objects.begin(); it != objects.end(); it++) {
 		pEngine->appendObjectToArray(*it);
 	}
@@ -244,6 +244,9 @@ grid FloorManager::genFloor(grid floor, int sizex, int sizey, int sector)
 	return floor;
 }
 
+
+//Generates a 2d vector of Room pointers from an input grid
+
 void FloorManager::genRooms(GameEngine* pEngine, grid floorLayout)
 {
 	std::vector<std::vector<Room*>> floor;
@@ -301,6 +304,7 @@ void FloorManager::genRooms(GameEngine* pEngine, grid floorLayout)
 
 
 //Using genFloor in combination with the SaveManager to load and modify a randomly-selected template floor layout
+
 std::vector<std::vector<int>> FloorManager::genRandomFloor(SaveManager* save)
 {
 	//Generate array of Rooms

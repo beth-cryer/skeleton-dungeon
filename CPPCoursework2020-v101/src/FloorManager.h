@@ -11,7 +11,7 @@
 class Room
 {
 public:
-	Room(GameEngine* pEngine, std::vector<int> wallIDs = { 1 }, std::vector<int> floorIDs = {1} )
+	Room(GameEngine* pEngine, std::vector<int> wallIDs = { 21 }, std::vector<int> floorIDs = { 21 } )
 		: pEngine(pEngine), wallIDs(wallIDs), floorIDs(floorIDs)
 	{
 		genRoom();

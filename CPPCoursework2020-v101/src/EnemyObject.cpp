@@ -19,6 +19,9 @@ EnemyObject::~EnemyObject()
 
 void EnemyObject::virtDoUpdate(int iCurrentTime)
 {
+	//Don't do update if invisible or paused
+	if (!isVisible() || getEngine()->isPaused())
+		return;
 
 	if (currentState == CharState::stateWalk) {
 
@@ -82,7 +85,24 @@ void EnemyObject::AI()
 {
 	//If within range of weapon with attack(s) left, attack
 	PlayerObject* player = pEngine->GetPlayer();
-	if (attacks > 0 && lineOfSight(m_iCurrentScreenX, m_iCurrentScreenY, player->getXPos(), player->getYPos(), wep->range)) {
+
+	//Need to make sure x1 < x2:
+	/*
+	int x1, x2;
+	if (m_iCurrentScreenX < player->getXPos()) {
+		x1 = m_iCurrentScreenX;
+		x2 = player->getXPos();
+	}
+	else {
+		x1 = player->getXPos();
+		x2 = m_iCurrentScreenX;
+	}*/
+
+	//if (attacks > 0 && lineOfSight(x1, m_iCurrentScreenY, x2, player->getYPos(), wep->range)) {
+
+	//Using Manhattan distance since the bresenham algorithm is broke and i cant be bothered fixing it
+	if (attacks > 0 && std::abs(m_iCurrentScreenX - player->getXPos()) + std::abs(m_iCurrentScreenY - player->getYPos()) < (wep->range)*TILE_SIZE ) {
+
 		anim_frame = 0;
 
 		//face player

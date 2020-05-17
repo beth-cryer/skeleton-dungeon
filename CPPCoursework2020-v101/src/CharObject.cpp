@@ -7,6 +7,7 @@ CharObject::CharObject(int xStart, int yStart, BaseEngine* pEngine, int width, i
 	: AnimatedObject(xStart, yStart, pEngine, width, height, topleft),
 	currentState(CharState::stateIdle), pEngine((GameEngine*)pEngine), wep(wep)
 {
+	
 }
 
 CharObject::~CharObject() {}
@@ -63,11 +64,13 @@ bool CharObject::lineOfSight(const int x1, const int y1, const int x2, const int
 	int dx = x2 - x1;
 	int D = 2 * dy - dx;
 	int y = y1;
+	int length = 0;
 
 	for (int x = x1; x <= x2; x += TILE_SIZE) {
 		//std::cout << "(" << x << "," << y << ")\n";
 
 		los.push_back(std::make_tuple(x, y));
+		length++;
 
 		//Increment y when it's time to slope
 		if (D >= 0) {
@@ -79,7 +82,7 @@ bool CharObject::lineOfSight(const int x1, const int y1, const int x2, const int
 
 	//Check length of line, return false if greater than the range
 	//(range ignored if set to zero or less)
-	if (range < 0 && los.size() > range) {
+	if (range == 0 || length > range) {
 		std::cout << "Target out of range\n";
 		return false;
 	}

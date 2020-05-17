@@ -121,6 +121,8 @@ void StateStart::virtSetupBackgroundBuffer()
 	//GENERATE FLOOR
 	pEngine->floor = pEngine->GetFloorManager()->genRandomFloor(pEngine->GetSaveManager());
 
+	pEngine->GetFloorManager()->genRooms(pEngine,pEngine->floor);
+
 
 	//Transition to Running
 	pEngine->setState(pEngine->stateRunning);
