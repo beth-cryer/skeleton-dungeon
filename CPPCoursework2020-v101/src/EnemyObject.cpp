@@ -3,12 +3,13 @@
 
 #include "PlayerObject.h"
 #include "StateRunning.h"
+#include "FloorManager.h"
 
 
-EnemyObject::EnemyObject(int xStart, int yStart, BaseEngine* pEngine, int width, int height, bool topleft,
+EnemyObject::EnemyObject(int xStart, int yStart, BaseEngine* pEngine, Room* room, int width, int height, bool topleft,
 	std::shared_ptr<Weapon> wep, std::string name, std::string desc, int maxHealth, int maxStamina, int strength, int ranged, int expDrop, int maxAttacks)
 	: CharObject(xStart, yStart, pEngine, width, height, topleft, wep),
-	 name(name), desc(desc), maxHealth(maxHealth), health(maxHealth), maxStamina(maxStamina), stamina(maxStamina), strength(strength), ranged(ranged), expDrop(expDrop), maxAttacks(maxAttacks), attacks(maxAttacks)
+	 room(room), name(name), desc(desc), maxHealth(maxHealth), health(maxHealth), maxStamina(maxStamina), stamina(maxStamina), strength(strength), ranged(ranged), expDrop(expDrop), maxAttacks(maxAttacks), attacks(maxAttacks)
 {
 	
 }
@@ -281,7 +282,8 @@ void EnemyObject::damage(int amount)
 	//DEAD
 	if (health <= 0) {
 		std::cout << "Enemy " << name << " was killed.\n";
-		getEngine()->removeDisplayableObject(this);
+		room->objects.remove(this); //Remove from Room container so it doesn't respawn on re-entering the room
+		getEngine()->removeDisplayableObject(this); //Then remove from the engine object array
 		delete this;
 	}
 }

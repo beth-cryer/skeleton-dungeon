@@ -41,8 +41,8 @@ public:
 	bool exit = false;
 
 	//Coordinates of entrance or exit (if either are in this Room)
-	int xEnter, yEnter;
-	int xExit, yExit;
+	int xEnter = 0, yEnter = 0;
+	int xExit = 0, yExit = 0;
 
 	//Connected rooms (right,up,down,left)
 	Room* rooms[4] = { nullptr, nullptr, nullptr, nullptr };
@@ -60,8 +60,8 @@ private:
 	GameEngine* pEngine;
 
 	//Tile Managers
-	SolidTileManager solidTiles;
-	BackgroundTileManager backTiles;
+	SolidTileManager* solidTiles;
+	BackgroundTileManager* backTiles;
 	Psybc5TileManager specialTiles; //temporary, is used by FloorManager to determine where to put number-limited objects on the floor
 
 };
@@ -76,7 +76,7 @@ public:
 	~FloorManager() {}
 
 	//Getter for this object's Floor structure
-	std::vector<std::vector<Room*>> *getFloor() { return &floor;  }
+	std::vector<std::vector<Room*>> getFloor() { return floor;  }
 
 	//Defines a 2D grid of ints
 	typedef std::vector<std::vector<int>> grid;

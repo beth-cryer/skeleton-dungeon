@@ -63,13 +63,17 @@ public:
 	void saveGame();
 
 	//RETURN PRIVATE POINTERS
-	SolidTileManager* GetTilesSolid() { return &objTilesSolid; }
-	BackgroundTileManager* GetTilesBack() { return &objTilesBack; }
-	InventoryTileManager* GetTilesInv() { return &objInvTiles; }
+	SolidTileManager* GetTilesSolid() { return objTilesSolid; }
+	BackgroundTileManager* GetTilesBack() { return objTilesBack; }
+	InventoryTileManager* GetTilesInv() { return objInvTiles; }
 	AudioPlayer* GetAudio() { return &audio; }
 	SaveManager* GetSaveManager() { return &saveManager; }
 	FloorManager* GetFloorManager() { return gen; }
 	PlayerObject* GetPlayer() { return player; }
+
+	//SET TILEMANAGER POINTERS TO NEW ONES
+	void SetTilesSolid(SolidTileManager* newTiles) { objTilesSolid = newTiles; }
+	void SetTilesBack(BackgroundTileManager* newTiles) { objTilesBack = newTiles; }
 
 	PlayerObject* player;
 
@@ -89,7 +93,8 @@ public:
 	int maxAttacks, attacks;
 
 	//Current floor
-	std::vector<std::vector<int>> floor;
+	std::vector<std::vector<Room*>> floor;
+	Room* currentRoom = nullptr;
 
 	//Made menu state public, since any state needs to be able to get back to it
 	StateMenu* stateMenu;
@@ -101,9 +106,9 @@ private:
 
 	AudioPlayer audio;
 
-	SolidTileManager objTilesSolid;
-	BackgroundTileManager objTilesBack;
-	InventoryTileManager objInvTiles;
+	SolidTileManager* objTilesSolid;
+	BackgroundTileManager* objTilesBack;
+	InventoryTileManager* objInvTiles;
 
 	SaveManager saveManager;
 	FloorManager* gen;

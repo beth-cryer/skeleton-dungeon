@@ -14,7 +14,7 @@ public:
 	Psybc5TileManager() : TileManager(TILE_SIZE, TILE_SIZE)
 	{
 	}
-	~Psybc5TileManager(void)
+	~Psybc5TileManager()
 	{
 	}
 

@@ -18,6 +18,7 @@ StateStart::StateStart(GameEngine* pEngine) : BaseState(pEngine)
 
 void StateStart::virtSetupBackgroundBuffer()
 {
+	/*
 	//INIT OBJECT ARRAY
 	pEngine->drawableObjectsChanged();
 
@@ -27,20 +28,22 @@ void StateStart::virtSetupBackgroundBuffer()
 	pEngine->player = new PlayerObject(pEngine, std::shared_ptr<Weapon>(nullptr));
 
 	pEngine->createObjectArray(100); //(need to leave one empty element at end of array)
+
 	pEngine->appendObjectToArray(pEngine->player);
 	pEngine->appendObjectToArray(new EnemyZombie(pEngine, 320, 256));
 	pEngine->appendObjectToArray(new EnemyCultist(pEngine, 640, 448));
 	pEngine->appendObjectToArray(new EnemyDragon(pEngine, 448, 256));
 
 	pEngine->setAllObjectsVisible(true);
-
+	*/
 
 	//INIT TILE MANAGERS
 
-	SolidTileManager* solidTiles = pEngine->GetTilesSolid();
-	BackgroundTileManager* bgTiles = pEngine->GetTilesBack();
+	//SolidTileManager* solidTiles = pEngine->GetTilesSolid();
+	//BackgroundTileManager* bgTiles = pEngine->GetTilesBack();
 	InventoryTileManager* invTiles = pEngine->GetTilesInv();
 
+	/*
 	int w = 7, h = 7;
 	solidTiles->setMapSize(w, h);
 	bgTiles->setMapSize(8, 8);
@@ -74,6 +77,8 @@ void StateStart::virtSetupBackgroundBuffer()
 	solidTiles->setTopLeftPositionOnScreen(0, 0);
 	bgTiles->setTopLeftPositionOnScreen(0, 0);
 
+	*/
+
 	//SETUP INVENTORY
 	int inv[4][4] = {
 		{1,-1,1,2},
@@ -82,7 +87,7 @@ void StateStart::virtSetupBackgroundBuffer()
 		{-1,-1,1,2}
 	};
 
-	w = 4; h = 4;
+	int w = 4, h = 4;
 	invTiles->setMapSize(w, h);
 	for (int x = 0; x < w; x++) {
 		for (int y = 0; y < h; y++)
@@ -119,10 +124,28 @@ void StateStart::virtSetupBackgroundBuffer()
 
 
 	//GENERATE FLOOR
-	pEngine->floor = pEngine->GetFloorManager()->genRandomFloor(pEngine->GetSaveManager());
+	auto fman = pEngine->GetFloorManager();
+	auto randomFloor = fman->genRandomFloor(pEngine->GetSaveManager());
 
-	pEngine->GetFloorManager()->genRooms(pEngine,pEngine->floor);
+	//Generate rooms in floor and pass to engine
+	fman->genRooms(pEngine, randomFloor);
+	pEngine->floor = fman->getFloor();
 
+	//Pick a random room to start in
+	Room* startRoom = nullptr;
+	auto floor = pEngine->floor;
+
+	int cols = floor[0].size();
+	int rows = floor.size();
+
+	//Keep generating till we get a valid room to start in
+	while (startRoom == nullptr) {
+		startRoom = floor[rand() % rows][rand() % cols];
+	}
+
+	pEngine->currentRoom = startRoom;
+
+	startRoom->onEnter();
 
 	//Transition to Running
 	pEngine->setState(pEngine->stateRunning);

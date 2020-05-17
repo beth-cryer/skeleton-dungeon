@@ -5,7 +5,7 @@ class EnemyCultist :
 	public EnemyObject
 {
 public:
-	EnemyCultist(BaseEngine* pEngine, int xStart, int yStart);
+	EnemyCultist(BaseEngine* pEngine, Room* room, int xStart, int yStart);
 	~EnemyCultist();
 
 	virtual void turnStart() override;

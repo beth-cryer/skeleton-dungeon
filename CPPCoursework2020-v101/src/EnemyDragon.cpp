@@ -1,8 +1,8 @@
 #include "header.h"
 #include "EnemyDragon.h"
 
-EnemyDragon::EnemyDragon(BaseEngine* pEngine, int xStart, int yStart)
-	: EnemyObject(xStart, yStart, pEngine, TILE_SIZE, TILE_SIZE, true,
+EnemyDragon::EnemyDragon(BaseEngine* pEngine, Room* room, int xStart, int yStart)
+	: EnemyObject(xStart, yStart, pEngine, room, TILE_SIZE, TILE_SIZE, true,
 		std::shared_ptr<Weapon>(new WoodSword((GameEngine*)pEngine)), "Black Dragon", "A black-scaled dragon that sears the flesh from its prey", 30, 4, 5, 5, 200, 2)
 {
 	imgSprites = ImageManager::loadImage("sprites/chars/dragon.png", true);

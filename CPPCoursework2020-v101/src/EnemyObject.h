@@ -6,6 +6,8 @@
 #include <queue>
 #include <list>
 
+class Room;
+
 //Storage class for use in the A* algorithm
 class Node
 {
@@ -34,7 +36,7 @@ class EnemyObject :
 {
 
 public:
-	EnemyObject(int xStart, int yStart, BaseEngine* pEngine, int width, int height, bool topleft,
+	EnemyObject(int xStart, int yStart, BaseEngine* pEngine, Room* room, int width, int height, bool topleft,
 		std::shared_ptr<Weapon> wep, std::string name, std::string desc, int maxHealth, int maxStamina, int strength, int ranged, int expDrop, int maxAttacks);
 	~EnemyObject();
 
@@ -61,6 +63,8 @@ protected:
 	int expDrop;
 
 	std::list<std::shared_ptr<Node>> path;
+
+	Room* room;
 
 	//Attack Type weakness
 	//WepType weak;

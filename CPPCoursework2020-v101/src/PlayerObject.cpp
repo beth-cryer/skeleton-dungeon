@@ -113,7 +113,9 @@ void PlayerObject::virtMouseDown(int iButton, int iX, int iY)
 				EnemyObject* pEnemy = dynamic_cast<EnemyObject*> (pObj);
 				if (pEnemy && pEngine->attacks > 0) {
 					//Check line-of-sight from player to enemy
-					if (lineOfSight(pEngine->GetPlayer()->getXPos(), pEngine->GetPlayer()->getYPos(), pEnemy->getXPos(), pEnemy->getYPos(), 0)) {
+					//if (lineOfSight(pEngine->GetPlayer()->getXPos(), pEngine->GetPlayer()->getYPos(), pEnemy->getXPos(), pEnemy->getYPos(), 0)) {
+
+					if (std::abs(m_iCurrentScreenX - pEnemy->getXPos()) + std::abs(m_iCurrentScreenY - pEnemy->getYPos()) < (wep->range) * TILE_SIZE) {
 						//Attack if in range
 						currentState = CharState::stateAttack;
 						anim_frame = 0;

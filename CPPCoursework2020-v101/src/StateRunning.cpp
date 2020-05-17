@@ -268,7 +268,7 @@ void StatePaused::virtDrawStringsOnTop()
 	}
 
 	//Draw Map
-	std::vector<std::vector<int>> map = pEngine->floor;
+	std::vector<std::vector<Room*>> map = pEngine->floor;
 
 	int ystart = WIN_CENTREY - 256 + 32;
 	int xstart = 32;
@@ -280,10 +280,16 @@ void StatePaused::virtDrawStringsOnTop()
 	for (int y = 0; y < rows; y++) {
 		for (int x = 0; x < cols; x++) {
 			//Draw rect for each valid room
-			if (map[y][x] == 2) {
+			if (map[y][x] != nullptr) {
 				int xpos = xstart + (roomSize * x);
 				int ypos = ystart + (roomSize * y);
-				pEngine->drawForegroundRectangle(xpos, ypos, xpos + roomSize - 4, ypos + roomSize - 4, 0xFFFFFF);
+				int roomCol = 0xFFFFFF;
+
+				//In current room?
+				if (pEngine->currentRoom != nullptr && pEngine->currentRoom == map[y][x])
+					roomCol = 0xFF00FF;
+
+				pEngine->drawForegroundRectangle(xpos, ypos, xpos + roomSize - 4, ypos + roomSize - 4, roomCol);
 			}
 				
 		}
@@ -391,6 +397,9 @@ void StatePaused::virtMainLoopPreUpdate()
 		mousedItemID = inv->getMapValue(clickedX, clickedY);
 	}
 
+	//Redraw the background
+	pEngine->lockAndSetupBackground();
+	pEngine->redrawDisplay();
 }
 
 //Overridding zoom mechanism

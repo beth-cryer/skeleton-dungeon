@@ -16,11 +16,15 @@ GameEngine::GameEngine()
 	maxMagic(1), magic(maxMagic),
 	maxAttacks(1), attacks(maxAttacks),
 	strength(1), ranged(1), defence(1),
-	exp(25), expNext(50), level(1), skillUps(0), objInvTiles(this)
+	exp(25), expNext(50), level(1), skillUps(0)
 {
 	notifyObjectsAboutMouse(true);
 
 	gen = new FloorManager();
+
+	objTilesSolid = new SolidTileManager();
+	objTilesBack = new BackgroundTileManager();
+	objInvTiles = new InventoryTileManager(this);
 
 	currentState = nullptr;
 
@@ -40,11 +44,9 @@ GameEngine::~GameEngine()
 	delete stateRunning;
 
 	//Free everything in Floor
-	/*
-	for (const std::vector<Room*>& v : *floor) {
+	for (const std::vector<Room*>& v : floor) {
 		for (Room* x : v) delete x;
 	}
-	*/
 	
 }
 

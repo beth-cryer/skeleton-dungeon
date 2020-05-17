@@ -45,12 +45,15 @@ void Room::genRoom()
 		int cols = tiles[0].size();
 		int rows = tiles.size();
 
-		backTiles.setMapSize(cols, rows);
-		solidTiles.setMapSize(cols, rows);
+		backTiles = new BackgroundTileManager();
+		solidTiles = new SolidTileManager();
+
+		backTiles->setMapSize(cols, rows);
+		solidTiles->setMapSize(cols, rows);
 		specialTiles.setMapSize(cols, rows);
 
 		//Set referenced tile manager
-		Psybc5TileManager* tileManager; if (*it == "back") tileManager = &backTiles; else tileManager = &solidTiles;
+		Psybc5TileManager* tileManager; if (*it == "back") tileManager = backTiles; else tileManager = solidTiles;
 
 		//Go through each tile and add it to the Room's corresponding tile manager
 		for (int y = 0; y < rows; y++) {
@@ -58,12 +61,15 @@ void Room::genRoom()
 				//Get type of tile by the first character, and set the ID according to the second character
 				switch (tiles[y][x][0]) {
 				case('_'): tileManager->setMapValue(x, y, 0); break; //blank tile is same for solid and back, so set it on the right tileManager
-				case('f'): backTiles.setMapValue(x, y, getTileID(&floorIDs, tiles[y][x][1] - '0')); break; // (- 0 converts char to int)
-				case('w'): solidTiles.setMapValue(x, y, getTileID(&wallIDs, tiles[y][x][1] - '0')); break;
-				case('s'): setSpecialTiles(x, y, tiles[y][x][1]); break; //Special tiles
+				case('f'): backTiles->setMapValue(x, y, getTileID(&floorIDs, tiles[y][x][1] - '0')); break; // (- 0 converts char to int)
+				case('w'): solidTiles->setMapValue(x, y, getTileID(&wallIDs, tiles[y][x][1] - '0')); break;
+				case('s'): setSpecialTiles(x, y, tiles[y][x][1] - '0'); break; //Special tiles
 				}
 			}
 		}
+
+		solidTiles->setTopLeftPositionOnScreen(0, 0);
+		backTiles->setTopLeftPositionOnScreen(0, 0);
 
 	}
 	//JOB DONE
@@ -74,22 +80,27 @@ void Room::setSpecialTiles(int x, int y, int id)
 	switch (id)
 	{
 	case(1): //ENEMY
-		objects.push_back(new EnemyZombie(pEngine, x, y));
+		objects.push_back(new EnemyZombie(pEngine, this, x * TILE_SIZE, y * TILE_SIZE));
 		break;
 
 	case(2):
-
+		xEnter = x * TILE_SIZE;
+		yEnter = y * TILE_SIZE;
 		break; //ENTRANCE
 
 	case(3):
-		objects.push_back(new ExitObject(pEngine, x, y));
+		//objects.push_back(new ExitObject(pEngine, x, y));
+		xExit = x * TILE_SIZE;
+		yExit = y * TILE_SIZE;
 		break; //EXIT
 
 	//DOORS
+	/*
 	case(4): objects.push_back(new DoorObject(pEngine, this, 0, 30, x, y)); break; //RIGHT
 	case(5): objects.push_back(new DoorObject(pEngine, this, 1, 30, x, y)); break; //DOWN
 	case(6): objects.push_back(new DoorObject(pEngine, this, 2, 30, x, y)); break; //UP
 	case(7): objects.push_back(new DoorObject(pEngine, this, 3, 30, x, y)); break; //LEFT
+	*/
 
 	case(8): break; //TREASURE
 	}
@@ -104,6 +115,7 @@ int Room::getTileID(std::vector<int>* list, int n)
 	return list->at(n);
 }
 
+//Fetches a 2d vector containing all of the tile values inside the given tag
 std::vector<std::vector<std::string>> Room::getTileData(SaveManager* save, std::string text, std::string tag)
 {
 	//Get list of tiles inside tag
@@ -133,19 +145,23 @@ std::vector<std::vector<std::string>> Room::getTileData(SaveManager* save, std::
 }
 
 void Room::onEnter() {
+	std::cout << "Entering Room";
+
 	//First, overwrite GameEngine tile managers with this room's managers
-	//pEngine->GetTilesBack() = &backTiles;
-	//pEngine->GetTilesSolid() = &solidTiles;
+	pEngine->SetTilesBack(backTiles);
+	pEngine->SetTilesSolid(solidTiles);
 
-
-	//Create and fill object array in GameEngine
+	//Update object array in GameEngine
 	pEngine->drawableObjectsChanged();
 
 	//Destroy any existing objects
 	pEngine->destroyOldObjects(true);
 
-	pEngine->player = new PlayerObject(pEngine, std::shared_ptr<Weapon>(nullptr));
 	pEngine->createObjectArray(100);
+
+	//Add player to the room in starting position
+	pEngine->player = new PlayerObject(pEngine, std::shared_ptr<Weapon>(new WoodSword(pEngine)));
+	pEngine->player->setPosition(xEnter,yEnter);
 	pEngine->appendObjectToArray(pEngine->player);
 
 	//Add all objects to the room

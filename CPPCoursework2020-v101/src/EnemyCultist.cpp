@@ -1,8 +1,8 @@
 #include "header.h"
 #include "EnemyCultist.h"
 
-EnemyCultist::EnemyCultist(BaseEngine* pEngine, int xStart, int yStart)
-	: EnemyObject(xStart, yStart, pEngine, TILE_SIZE, TILE_SIZE, true,
+EnemyCultist::EnemyCultist(BaseEngine* pEngine, Room* room, int xStart, int yStart)
+	: EnemyObject(xStart, yStart, pEngine, room, TILE_SIZE, TILE_SIZE, true,
 		std::shared_ptr<Weapon>(new Bow((GameEngine*)pEngine)), "Cultist", "A mage that wields occult magicks", 12, 3, 1, 3, 25, 1)
 {
 	imgSprites = ImageManager::loadImage("sprites/chars/cultist.png", true);
