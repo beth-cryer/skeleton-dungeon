@@ -1,6 +1,6 @@
  CourseworkBase2020
 
- Timestamp is 5ec29bc4 (Mon May 18 15:29:24 2020)
+ Timestamp is 5ec2a93a (Mon May 18 16:26:50 2020)
 
  Preferred load address is 00400000
 
@@ -2799,26 +2799,26 @@
  0001:00054920       ?getState@GameEngine@@QAEPAVBaseState@@XZ 00455920 f   GameEngine.obj
  0001:00054940       ?virtInitialise@GameEngine@@UAEHXZ 00455940 f   GameEngine.obj
  0001:000549a0       ?virtCleanUp@GameEngine@@UAEXXZ 004559a0 f   GameEngine.obj
- 0001:00054a50       ?virtSetupBackgroundBuffer@GameEngine@@UAEXXZ 00455a50 f   GameEngine.obj
- 0001:00054a80       ?virtDrawStringsOnTop@GameEngine@@UAEXXZ 00455a80 f   GameEngine.obj
- 0001:00054ab0       ?virtDrawStringsUnderneath@GameEngine@@UAEXXZ 00455ab0 f   GameEngine.obj
- 0001:00054ae0       ?virtInitialiseObjects@GameEngine@@UAEHXZ 00455ae0 f   GameEngine.obj
- 0001:00054b00       ?virtMouseDown@GameEngine@@UAEXHHH@Z 00455b00 f   GameEngine.obj
- 0001:00054b40       ?virtMouseWheel@GameEngine@@UAEXHHHH@Z 00455b40 f   GameEngine.obj
- 0001:00054b80       ?virtKeyDown@GameEngine@@UAEXH@Z 00455b80 f   GameEngine.obj
- 0001:00054bb0       ?virtMainLoopPreUpdate@GameEngine@@UAEXXZ 00455bb0 f   GameEngine.obj
- 0001:00054be0       ?virtMainLoopPostUpdate@GameEngine@@UAEXXZ 00455be0 f   GameEngine.obj
- 0001:00054c10       ?virtMainLoopDoBeforeUpdate@GameEngine@@UAEXXZ 00455c10 f   GameEngine.obj
- 0001:00054c40       ?virtMainLoopDoAfterUpdate@GameEngine@@UAEXXZ 00455c40 f   GameEngine.obj
- 0001:00054c70       ?moveCamera@GameEngine@@QAEXHH@Z 00455c70 f   GameEngine.obj
- 0001:00054cc0       ?drawBar@GameEngine@@QAEXHHHHV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@HHHH@Z 00455cc0 f   GameEngine.obj
- 0001:00054da0       ?orderCharsByHeight@GameEngine@@QAEXXZ 00455da0 f   GameEngine.obj
- 0001:00054e50       ?saveGame@GameEngine@@QAEXXZ 00455e50 f   GameEngine.obj
- 0001:000550c0       ?loadGame@GameEngine@@QAEXXZ 004560c0 f   GameEngine.obj
- 0001:000557e0       ?nextLevel@GameEngine@@QAEXXZ 004567e0 f   GameEngine.obj
- 0001:00055810       ?clearObjects@GameEngine@@QAEXXZ 00456810 f   GameEngine.obj
- 0001:00055920       ?createObjects@GameEngine@@QAEXXZ 00456920 f   GameEngine.obj
- 0001:000559a0       ?resetStats@GameEngine@@QAEXXZ 004569a0 f   GameEngine.obj
+ 0001:00054a80       ?virtSetupBackgroundBuffer@GameEngine@@UAEXXZ 00455a80 f   GameEngine.obj
+ 0001:00054ab0       ?virtDrawStringsOnTop@GameEngine@@UAEXXZ 00455ab0 f   GameEngine.obj
+ 0001:00054ae0       ?virtDrawStringsUnderneath@GameEngine@@UAEXXZ 00455ae0 f   GameEngine.obj
+ 0001:00054b10       ?virtInitialiseObjects@GameEngine@@UAEHXZ 00455b10 f   GameEngine.obj
+ 0001:00054b30       ?virtMouseDown@GameEngine@@UAEXHHH@Z 00455b30 f   GameEngine.obj
+ 0001:00054b70       ?virtMouseWheel@GameEngine@@UAEXHHHH@Z 00455b70 f   GameEngine.obj
+ 0001:00054bb0       ?virtKeyDown@GameEngine@@UAEXH@Z 00455bb0 f   GameEngine.obj
+ 0001:00054be0       ?virtMainLoopPreUpdate@GameEngine@@UAEXXZ 00455be0 f   GameEngine.obj
+ 0001:00054c10       ?virtMainLoopPostUpdate@GameEngine@@UAEXXZ 00455c10 f   GameEngine.obj
+ 0001:00054c40       ?virtMainLoopDoBeforeUpdate@GameEngine@@UAEXXZ 00455c40 f   GameEngine.obj
+ 0001:00054c70       ?virtMainLoopDoAfterUpdate@GameEngine@@UAEXXZ 00455c70 f   GameEngine.obj
+ 0001:00054ca0       ?moveCamera@GameEngine@@QAEXHH@Z 00455ca0 f   GameEngine.obj
+ 0001:00054cf0       ?drawBar@GameEngine@@QAEXHHHHV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@HHHH@Z 00455cf0 f   GameEngine.obj
+ 0001:00054dd0       ?orderCharsByHeight@GameEngine@@QAEXXZ 00455dd0 f   GameEngine.obj
+ 0001:00054e80       ?saveGame@GameEngine@@QAEXXZ 00455e80 f   GameEngine.obj
+ 0001:000550f0       ?loadGame@GameEngine@@QAEXXZ 004560f0 f   GameEngine.obj
+ 0001:00055810       ?nextLevel@GameEngine@@QAEXXZ 00456810 f   GameEngine.obj
+ 0001:00055840       ?clearObjects@GameEngine@@QAEXXZ 00456840 f   GameEngine.obj
+ 0001:00055950       ?createObjects@GameEngine@@QAEXXZ 00456950 f   GameEngine.obj
+ 0001:000559d0       ?resetStats@GameEngine@@QAEXXZ 004569d0 f   GameEngine.obj
  0001:00055fe0       ??$?0$$V@?$_Compressed_pair@V?$allocator@V?$shared_ptr@VItem@@@std@@@std@@V?$_Vector_val@U?$_Simple_types@V?$shared_ptr@VItem@@@std@@@std@@@2@$00@std@@QAE@U_Zero_then_variadic_args_t@1@@Z 00456fe0 f i GameEngine.obj
  0001:00056010       ??$?0V?$shared_ptr@VItem@@@std@@@?$allocator@U_Container_proxy@std@@@std@@QAE@ABV?$allocator@V?$shared_ptr@VItem@@@std@@@1@@Z 00457010 f i GameEngine.obj
  0001:00056120       ??$?0VItem@@$0A@@?$shared_ptr@VItem@@@std@@QAE@PAVItem@@@Z 00457120 f i GameEngine.obj
@@ -2929,20 +2929,20 @@
  0001:00059210       ?virtMouseWheel@StateMenu@@UAEXHHHH@Z 0045a210 f   StateMenu.obj
  0001:00059220       ?virtKeyDown@StateMenu@@UAEXH@Z 0045a220 f   StateMenu.obj
  0001:00059260       ?virtMainLoopDoBeforeUpdate@StateMenu@@UAEXXZ 0045a260 f   StateMenu.obj
- 0001:000592c0       ??0StateCharCreate@@QAE@PAVGameEngine@@@Z 0045a2c0 f   StateMenu.obj
- 0001:000599a0       ??1StateCharCreate@@QAE@XZ 0045a9a0 f   StateMenu.obj
- 0001:000599d0       ?virtSetupBackgroundBuffer@StateCharCreate@@UAEXXZ 0045a9d0 f   StateMenu.obj
- 0001:000599f0       ?onStateEnter@StateCharCreate@@UAEXXZ 0045a9f0 f   StateMenu.obj
- 0001:00059a20       ?onStateExit@StateCharCreate@@UAEXXZ 0045aa20 f   StateMenu.obj
- 0001:00059a30       ?virtDrawStringsOnTop@StateCharCreate@@UAEXXZ 0045aa30 f   StateMenu.obj
- 0001:00059e80       ?virtMouseDown@StateCharCreate@@UAEXHHH@Z 0045ae80 f   StateMenu.obj
- 0001:00059eb0       ?virtKeyDown@StateCharCreate@@UAEXH@Z 0045aeb0 f   StateMenu.obj
- 0001:00059f90       ?virtMainLoopDoBeforeUpdate@StateCharCreate@@UAEXXZ 0045af90 f   StateMenu.obj
- 0001:00059fc0       ??0StateInfo@@QAE@PAVGameEngine@@@Z 0045afc0 f   StateMenu.obj
- 0001:0005a040       ?onStateEnter@StateInfo@@UAEXXZ 0045b040 f   StateMenu.obj
- 0001:0005a050       ?virtSetupBackgroundBuffer@StateInfo@@UAEXXZ 0045b050 f   StateMenu.obj
- 0001:0005a0a0       ?virtDrawStringsOnTop@StateInfo@@UAEXXZ 0045b0a0 f   StateMenu.obj
- 0001:0005a140       ?virtKeyDown@StateInfo@@UAEXH@Z 0045b140 f   StateMenu.obj
+ 0001:00059290       ??0StateCharCreate@@QAE@PAVGameEngine@@@Z 0045a290 f   StateMenu.obj
+ 0001:00059970       ??1StateCharCreate@@QAE@XZ 0045a970 f   StateMenu.obj
+ 0001:000599a0       ?virtSetupBackgroundBuffer@StateCharCreate@@UAEXXZ 0045a9a0 f   StateMenu.obj
+ 0001:000599c0       ?onStateEnter@StateCharCreate@@UAEXXZ 0045a9c0 f   StateMenu.obj
+ 0001:000599f0       ?onStateExit@StateCharCreate@@UAEXXZ 0045a9f0 f   StateMenu.obj
+ 0001:00059a00       ?virtDrawStringsOnTop@StateCharCreate@@UAEXXZ 0045aa00 f   StateMenu.obj
+ 0001:00059e50       ?virtMouseDown@StateCharCreate@@UAEXHHH@Z 0045ae50 f   StateMenu.obj
+ 0001:00059e80       ?virtKeyDown@StateCharCreate@@UAEXH@Z 0045ae80 f   StateMenu.obj
+ 0001:00059f60       ?virtMainLoopDoBeforeUpdate@StateCharCreate@@UAEXXZ 0045af60 f   StateMenu.obj
+ 0001:00059f90       ??0StateInfo@@QAE@PAVGameEngine@@@Z 0045af90 f   StateMenu.obj
+ 0001:0005a010       ?onStateEnter@StateInfo@@UAEXXZ 0045b010 f   StateMenu.obj
+ 0001:0005a020       ?virtSetupBackgroundBuffer@StateInfo@@UAEXXZ 0045b020 f   StateMenu.obj
+ 0001:0005a070       ?virtDrawStringsOnTop@StateInfo@@UAEXXZ 0045b070 f   StateMenu.obj
+ 0001:0005a220       ?virtKeyDown@StateInfo@@UAEXH@Z 0045b220 f   StateMenu.obj
  0001:0005a750       ??$?0AAPAVButton@@@?$_Compressed_pair@U?$default_delete@VButton@@@std@@PAVButton@@$00@std@@QAE@U_Zero_then_variadic_args_t@1@AAPAVButton@@@Z 0045b750 f i StateMenu.obj
  0001:0005a780       ??$?0U?$default_delete@VButton@@@std@@$0A@@?$unique_ptr@VButton@@U?$default_delete@VButton@@@std@@@std@@QAE@PAVButton@@@Z 0045b780 f i StateMenu.obj
  0001:0005a7b0       ??$?0U?$default_delete@VButton@@@std@@PAVButton@@@?$_Compressed_pair@U?$default_delete@VButton@@@std@@PAVButton@@$00@std@@QAE@U_One_then_variadic_args_t@1@$$QAU?$default_delete@VButton@@@1@$$QAPAVButton@@@Z 0045b7b0 f i StateMenu.obj
@@ -10505,24 +10505,24 @@
  0002:00015504       $SG108451                  0048a504     StateEditor.obj
  0002:0001553c       $SG93059                   0048a53c     StateEditor.obj
  0002:00015550       $SG93091                   0048a550     StateEditor.obj
- 0002:00015698       $SG108759                  0048a698     StateMenu.obj
- 0002:000156ac       $SG108760                  0048a6ac     StateMenu.obj
- 0002:000156b0       $SG108761                  0048a6b0     StateMenu.obj
- 0002:00015718       $SG108762                  0048a718     StateMenu.obj
- 0002:000157e8       $SG108763                  0048a7e8     StateMenu.obj
- 0002:00015838       $SG108764                  0048a838     StateMenu.obj
- 0002:00015860       $SG109223                  0048a860     StateMenu.obj
+ 0002:00015698       $SG108766                  0048a698     StateMenu.obj
+ 0002:000156ac       $SG108767                  0048a6ac     StateMenu.obj
+ 0002:000156b0       $SG108768                  0048a6b0     StateMenu.obj
+ 0002:00015718       $SG108769                  0048a718     StateMenu.obj
+ 0002:000157e8       $SG108770                  0048a7e8     StateMenu.obj
+ 0002:00015838       $SG108771                  0048a838     StateMenu.obj
+ 0002:00015860       $SG109230                  0048a860     StateMenu.obj
  0002:000158c8       $SG93082                   0048a8c8     StateMenu.obj
  0002:000158dc       $SG93083                   0048a8dc     StateMenu.obj
  0002:000158f4       $SG93084                   0048a8f4     StateMenu.obj
  0002:00015908       $SG93085                   0048a908     StateMenu.obj
- 0002:0001591c       $SG109485                  0048a91c     StateMenu.obj
- 0002:00015938       $SG109486                  0048a938     StateMenu.obj
- 0002:0001593c       $SG109489                  0048a93c     StateMenu.obj
- 0002:00015968       $SG109487                  0048a968     StateMenu.obj
- 0002:000159d4       $SG109490                  0048a9d4     StateMenu.obj
+ 0002:0001591c       $SG109492                  0048a91c     StateMenu.obj
+ 0002:00015938       $SG109493                  0048a938     StateMenu.obj
+ 0002:0001593c       $SG109496                  0048a93c     StateMenu.obj
+ 0002:00015968       $SG109494                  0048a968     StateMenu.obj
+ 0002:000159d4       $SG109497                  0048a9d4     StateMenu.obj
  0002:00015a0c       $SG93391                   0048aa0c     StateMenu.obj
- 0002:00015a18       $SG109488                  0048aa18     StateMenu.obj
+ 0002:00015a18       $SG109495                  0048aa18     StateMenu.obj
  0002:00015aec       $SG93393                   0048aaec     StateMenu.obj
  0002:00015af8       $SG93395                   0048aaf8     StateMenu.obj
  0002:00015b00       $SG93397                   0048ab00     StateMenu.obj
@@ -10531,27 +10531,34 @@
  0002:00015b34       $SG93408                   0048ab34     StateMenu.obj
  0002:00015b50       $SG93440                   0048ab50     StateMenu.obj
  0002:00015b64       $SG93450                   0048ab64     StateMenu.obj
- 0002:00015b6c       $SG93628                   0048ab6c     StateMenu.obj
- 0002:00015b74       $SG93630                   0048ab74     StateMenu.obj
- 0002:00015b78       $SG93451                   0048ab78     StateMenu.obj
- 0002:00015bc4       $SG93632                   0048abc4     StateMenu.obj
- 0002:00015bc8       $SG93452                   0048abc8     StateMenu.obj
- 0002:00015c4c       $SG93634                   0048ac4c     StateMenu.obj
- 0002:00015c50       $SG93453                   0048ac50     StateMenu.obj
- 0002:00015cdc       $SG93636                   0048acdc     StateMenu.obj
- 0002:00015ce0       $SG93638                   0048ace0     StateMenu.obj
- 0002:00015ce4       $SG93640                   0048ace4     StateMenu.obj
- 0002:00015ce8       $SG93642                   0048ace8     StateMenu.obj
- 0002:00015cec       $SG93644                   0048acec     StateMenu.obj
- 0002:00015cf0       $SG93651                   0048acf0     StateMenu.obj
- 0002:00015cfc       $SG93677                   0048acfc     StateMenu.obj
- 0002:00015d10       $SG93678                   0048ad10     StateMenu.obj
- 0002:00015d18       $SG93681                   0048ad18     StateMenu.obj
- 0002:00015d1c       $SG93682                   0048ad1c     StateMenu.obj
- 0002:00015d24       $SG93683                   0048ad24     StateMenu.obj
- 0002:00015d2c       $SG93684                   0048ad2c     StateMenu.obj
- 0002:00015d34       $SG93685                   0048ad34     StateMenu.obj
- 0002:00015d3c       $SG93686                   0048ad3c     StateMenu.obj
+ 0002:00015b6c       $SG93454                   0048ab6c     StateMenu.obj
+ 0002:00015b80       $SG93451                   0048ab80     StateMenu.obj
+ 0002:00015bcc       $SG93455                   0048abcc     StateMenu.obj
+ 0002:00015be0       $SG93452                   0048abe0     StateMenu.obj
+ 0002:00015c44       $SG93456                   0048ac44     StateMenu.obj
+ 0002:00015c60       $SG93453                   0048ac60     StateMenu.obj
+ 0002:00015cc8       $SG93457                   0048acc8     StateMenu.obj
+ 0002:00015cf0       $SG93458                   0048acf0     StateMenu.obj
+ 0002:00015d04       $SG93459                   0048ad04     StateMenu.obj
+ 0002:00015d20       $SG93460                   0048ad20     StateMenu.obj
+ 0002:00015d38       $SG93635                   0048ad38     StateMenu.obj
+ 0002:00015d40       $SG93637                   0048ad40     StateMenu.obj
+ 0002:00015d44       $SG93639                   0048ad44     StateMenu.obj
+ 0002:00015d48       $SG93641                   0048ad48     StateMenu.obj
+ 0002:00015d4c       $SG93643                   0048ad4c     StateMenu.obj
+ 0002:00015d50       $SG93645                   0048ad50     StateMenu.obj
+ 0002:00015d54       $SG93647                   0048ad54     StateMenu.obj
+ 0002:00015d58       $SG93649                   0048ad58     StateMenu.obj
+ 0002:00015d5c       $SG93651                   0048ad5c     StateMenu.obj
+ 0002:00015d60       $SG93658                   0048ad60     StateMenu.obj
+ 0002:00015d6c       $SG93684                   0048ad6c     StateMenu.obj
+ 0002:00015d80       $SG93685                   0048ad80     StateMenu.obj
+ 0002:00015d88       $SG93688                   0048ad88     StateMenu.obj
+ 0002:00015d8c       $SG93689                   0048ad8c     StateMenu.obj
+ 0002:00015d94       $SG93690                   0048ad94     StateMenu.obj
+ 0002:00015d9c       $SG93691                   0048ad9c     StateMenu.obj
+ 0002:00015da4       $SG93692                   0048ada4     StateMenu.obj
+ 0002:00015dac       $SG93693                   0048adac     StateMenu.obj
  0002:00016120       $SG112994                  0048b120     StateRunning.obj
  0002:00016134       $SG112995                  0048b134     StateRunning.obj
  0002:00016138       $SG112996                  0048b138     StateRunning.obj

@@ -74,7 +74,8 @@ int GameEngine::virtInitialise()
 void GameEngine::virtCleanUp()
 {
 	//If the player hits X while ingame, clear objects. If we're in the menu then the objects have already been cleared
-	if (currentState != stateMenu) clearObjects();
+	if (currentState != stateMenu && currentState != stateMenu->stateCharCreate && currentState != stateMenu->stateInfo)
+		clearObjects();
 
 	audio.closeAudio();
 

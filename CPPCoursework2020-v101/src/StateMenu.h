@@ -24,7 +24,6 @@ public:
 	virtual void virtKeyDown(int iKeyCode) override;
 	virtual void virtMainLoopDoBeforeUpdate() override;
 
-private:
 	StateInfo* stateInfo = nullptr;
 	StateCharCreate* stateCharCreate = nullptr;
 	StateEditor* stateEditor = nullptr;

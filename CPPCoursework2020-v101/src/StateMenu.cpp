@@ -91,7 +91,7 @@ void StateMenu::virtKeyDown(int iKeyCode)
 
 void StateMenu::virtMainLoopDoBeforeUpdate()
 {
-	scrollMap.setXShift(pEngine->getModifiedTime() / 10);
+	//scrollMap.setXShift(pEngine->getModifiedTime() / 10);
 
 	pEngine->lockAndSetupBackground();
 	pEngine->redrawDisplay();
@@ -117,9 +117,17 @@ void StateInfo::virtSetupBackgroundBuffer()
 void StateInfo::virtDrawStringsOnTop()
 {
 	pEngine->drawForegroundString(300, 100, "Info", 0xffffff, fntTitle);
-	pEngine->drawForegroundString(50, 200, "You are an skeletal undead, born in the upper levels of the Great Dungeon.", 0xffffff, fntInfo);
-	pEngine->drawForegroundString(50, 230, "Recently however, the denizens of the dungeon have been suffering from a terrible spell that pilots their flesh like a puppeteer.", 0xffffff, fntInfo);
-	pEngine->drawForegroundString(50, 260, "Your bones are immune to the spell, and so it falls onto you to venture deep into the dungeon and discover the source of the affliction...", 0xffffff, fntInfo);
+	pEngine->drawForegroundString(40, 170, "You are an skeletal undead, born in the upper levels of the Great Dungeon.", 0xffffff, fntInfo);
+	pEngine->drawForegroundString(40, 200, "Recently, other monsters have been suffering from a curse that pilots their flesh like a puppeteer.", 0xffffff, fntInfo);
+	pEngine->drawForegroundString(40, 230, "Your bones are immune to the spell, so it falls onto you to discover the source of the affliction...", 0xffffff, fntInfo);
+
+	pEngine->drawForegroundString(200, 300, "ARROW KEYS = Move", 0xffffff, fntButtons);
+	pEngine->drawForegroundString(200, 340, "SPACE = Next Turn", 0xffffff, fntButtons);
+	pEngine->drawForegroundString(200, 380, "LEFT CLICK = Move to Tile", 0xffffff, fntButtons);
+	pEngine->drawForegroundString(200, 420, "RIGHT CLICK = Interact/Attack object", 0xffffff, fntButtons);
+	pEngine->drawForegroundString(200, 460, "WASD = Move Camera", 0xffffff, fntButtons);
+	pEngine->drawForegroundString(200, 500, "SCROLL WHEEL = Zoom In/Out", 0xffffff, fntButtons);
+	pEngine->drawForegroundString(200, 540, "ESCAPE = Back/Quit Game", 0xffffff, fntButtons);
 }
 
 void StateInfo::virtKeyDown(int iKeyCode)
