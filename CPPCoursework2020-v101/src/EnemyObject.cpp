@@ -65,8 +65,7 @@ void EnemyObject::virtDoUpdate(int iCurrentTime)
 
 void EnemyObject::turnStart()
 {
-	//Enemy Turn Sound
-	//pEngine->GetAudio()->playAudio("sfx/monsters/Growl.ogg", -1, 0);
+	if (aggroed = false) pEngine->GetAudio()->playAudio(attackSound, -1, 0);
 
 	aggroed = true;
 
@@ -90,29 +89,18 @@ void EnemyObject::AI()
 	//If within range of weapon with attack(s) left, attack
 	PlayerObject* player = pEngine->GetPlayer();
 
-	//Need to make sure x1 < x2:
-	/*
-	int x1, x2;
-	if (m_iCurrentScreenX < player->getXPos()) {
-		x1 = m_iCurrentScreenX;
-		x2 = player->getXPos();
-	}
-	else {
-		x1 = player->getXPos();
-		x2 = m_iCurrentScreenX;
-	}*/
+	//Using line of sight algorithm
+	bool in_range = false;
+	if (lineOfSight(player->getXPos(), player->getYPos(), m_iCurrentScreenX, m_iCurrentScreenY, wep->range)) in_range = true;
 
-	//if (attacks > 0 && lineOfSight(x1, m_iCurrentScreenY, x2, player->getYPos(), wep->range)) {
-
-	//Using Manhattan distance since the bresenham algorithm is broke and i cant be bothered fixing it
-	if (attacks > 0 && std::abs(m_iCurrentScreenX - player->getXPos()) + std::abs(m_iCurrentScreenY - player->getYPos()) < (wep->range)*TILE_SIZE ) {
-
+	if (attacks > 0 && in_range) {
 		anim_frame = 0;
 
 		//face player
 		if (player->getXPos() > m_iCurrentScreenX) flipX = false; else if(player->getXPos() < m_iCurrentScreenX) flipX = true;
 
 		if (attackSound) pEngine->GetAudio()->playAudio(attackSound, -1, 0);
+		attack();
 
 		std::cout << "Enemy " << name << " attacks!\n";
 		
@@ -123,23 +111,26 @@ void EnemyObject::AI()
 	//Otherwise, if stamina left then move towards player (unless already next to them)
 	else if (stamina > 0 && path.size() > 1 ) {
 
-		//Initiate movement
-		std::shared_ptr<Node> nextMove = path.front();
-		path.pop_front();
+		//If in range, don't bother moving any closer. just end its turn
+		if (!in_range) {
 
-		//Print current move
-		std::cout << "Enemy " << name << " moves towards you!\n";
-		//std::cout << '(' << nextMove->x << ',' << nextMove->y << ')' << std::endl;
+			//Initiate movement
+			std::shared_ptr<Node> nextMove = path.front();
+			path.pop_front();
 
-		move((nextMove->x) - m_iCurrentScreenX, (nextMove->y) - m_iCurrentScreenY, getEngine()->getModifiedTime(), 400);
+			//Print current move
+			std::cout << "Enemy " << name << " moves towards you!\n";
+			//std::cout << '(' << nextMove->x << ',' << nextMove->y << ')' << std::endl;
 
-		return;
+			move((nextMove->x) - m_iCurrentScreenX, (nextMove->y) - m_iCurrentScreenY, getEngine()->getModifiedTime(), 400);
+
+			return;
+		}
 	}
 
 	//Enemies will try and stay at their max attack range
 	//Enemy will attack instead of moving if possible
-	//If enemy runs out of attacks while inside their range, they just end their turn instead of moving closer
-
+	//If enemy runs out of attacks while inside their range, they should just end their turn instead of moving closer
 
 	//Turn is over if not moving or attacking
 
@@ -157,8 +148,47 @@ void EnemyObject::AI()
 
 }
 
+void EnemyObject::damage(int amount)
+{
+	health -= amount;
+	std::cout << "Enemy " << name << " took " << amount << " damage, has " << health << " health left.\n";
 
-std::list<std::shared_ptr<Node>> EnemyObject::calcPath (int goalX, int goalY)
+	//DEAD
+	if (health <= 0) {
+		std::cout << "Enemy " << name << " was killed.\n";
+		room->objects.remove(this); //Remove from Room container so it doesn't respawn on re-entering the room
+		getEngine()->removeDisplayableObject(this); //Then remove from the engine object array
+		delete this;
+	}
+}
+
+//Override this where necessary
+void EnemyObject::attack()
+{
+	std::cout << "Enemy " << name << " hits you!\n";
+	pEngine->health -= wep->damage;
+}
+
+void EnemyObject::move(int xmove, int ymove, int currentTime, int time)
+{
+	stamina--;
+
+	//set flipX accordingly (only change if we switch directions)
+	if (xmove > 0) flipX = false; else if (xmove < 0) flipX = true;
+
+	if (moveSound) pEngine->GetAudio()->playAudio(moveSound, -1, 0);
+
+	CharObject::move(xmove, ymove, currentTime, time);
+}
+
+void EnemyObject::onProjectileHit(CharObject* target)
+{
+	attack();
+}
+
+//A* pathfinding algorithm
+//Can cause little lag-spikes, but i tried to limit it by just telling them to work with what they've got after a certain number of loops
+std::list<std::shared_ptr<Node>> EnemyObject::calcPath(int goalX, int goalY)
 {
 #define MAX_ITERATIONS 500
 
@@ -263,22 +293,22 @@ std::list<std::shared_ptr<Node>> EnemyObject::calcPath (int goalX, int goalY)
 			for (auto it = open_list.begin(); it != open_list.end(); it++) {
 				if ((*it) == child && (*it)->f < f) skip = true;
 			}
-			
+
 			//if node with same <x,y> as successor exists in closed_list with a lower f than successor, then skip
 			for (auto it = closed_list.begin(); it != closed_list.end(); it++) {
 				if ((*it) == child && (*it)->f < f) skip = true;
 			}
-			
+
 			//else add to open_list
 			if (skip) continue;
-			else open_list.push_back(child);			
+			else open_list.push_back(child);
 
 		}
 
 		its++;
 
 		//Will break out of an infinite loop at some point, then return the best path it has
-	
+
 	}
 
 }
@@ -287,42 +317,4 @@ std::list<std::shared_ptr<Node>> EnemyObject::calcPath (int goalX, int goalY)
 int EnemyObject::calcHeuristic(Node n, int goalX, int goalY)
 {
 	return std::abs(n.x - goalX) + std::abs(n.y - goalY);
-}
-
-void EnemyObject::damage(int amount)
-{
-	health -= amount;
-	std::cout << "Enemy " << name << " took " << amount << " damage, has " << health << " health left.\n";
-
-	//DEAD
-	if (health <= 0) {
-		std::cout << "Enemy " << name << " was killed.\n";
-		room->objects.remove(this); //Remove from Room container so it doesn't respawn on re-entering the room
-		getEngine()->removeDisplayableObject(this); //Then remove from the engine object array
-		delete this;
-	}
-}
-
-//Override this where necessary
-void EnemyObject::attack()
-{
-	std::cout << "Enemy " << name << " hits you!\n";
-	pEngine->health -= wep->damage;
-}
-
-void EnemyObject::move(int xmove, int ymove, int currentTime, int time)
-{
-	stamina--;
-
-	//set flipX accordingly (only change if we switch directions)
-	if (xmove > 0) flipX = false; else if (xmove < 0) flipX = true;
-
-	if (moveSound) pEngine->GetAudio()->playAudio(moveSound, -1, 0);
-
-	CharObject::move(xmove, ymove, currentTime, time);
-}
-
-void EnemyObject::onProjectileHit(CharObject* target)
-{
-	attack();
 }

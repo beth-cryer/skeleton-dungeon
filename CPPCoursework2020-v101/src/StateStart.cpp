@@ -65,7 +65,7 @@ void StateStart::virtSetupBackgroundBuffer()
 	}
 
 	//do it again for the exit room (must be different from start)
-	while (endRoom == nullptr && endRoom != startRoom) {
+	while (endRoom == nullptr || endRoom == startRoom) {
 		endRoom = floor[rand() % rows][rand() % cols];
 	}
 

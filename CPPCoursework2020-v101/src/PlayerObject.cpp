@@ -43,6 +43,7 @@ void PlayerObject::virtDoUpdate(int iCurrentTime)
 	int expNext = pEngine->expNext;
 	if (exp >= expNext) {
 		//LEVEL UP!
+		pEngine->GetAudio()->playAudio("sfx/ui/LevelUp.ogg", -1, 0);
 
 		//Exp required increases by 4% every level
 		pEngine->expNext += (int)std::floor(expNext * 1.04);
@@ -113,9 +114,7 @@ void PlayerObject::virtMouseDown(int iButton, int iX, int iY)
 				EnemyObject* pEnemy = dynamic_cast<EnemyObject*> (pObj);
 				if (pEnemy && pEngine->attacks > 0) {
 					//Check line-of-sight from player to enemy
-					//if (lineOfSight(pEngine->GetPlayer()->getXPos(), pEngine->GetPlayer()->getYPos(), pEnemy->getXPos(), pEnemy->getYPos(), 0)) {
-
-					if (std::abs(m_iCurrentScreenX - pEnemy->getXPos()) + std::abs(m_iCurrentScreenY - pEnemy->getYPos()) < (wep->range) * TILE_SIZE) {
+					if (lineOfSight(pEngine->GetPlayer()->getXPos(), pEngine->GetPlayer()->getYPos(), pEnemy->getXPos(), pEnemy->getYPos(), wep->range)) {
 						//Attack if in range
 						currentState = CharState::stateAttack;
 						anim_frame = 0;

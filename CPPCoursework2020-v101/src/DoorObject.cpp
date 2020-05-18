@@ -11,7 +11,7 @@ void DoorObject::virtDraw()
 	if (!valid) return;
 
 	//Draw tileID from sprite sheet
-	tileSprites.renderImage(pEngine->getForegroundSurface(), TILE_SIZE * (33 % 11), TILE_SIZE * std::floor(33 / 10), m_iCurrentScreenX, m_iCurrentScreenY, TILE_SIZE, TILE_SIZE);
+	tileSprites.renderImage(pEngine->getForegroundSurface(), TILE_SIZE * (33 % 11), TILE_SIZE * (int)std::floor(33 / 10), m_iCurrentScreenX, m_iCurrentScreenY, TILE_SIZE, TILE_SIZE);
 
 	//pEngine->drawForegroundString(m_iCurrentScreenX, m_iCurrentScreenY, std::to_string(doorType).c_str(), 0xFFFFFF, NULL); //door direction
 }
@@ -21,6 +21,8 @@ void DoorObject::virtDoUpdate(int iCurrentTime)
 	if (moveRoom)
 	{
 		moveRoom = false;
+
+		pEngine->GetAudio()->playAudio("sfx/objects/Open2.ogg", -1, 0);
 
 		//Get next room pointer
 		auto newRoom = pRoom->rooms[doorType];

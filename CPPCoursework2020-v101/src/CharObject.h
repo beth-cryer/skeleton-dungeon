@@ -33,14 +33,14 @@ public:
 
 	enum class CharState { stateIdle, stateWalk, stateAttack, stateDeath };
 
+	//Equipped weapon
+	std::shared_ptr<Weapon> wep;
+
 protected:
 	GameEngine* pEngine;
 
 	MovementPosition objMovement;
 	CharState currentState;
-
-	//Equipped weapon
-	std::shared_ptr<Weapon> wep;
 
 };
 

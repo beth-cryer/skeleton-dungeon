@@ -35,7 +35,7 @@ class WoodSword :
 	public Weapon
 {
 public:
-	WoodSword(GameEngine* pEngine) : Weapon(pEngine, 1, "Wooden Sword", "A sword of wood.", 2, 2, WepType::phys, "sfx/combat/Slash2.ogg") {}
+	WoodSword(GameEngine* pEngine) : Weapon(pEngine, 1, "Wooden Sword", "A sword of wood.", 2, 1, WepType::phys, "sfx/combat/Slash2.ogg") {}
 
 };
 

@@ -100,7 +100,7 @@ bool CharObject::lineOfSight(int x0, int y0, int x1, int y1, const int range) {
 
 	//Check length of line, return false if greater than the range
 	//(range ignored if set to zero or less)
-	if (range == 0 || los.size() > range) {
+	if (range == 0 || los.size() > range + 1) {
 		//std::cout << "Target out of range\n";
 		return false;
 	}

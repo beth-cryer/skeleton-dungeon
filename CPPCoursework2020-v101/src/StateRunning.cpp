@@ -27,12 +27,11 @@ void StateRunning::onStateEnter()
 		stateEnemyTurn = new StateEnemyTurn(pEngine);
 	}
 
+	enemyTurn = false;
+
 	auto audio = pEngine->GetAudio();
 	auto path = "music/Exploration_1.ogg";
 	if (!audio->isSongPlaying(path)) audio->playMusic(path, -1);
-
-	pEngine->stamina = pEngine->maxStamina;
-	pEngine->attacks = pEngine->maxAttacks;
 }
 
 void StateRunning::onStateExit()
@@ -83,6 +82,9 @@ void StateRunning::virtDrawStringsOnTop()
 
 		pEngine->drawForegroundOval(100 + (i * 40), 740, 130 + (i * 40), 770, col);
 	}
+
+	//NEXT TURN prompt
+	if (pEngine->stamina == 0 && !enemyTurn) pEngine->drawForegroundString(WIN_CENTREX-128,WIN_HEIGHT-32,"Next Turn (SPACE)",0xFFFFFF,NULL);
 }
 
 void StateRunning::virtDrawStringsUnderneath()
@@ -129,6 +131,7 @@ void StateRunning::virtKeyDown(int iKeyCode)
 
 		//NEXT TURN
 	case(SDLK_SPACE):
+		enemyTurn = true;
 		pEngine->setState(stateEnemyTurn);
 		break;
 
@@ -209,6 +212,8 @@ StatePaused::StatePaused(GameEngine* pEngine) : StateRunning(pEngine)
 void StatePaused::onStateEnter()
 {
 	pEngine->pause();
+
+	pEngine->GetAudio()->playAudio("sfx/objects/Book1.ogg", -1, 0);
 }
 
 void StatePaused::onStateExit()
@@ -242,9 +247,30 @@ void StatePaused::virtDrawStringsOnTop()
 	//INVENTORY TILES
 	pEngine->GetTilesInv()->drawAllTiles(pEngine, pEngine->getForegroundSurface());
 
+	//EQUIPPED WEAPON DETAILS
+	auto e_wep = pEngine->GetPlayer()->wep;
+	if (e_wep != nullptr) {
+		pEngine->drawForegroundRectangle(WIN_CENTREX + 192, WIN_CENTREY -256, WIN_CENTREX + 432, WIN_CENTREY - 112, 0xFFFFFF);
+
+		//Details
+		pEngine->drawForegroundString(WIN_CENTREX + 198, WIN_CENTREY - 252, "[EQUIPPED WEAPON]", 0xff0000, pEngine->getFont("fonts/gameplay.ttf", 18));
+		pEngine->drawForegroundString(WIN_CENTREX + 195, WIN_CENTREY - 256 + 32, e_wep->name.c_str(), 0x000000, fntText);
+		pEngine->drawForegroundString(WIN_CENTREX + 195, WIN_CENTREY - 256 + 48, e_wep->desc.c_str(), 0x000000, pEngine->getFont("fonts/gameplay.ttf", 13));
+
+		//Icon
+		int iconVal = e_wep->iconId;
+		invSprites.renderImageWithMask(pEngine->getForegroundSurface(), TILE_SIZE * (iconVal % 21), TILE_SIZE * (int)std::floor(iconVal / 20),
+			WIN_CENTREX + 205, WIN_CENTREX + 368, TILE_SIZE, TILE_SIZE, 0xFF00FF);
+
+		//Stats
+		std::string printDamage = "Damage: " + std::to_string(e_wep->damage);
+		std::string printRange = "Range: " + std::to_string(e_wep->range);
+		pEngine->drawForegroundString(WIN_CENTREX + 195, WIN_CENTREY - 256 + 64, printDamage.c_str(), 0x000000, fntText);
+		pEngine->drawForegroundString(WIN_CENTREX + 195, WIN_CENTREY - 256 + 80, printRange.c_str(), 0x000000, fntText);
+	}
 
 	//MOUSED-OVER ITEM DETAILS
-	pEngine->drawForegroundRectangle(WIN_CENTREX + 192, WIN_CENTREY - 256, WIN_CENTREX + 384, WIN_CENTREY, 0xFFFFFF);
+	pEngine->drawForegroundRectangle(WIN_CENTREX + 192, WIN_CENTREY + 32 - (4 * 64) / 2, WIN_CENTREX + 432, WIN_CENTREY + 256 - (4 * 64) / 2, 0xFFFFFF);
 	//Get currently moused-over item
 	auto inv = pEngine->GetTilesInv();
 	if (mousedItemID != -1) {
@@ -252,23 +278,20 @@ void StatePaused::virtDrawStringsOnTop()
 
 		//item shouldn't be null, but check just in case
 		if (item != nullptr) {
-			pEngine->drawForegroundString(WIN_CENTREX + 195, WIN_CENTREY - 250, item->name.c_str(), 0x000000, fntText);
-			pEngine->drawForegroundString(WIN_CENTREX + 195, WIN_CENTREY - 250 + 32, item->desc.c_str(), 0x000000, fntText);
+			pEngine->drawForegroundString(WIN_CENTREX + 195, WIN_CENTREY + 32 - (4 * 64) / 2, item->name.c_str(), 0x000000, fntText);
+			pEngine->drawForegroundString(WIN_CENTREX + 195, WIN_CENTREY + 32 - (4 * 64) / 2 + 32, item->desc.c_str(), 0x000000, pEngine->getFont("fonts/gameplay.ttf", 13));
 
 			//Weapon stats
 			Weapon* wep = dynamic_cast<Weapon*> (item.get());
 			if(wep) {
 				std::string printDamage = "Damage: " + std::to_string(wep->damage);
 				std::string printRange = "Range: " + std::to_string(wep->range);
-				pEngine->drawForegroundString(WIN_CENTREX + 195, WIN_CENTREY - 250 + 64, printDamage.c_str(), 0x000000, fntText);
-				pEngine->drawForegroundString(WIN_CENTREX + 195, WIN_CENTREY - 250 + 80, printRange.c_str(), 0x000000, fntText);
+				pEngine->drawForegroundString(WIN_CENTREX + 195, WIN_CENTREY + 32 - (4 * 64) / 2 + 64, printDamage.c_str(), 0x000000, fntText);
+				pEngine->drawForegroundString(WIN_CENTREX + 195, WIN_CENTREY + 32 - (4 * 64) / 2 + 80, printRange.c_str(), 0x000000, fntText);
 			}
 
 		}
 	}
-
-	//EQUIPPED WEAPON DETAILS
-
 
 	//MAP
 	std::vector<std::vector<Room*>> map = pEngine->floor;
@@ -315,7 +338,7 @@ void StatePaused::virtDrawStringsOnTop()
 			int mouseX = pEngine->getCurrentMouseX();
 			int mouseY = pEngine->getCurrentMouseY();
 			int iconID = item->iconId;
-			invSprites.renderImageWithMask(pEngine->getForegroundSurface(), TILE_SIZE * (iconID % 21), TILE_SIZE * std::floor(iconID / 20), mouseX - TILE_SIZE/2, mouseY - TILE_SIZE/2, TILE_SIZE, TILE_SIZE, 0xFF00FF);
+			invSprites.renderImageWithMask(pEngine->getForegroundSurface(), TILE_SIZE * (iconID % 21), TILE_SIZE * (int)std::floor(iconID / 20), mouseX - TILE_SIZE/2, mouseY - TILE_SIZE/2, TILE_SIZE, TILE_SIZE, 0xFF00FF);
 		}
 
 	}
@@ -456,7 +479,9 @@ void StateEnemyTurn::onStateEnter()
 
 void StateEnemyTurn::onStateExit()
 {
-
+	//Restore player stamina
+	pEngine->stamina = pEngine->maxStamina;
+	pEngine->attacks = pEngine->maxAttacks;
 }
 
 void StateEnemyTurn::virtDrawStringsOnTop()

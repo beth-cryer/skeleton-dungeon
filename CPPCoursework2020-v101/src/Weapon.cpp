@@ -18,6 +18,7 @@ Weapon::~Weapon() {}
 //Equip item
 void Weapon::virtItemUse()
 {
+	pEngine->GetAudio()->playAudio("sfx/ui/Equip2.ogg", -1, 0);
 	pEngine->GetPlayer()->equipWep(shared_from_this());
 }
 

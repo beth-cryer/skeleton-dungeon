@@ -33,6 +33,7 @@ protected:
 private:
 	StatePaused* statePaused = nullptr;
 	StateEnemyTurn* stateEnemyTurn = nullptr;
+	bool enemyTurn = false;
 
 };
 
