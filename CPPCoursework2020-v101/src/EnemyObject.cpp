@@ -7,9 +7,10 @@
 
 
 EnemyObject::EnemyObject(int xStart, int yStart, BaseEngine* pEngine, Room* room, int width, int height, bool topleft,
-	std::shared_ptr<Weapon> wep, std::string name, std::string desc, int maxHealth, int maxStamina, int strength, int ranged, int expDrop, int maxAttacks)
+	std::shared_ptr<Weapon> wep, std::string name, std::string desc, int maxHealth, int maxStamina, int strength, int ranged, int expDrop, int maxAttacks,
+	const char* attackSound, const char* moveSound)
 	: CharObject(xStart, yStart, pEngine, width, height, topleft, wep),
-	 room(room), name(name), desc(desc), maxHealth(maxHealth), health(maxHealth), maxStamina(maxStamina), stamina(maxStamina), strength(strength), ranged(ranged), expDrop(expDrop), maxAttacks(maxAttacks), attacks(maxAttacks)
+	 room(room), name(name), desc(desc), maxHealth(maxHealth), health(maxHealth), maxStamina(maxStamina), stamina(maxStamina), strength(strength), ranged(ranged), expDrop(expDrop), maxAttacks(maxAttacks), attacks(maxAttacks), attackSound(attackSound), moveSound(moveSound)
 {
 	
 }
@@ -35,8 +36,8 @@ void EnemyObject::virtDoUpdate(int iCurrentTime)
 			currentState = CharState::stateIdle;
 
 			//Snap to grid in case we strayed a couple pixels somehow
-			m_iCurrentScreenX = std::round(m_iCurrentScreenX / TILE_SIZE) * TILE_SIZE;
-			m_iCurrentScreenY = std::round(m_iCurrentScreenY / TILE_SIZE) * TILE_SIZE;
+			m_iCurrentScreenX = std::round((double)m_iCurrentScreenX / (double)TILE_SIZE) * TILE_SIZE;
+			m_iCurrentScreenY = std::round((double)m_iCurrentScreenY / (double)TILE_SIZE) * TILE_SIZE;
 
 			//Redo order of depth for charobjects by height
 			pEngine->orderCharsByHeight();
@@ -111,6 +112,8 @@ void EnemyObject::AI()
 		//face player
 		if (player->getXPos() > m_iCurrentScreenX) flipX = false; else if(player->getXPos() < m_iCurrentScreenX) flipX = true;
 
+		if (attackSound) pEngine->GetAudio()->playAudio(attackSound, -1, 0);
+
 		std::cout << "Enemy " << name << " attacks!\n";
 		
 		currentState = CharState::stateAttack;
@@ -118,7 +121,7 @@ void EnemyObject::AI()
 
 	}
 	//Otherwise, if stamina left then move towards player (unless already next to them)
-	else if (stamina >= 0 && path.size() > 1 ) {
+	else if (stamina > 0 && path.size() > 1 ) {
 
 		//Initiate movement
 		std::shared_ptr<Node> nextMove = path.front();
@@ -157,7 +160,7 @@ void EnemyObject::AI()
 
 std::list<std::shared_ptr<Node>> EnemyObject::calcPath (int goalX, int goalY)
 {
-#define MAX_ITERATIONS 1000
+#define MAX_ITERATIONS 500
 
 	int its = 0;
 
@@ -223,14 +226,24 @@ std::list<std::shared_ptr<Node>> EnemyObject::calcPath (int goalX, int goalY)
 					current = current->parent;
 				}
 				path.reverse();
+				path.pop_front(); //Remove head, as it is the starting node
+
 				return path;
 
 			}
 
 			//If a solid tile exist here, skip
-			std::shared_ptr<SolidTileManager> tiles = pEngine->GetTilesSolid();
-			if (tiles->isValidTilePosition(x, y)) {
-				if (tiles->getMapValue(tiles->getMapXForScreenX(x), tiles->getMapYForScreenY(y)) != 0) {
+			auto solidTiles = pEngine->GetTilesSolid();
+			if (solidTiles->isValidTilePosition(x, y)) {
+				if (solidTiles->getMapValue(solidTiles->getMapXForScreenX(x), solidTiles->getMapYForScreenY(y)) != 0) {
+					continue;
+				}
+			}
+
+			//If an empty background tile exists here, skip
+			auto backTiles = pEngine->GetTilesBack();
+			if (backTiles->isValidTilePosition(x, y)) {
+				if (backTiles->getMapValue(backTiles->getMapXForScreenX(x), backTiles->getMapYForScreenY(y)) == 0) {
 					continue;
 				}
 			}
@@ -303,6 +316,8 @@ void EnemyObject::move(int xmove, int ymove, int currentTime, int time)
 
 	//set flipX accordingly (only change if we switch directions)
 	if (xmove > 0) flipX = false; else if (xmove < 0) flipX = true;
+
+	if (moveSound) pEngine->GetAudio()->playAudio(moveSound, -1, 0);
 
 	CharObject::move(xmove, ymove, currentTime, time);
 }

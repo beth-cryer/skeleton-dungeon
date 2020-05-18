@@ -45,7 +45,7 @@ void PlayerObject::virtDoUpdate(int iCurrentTime)
 		//LEVEL UP!
 
 		//Exp required increases by 4% every level
-		pEngine->expNext += expNext * 1.04;
+		pEngine->expNext += (int)std::floor(expNext * 1.04);
 
 		//Increase level, automatically increment health, stamina and skillUps
 		pEngine->level++;
@@ -80,8 +80,8 @@ void PlayerObject::virtDoUpdate(int iCurrentTime)
 			m_iCurrentScreenY = objMovement.getY();
 
 			//Snap to grid in case we strayed a couple pixels somehow
-			m_iCurrentScreenX = std::round(m_iCurrentScreenX / TILE_SIZE) * TILE_SIZE;
-			m_iCurrentScreenY = std::round(m_iCurrentScreenY / TILE_SIZE) * TILE_SIZE;
+			m_iCurrentScreenX = (int)std::round((double)m_iCurrentScreenX / (double)TILE_SIZE) * TILE_SIZE;
+			m_iCurrentScreenY = (int)std::round((double)m_iCurrentScreenY / (double)TILE_SIZE) * TILE_SIZE;
 
 			//Redo order of depth for charobjects by height
 			pEngine->orderCharsByHeight();
@@ -138,6 +138,10 @@ void PlayerObject::virtMouseDown(int iButton, int iX, int iY)
 //Applies attack damage
 void PlayerObject::attack(EnemyObject* pEnemy)
 {
+	//Face enemy
+	int ex = pEnemy->getXPos();
+	if (m_iCurrentScreenX > ex) flipX = true; else if (m_iCurrentScreenX < ex) flipX = false;
+
 	pEnemy->damage(pEngine->strength + wep->damage);
 }
 
@@ -150,17 +154,27 @@ void PlayerObject::onProjectileHit(CharObject* target)
 void PlayerObject::move(int xmove, int ymove, int currentTime, int time)
 {
 	//SolidTileManager tileManager = ((Psybc5Engine*)getEngine())->GetTilesSolid();
-	auto tileManager = pEngine->GetTilesSolid();
+	auto solidTiles = pEngine->GetTilesSolid();
+	auto backTiles = pEngine->GetTilesBack();
 
 	//Check for collision in the Tile we want to move into
-	if (tileManager->isValidTilePosition(m_iCurrentScreenX + xmove, m_iCurrentScreenY + ymove)) {
-		int tileX = tileManager->getMapXForScreenX(m_iCurrentScreenX + xmove);
-		int tileY = tileManager->getMapYForScreenY(m_iCurrentScreenY + ymove);
-		int tileCollide = tileManager->getMapValue(tileX, tileY);
+	if (solidTiles->isValidTilePosition(m_iCurrentScreenX + xmove, m_iCurrentScreenY + ymove)) {
+		int tileX = solidTiles->getMapXForScreenX(m_iCurrentScreenX + xmove);
+		int tileY = solidTiles->getMapYForScreenY(m_iCurrentScreenY + ymove);
+		int tileCollide = solidTiles->getMapValue(tileX, tileY);
 
 		//Collision with Foreground Tile
 		if (tileCollide != 0) return;
+	}
 
+	//Also check for empty background tiles (aka. THE ABYSSSSS)
+	if (backTiles->isValidTilePosition(m_iCurrentScreenX + xmove, m_iCurrentScreenY + ymove)) {
+		int tileX = backTiles->getMapXForScreenX(m_iCurrentScreenX + xmove);
+		int tileY = backTiles->getMapYForScreenY(m_iCurrentScreenY + ymove);
+		int tileCollide = backTiles->getMapValue(tileX, tileY);
+
+		//Collision with empty background
+		if (tileCollide == 0) return;
 	}
 
 	//Can't move onto other CharObjects' occupied tiles

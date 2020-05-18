@@ -3,7 +3,8 @@
 
 EnemyCultist::EnemyCultist(BaseEngine* pEngine, Room* room, int xStart, int yStart)
 	: EnemyObject(xStart, yStart, pEngine, room, TILE_SIZE, TILE_SIZE, true,
-		std::make_shared<Bow>((GameEngine*)pEngine), "Cultist", "A mage that wields occult magicks", 12, 3, 1, 3, 25, 1)
+		std::make_shared<Bow>((GameEngine*)pEngine), "Cultist", "A mage that wields occult magicks", 12, 3, 1, 3, 25, 1,
+		"sfx/monsters/Monster2.ogg", "sfx/combat/fst_conc_solid_run_01.wav")
 {
 	imgSprites = ImageManager::loadImage("sprites/chars/cultist.png", true);
 }
@@ -11,13 +12,6 @@ EnemyCultist::EnemyCultist(BaseEngine* pEngine, Room* room, int xStart, int ySta
 EnemyCultist::~EnemyCultist()
 {
 
-}
-
-void EnemyCultist::turnStart()
-{
-	pEngine->GetAudio()->playAudio("sfx/monsters/Monster2.ogg", -1, 0);
-
-	EnemyObject::turnStart();
 }
 
 void EnemyCultist::virtDraw()

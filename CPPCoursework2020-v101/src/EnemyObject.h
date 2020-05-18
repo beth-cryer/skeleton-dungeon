@@ -37,7 +37,8 @@ class EnemyObject :
 
 public:
 	EnemyObject(int xStart, int yStart, BaseEngine* pEngine, Room* room, int width, int height, bool topleft,
-		std::shared_ptr<Weapon> wep, std::string name, std::string desc, int maxHealth, int maxStamina, int strength, int ranged, int expDrop, int maxAttacks);
+		std::shared_ptr<Weapon> wep, std::string name, std::string desc, int maxHealth, int maxStamina, int strength, int ranged, int expDrop, int maxAttacks,
+		const char* attackSound, const char* moveSound);
 	~EnemyObject();
 
 	void virtDoUpdate(int iCurrentTime) override;
@@ -63,6 +64,8 @@ protected:
 	int stamina, maxStamina;
 	int strength, ranged;
 	int expDrop;
+
+	const char *attackSound, *moveSound;
 
 	std::list<std::shared_ptr<Node>> path;
 

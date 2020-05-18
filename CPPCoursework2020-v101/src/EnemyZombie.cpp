@@ -3,7 +3,8 @@
 
 EnemyZombie::EnemyZombie(BaseEngine* pEngine, Room* room, int xStart, int yStart)
 	: EnemyObject(xStart, yStart, pEngine, room, TILE_SIZE, TILE_SIZE, true,
-		std::make_shared<WoodSword>((GameEngine*)pEngine), "Zombie", "A shambling corpse, reanimated", 10, 2, 4, 1, 10, 1)
+		std::make_shared<WoodSword>((GameEngine*)pEngine), "Zombie", "A shambling corpse, reanimated", 10, 2, 4, 1, 10, 1,
+		"sfx/monsters/Monster2.ogg", "sfx/combat/fst_conc_solid_run_01.wav")
 {
 	imgSprites = ImageManager::loadImage("sprites/chars/zombie.png", true);
 }
@@ -11,13 +12,6 @@ EnemyZombie::EnemyZombie(BaseEngine* pEngine, Room* room, int xStart, int yStart
 EnemyZombie::~EnemyZombie()
 {
 
-}
-
-void EnemyZombie::turnStart()
-{
-	pEngine->GetAudio()->playAudio("sfx/monsters/Monster2.ogg", -1, 0);
-
-	EnemyObject::turnStart();
 }
 
 void EnemyZombie::virtDraw()

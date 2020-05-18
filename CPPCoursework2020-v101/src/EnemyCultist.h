@@ -8,8 +8,6 @@ public:
 	EnemyCultist(BaseEngine* pEngine, Room* room, int xStart, int yStart);
 	~EnemyCultist();
 
-	virtual void turnStart() override;
-
 	void virtDraw() override;
 };
 

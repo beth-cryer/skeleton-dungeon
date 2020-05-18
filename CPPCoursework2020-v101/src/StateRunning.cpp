@@ -486,8 +486,8 @@ void StateEnemyTurn::triggerNextEnemy()
 		enemyTurns.pop_front(); //and remove it from the list
 
 		//Trigger turn on first enemy, handing it control until its turn is finished
-		//(only if aggroed OR player is in line of sight)
-		if (enemy->aggroed == true || enemy->lineOfSight(player->getXCentre(), player->getYCentre(), enemy->getXCentre(), enemy->getYCentre(), 10)) //range is 10 tiles
+		//(only if aggroed OR player is in line of sight. enemies stay aggroed once their attention is caught)
+		if (enemy->aggroed == true || enemy->lineOfSight(player->getXCentre(), player->getYCentre(), enemy->getXCentre(), enemy->getYCentre(), 8)) //range is 8 tiles
 		{
 			enemy->turnStart();
 		}
