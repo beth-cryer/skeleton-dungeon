@@ -34,26 +34,26 @@ void PlayerObject::virtDraw()
 
 void PlayerObject::virtDoUpdate(int iCurrentTime)
 {
+
 	//Don't do update if invisible or paused
 	if (!isVisible() || getEngine()->isPaused())
 		return;
 
 	//Check if we have leveled up
-	int exp = pEngine->exp;
-	int expNext = pEngine->expNext;
-	if (exp >= expNext) {
+	if (pEngine->exp >= pEngine->expNext) {
 		//LEVEL UP!
 		pEngine->GetAudio()->playAudio("sfx/ui/LevelUp.ogg", -1, 0);
 
-		//Exp required increases by 4% every level
-		pEngine->expNext += (int)std::floor(expNext * 1.04);
+		//Exp required increases by 5% every level
+		pEngine->expNext += (int)std::floor(pEngine->expNext * 1.05);
+		pEngine->exp = 0;
 
 		//Increase level, automatically increment health, stamina and skillUps
 		pEngine->level++;
-		pEngine->maxHealth+=2;
-		pEngine->skillUps+=2;
-		//Every 3 levels, increase stamina by 1
-		if (pEngine->level % 3 == 0) pEngine->maxStamina++;
+		pEngine->maxHealth+=4;
+		pEngine->skillUps+=3;
+		//Every 2 levels, increase stamina by 1
+		if ((pEngine->level-1) % 2 == 0) pEngine->maxStamina++;
 	}
 
 	//REQ 4. (2/2) Keyboard input handled
@@ -141,7 +141,19 @@ void PlayerObject::attack(EnemyObject* pEnemy)
 	int ex = pEnemy->getXPos();
 	if (m_iCurrentScreenX > ex) flipX = true; else if (m_iCurrentScreenX < ex) flipX = false;
 
-	pEnemy->damage(pEngine->strength + wep->damage);
+	//Check whether to use strength or ranged
+	int mod; if (wep->range > 2) mod = pEngine->ranged; else mod = pEngine->strength;
+
+	//Check whether to multiply by magic bonus
+	int mag;
+	if (wep->type == Weapon::mag && pEngine->magic > 0) {
+		mag = 1 + (0.1 * pEngine->maxMagic);
+		pEngine->magic--; //Magic point used
+	} else {
+		mag = 1;
+	}
+
+	pEnemy->damage(mag * (mod + wep->damage));
 }
 
 //Called by ProjectileObject at the end of its movement - this just implements CharObject's virtual function, telling it to call our attack() function on the target

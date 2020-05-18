@@ -219,6 +219,16 @@ void GameEngine::orderCharsByHeight()
 	}
 }
 
+//Ensures stats don't go over their maximums
+//Can be called by objects when they change a player stat
+void GameEngine::limitStats()
+{
+	//Make sure stats don't go over their max
+	if (health > maxHealth) health = maxHealth;
+	if (stamina > maxStamina) stamina = maxStamina;
+	if (magic > maxMagic) magic = maxMagic;
+}
+
 //Save function
 void GameEngine::saveGame()
 {
@@ -275,11 +285,11 @@ void GameEngine::loadGame()
 void GameEngine::resetStats()
 {
 	playerName.assign("Skeleton");
-	maxHealth = 10, health = maxHealth;
+	maxHealth = 20, health = maxHealth;
 	maxStamina = 4, stamina = maxStamina;
 	maxMagic = 1, magic = maxMagic;
 	strength= 1, ranged = 1, defence = 1;
 	exp = 0, expNext = 50, level = 1, skillUps = 0;
 	maxAttacks = 1, attacks = maxAttacks;
-	skillUps = 5;
+	skillUps = 3;
 }

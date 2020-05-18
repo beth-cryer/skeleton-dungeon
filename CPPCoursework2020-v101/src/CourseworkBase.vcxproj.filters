@@ -297,6 +297,9 @@
     <ClInclude Include="FloorManager.h">
       <Filter>Header Files\Psybc5Game</Filter>
     </ClInclude>
+    <ClInclude Include="Consumable.h">
+      <Filter>Header Files\Psybc5Game\Items</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BaseEngine.cpp">
@@ -448,6 +451,9 @@
     </ClCompile>
     <ClCompile Include="FloorManager.cpp">
       <Filter>Source Files\Psybc5Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Consumable.cpp">
+      <Filter>Source Files\Psybc5Game\Items</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

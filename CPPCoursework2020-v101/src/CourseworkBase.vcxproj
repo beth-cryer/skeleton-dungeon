@@ -100,6 +100,7 @@
     <ClInclude Include="CardOrTile.h" />
     <ClInclude Include="CharObject.h" />
     <ClInclude Include="CollisionDetection.h" />
+    <ClInclude Include="Consumable.h" />
     <ClInclude Include="CoordinateMappingFlip.h" />
     <ClInclude Include="DisplayableObjectContainer.h" />
     <ClInclude Include="DoorObject.h" />
@@ -175,6 +176,7 @@
     <ClCompile Include="AudioPlayer.cpp" />
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="CharObject.cpp" />
+    <ClCompile Include="Consumable.cpp" />
     <ClCompile Include="DoorObject.cpp" />
     <ClCompile Include="DraggingDemo.cpp" />
     <ClCompile Include="DrawingSurface.cpp" />

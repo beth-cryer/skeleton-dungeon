@@ -61,11 +61,23 @@ void EnemyObject::virtDoUpdate(int iCurrentTime)
 
 	//Ensure that the objects get redrawn on the display
 	redrawDisplay();
+
+	//Check if death animation is finished
+	if (currentState == CharState::stateDeath) {
+		if (anim_end) {
+			std::cout << "Enemy " << name << " was killed.\n";
+			room->objects.remove(this); //Remove from Room container so it doesn't respawn on re-entering the room
+			pEngine->drawableObjectsChanged();
+			pEngine->removeDisplayableObject(this); //Then remove from the engine object array
+			delete this;
+		}
+	}
+	
 }
 
 void EnemyObject::turnStart()
 {
-	if (aggroed = false) pEngine->GetAudio()->playAudio(attackSound, -1, 0);
+	if (aggroed == false) pEngine->GetAudio()->playAudio(attackSound, -1, 0);
 
 	aggroed = true;
 
@@ -150,23 +162,31 @@ void EnemyObject::AI()
 
 void EnemyObject::damage(int amount)
 {
-	health -= amount;
+	health -= amount; if (health < 0) health = 0;
+
 	std::cout << "Enemy " << name << " took " << amount << " damage, has " << health << " health left.\n";
 
 	//DEAD
-	if (health <= 0) {
-		std::cout << "Enemy " << name << " was killed.\n";
-		room->objects.remove(this); //Remove from Room container so it doesn't respawn on re-entering the room
-		getEngine()->removeDisplayableObject(this); //Then remove from the engine object array
-		delete this;
+	if (health == 0) {
+		anim_frame = 0;
+		currentState = CharState::stateDeath;
+
+		//Object will be deleted at the end of the animation
 	}
 }
 
 //Override this where necessary
 void EnemyObject::attack()
 {
-	std::cout << "Enemy " << name << " hits you!\n";
-	pEngine->health -= wep->damage;
+	//Calculate damage
+	int mod; if (wep->range > 2) mod = pEngine->ranged; else mod = pEngine->strength; //using strength or ranged?
+	int dmg = strength + wep->damage - (pEngine->defence);
+	if (dmg < 1) dmg = 1; //attacks always do at least 1 damage, so you can't just pump defence and tank literally everything
+
+	std::cout << "Enemy " << name << " hits you for " << dmg << " damage!\n";
+
+	//Deal damage
+	pEngine->health -= dmg;
 }
 
 void EnemyObject::move(int xmove, int ymove, int currentTime, int time)

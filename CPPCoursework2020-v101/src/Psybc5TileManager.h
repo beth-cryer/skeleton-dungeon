@@ -1,6 +1,7 @@
 #pragma once
 #include "TileManager.h"
 #include "Item.h"
+#include "Consumable.h"
 
 #include <ctime>
 
@@ -99,7 +100,9 @@ public:
 		srand(time(NULL));
 
 		for (int i = 0; i < invSize; i++) {
-			std::shared_ptr<Item> item(new Item(pEngine, rand() % 5,"Test","A test item"));
+			//std::shared_ptr<Item> item(new Item(pEngine, rand() % 5,"Test","A test item"));
+
+			std::shared_ptr<Item> item(new LesserHealthPotion(pEngine));
 			invArray.push_back(item);
 		}
 	}
@@ -114,6 +117,16 @@ public:
 	//Get item from array
 	std::shared_ptr<Item> getItemAt(int i) {
 		return invArray.at(i);
+	}
+
+	//Remove item by reference
+	void removeItem(std::shared_ptr<Item> item) {
+		for (auto it = invArray.begin(); it != invArray.end(); it++) {
+			if (*it == item) {
+				*it = nullptr; //Find item pointer that matches, and set iterator to nullptr
+				break;
+			}	
+		}
 	}
 
 	//Set item in array

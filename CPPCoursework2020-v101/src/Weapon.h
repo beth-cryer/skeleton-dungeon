@@ -9,7 +9,7 @@ class Weapon :
 	public Item, public std::enable_shared_from_this<Weapon>
 {
 public:
-	enum class WepType { phys, mag };
+	enum WepType { phys, mag };
 
 	Weapon(GameEngine* pEngine, int iconId, std::string name, std::string desc, int damage, int range, WepType type, const char* sndAttack);
 	~Weapon();

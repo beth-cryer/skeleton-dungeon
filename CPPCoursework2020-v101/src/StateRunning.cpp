@@ -173,26 +173,6 @@ void StateRunning::virtMainLoopPostUpdate()
 
 }
 
-//This will be called every time a CharObject moves in the y axis
-//The object with the largest y value should be at the top, then in descending order
-void StateRunning::orderCharsByHeight()
-{
-	//Iterate through all DisplayableObjects and check we clicked one
-	DisplayableObject* pObj;
-	for (int i = 0; i < pEngine->getContentCount(); i++) {
-		//skip null objects
-		if ((pObj = pEngine->getDisplayableObject(i)) == NULL) continue;
-
-		CharObject* pChar = dynamic_cast<CharObject*> (pObj);
-
-		//Check the object currently at the top, place pChar on top if it's lower on the screen
-		if (pChar) {
-			DisplayableObject* pTopObj = pEngine->getContentItem(pEngine->getContentCount() - 1);
-			if (pTopObj->getYCentre() < pChar->getYCentre()) pEngine->moveToLast(pChar);
-		}
-	}
-}
-
 
 //PAUSE STATE
 
@@ -227,7 +207,7 @@ void StatePaused::virtDrawStringsOnTop()
 	pEngine->drawForegroundRectangle(0, WIN_CENTREY - 256, WIN_WIDTH, WIN_CENTREY + 256, 0x000000); //Background panel
 
 	//STATS
-	pEngine->drawForegroundRectangle(WIN_CENTREX - 128, WIN_CENTREY - 256, WIN_CENTREX + 128, WIN_CENTREY - 96, 0xffffff); //Stats panel
+	pEngine->drawForegroundRectangle(WIN_CENTREX - 128, WIN_CENTREY - 256, WIN_CENTREX + 128, WIN_CENTREY - 112, 0xffffff); //Stats panel
 
 	pEngine->drawForegroundString(WIN_CENTREX - 120, 128, pEngine->playerName.c_str(), 0x000000, NULL);
 	std::string printSkillUps = "PTS: " + std::to_string(pEngine->skillUps);
@@ -240,7 +220,7 @@ void StatePaused::virtDrawStringsOnTop()
 	pEngine->drawForegroundString(WIN_CENTREX - 120, 128 + 70, printMagic.c_str(), 0x000000, fntText);
 	pEngine->drawForegroundString(WIN_CENTREX - 120, 128 + 90, printDefence.c_str(), 0x000000, fntText);
 
-	pEngine->drawForegroundString(WIN_CENTREX - 120, 128 + 130, printSkillUps.c_str(), 0x000000, fntText);
+	pEngine->drawForegroundString(WIN_CENTREX - 120, 128 + 120, printSkillUps.c_str(), 0x000000, fntText);
 
 
 	//INVENTORY TILES
@@ -249,27 +229,37 @@ void StatePaused::virtDrawStringsOnTop()
 	//EQUIPPED WEAPON DETAILS
 	auto e_wep = pEngine->GetPlayer()->wep;
 	if (e_wep != nullptr) {
-		pEngine->drawForegroundRectangle(WIN_CENTREX + 192, WIN_CENTREY -256, WIN_CENTREX + 432, WIN_CENTREY - 112, 0xFFFFFF);
+		pEngine->drawForegroundRectangle(WIN_CENTREX + 192, WIN_CENTREY -256, WIN_CENTREX + 464, WIN_CENTREY - 112, 0xFFFFFF);
 
 		//Details
 		pEngine->drawForegroundString(WIN_CENTREX + 198, WIN_CENTREY - 252, "[EQUIPPED WEAPON]", 0xff0000, pEngine->getFont("fonts/gameplay.ttf", 18));
 		pEngine->drawForegroundString(WIN_CENTREX + 195, WIN_CENTREY - 256 + 32, e_wep->name.c_str(), 0x000000, fntText);
-		pEngine->drawForegroundString(WIN_CENTREX + 195, WIN_CENTREY - 256 + 48, e_wep->desc.c_str(), 0x000000, pEngine->getFont("fonts/gameplay.ttf", 13));
+		pEngine->drawForegroundString(WIN_CENTREX + 195, WIN_CENTREY - 256 + 48, e_wep->desc.c_str(), 0x000000, pEngine->getFont("fonts/gameplay.ttf", 12));
 
 		//Icon
-		int iconVal = e_wep->iconId;
-		invSprites.renderImageWithMask(pEngine->getForegroundSurface(), TILE_SIZE * (iconVal % 21), TILE_SIZE * (int)std::floor(iconVal / 20),
-			WIN_CENTREX + 205, WIN_CENTREX + 368, TILE_SIZE, TILE_SIZE, 0xFF00FF);
+		//int iconVal = e_wep->iconId;
+		//invSprites.renderImageWithMask(pEngine->getForegroundSurface(), TILE_SIZE * (iconVal % 21), TILE_SIZE * (int)std::floor(iconVal / 20),
+		//	WIN_CENTREX + 205, WIN_CENTREX + 368, TILE_SIZE, TILE_SIZE, 0xFF00FF);
+
+		//Figure out weapon type
+		std::string printType = "";
+		switch (e_wep->type) {
+		case(Weapon::phys): printType.append("Physical"); break;
+		case(Weapon::mag): printType.append("Magical"); break;
+		}
+		printType.append(" ");
+		if (e_wep->range > 2) printType.append("Ranged"); else printType.append("Melee");
 
 		//Stats
 		std::string printDamage = "Damage: " + std::to_string(e_wep->damage);
 		std::string printRange = "Range: " + std::to_string(e_wep->range);
-		pEngine->drawForegroundString(WIN_CENTREX + 195, WIN_CENTREY - 256 + 64, printDamage.c_str(), 0x000000, fntText);
-		pEngine->drawForegroundString(WIN_CENTREX + 195, WIN_CENTREY - 256 + 80, printRange.c_str(), 0x000000, fntText);
+		pEngine->drawForegroundString(WIN_CENTREX + 195, WIN_CENTREY - 256 + 64, printType.c_str(), 0x000000, fntText);
+		pEngine->drawForegroundString(WIN_CENTREX + 195, WIN_CENTREY - 256 + 80, printDamage.c_str(), 0x000000, fntText);
+		pEngine->drawForegroundString(WIN_CENTREX + 195, WIN_CENTREY - 256 + 96, printRange.c_str(), 0x000000, fntText);
 	}
 
 	//MOUSED-OVER ITEM DETAILS
-	pEngine->drawForegroundRectangle(WIN_CENTREX + 192, WIN_CENTREY + 32 - (4 * 64) / 2, WIN_CENTREX + 432, WIN_CENTREY + 256 - (4 * 64) / 2, 0xFFFFFF);
+	pEngine->drawForegroundRectangle(WIN_CENTREX + 192, WIN_CENTREY + 32 - (4 * 64) / 2, WIN_CENTREX + 464, WIN_CENTREY + 256 - (4 * 64) / 2, 0xFFFFFF);
 	//Get currently moused-over item
 	auto inv = pEngine->GetTilesInv();
 	if (mousedItemID != -1) {
@@ -278,7 +268,7 @@ void StatePaused::virtDrawStringsOnTop()
 		//item shouldn't be null, but check just in case
 		if (item != nullptr) {
 			pEngine->drawForegroundString(WIN_CENTREX + 195, WIN_CENTREY + 32 - (4 * 64) / 2, item->name.c_str(), 0x000000, fntText);
-			pEngine->drawForegroundString(WIN_CENTREX + 195, WIN_CENTREY + 32 - (4 * 64) / 2 + 32, item->desc.c_str(), 0x000000, pEngine->getFont("fonts/gameplay.ttf", 13));
+			pEngine->drawForegroundString(WIN_CENTREX + 195, WIN_CENTREY + 32 - (4 * 64) / 2 + 32, item->desc.c_str(), 0x000000, pEngine->getFont("fonts/gameplay.ttf", 12));
 
 			//Weapon stats
 			Weapon* wep = dynamic_cast<Weapon*> (item.get());
@@ -324,7 +314,7 @@ void StatePaused::virtDrawStringsOnTop()
 		}
 	}
 
-	//We wanna draw buttons on top
+	//We wanna draw buttons on top (IF we have skill points)
 	if (pEngine->skillUps > 0)
 		BaseState::virtDrawStringsOnTop();
 
@@ -503,6 +493,7 @@ void StateEnemyTurn::virtKeyDown(int iKeyCode)
 //Continues until enemyTurns is empty, then back to Running state
 void StateEnemyTurn::triggerNextEnemy()
 {
+	//While there are enemies left to take their turn:
 	if (enemyTurns.size() > 0) {
 
 		auto enemy = enemyTurns.front();
@@ -520,7 +511,6 @@ void StateEnemyTurn::triggerNextEnemy()
 			triggerNextEnemy();
 		}
 
-		
 
 	}
 	else {

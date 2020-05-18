@@ -25,8 +25,6 @@ public:
 	virtual void virtMainLoopPreUpdate() override;
 	virtual void virtMainLoopPostUpdate() override;
 
-	void orderCharsByHeight();
-
 protected:
 	Font* fntText;
 

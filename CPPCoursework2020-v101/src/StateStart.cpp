@@ -18,6 +18,8 @@ StateStart::StateStart(GameEngine* pEngine) : BaseState(pEngine)
 
 }
 
+//All this state does is initialise everything for the Running state
+//(aka. set up object array, generate level)
 void StateStart::virtSetupBackgroundBuffer()
 {
 	pEngine->createObjects();
@@ -72,11 +74,8 @@ void StateStart::virtSetupBackgroundBuffer()
 	}
 
 	startRoom->entrance = true;
-	//endRoom->exit = true;
-	//endRoom->objects.push_back(new ExitObject(pEngine, endRoom->xExit, endRoom->yExit)); //Add exit door
-
-	startRoom->exit = true;
-	startRoom->objects.push_back(new ExitObject(pEngine, startRoom, endRoom->xExit, endRoom->yExit)); //Add exit door
+	endRoom->exit = true;
+	endRoom->objects.push_back(new ExitObject(pEngine, endRoom, endRoom->xExit, endRoom->yExit)); //Add exit door
 
 	startRoom->onEnter(-1);
 
@@ -89,9 +88,6 @@ void StateStart::virtSetupBackgroundBuffer()
 
 }
 
-
-//All this state does is initialise everything for the Running state
-//(aka. set up object array, generate level)
 void StateStart::onStateEnter()
 {
 
