@@ -24,6 +24,7 @@ public:
 private:
 	SimpleImage img = ImageManager::loadImage("sprites/objects/exit.png", true);
 	int locks = 0; //Number of keys needed to open
+	bool activate = false;
 
 	GameEngine* pEngine;
 

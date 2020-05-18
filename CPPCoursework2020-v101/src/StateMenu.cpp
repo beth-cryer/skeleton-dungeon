@@ -33,12 +33,6 @@ void StateMenu::onStateEnter()
 		stateEditor = new StateEditor(pEngine);
 	}
 
-	//Delete any existing objects
-	pEngine->destroyOldObjects(true);
-
-	//Reset player stats to default
-	pEngine->resetStats();
-
 	//Create UI buttons
 	buttons.clear();
 	buttons.push_back(std::unique_ptr<Button>(new ButtonChangeState(pEngine, stateCharCreate, 550, 250, 230, 40, 0x2159ff, 0xd4e4ff, "New Game", fntButtons)));
@@ -139,8 +133,6 @@ void StateInfo::virtKeyDown(int iKeyCode)
 
 StateCharCreate::StateCharCreate(GameEngine* pEngine) : StateMenu(pEngine)
 {
-	charInput = new std::string();
-
 	buttons.clear();
 	buttons.push_back(std::unique_ptr<Button>(new ButtonChangeState(pEngine, pEngine->stateStart, 500, 600, 230, 40, 0x2159ff, 0xd4e4ff, "Start", fntButtons)));
 
@@ -161,10 +153,18 @@ StateCharCreate::StateCharCreate(GameEngine* pEngine) : StateMenu(pEngine)
 
 StateCharCreate::~StateCharCreate()
 {
-	delete charInput;
+
 }
 
 void StateCharCreate::onStateEnter()
+{
+	//Set default name
+	charInput.assign("Skeleton");
+
+	pEngine->resetStats();
+}
+
+void StateCharCreate::onStateExit()
 {
 	
 }
@@ -183,7 +183,7 @@ void StateCharCreate::virtDrawStringsOnTop()
 	std::string printNameInput = "Name: ";
 
 	//Append typed characters if applicable
-	if (charInput->length() > 0) printNameInput.append(*charInput);
+	if (charInput.length() > 0) printNameInput.append(charInput);
 
 	//Append flashing line periodically if typing activated
 	if (typing && pEngine->getModifiedTime() % 300 > 150) printNameInput.append("|");
@@ -215,13 +215,13 @@ void StateCharCreate::virtKeyDown(int iKeyCode)
 
 		//Allow alphabet and spacebar for input
 		if (k >= 97 && k <= 122 || k == SDLK_SPACE) {
-			charInput->push_back((char)k);
+			charInput.push_back((char)k);
 			pEngine->redrawDisplay();
 		}
 
 		//Backspace - delete last letter if there are any letters
-		if (iKeyCode == SDLK_BACKSPACE && charInput->length() > 0) {
-			charInput->pop_back();
+		if (iKeyCode == SDLK_BACKSPACE && charInput.length() > 0) {
+			charInput.pop_back();
 			pEngine->redrawDisplay();
 		}
 	}

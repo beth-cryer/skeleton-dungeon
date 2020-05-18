@@ -60,8 +60,14 @@ public:
 	void drawBar(int x1, int y1, int y2, int maxWidth, std::string str, int value, int maxValue, int colBar, int colBack);
 	void orderCharsByHeight();
 
+	//Save/Load
 	void saveGame();
+	void loadGame();
+
+	//Memory management functions, called between level generations
+	void nextLevel();
 	void clearObjects();
+	void createObjects();
 
 	//RETURN PRIVATE POINTERS
 	std::shared_ptr<SolidTileManager> GetTilesSolid() { return objTilesSolid; }

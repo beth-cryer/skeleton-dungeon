@@ -20,6 +20,7 @@ StateStart::StateStart(GameEngine* pEngine) : BaseState(pEngine)
 
 void StateStart::virtSetupBackgroundBuffer()
 {
+	pEngine->createObjects();
 
 	//INIT TILE MANAGERS
 	std::shared_ptr<InventoryTileManager> invTiles = pEngine->GetTilesInv();
@@ -43,6 +44,7 @@ void StateStart::virtSetupBackgroundBuffer()
 
 
 	//GENERATE FLOOR
+	srand(time(NULL));
 	auto fman = pEngine->GetFloorManager();
 	auto randomFloor = fman->genRandomFloor(pEngine->GetSaveManager());
 
@@ -70,10 +72,17 @@ void StateStart::virtSetupBackgroundBuffer()
 	}
 
 	startRoom->entrance = true;
-	endRoom->exit = true;
-	endRoom->objects.push_back(new ExitObject(pEngine, endRoom->xExit, endRoom->yExit)); //Add exit door
+	//endRoom->exit = true;
+	//endRoom->objects.push_back(new ExitObject(pEngine, endRoom->xExit, endRoom->yExit)); //Add exit door
+
+	startRoom->exit = true;
+	startRoom->objects.push_back(new ExitObject(pEngine, endRoom->xExit, endRoom->yExit)); //Add exit door
 
 	startRoom->onEnter(-1);
+
+	//Start playing music (interrupt current music)
+	auto audio = pEngine->GetAudio();
+	audio->playMusic("music/Exploration_1.ogg", -1);
 
 	//Transition to Running
 	pEngine->setState(pEngine->stateRunning);

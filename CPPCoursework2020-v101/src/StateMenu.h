@@ -52,6 +52,7 @@ public:
 
 	virtual void virtSetupBackgroundBuffer() override;
 	virtual void onStateEnter() override;
+	virtual void onStateExit() override;
 	virtual void virtDrawStringsOnTop() override;
 	virtual void virtMouseDown(int iButton, int iX, int iY) override;
 	virtual void virtKeyDown(int iKeyCode) override;
@@ -59,7 +60,7 @@ public:
 
 
 private:
-	std::string* charInput;
+	std::string charInput;
 	bool typing = true;
 
 };

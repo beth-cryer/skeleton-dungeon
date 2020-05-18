@@ -1,11 +1,11 @@
-<name></name>
+<name>Skeleton</name>
 <level>1</level>
 <exp>0</exp>
 <expnext>50</expnext>
 <skillups>5</skillups>
 <health>10</health>
 <maxhealth>10</maxhealth>
-<stamina>4</stamina>
+<stamina>3</stamina>
 <maxstamina>4</maxstamina>
 <magic>1</magic>
 <maxmagic>1</maxmagic>

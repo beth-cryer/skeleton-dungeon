@@ -21,7 +21,7 @@ GameEngine::GameEngine()
 {
 	notifyObjectsAboutMouse(true);
 
-	gen = new FloorManager();
+	createObjects();
 
 	objTilesSolid = std::make_shared<SolidTileManager>();
 	objTilesBack = std::make_shared<BackgroundTileManager>();
@@ -75,17 +75,17 @@ int GameEngine::virtInitialise()
 
 void GameEngine::virtCleanUp()
 {
+	//If the player hits X while ingame, clear objects. If we're in the menu then the objects have already been cleared
+	if (currentState != stateMenu) clearObjects();
+
 	audio.closeAudio();
 
 	delete stateMenu;
 	delete stateStart;
 	delete stateRunning;
-
-	delete gen;
-
-	clearObjects();
 }
 
+//A reusable functions that deletes a lot of objects. Called before each new floor, also called on entering the main menu
 void GameEngine::clearObjects()
 {
 	//Free everything in object container
@@ -99,6 +99,22 @@ void GameEngine::clearObjects()
 			delete x;
 		}
 	}
+
+	delete gen;
+}
+
+//A reusable function that creates new objects. Called after each floor to reset things
+void GameEngine::createObjects()
+{
+	gen = new FloorManager();
+}
+
+//Transitions to next level, saving the game and then deleting relevant objects first
+void GameEngine::nextLevel()
+{
+	saveGame();
+	clearObjects();
+	setState(stateStart);
 }
 
 void GameEngine::virtSetupBackgroundBuffer()
@@ -208,7 +224,7 @@ void GameEngine::orderCharsByHeight()
 void GameEngine::saveGame()
 {
 	auto sm = &saveManager; //shorter pointer for easier readability
-	auto save = sm->openFile("saves/testSave.txt");
+	auto save = sm->openFile("saves/save.txt");
 
 	sm->writeLine("name",playerName);
 	sm->writeLine("level", level);
@@ -230,9 +246,36 @@ void GameEngine::saveGame()
 	sm->closeFile();
 }
 
+void GameEngine::loadGame()
+{
+	//Load save
+	auto loader = GetSaveManager();
+	loader->loadFileContents("saves/save.txt");
+
+	playerName = loader->getSaveData("name");
+	level = std::stoi(loader->getSaveData("level"));
+	exp = std::stoi(loader->getSaveData("exp"));
+	expNext = std::stoi(loader->getSaveData("expnext"));
+	skillUps = std::stoi(loader->getSaveData("skillups"));
+
+	maxHealth = std::stoi(loader->getSaveData("maxhealth"));
+	health = std::stoi(loader->getSaveData("health"));
+	maxStamina = std::stoi(loader->getSaveData("maxstamina"));
+	stamina = std::stoi(loader->getSaveData("stamina"));
+	maxMagic = std::stoi(loader->getSaveData("maxmagic"));
+	magic = std::stoi(loader->getSaveData("magic"));
+
+	strength = std::stoi(loader->getSaveData("strength"));
+	ranged = std::stoi(loader->getSaveData("ranged"));
+	defence = std::stoi(loader->getSaveData("defence"));
+
+	//std::string solidTiles = loader->getSaveData("solid");
+	//std::string solidBack = loader->getSaveData("back");
+}
+
 void GameEngine::resetStats()
 {
-	playerName = "";
+	playerName.assign("Skeleton");
 	maxHealth = 10, health = maxHealth;
 	maxStamina = 4, stamina = maxStamina;
 	maxMagic = 1, magic = maxMagic;

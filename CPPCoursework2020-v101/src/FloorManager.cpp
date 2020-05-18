@@ -16,7 +16,6 @@ void Room::genRoom()
 	auto save = pEngine->GetSaveManager();
 
 	//Randomly pick from all Room templates
-	
 
 	save->loadFileContents("gen/rooms.txt");
 
@@ -150,7 +149,7 @@ void Room::onEnter(int dir) {
 
 	//Destroy any existing objects (but don't free their memory, except for Player)
 	pEngine->destroyOldObjects(false);
-	if (pEngine->GetPlayer() != nullptr) delete pEngine->GetPlayer();
+	delete pEngine->GetPlayer();
 
 	//Add player to the room in starting position
 	pEngine->SetPlayer(new PlayerObject(pEngine, std::make_shared<WoodSword>(pEngine)));

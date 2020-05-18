@@ -28,15 +28,11 @@ void StateRunning::onStateEnter()
 	}
 
 	enemyTurn = false;
-
-	auto audio = pEngine->GetAudio();
-	auto path = "music/Exploration_1.ogg";
-	if (!audio->isSongPlaying(path)) audio->playMusic(path, -1);
 }
 
 void StateRunning::onStateExit()
 {
-
+	
 }
 
 void StateRunning::virtSetupBackgroundBuffer()
@@ -142,7 +138,8 @@ void StateRunning::virtKeyDown(int iKeyCode)
 
 		//BACK TO MENU
 	case SDLK_ESCAPE:
-		pEngine->setExitWithCode(0);
+		pEngine->clearObjects();
+		pEngine->setState(pEngine->stateMenu);
 		break;
 
 		//Testing line-of-sight
@@ -228,20 +225,22 @@ void StatePaused::virtDrawStringsOnTop()
 
 	//Draw pause menu UI
 	pEngine->drawForegroundRectangle(0, WIN_CENTREY - 256, WIN_WIDTH, WIN_CENTREY + 256, 0x000000); //Background panel
-	pEngine->drawForegroundString(WIN_CENTREX - 128, 128, "PAUSED", 0xffffff, NULL);
 
 	//STATS
+	pEngine->drawForegroundRectangle(WIN_CENTREX - 128, WIN_CENTREY - 256, WIN_CENTREX + 128, WIN_CENTREY - 96, 0xffffff); //Stats panel
+
+	pEngine->drawForegroundString(WIN_CENTREX - 120, 128, pEngine->playerName.c_str(), 0x000000, NULL);
 	std::string printSkillUps = "PTS: " + std::to_string(pEngine->skillUps);
 	std::string printStrength = "STR: " + std::to_string(pEngine->strength);
 	std::string printRanged = "RANGE: " + std::to_string(pEngine->ranged);
 	std::string printMagic = "MAG: " + std::to_string(pEngine->maxMagic);
 	std::string printDefence = "DEF: " + std::to_string(pEngine->defence);
-	pEngine->drawForegroundString(WIN_CENTREX - 128, 128 + 30, printStrength.c_str(), 0xffffff, NULL);
-	pEngine->drawForegroundString(WIN_CENTREX - 128, 128 + 50, printRanged.c_str(), 0xffffff, NULL);
-	pEngine->drawForegroundString(WIN_CENTREX - 128, 128 + 70, printMagic.c_str(), 0xffffff, NULL);
-	pEngine->drawForegroundString(WIN_CENTREX - 128, 128 + 90, printDefence.c_str(), 0xffffff, NULL);
+	pEngine->drawForegroundString(WIN_CENTREX - 120, 128 + 30, printStrength.c_str(), 0x000000, fntText);
+	pEngine->drawForegroundString(WIN_CENTREX - 120, 128 + 50, printRanged.c_str(), 0x000000, fntText);
+	pEngine->drawForegroundString(WIN_CENTREX - 120, 128 + 70, printMagic.c_str(), 0x000000, fntText);
+	pEngine->drawForegroundString(WIN_CENTREX - 120, 128 + 90, printDefence.c_str(), 0x000000, fntText);
 
-	pEngine->drawForegroundString(WIN_CENTREX - 128, 128 + 130, printSkillUps.c_str(), 0xffffff, NULL);
+	pEngine->drawForegroundString(WIN_CENTREX - 120, 128 + 130, printSkillUps.c_str(), 0x000000, fntText);
 
 
 	//INVENTORY TILES
@@ -355,7 +354,8 @@ void StatePaused::virtKeyDown(int iKeyCode)
 
 		//BACK TO MENU
 	case SDLK_ESCAPE:
-		pEngine->setExitWithCode(0);
+		pEngine->clearObjects();
+		pEngine->setState(pEngine->stateMenu);
 		break;
 
 	}
