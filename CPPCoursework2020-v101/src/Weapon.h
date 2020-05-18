@@ -22,8 +22,8 @@ public:
 	//Targeted enemies check if they are weak to this type
 	WepType type;
 
-protected:
 	const char* sndAttack;
+	
 
 };
 
@@ -43,7 +43,7 @@ class Bow :
 	public Weapon
 {
 public:
-	Bow(GameEngine* pEngine) : Weapon(pEngine, 2, "Bow", "A bent twig with a string attached - deadlier than it looks.", 1, 5, WepType::phys, "sfx/combat/Slash2.ogg") {}
+	Bow(GameEngine* pEngine) : Weapon(pEngine, 2, "Bow", "A bent twig with a string attached - deadlier than it looks.", 1, 4, WepType::phys, "sfx/combat/Bow3.ogg") {}
 	void attack(CharObject* origin, CharObject* target) override;
 
 };

@@ -81,7 +81,15 @@ void StateStart::virtSetupBackgroundBuffer()
 
 	//Start playing music (interrupt current music)
 	auto audio = pEngine->GetAudio();
-	audio->playMusic("music/Exploration_1.ogg", -1);
+
+	//Pick random floor music
+	int m_i = (rand() % 4) + 1;
+
+	std::string path = "music/Exploration_";
+	path.append(std::to_string(m_i));
+	path.append(".ogg");
+
+	audio->playMusic(path.c_str(), -1);
 
 	//Transition to Running
 	pEngine->setState(pEngine->stateRunning);

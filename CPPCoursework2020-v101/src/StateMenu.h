@@ -29,8 +29,8 @@ public:
 	StateEditor* stateEditor = nullptr;
 
 protected:
-	SimpleImage bg = ImageManager::loadImage("images/menuBG.png", true);
-	SimpleImage skeleton = ImageManager::loadImage("images/skeletonBG.png", true);
+	SimpleImage bg = ImageManager::loadImage("sprites/menuBG.png", true);
+	SimpleImage skeleton = ImageManager::loadImage("sprites/skeletonBG.png", true);
 
 	Font* fntTitle;
 	Font* fntButtons;

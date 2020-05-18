@@ -8,6 +8,8 @@
 
 #include "GameEngine.h"
 
+class EnemyObject;
+
 class Room
 {
 public:
@@ -39,6 +41,8 @@ public:
 	//Adds a special tile to the Room's object vector
 	void setSpecialTiles(int x, int y, int id);
 	
+	EnemyObject* genEnemy(int x, int y);
+
 	//Fetches a 2D vector of the data inside brackets, separated by commas
 	std::vector<std::vector<std::string>> getTileData(SaveManager* save, std::string text, std::string tag);
 

@@ -18,7 +18,7 @@ public:
 
 	void virtDraw() override;
 
-	virtual void animate(int numFrames, int width, int height, int xPos, int yPos, int xOffset = 0, int yOffset = 0);
+	virtual void animate(int numFrames, int width, int height, int xPos, int yPos, int xOffset = 0, int yOffset = 0, bool loop = true);
 	void resetAnim();
 
 protected:

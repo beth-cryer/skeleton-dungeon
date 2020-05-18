@@ -23,7 +23,7 @@ void EnemyDragon::virtDraw()
 	case (CharState::stateIdle): animate(13, 82, 140, 0, 0, 12, 64); break;
 	case(CharState::stateWalk): animate(3, 200, 140, 600, 140, 80, 64); break;
 	case(CharState::stateAttack): animate(5, 250, 140, 0, 560, 80, 70); break;
-	case(CharState::stateDeath): animate(4, 200, 140, 0, 980); break;
+	case(CharState::stateDeath): animate(4, 200, 140, 0, 980, false); break;
 	}
 
 	AnimatedObject::virtDraw();

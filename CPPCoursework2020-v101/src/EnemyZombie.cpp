@@ -21,7 +21,7 @@ void EnemyZombie::virtDraw()
 	case (CharState::stateIdle): animate(5, 63, 76, 0, 152, 0, 16); break;
 	case(CharState::stateWalk): animate(11, 63, 76, 0, 76, 0, 16); break;
 	case(CharState::stateAttack): animate(4, 80, 76, 0, 304, 0, 16); break;
-	case(CharState::stateDeath): animate(7, 63, 76, 0, 456, 0, 16); break;
+	case(CharState::stateDeath): animate(7, 63, 76, 0, 456, 0, 16, false); break;
 	}
 
 	return AnimatedObject::virtDraw();

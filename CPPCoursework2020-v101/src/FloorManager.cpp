@@ -3,11 +3,15 @@
 
 #include "GameEngine.h"
 #include "PlayerObject.h"
-#include "EnemyZombie.h"
 #include "ExitObject.h"
 #include "DoorObject.h"
 
 #include "StateRunning.h"
+
+#include "EnemyZombie.h"
+#include "EnemyCultist.h"
+#include "EnemyDragon.h"
+#include "EnemyElf.h"
 
 	//ROOM FUNCTIONS
 
@@ -75,7 +79,8 @@ void Room::setSpecialTiles(int x, int y, int id)
 	switch (id)
 	{
 	case(1): //ENEMY
-		objects.push_back(new EnemyZombie(pEngine, this, x * TILE_SIZE, y * TILE_SIZE));
+		objects.push_back(genEnemy(x * TILE_SIZE, y * TILE_SIZE));
+		//objects.push_back(new EnemyZombie(pEngine, this, x * TILE_SIZE, y * TILE_SIZE));
 		break;
 
 	case(2):
@@ -99,6 +104,7 @@ void Room::setSpecialTiles(int x, int y, int id)
 	}
 }
 
+//Fetches the actual tileID from the index given in the room template
 int Room::getTileID(std::vector<int>* list, int n)
 {
 	//Make sure n within bounds of our list
@@ -106,6 +112,48 @@ int Room::getTileID(std::vector<int>* list, int n)
 	if (n < 0) return 1;
 
 	return list->at(n);
+}
+
+//Generates a random enemy object, with tougher enemies having a lower weighting
+EnemyObject* Room::genEnemy(int x, int y)
+{
+	//Weighted list of enemies that can spawn
+	std::vector<std::tuple<int,const char*>> enemies;
+	enemies.push_back(std::make_tuple(16, "Zombie"));
+	enemies.push_back(std::make_tuple(10, "Elf"));
+	enemies.push_back(std::make_tuple(8, "Cultist"));
+	enemies.push_back(std::make_tuple(1, "Dragon"));
+
+	//Get sum of weights
+	int weightsTotal = 0;
+	for (auto it = enemies.begin(); it != enemies.end(); it++) {
+		weightsTotal += std::get<0>(*it);
+	}
+
+	int rng = rand() % weightsTotal;
+	int index = 0;
+
+	//Get index of a weighted element randomly
+	for (int i = 0; i < enemies.size(); i++) {
+		if (rng < std::get<0>(enemies[i])) {
+			//Got a result
+			index = i;
+			break;
+		}
+		//Else move to next and remove the weighting from the total
+		rng -= std::get<0>(enemies[i]);
+	}
+
+	const char* pick = std::get<1>(enemies[index]);
+
+	if (strcmp(pick, "Zombie")) return new EnemyZombie(pEngine, this, x, y);
+	if (strcmp(pick, "Elf")) return new EnemyElf(pEngine, this, x, y);
+	if (strcmp(pick, "Cultist")) return new EnemyCultist(pEngine, this, x, y);
+	if (strcmp(pick, "Dragon")) return new EnemyDragon(pEngine, this, x, y);
+
+	std::cout << "NULL ";
+	return new EnemyZombie(pEngine, this, x, y);
+
 }
 
 //Fetches a 2d vector containing all of the tile values inside the given tag
@@ -202,7 +250,9 @@ void Room::onExit()
 }
 
 
+
 	//FLOOR MANAGER FUNCTIONS
+
 typedef std::vector<std::vector<int>> grid;
 
 grid FloorManager::genFloor(grid floor, int sizex, int sizey, int sector)

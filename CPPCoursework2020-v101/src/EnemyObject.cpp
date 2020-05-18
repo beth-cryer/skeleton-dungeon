@@ -54,7 +54,7 @@ void EnemyObject::virtDoUpdate(int iCurrentTime)
 			attacks--;
 
 			wep->attack(this,pEngine->GetPlayer());
-			//attack();
+
 			AI();
 		}
 	}
@@ -65,6 +65,9 @@ void EnemyObject::virtDoUpdate(int iCurrentTime)
 	//Check if death animation is finished
 	if (currentState == CharState::stateDeath) {
 		if (anim_end) {
+			//Give EXP
+			pEngine->exp += expDrop;
+
 			std::cout << "Enemy " << name << " was killed.\n";
 			room->objects.remove(this); //Remove from Room container so it doesn't respawn on re-entering the room
 			pEngine->drawableObjectsChanged();
@@ -77,7 +80,7 @@ void EnemyObject::virtDoUpdate(int iCurrentTime)
 
 void EnemyObject::turnStart()
 {
-	if (aggroed == false) pEngine->GetAudio()->playAudio(attackSound, -1, 0);
+	if (aggroed == false && attackSound) pEngine->GetAudio()->playAudio(attackSound, -1, 0);
 
 	aggroed = true;
 
@@ -106,15 +109,10 @@ void EnemyObject::AI()
 	if (lineOfSight(player->getXPos(), player->getYPos(), m_iCurrentScreenX, m_iCurrentScreenY, wep->range)) in_range = true;
 
 	if (attacks > 0 && in_range) {
-		anim_frame = 0;
+		resetAnim();
 
 		//face player
 		if (player->getXPos() > m_iCurrentScreenX) flipX = false; else if(player->getXPos() < m_iCurrentScreenX) flipX = true;
-
-		if (attackSound) pEngine->GetAudio()->playAudio(attackSound, -1, 0);
-		attack();
-
-		std::cout << "Enemy " << name << " attacks!\n";
 		
 		currentState = CharState::stateAttack;
 		return;
@@ -168,7 +166,7 @@ void EnemyObject::damage(int amount)
 
 	//DEAD
 	if (health == 0) {
-		anim_frame = 0;
+		resetAnim();
 		currentState = CharState::stateDeath;
 
 		//Object will be deleted at the end of the animation
@@ -180,7 +178,7 @@ void EnemyObject::attack()
 {
 	//Calculate damage
 	int mod; if (wep->range > 2) mod = pEngine->ranged; else mod = pEngine->strength; //using strength or ranged?
-	int dmg = strength + wep->damage - (pEngine->defence);
+	int dmg = mod + wep->damage - (pEngine->defence);
 	if (dmg < 1) dmg = 1; //attacks always do at least 1 damage, so you can't just pump defence and tank literally everything
 
 	std::cout << "Enemy " << name << " hits you for " << dmg << " damage!\n";

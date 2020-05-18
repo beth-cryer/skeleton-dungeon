@@ -25,13 +25,14 @@ void Weapon::virtItemUse()
 //Default attack code (eg. melee swing)
 void Weapon::attack(CharObject* origin, CharObject* target)
 {
+	origin->onProjectileHit(target);
 }
 
 
 void Bow::attack(CharObject* origin, CharObject* target)
 {
 	//pEnemy->damage(damage);
-	//pEngine->audio.playAudio(sndAttack, -1, 0);
+	pEngine->GetAudio()->playAudio(sndAttack, -1, 0);
 
 	//Create Arrow object
 	pEngine->appendObjectToArray(new ArrowProjectile(pEngine, origin, target));

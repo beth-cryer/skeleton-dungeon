@@ -7,24 +7,29 @@ ProjectileObject::ProjectileObject(BaseEngine* pEngine, CharObject* origin, Char
 {
 #define PI 3.14159265
 
+	//For some reason this doesn't work :(
+	//Don't have time to fix it
+	CharObject* c1 = origin;
+	CharObject* c2 = target;
+
 	//Get angle from origin to target
-	int x1 = origin->getXCentre();
-	int y1 = origin->getYCentre();
-	int x2 = target->getXCentre();
-	int y2 = target->getYCentre();
+	int x1 = c1->getXCentre();
+	int y1 = c1->getYCentre();
+	int x2 = c2->getXCentre();
+	int y2 = c2->getYCentre();
 
-	double x = std::pow(x1 - x2, 2);
-	double y = std::pow(y1 - y2, 2);
-	double d = std::abs(std::sqrt(x + y));
-
-	//Get degrees in radians and convert to degrees
-	double angle = std::atan2(y,x) * 180.0 / PI;
+	double dot = ((double)x1 * (double)x2) + ((double)y1 * (double)y2);
+	double det = ((double)x1 * (double)y2) - ((double)y1 * (double)x2);
+	double angle = std::atan2(-det, -dot) * 180 / PI;
+	
+	//std::cout << angle << std::endl;
 
 	//Set rotation mapping angle
 	rotator.setRotation(angle);
 
 	//Set movement path
-	setMovement(pEngine->getModifiedTime(), pEngine->getModifiedTime() + 400, pEngine->getModifiedTime(), x1, y1, x2, y2);
+	setMovement(pEngine->getModifiedTime(), pEngine->getModifiedTime() + 400, pEngine->getModifiedTime(),
+		origin->getXCentre(), origin->getYCentre(), target->getXCentre(), target->getYCentre());
 }
 
 //Allow an image to be set manually too

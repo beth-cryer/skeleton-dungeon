@@ -2,6 +2,7 @@
 #include "PlayerObject.h"
 
 #include "EnemyObject.h"
+#include "StateMenu.h"
 
 #include <list>
 
@@ -25,7 +26,7 @@ void PlayerObject::virtDraw()
 	case (CharState::stateIdle): animate(4, 96, 100, 0, 0, 16, 36); break;
 	case(CharState::stateAttack): animate(3, 96, 100, 0, 300, 16, 36); break;
 	case(CharState::stateWalk): animate(8, 96, 100, 0, 100, 16, 36); break;
-	case(CharState::stateDeath): animate(6, 96, 100, 0, 500, 16, 36); break;
+	case(CharState::stateDeath): animate(6, 96, 100, 0, 500, 16, 36, false); break;
 	}
 
 	return AnimatedObject::virtDraw();
@@ -34,10 +35,15 @@ void PlayerObject::virtDraw()
 
 void PlayerObject::virtDoUpdate(int iCurrentTime)
 {
-
-	//Don't do update if invisible or paused
-	if (!isVisible() || getEngine()->isPaused())
+	//Don't do update if invisible or paused, or dead
+	if (!isVisible() || getEngine()->isPaused() || currentState == CharState::stateDeath)
 		return;
+
+	//Check if we're dead
+	if (pEngine->health <= 0) {
+		resetAnim();
+		currentState = CharState::stateDeath;
+	}
 
 	//Check if we have leveled up
 	if (pEngine->exp >= pEngine->expNext) {
@@ -45,8 +51,8 @@ void PlayerObject::virtDoUpdate(int iCurrentTime)
 		pEngine->GetAudio()->playAudio("sfx/ui/LevelUp.ogg", -1, 0);
 
 		//Exp required increases by 5% every level
+		pEngine->exp -= pEngine->expNext;
 		pEngine->expNext += (int)std::floor(pEngine->expNext * 1.05);
-		pEngine->exp = 0;
 
 		//Increase level, automatically increment health, stamina and skillUps
 		pEngine->level++;
@@ -60,10 +66,10 @@ void PlayerObject::virtDoUpdate(int iCurrentTime)
 	switch (currentState) {
 	case(CharState::stateIdle):
 		if (pEngine->stamina > 0) {
-			if (getEngine()->isKeyPressed(SDLK_UP)) move(0, -64, iCurrentTime, 400);
-			if (getEngine()->isKeyPressed(SDLK_DOWN)) move(0, 64, iCurrentTime, 400);
-			if (getEngine()->isKeyPressed(SDLK_LEFT)) move(-64, 0, iCurrentTime, 400);
-			if (getEngine()->isKeyPressed(SDLK_RIGHT)) move(64, 0, iCurrentTime, 400);
+			if (pEngine->isKeyPressed(SDLK_UP)) move(0, -64, iCurrentTime, 400);
+			if (pEngine->isKeyPressed(SDLK_DOWN)) move(0, 64, iCurrentTime, 400);
+			if (pEngine->isKeyPressed(SDLK_LEFT)) move(-64, 0, iCurrentTime, 400);
+			if (pEngine->isKeyPressed(SDLK_RIGHT)) move(64, 0, iCurrentTime, 400);
 		}
 		break;
 
@@ -102,7 +108,9 @@ void PlayerObject::virtDoUpdate(int iCurrentTime)
 
 void PlayerObject::virtMouseDown(int iButton, int iX, int iY)
 {
-	if (iButton == SDL_BUTTON_RIGHT) {
+	//Can only attack if in idle state
+	if (iButton == SDL_BUTTON_RIGHT && currentState == CharState::stateIdle) {
+
 		//Iterate through all DisplayableObjects and check we clicked one
 		DisplayableObject* pObj;
 		for (int i = 0; i < pEngine->getContentCount(); i++) {
@@ -134,7 +142,7 @@ void PlayerObject::virtMouseDown(int iButton, int iX, int iY)
 	}
 }
 
-//Applies attack damage
+//Applies attack damage to an enemy
 void PlayerObject::attack(EnemyObject* pEnemy)
 {
 	//Face enemy

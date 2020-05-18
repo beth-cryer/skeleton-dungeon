@@ -30,11 +30,15 @@ void AnimatedObject::virtDraw()
 }
 
 //Takes the number of frames in an animation (zero-indexed), the width and height of each sprite, the starting positions of the animation on the spritesheet, and the offset to draw the animation at (used to center large sprites to their occupied tile)
-void AnimatedObject::animate(int numFrames, int width, int height, int xPos, int yPos, int xOffset, int yOffset)
+void AnimatedObject::animate(int numFrames, int width, int height, int xPos, int yPos, int xOffset, int yOffset, bool loop)
 {
 	//Resets frame counter to 0 if over maximum: triggered when animation reaches loop point OR if a new animation has started that has lower numFrames than the previous
 	if (anim_frame > numFrames) {
-		anim_frame = 0;
+		
+		//Reset frames if loop = true
+		if (loop) anim_frame = 0;
+		else anim_frame = numFrames;
+		
 		anim_end = true;
 	}
 
@@ -54,4 +58,5 @@ void AnimatedObject::animate(int numFrames, int width, int height, int xPos, int
 void AnimatedObject::resetAnim()
 {
 	anim_frame = 0;
+	anim_end = false;
 }

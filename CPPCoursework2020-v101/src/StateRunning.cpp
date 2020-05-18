@@ -79,6 +79,12 @@ void StateRunning::virtDrawStringsOnTop()
 		pEngine->drawForegroundOval(100 + (i * 40), 740, 130 + (i * 40), 770, col);
 	}
 
+	//If dead:
+	if (pEngine->health <= 0) {
+		pEngine->drawForegroundString(WIN_CENTREX - 32, WIN_CENTREY, "YOU DIED!", 0xffffff, pEngine->getFont("fonts/bloodlust.ttf", 50));
+		pEngine->drawForegroundString(WIN_CENTREX - 128, WIN_CENTREY + 64, "Press ESCAPE To Exit", 0xffffff, NULL);
+	}
+
 	//NEXT TURN prompt
 	if (pEngine->stamina == 0 && !enemyTurn) pEngine->drawForegroundString(WIN_CENTREX-128,WIN_HEIGHT-32,"Next Turn (SPACE)",0xFFFFFF,NULL);
 }
@@ -123,28 +129,27 @@ void StateRunning::virtKeyDown(int iKeyCode)
 {
 	PlayerObject* pl = pEngine->GetPlayer();
 
-	switch (iKeyCode) {
+	//Don't allow these actions if we're dead
+	if (pEngine->health > 0) {
 
 		//NEXT TURN
-	case(SDLK_SPACE):
-		enemyTurn = true;
-		pEngine->setState(stateEnemyTurn);
-		break;
+		if (iKeyCode == SDLK_SPACE) {
+			enemyTurn = true;
+			pEngine->setState(stateEnemyTurn);
+		}
 
 		//PAUSE
-	case(SDLK_RETURN):
-		pEngine->setState(statePaused);
-		break;
+		if (iKeyCode == SDLK_RETURN)
+			pEngine->setState(statePaused);
+	}
+
+	
+	switch (iKeyCode) {
 
 		//BACK TO MENU
 	case SDLK_ESCAPE:
 		pEngine->clearObjects();
 		pEngine->setState(pEngine->stateMenu);
-		break;
-
-		//Testing line-of-sight
-	case SDLK_l:
-		pl->lineOfSight(64, 64, 512, 128, 0);
 		break;
 
 		//MOVING CAMERA
