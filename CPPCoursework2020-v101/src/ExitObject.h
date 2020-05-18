@@ -3,14 +3,15 @@
 #include "ImageManager.h"
 
 class GameEngine;
+class Room;
 
 class ExitObject :
 	public DisplayableObject
 {
 public:
-	ExitObject(BaseEngine* pEngine, int xStart, int yStart)
+	ExitObject(BaseEngine* pEngine, Room* pRoom, int xStart, int yStart)
 		: DisplayableObject(xStart, yStart, pEngine, TILE_SIZE, TILE_SIZE, true),
-		pEngine((GameEngine*)pEngine)
+		pEngine((GameEngine*)pEngine), pRoom(pRoom)
 	{
 		setShouldDeleteOnRemoval(false);
 	}
@@ -27,6 +28,6 @@ private:
 	bool activate = false;
 
 	GameEngine* pEngine;
-
+	Room* pRoom;
 };
 

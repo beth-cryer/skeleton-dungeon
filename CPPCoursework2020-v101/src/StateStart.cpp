@@ -76,7 +76,7 @@ void StateStart::virtSetupBackgroundBuffer()
 	//endRoom->objects.push_back(new ExitObject(pEngine, endRoom->xExit, endRoom->yExit)); //Add exit door
 
 	startRoom->exit = true;
-	startRoom->objects.push_back(new ExitObject(pEngine, endRoom->xExit, endRoom->yExit)); //Add exit door
+	startRoom->objects.push_back(new ExitObject(pEngine, startRoom, endRoom->xExit, endRoom->yExit)); //Add exit door
 
 	startRoom->onEnter(-1);
 

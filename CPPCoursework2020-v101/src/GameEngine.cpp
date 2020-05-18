@@ -21,8 +21,6 @@ GameEngine::GameEngine()
 {
 	notifyObjectsAboutMouse(true);
 
-	createObjects();
-
 	objTilesSolid = std::make_shared<SolidTileManager>();
 	objTilesBack = std::make_shared<BackgroundTileManager>();
 	objInvTiles = std::make_shared<InventoryTileManager>(this);

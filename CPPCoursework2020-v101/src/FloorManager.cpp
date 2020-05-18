@@ -144,13 +144,7 @@ void Room::onEnter(int dir) {
 	pEngine->SetTilesBack(backTiles);
 	pEngine->SetTilesSolid(solidTiles);
 
-	//Update object array in GameEngine
 	pEngine->drawableObjectsChanged();
-
-	//Destroy any existing objects (but don't free their memory, except for Player)
-	pEngine->destroyOldObjects(false);
-	delete pEngine->GetPlayer();
-
 	//Add player to the room in starting position
 	pEngine->SetPlayer(new PlayerObject(pEngine, std::make_shared<WoodSword>(pEngine)));
 
@@ -198,7 +192,13 @@ void Room::onEnter(int dir) {
 
 void Room::onExit()
 {
+	//Update object array in GameEngine
+	pEngine->drawableObjectsChanged();
 
+	//Destroy any existing objects (but don't free their memory, except for Player)
+	pEngine->destroyOldObjects(false);
+
+	delete pEngine->GetPlayer();
 }
 
 

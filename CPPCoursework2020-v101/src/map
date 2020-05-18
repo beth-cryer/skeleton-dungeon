@@ -1,6 +1,6 @@
  CourseworkBase2020
 
- Timestamp is 5ec29676 (Mon May 18 15:06:46 2020)
+ Timestamp is 5ec29bc4 (Mon May 18 15:29:24 2020)
 
  Preferred load address is 00400000
 
@@ -46,19 +46,19 @@
 
   Address         Publics by Value              Rva+Base       Lib:Object
 
- 0000:00000000       ___dynamic_value_reloc_table 00000000     <absolute>
- 0000:00000000       ___guard_longjmp_count     00000000     <absolute>
- 0000:00000000       ___guard_fids_count        00000000     <absolute>
- 0000:00000000       ___volatile_metadata       00000000     <absolute>
+ 0000:00000000       ___guard_longjmp_table     00000000     <absolute>
  0000:00000000       ___AbsoluteZero            00000000     <absolute>
  0000:00000000       ___guard_iat_count         00000000     <absolute>
- 0000:00000000       ___guard_fids_table        00000000     <absolute>
- 0000:00000000       ___enclave_config          00000000     <absolute>
- 0000:00000000       ___hybrid_code_map         00000000     <absolute>
  0000:00000000       ___hybrid_auxiliary_iat    00000000     <absolute>
- 0000:00000000       ___guard_longjmp_table     00000000     <absolute>
- 0000:00000000       ___guard_iat_table         00000000     <absolute>
+ 0000:00000000       ___guard_fids_table        00000000     <absolute>
  0000:00000000       ___hybrid_code_map_count   00000000     <absolute>
+ 0000:00000000       ___guard_iat_table         00000000     <absolute>
+ 0000:00000000       ___volatile_metadata       00000000     <absolute>
+ 0000:00000000       ___enclave_config          00000000     <absolute>
+ 0000:00000000       ___guard_fids_count        00000000     <absolute>
+ 0000:00000000       ___guard_longjmp_count     00000000     <absolute>
+ 0000:00000000       ___dynamic_value_reloc_table 00000000     <absolute>
+ 0000:00000000       ___hybrid_code_map         00000000     <absolute>
  0000:00000100       ___guard_flags             00000100     <absolute>
  0000:0000018b       ___safe_se_handler_count   0000018b     <absolute>
  0000:00000000       ___ImageBase               00400000     <linker-defined>
@@ -79,8 +79,8 @@
  0001:0000af20       ?_Decref@_Ref_count_base@std@@QAEXXZ 0040bf20 f i AnimatedObject.obj
  0001:0000af60       ?_Decwref@_Ref_count_base@std@@QAEXXZ 0040bf60 f i AnimatedObject.obj
  0001:0000afa0       ?__empty_global_delete@@YAXPAX@Z 0040bfa0 f i AnimatedObject.obj
- 0001:0000afb0       ?__empty_global_delete@@YAXPAXI@Z 0040bfb0 f i AnimatedObject.obj
  0001:0000afb0       ?__global_delete@@YAXPAXI@Z 0040bfb0 f i AnimatedObject.obj
+ 0001:0000afb0       ?__empty_global_delete@@YAXPAXI@Z 0040bfb0 f i AnimatedObject.obj
  0001:0000afc0       ?changePixelColour@CoordinateMapping@@UAE_NHHAAHPAVDrawingSurface@@@Z 0040bfc0 f i AnimatedObject.obj
  0001:0000afe0       ?deleteOnRemoval@DisplayableObject@@UBE_NXZ 0040bfe0 f i AnimatedObject.obj
  0001:0000b000       ?get@?$_Ptr_base@VRawImageData@@@std@@IBEPAVRawImageData@@XZ 0040c000 f i AnimatedObject.obj
@@ -100,9 +100,10 @@
  0001:0000b3a0       ?setSheetValues@CoordinateMappingFlipSheet@@QAEXHHHHH@Z 0040c3a0 f i AnimatedObject.obj
  0001:0000b3f0       ?setTransparencyColour@SimpleImage@@QAEXH@Z 0040c3f0 f i AnimatedObject.obj
  0001:0000b460       ?setTransparentColour@RawImageData@@QAEXI@Z 0040c460 f i AnimatedObject.obj
- 0001:0000b550       ??0?$shared_ptr@VInventoryTileManager@@@std@@QAE@XZ 0040c550 f i GameEngine.obj
+ 0001:0000b550       ??0?$allocator@V?$shared_ptr@VItem@@@std@@@std@@QAE@XZ 0040c550 f i GameEngine.obj
+ 0001:0000b560       ?push_back@?$vector@V?$shared_ptr@VItem@@@std@@V?$allocator@V?$shared_ptr@VItem@@@std@@@2@@std@@QAEXABV?$shared_ptr@VItem@@@2@@Z 0040c560 f i GameEngine.obj
  0001:0000b580       ?virtIsPositionWithinObject@DisplayableObject@@UAE_NHH@Z 0040c580 f i AnimatedObject.obj
- 0001:0000b5f0       ??0FloorManager@@QAE@XZ    0040c5f0 f i GameEngine.obj
+ 0001:0000b5f0       ?swap@?$shared_ptr@VInventoryTileManager@@@std@@QAEXAAV12@@Z 0040c5f0 f i GameEngine.obj
  0001:0000b610       ?virtKeyDown@DisplayableObject@@UAEXH@Z 0040c610 f i AnimatedObject.obj
  0001:0000b620       ?virtKeyUp@DisplayableObject@@UAEXH@Z 0040c620 f i AnimatedObject.obj
  0001:0000b630       ?virtMouseDown@DisplayableObject@@UAEXHHH@Z 0040c630 f i AnimatedObject.obj
@@ -118,10 +119,12 @@
  0001:0000ba20       ?isSongPlaying@AudioPlayer@@QAE_NPBD@Z 0040ca20 f   AudioPlayer.obj
  0001:0000ba40       ?stopMusic@AudioPlayer@@QAEXXZ 0040ca40 f   AudioPlayer.obj
  0001:0000ba60       ?closeAudio@AudioPlayer@@QAEXXZ 0040ca60 f   AudioPlayer.obj
- 0001:0000bba0       ??$_Emplace_back_with_unused_capacity@ABV?$shared_ptr@VItem@@@std@@@?$vector@V?$shared_ptr@VItem@@@std@@V?$allocator@V?$shared_ptr@VItem@@@std@@@2@@std@@AAE@ABV?$shared_ptr@VItem@@@1@@Z 0040cba0 f i GameEngine.obj
- 0001:0000bc20       ??$_Move_construct_from@VItem@@@?$_Ptr_base@VItem@@@std@@IAEX$$QAV01@@Z 0040cc20 f i GameEngine.obj
- 0001:0000bc60       ??$emplace_back@ABV?$shared_ptr@VItem@@@std@@@?$vector@V?$shared_ptr@VItem@@@std@@V?$allocator@V?$shared_ptr@VItem@@@std@@@2@@std@@QAE@ABV?$shared_ptr@VItem@@@1@@Z 0040cc60 f i GameEngine.obj
- 0001:0000bcc0       ??1?$_Ref_count@VItem@@@std@@UAE@XZ 0040ccc0 f i GameEngine.obj
+ 0001:0000bba0       ??$_Emplace_back@V?$shared_ptr@VItem@@@std@@@?$_Uninitialized_backout_al@V?$allocator@V?$shared_ptr@VItem@@@std@@@std@@@std@@QAEX$$QAV?$shared_ptr@VItem@@@1@@Z 0040cba0 f i GameEngine.obj
+ 0001:0000bbf0       ??1?$_Uninitialized_backout_al@V?$allocator@V?$shared_ptr@VItem@@@std@@@std@@@std@@QAE@XZ 0040cbf0 f i GameEngine.obj
+ 0001:0000bc20       ??$_Move_construct_from@VInventoryTileManager@@@?$_Ptr_base@VInventoryTileManager@@@std@@IAEX$$QAV01@@Z 0040cc20 f i GameEngine.obj
+ 0001:0000bc60       ??$destroy@V?$shared_ptr@VItem@@@std@@@?$_Default_allocator_traits@V?$allocator@V?$shared_ptr@VItem@@@std@@@std@@@std@@SAXAAV?$allocator@V?$shared_ptr@VItem@@@std@@@1@QAV?$shared_ptr@VItem@@@1@@Z 0040cc60 f i GameEngine.obj
+ 0001:0000bc70       ??0FilterPointsTranslation@@QAE@HHPAVFilterPoints@@@Z 0040cc70 f i GameEngine.obj
+ 0001:0000bcb0       ?_Umove_if_noexcept1@?$vector@V?$shared_ptr@VItem@@@std@@V?$allocator@V?$shared_ptr@VItem@@@std@@@2@@std@@AAEXPAV?$shared_ptr@VItem@@@2@00U?$integral_constant@_N$00@2@@Z 0040ccb0 f i GameEngine.obj
  0001:0000bce0       ??$?0$$V@?$_Compressed_pair@V?$allocator@D@std@@V?$_String_val@U?$_Simple_types@D@std@@@2@$00@std@@QAE@U_Zero_then_variadic_args_t@1@@Z 0040cce0 f i AudioPlayer.obj
  0001:0000bd10       ??$?0$$V@?$_Compressed_pair@V?$allocator@U?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAUMix_Chunk@@@std@@PAX@std@@@std@@V?$_Tree_val@U?$_Tree_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAUMix_Chunk@@@std@@@std@@@2@$00@std@@QAE@U_Zero_then_variadic_args_t@1@@Z 0040cd10 f i AudioPlayer.obj
  0001:0000bd40       ??$?0$$V@?$_Compressed_pair@V?$allocator@U?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAU_Mix_Music@@@std@@PAX@std@@@std@@V?$_Tree_val@U?$_Tree_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAU_Mix_Music@@@std@@@std@@@2@$00@std@@QAE@U_Zero_then_variadic_args_t@1@@Z 0040cd40 f i AudioPlayer.obj
@@ -129,10 +132,10 @@
  0001:0000bdc0       ??$?0AAPAU?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAU_Mix_Music@@@std@@PAX@std@@_N$0A@@?$pair@PAU?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAU_Mix_Music@@@std@@PAX@std@@_N@std@@QAE@AAPAU?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAU_Mix_Music@@@std@@PAX@1@$$QA_N@Z 0040cdc0 f i AudioPlayer.obj
  0001:0000be10       ??$?0AAPBDAAPAUMix_Chunk@@$0A@@?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAUMix_Chunk@@@std@@QAE@AAPBDAAPAUMix_Chunk@@@Z 0040ce10 f i AudioPlayer.obj
  0001:0000be60       ??$?0AAPBDAAPAUMix_Chunk@@@?$_Tree_temp_node@V?$allocator@U?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAUMix_Chunk@@@std@@PAX@std@@@std@@@std@@QAE@AAV?$allocator@U?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAUMix_Chunk@@@std@@PAX@std@@@1@PAU?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAUMix_Chunk@@@std@@PAX@1@AAPBDAAPAUMix_Chunk@@@Z 0040ce60 f i AudioPlayer.obj
- 0001:0000bf50       ??0?$shared_ptr@VItem@@@std@@QAE@$$QAV01@@Z 0040cf50 f i GameEngine.obj
+ 0001:0000bf50       ??0?$shared_ptr@VInventoryTileManager@@@std@@QAE@$$QAV01@@Z 0040cf50 f i GameEngine.obj
  0001:0000bf80       ??$?0AAPBDAAPAU_Mix_Music@@$0A@@?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAU_Mix_Music@@@std@@QAE@AAPBDAAPAU_Mix_Music@@@Z 0040cf80 f i AudioPlayer.obj
  0001:0000bfd0       ??$?0AAPBDAAPAU_Mix_Music@@@?$_Tree_temp_node@V?$allocator@U?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAU_Mix_Music@@@std@@PAX@std@@@std@@@std@@QAE@AAV?$allocator@U?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAU_Mix_Music@@@std@@PAX@std@@@1@PAU?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAU_Mix_Music@@@std@@PAX@1@AAPBDAAPAU_Mix_Music@@@Z 0040cfd0 f i AudioPlayer.obj
- 0001:0000c0c0       ??1?$_Ref_count_obj2@VInventoryTileManager@@@std@@UAE@XZ 0040d0c0 f i GameEngine.obj
+ 0001:0000c0c0       ??0FloorManager@@QAE@XZ    0040d0c0 f i GameEngine.obj
  0001:0000c0f0       ??$?0ABU?$less@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@std@@U_Zero_then_variadic_args_t@1@@?$_Compressed_pair@U?$less@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@std@@V?$_Compressed_pair@V?$allocator@U?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAUMix_Chunk@@@std@@PAX@std@@@std@@V?$_Tree_val@U?$_Tree_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAUMix_Chunk@@@std@@@std@@@2@$00@2@$00@std@@QAE@U_One_then_variadic_args_t@1@ABU?$less@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@1@$$QAU_Zero_then_variadic_args_t@1@@Z 0040d0f0 f i AudioPlayer.obj
  0001:0000c140       ??$?0ABU?$less@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@std@@U_Zero_then_variadic_args_t@1@@?$_Compressed_pair@U?$less@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@std@@V?$_Compressed_pair@V?$allocator@U?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAU_Mix_Music@@@std@@PAX@std@@@std@@V?$_Tree_val@U?$_Tree_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAU_Mix_Music@@@std@@@std@@@2@$00@2@$00@std@@QAE@U_One_then_variadic_args_t@1@ABU?$less@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@1@$$QAU_Zero_then_variadic_args_t@1@@Z 0040d140 f i AudioPlayer.obj
  0001:0000c190       ??$?0D@?$allocator@U_Container_proxy@std@@@std@@QAE@ABV?$allocator@D@1@@Z 0040d190 f i AudioPlayer.obj
@@ -147,11 +150,9 @@
  0001:0000c390       ??$_Alloc_proxy@V?$allocator@U_Container_proxy@std@@@std@@@_Container_base12@std@@QAEX$$QAV?$allocator@U_Container_proxy@std@@@1@@Z 0040d390 f i AudioPlayer.obj
  0001:0000c3f0       ??$_Allocate@$07U_Default_allocate_traits@std@@$0A@@std@@YAPAXI@Z 0040d3f0 f i AudioPlayer.obj
  0001:0000c430       ??$_Allocate_manually_vector_aligned@U_Default_allocate_traits@std@@@std@@YAPAXI@Z 0040d430 f i AudioPlayer.obj
- 0001:0000c4f0       ??1?$shared_ptr@VInventoryTileManager@@@std@@QAE@XZ 0040d4f0 f i GameEngine.obj
+ 0001:0000c4f0       ??1?$_Ref_count_obj2@VInventoryTileManager@@@std@@UAE@XZ 0040d4f0 f i GameEngine.obj
  0001:0000c510       ??$_Buyheadnode@V?$allocator@U?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAUMix_Chunk@@@std@@PAX@std@@@std@@@?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAUMix_Chunk@@@std@@PAX@std@@SAPAU01@AAV?$allocator@U?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAUMix_Chunk@@@std@@PAX@std@@@1@@Z 0040d510 f i AudioPlayer.obj
- 0001:0000c570       ??1FloorManager@@QAE@XZ    0040d570 f i GameEngine.obj
  0001:0000c590       ??$_Buyheadnode@V?$allocator@U?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAU_Mix_Music@@@std@@PAX@std@@@std@@@?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAU_Mix_Music@@@std@@PAX@std@@SAPAU01@AAV?$allocator@U?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAU_Mix_Music@@@std@@PAX@std@@@1@@Z 0040d590 f i AudioPlayer.obj
- 0001:0000c5f0       ??1SaveManager@@QAE@XZ     0040d5f0 f i GameEngine.obj
  0001:0000c610       ??$_Construct_in_place@PADABQAD@std@@YAXAAPADABQAD@Z 0040d610 f i AudioPlayer.obj
  0001:0000c660       ??$_Construct_in_place@PAU?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAUMix_Chunk@@@std@@PAX@std@@AAPAU12@@std@@YAXAAPAU?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAUMix_Chunk@@@std@@PAX@0@0@Z 0040d660 f i AudioPlayer.obj
  0001:0000c6b0       ??$_Construct_in_place@PAU?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAUMix_Chunk@@@std@@PAX@std@@ABQAU12@@std@@YAXAAPAU?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAUMix_Chunk@@@std@@PAX@0@ABQAU10@@Z 0040d6b0 f i AudioPlayer.obj
@@ -162,34 +163,26 @@
  0001:0000c800       ??$_Deallocate@$07$0A@@std@@YAXPAXI@Z 0040d800 f i AudioPlayer.obj
  0001:0000c870       ??$_Deallocate_plain@V?$allocator@U_Container_proxy@std@@@std@@@std@@YAXAAV?$allocator@U_Container_proxy@std@@@0@QAU_Container_proxy@0@@Z 0040d870 f i AudioPlayer.obj
  0001:0000c8d0       ??$_Debug_lt_pred@ABU?$less@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@std@@ABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@2@ABV32@$0A@@std@@YA_NABU?$less@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@0@ABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@0@1@Z 0040d8d0 f i AudioPlayer.obj
- 0001:0000c960       ?max_size@?$_Default_allocator_traits@V?$allocator@V?$shared_ptr@VItem@@@std@@@std@@@std@@SAIABV?$allocator@V?$shared_ptr@VItem@@@std@@@2@@Z 0040d960 f i GameEngine.obj
  0001:0000c980       ??$_Delete_plain_internal@V?$allocator@U_Container_proxy@std@@@std@@@std@@YAXAAV?$allocator@U_Container_proxy@std@@@0@QAU_Container_proxy@0@@Z 0040d980 f i AudioPlayer.obj
  0001:0000c9a0       ??$_Destroy_in_place@PAD@std@@YAXAAPAD@Z 0040d9a0 f i AudioPlayer.obj
  0001:0000c9b0       ??$_Destroy_in_place@PAU?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAUMix_Chunk@@@std@@PAX@std@@@std@@YAXAAPAU?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAUMix_Chunk@@@std@@PAX@0@@Z 0040d9b0 f i AudioPlayer.obj
  0001:0000c9c0       ??$_Destroy_in_place@PAU?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAU_Mix_Music@@@std@@PAX@std@@@std@@YAXAAPAU?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAU_Mix_Music@@@std@@PAX@0@@Z 0040d9c0 f i AudioPlayer.obj
  0001:0000c9d0       ??$_Emplace@AAPBDAAPAUMix_Chunk@@@?$_Tree@V?$_Tmap_traits@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAUMix_Chunk@@U?$less@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@V?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAUMix_Chunk@@@std@@@2@$0A@@std@@@std@@IAE?AU?$pair@PAU?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAUMix_Chunk@@@std@@PAX@std@@_N@1@AAPBDAAPAUMix_Chunk@@@Z 0040d9d0 f i AudioPlayer.obj
- 0001:0000cb10       ??0FilterPointsTranslation@@QAE@HHPAVFilterPoints@@@Z 0040db10 f i GameEngine.obj
+ 0001:0000cb10       ??0?$shared_ptr@VItem@@@std@@QAE@ABV01@@Z 0040db10 f i GameEngine.obj
  0001:0000cb60       ??$_Emplace@AAPBDAAPAU_Mix_Music@@@?$_Tree@V?$_Tmap_traits@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAU_Mix_Music@@U?$less@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@V?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAU_Mix_Music@@@std@@@2@$0A@@std@@@std@@IAE?AU?$pair@PAU?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAU_Mix_Music@@@std@@PAX@std@@_N@1@AAPBDAAPAU_Mix_Music@@@Z 0040db60 f i AudioPlayer.obj
- 0001:0000cca0       ??1?$_Temporary_owner@VItem@@@std@@QAE@XZ 0040dca0 f i GameEngine.obj
+ 0001:0000cca0       ??1StateStart@@QAE@XZ      0040dca0 f i GameEngine.obj
  0001:0000ccf0       ??$_Erase_head@V?$allocator@U?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAUMix_Chunk@@@std@@PAX@std@@@std@@@?$_Tree_val@U?$_Tree_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAUMix_Chunk@@@std@@@std@@@std@@QAEXAAV?$allocator@U?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAUMix_Chunk@@@std@@PAX@std@@@1@@Z 0040dcf0 f i AudioPlayer.obj
  0001:0000cd40       ??$_Erase_head@V?$allocator@U?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAU_Mix_Music@@@std@@PAX@std@@@std@@@?$_Tree_val@U?$_Tree_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAU_Mix_Music@@@std@@@std@@@std@@QAEXAAV?$allocator@U?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAU_Mix_Music@@@std@@PAX@std@@@1@@Z 0040dd40 f i AudioPlayer.obj
  0001:0000cd90       ??$_Erase_tree@V?$allocator@U?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAUMix_Chunk@@@std@@PAX@std@@@std@@@?$_Tree_val@U?$_Tree_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAUMix_Chunk@@@std@@@std@@@std@@QAEXAAV?$allocator@U?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAUMix_Chunk@@@std@@PAX@std@@@1@PAU?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAUMix_Chunk@@@std@@PAX@1@@Z 0040dd90 f i AudioPlayer.obj
- 0001:0000ce10       ?_Decref@?$_Ptr_base@VInventoryTileManager@@@std@@IAEXXZ 0040de10 f i GameEngine.obj
  0001:0000ce30       ??$_Erase_tree@V?$allocator@U?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAU_Mix_Music@@@std@@PAX@std@@@std@@@?$_Tree_val@U?$_Tree_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAU_Mix_Music@@@std@@@std@@@std@@QAEXAAV?$allocator@U?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAU_Mix_Music@@@std@@PAX@std@@@1@PAU?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAU_Mix_Music@@@std@@PAX@1@@Z 0040de30 f i AudioPlayer.obj
- 0001:0000ceb0       ?_Destroy@?$_Ref_count_obj2@VInventoryTileManager@@@std@@EAEXXZ 0040deb0 f i GameEngine.obj
  0001:0000ced0       ??$_Find_lower_bound@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@?$_Tree@V?$_Tmap_traits@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAUMix_Chunk@@U?$less@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@V?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAUMix_Chunk@@@std@@@2@$0A@@std@@@std@@IBE?AU?$_Tree_find_result@PAU?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAUMix_Chunk@@@std@@PAX@std@@@1@ABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@1@@Z 0040ded0 f i AudioPlayer.obj
- 0001:0000cf90       ??1?$_Uninitialized_backout_al@V?$allocator@V?$shared_ptr@VItem@@@std@@@std@@@std@@QAE@XZ 0040df90 f i GameEngine.obj
+ 0001:0000cf90       ??1?$_Ref_count@VItem@@@std@@UAE@XZ 0040df90 f i GameEngine.obj
  0001:0000cfc0       ??$_Find_lower_bound@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@?$_Tree@V?$_Tmap_traits@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAU_Mix_Music@@U?$less@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@V?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAU_Mix_Music@@@std@@@2@$0A@@std@@@std@@IBE?AU?$_Tree_find_result@PAU?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAU_Mix_Music@@@std@@PAX@std@@@1@ABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@1@@Z 0040dfc0 f i AudioPlayer.obj
- 0001:0000d080       ??_E?$_Ref_count@VItem@@@std@@UAEPAXI@Z 0040e080 f i GameEngine.obj
- 0001:0000d080       ??_G?$_Ref_count@VItem@@@std@@UAEPAXI@Z 0040e080 f i GameEngine.obj
+ 0001:0000d080       ??1SaveManager@@QAE@XZ     0040e080 f i GameEngine.obj
  0001:0000d0b0       ??$_Freenode0@V?$allocator@U?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAUMix_Chunk@@@std@@PAX@std@@@std@@@?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAUMix_Chunk@@@std@@PAX@std@@SAXAAV?$allocator@U?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAUMix_Chunk@@@std@@PAX@std@@@1@PAU01@@Z 0040e0b0 f i AudioPlayer.obj
- 0001:0000d120       ?_Getal@?$vector@V?$shared_ptr@VItem@@@std@@V?$allocator@V?$shared_ptr@VItem@@@std@@@2@@std@@AAEAAV?$allocator@V?$shared_ptr@VItem@@@std@@@2@XZ 0040e120 f i GameEngine.obj
  0001:0000d140       ??$_Freenode0@V?$allocator@U?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAU_Mix_Music@@@std@@PAX@std@@@std@@@?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAU_Mix_Music@@@std@@PAX@std@@SAXAAV?$allocator@U?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAU_Mix_Music@@@std@@PAX@std@@@1@PAU01@@Z 0040e140 f i AudioPlayer.obj
- 0001:0000d1b0       ?push_back@?$vector@V?$shared_ptr@VItem@@@std@@V?$allocator@V?$shared_ptr@VItem@@@std@@@2@@std@@QAEXABV?$shared_ptr@VItem@@@2@@Z 0040e1b0 f i GameEngine.obj
  0001:0000d1d0       ??$_Freenode@V?$allocator@U?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAUMix_Chunk@@@std@@PAX@std@@@std@@@?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAUMix_Chunk@@@std@@PAX@std@@SAXAAV?$allocator@U?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAUMix_Chunk@@@std@@PAX@std@@@1@PAU01@@Z 0040e1d0 f i AudioPlayer.obj
- 0001:0000d230       ?swap@?$shared_ptr@VInventoryTileManager@@@std@@QAEXAAV12@@Z 0040e230 f i GameEngine.obj
  0001:0000d250       ??$_Freenode@V?$allocator@U?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAU_Mix_Music@@@std@@PAX@std@@@std@@@?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAU_Mix_Music@@@std@@PAX@std@@SAXAAV?$allocator@U?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAU_Mix_Music@@@std@@PAX@std@@@1@PAU01@@Z 0040e250 f i AudioPlayer.obj
- 0001:0000d2b0       ?_Unchecked_begin@?$vector@PAVRoom@@V?$allocator@PAVRoom@@@std@@@std@@QBEPBQAVRoom@@XZ 0040e2b0 f i GameEngine.obj
  0001:0000d2d0       ??$_Get_size_of_n@$00@std@@YAII@Z 0040e2d0 f i AudioPlayer.obj
  0001:0000d2f0       ??$_Get_size_of_n@$07@std@@YAII@Z 0040e2f0 f i AudioPlayer.obj
  0001:0000d330       ??$_Get_size_of_n@$0DA@@std@@YAII@Z 0040e330 f i AudioPlayer.obj
@@ -200,8 +193,6 @@
  0001:0000d460       ??$_Max_value@I@std@@YAABIABI0@Z 0040e460 f i AudioPlayer.obj
  0001:0000d4a0       ??$_Min_value@I@std@@YAABIABI0@Z 0040e4a0 f i AudioPlayer.obj
  0001:0000d4e0       ??$_Reallocate_for@V<lambda_9366063389c5f42a00a5088cf24e69de>@@PBD@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AAEAAV01@IV<lambda_9366063389c5f42a00a5088cf24e69de>@@PBD@Z 0040e4e0 f i AudioPlayer.obj
- 0001:0000d5b0       ??_G?$_Ref_count_obj2@VInventoryTileManager@@@std@@UAEPAXI@Z 0040e5b0 f i GameEngine.obj
- 0001:0000d5b0       ??_E?$_Ref_count_obj2@VInventoryTileManager@@@std@@UAEPAXI@Z 0040e5b0 f i GameEngine.obj
  0001:0000d5e0       ??$_Traits_compare@U?$char_traits@D@std@@@std@@YAHQBDI0I@Z 0040e5e0 f i AudioPlayer.obj
  0001:0000d650       ??$_Traits_equal@U?$char_traits@D@std@@@std@@YA_NQBDI0I@Z 0040e650 f i AudioPlayer.obj
  0001:0000d6a0       ??$_Unfancy@D@std@@YAPADPAD@Z 0040e6a0 f i AudioPlayer.obj
@@ -222,6 +213,7 @@
  0001:0000d810       ??$destroy@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAUMix_Chunk@@@std@@@?$_Default_allocator_traits@V?$allocator@U?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAUMix_Chunk@@@std@@PAX@std@@@std@@@std@@SAXAAV?$allocator@U?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAUMix_Chunk@@@std@@PAX@std@@@1@QAU?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAUMix_Chunk@@@1@@Z 0040e810 f i AudioPlayer.obj
  0001:0000d830       ??$destroy@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAU_Mix_Music@@@std@@@?$_Default_allocator_traits@V?$allocator@U?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAU_Mix_Music@@@std@@PAX@std@@@std@@@std@@SAXAAV?$allocator@U?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAU_Mix_Music@@@std@@PAX@std@@@1@QAU?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAU_Mix_Music@@@1@@Z 0040e830 f i AudioPlayer.obj
  0001:0000d850       ??$emplace@AAPBDAAPAUMix_Chunk@@@?$_Tree@V?$_Tmap_traits@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAUMix_Chunk@@U?$less@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@V?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAUMix_Chunk@@@std@@@2@$0A@@std@@@std@@QAE?AU?$pair@V?$_Tree_iterator@V?$_Tree_val@U?$_Tree_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAUMix_Chunk@@@std@@@std@@@std@@@std@@_N@1@AAPBDAAPAUMix_Chunk@@@Z 0040e850 f i AudioPlayer.obj
+ 0001:0000d8d0       ?onClick@ButtonChangeState@@UAEXXZ 0040e8d0 f i StateMenu.obj
  0001:0000d8f0       ??$emplace@AAPBDAAPAU_Mix_Music@@@?$_Tree@V?$_Tmap_traits@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAU_Mix_Music@@U?$less@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@V?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAU_Mix_Music@@@std@@@2@$0A@@std@@@std@@QAE?AU?$pair@V?$_Tree_iterator@V?$_Tree_val@U?$_Tree_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAU_Mix_Music@@@std@@@std@@@std@@@std@@_N@1@AAPBDAAPAU_Mix_Music@@@Z 0040e8f0 f i AudioPlayer.obj
  0001:0000d990       ??$exchange@PAU?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAUMix_Chunk@@@std@@PAX@std@@$$T@std@@YAPAU?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAUMix_Chunk@@@std@@PAX@0@AAPAU10@$$QA$$T@Z 0040e990 f i AudioPlayer.obj
  0001:0000d9c0       ??$exchange@PAU?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAUMix_Chunk@@@std@@PAX@std@@AAPAU12@@std@@YAPAU?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAUMix_Chunk@@@std@@PAX@0@AAPAU10@0@Z 0040e9c0 f i AudioPlayer.obj
@@ -247,7 +239,6 @@
  0001:0000db60       ??0?$_Alloc_construct_ptr@V?$allocator@U?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAUMix_Chunk@@@std@@PAX@std@@@std@@@std@@QAE@AAV?$allocator@U?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAUMix_Chunk@@@std@@PAX@std@@@1@@Z 0040eb60 f i AudioPlayer.obj
  0001:0000db90       ??0?$_Alloc_construct_ptr@V?$allocator@U?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAU_Mix_Music@@@std@@PAX@std@@@std@@@std@@QAE@AAV?$allocator@U?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAU_Mix_Music@@@std@@PAX@std@@@1@@Z 0040eb90 f i AudioPlayer.obj
  0001:0000dbc0       ??0?$_Container_proxy_ptr12@V?$allocator@U_Container_proxy@std@@@std@@@std@@QAE@AAV?$allocator@U_Container_proxy@std@@@1@AAU_Container_base12@1@@Z 0040ebc0 f i AudioPlayer.obj
- 0001:0000dc20       ?_Unchecked_end@?$vector@V?$vector@PAVRoom@@V?$allocator@PAVRoom@@@std@@@std@@V?$allocator@V?$vector@PAVRoom@@V?$allocator@PAVRoom@@@std@@@std@@@2@@std@@QAEPAV?$vector@PAVRoom@@V?$allocator@PAVRoom@@@std@@@2@XZ 0040ec20 f i GameEngine.obj
  0001:0000dc40       ??0?$_String_val@U?$_Simple_types@D@std@@@std@@QAE@XZ 0040ec40 f i AudioPlayer.obj
  0001:0000dc90       ??0?$_Tree@V?$_Tmap_traits@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAUMix_Chunk@@U?$less@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@V?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAUMix_Chunk@@@std@@@2@$0A@@std@@@std@@QAE@ABU?$less@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@1@@Z 0040ec90 f i AudioPlayer.obj
  0001:0000dcd0       ??0?$_Tree@V?$_Tmap_traits@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAU_Mix_Music@@U?$less@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@V?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAU_Mix_Music@@@std@@@2@$0A@@std@@@std@@QAE@ABU?$less@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@1@@Z 0040ecd0 f i AudioPlayer.obj
@@ -271,7 +262,6 @@
  0001:0000e130       ??0?$allocator@U?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAUMix_Chunk@@@std@@PAX@std@@@std@@QAE@XZ 0040f130 f i AudioPlayer.obj
  0001:0000e150       ??0?$allocator@U?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAU_Mix_Music@@@std@@PAX@std@@@std@@QAE@XZ 0040f150 f i AudioPlayer.obj
  0001:0000e170       ??0?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAE@QBD@Z 0040f170 f i AudioPlayer.obj
- 0001:0000e220       ??_G?$shared_ptr@VItem@@@std@@QAEPAXI@Z 0040f220 f i GameEngine.obj
  0001:0000e250       ??0?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAE@XZ 0040f250 f i AudioPlayer.obj
  0001:0000e2e0       ??0?$map@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAUMix_Chunk@@U?$less@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@V?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAUMix_Chunk@@@std@@@2@@std@@QAE@XZ 0040f2e0 f i AudioPlayer.obj
  0001:0000e310       ??0?$map@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAU_Mix_Music@@U?$less@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@V?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAU_Mix_Music@@@std@@@2@@std@@QAE@XZ 0040f310 f i AudioPlayer.obj
@@ -325,16 +315,15 @@
  0001:0000eee0       ??C?$_Tree_iterator@V?$_Tree_val@U?$_Tree_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAUMix_Chunk@@@std@@@std@@@std@@@std@@QBEPAU?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAUMix_Chunk@@@1@XZ 0040fee0 f i AudioPlayer.obj
  0001:0000ef10       ??C?$_Tree_iterator@V?$_Tree_val@U?$_Tree_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAU_Mix_Music@@@std@@@std@@@std@@@std@@QBEPAU?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAU_Mix_Music@@@1@XZ 0040ff10 f i AudioPlayer.obj
  0001:0000ef40       ??D?$_Tree_const_iterator@V?$_Tree_val@U?$_Tree_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAUMix_Chunk@@@std@@@std@@@std@@@std@@QBEABU?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAUMix_Chunk@@@1@XZ 0040ff40 f i AudioPlayer.obj
- 0001:0000f020       ?_Release@?$_Uninitialized_backout_al@V?$allocator@V?$shared_ptr@VItem@@@std@@@std@@@std@@QAEPAV?$shared_ptr@VItem@@@2@XZ 00410020 f i GameEngine.obj
  0001:0000f050       ??D?$_Tree_const_iterator@V?$_Tree_val@U?$_Tree_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAU_Mix_Music@@@std@@@std@@@std@@@std@@QBEABU?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAU_Mix_Music@@@1@XZ 00410050 f i AudioPlayer.obj
- 0001:0000f130       ??_EInventoryTileManager@@UAEPAXI@Z 00410130 f i GameEngine.obj
- 0001:0000f130       ??_GInventoryTileManager@@UAEPAXI@Z 00410130 f i GameEngine.obj
+ 0001:0000f130       ??_G?$_Ref_count_obj2@VInventoryTileManager@@@std@@UAEPAXI@Z 00410130 f i GameEngine.obj
+ 0001:0000f130       ??_E?$_Ref_count_obj2@VInventoryTileManager@@@std@@UAEPAXI@Z 00410130 f i GameEngine.obj
  0001:0000f160       ??D?$_Tree_iterator@V?$_Tree_val@U?$_Tree_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAUMix_Chunk@@@std@@@std@@@std@@@std@@QBEAAU?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAUMix_Chunk@@@1@XZ 00410160 f i AudioPlayer.obj
  0001:0000f180       ??D?$_Tree_iterator@V?$_Tree_val@U?$_Tree_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAU_Mix_Music@@@std@@@std@@@std@@@std@@QBEAAU?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAU_Mix_Music@@@1@XZ 00410180 f i AudioPlayer.obj
  0001:0000f1a0       ??E?$_Tree_const_iterator@V?$_Tree_val@U?$_Tree_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAUMix_Chunk@@@std@@@std@@@std@@@std@@QAEAAV01@XZ 004101a0 f i AudioPlayer.obj
- 0001:0000f270       ??1InventoryTileManager@@UAE@XZ 00410270 f i GameEngine.obj
+ 0001:0000f270       ??1?$shared_ptr@VInventoryTileManager@@@std@@QAE@XZ 00410270 f i GameEngine.obj
  0001:0000f2b0       ??E?$_Tree_const_iterator@V?$_Tree_val@U?$_Tree_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAU_Mix_Music@@@std@@@std@@@std@@@std@@QAEAAV01@XZ 004102b0 f i AudioPlayer.obj
- 0001:0000f380       ??4?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV01@$$QAV01@@Z 00410380 f i GameEngine.obj
+ 0001:0000f380       ??1InventoryTileManager@@UAE@XZ 00410380 f i GameEngine.obj
  0001:0000f3c0       ??E?$_Tree_iterator@V?$_Tree_val@U?$_Tree_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAUMix_Chunk@@@std@@@std@@@std@@@std@@QAEAAV01@XZ 004103c0 f i AudioPlayer.obj
  0001:0000f3e0       ??E?$_Tree_iterator@V?$_Tree_val@U?$_Tree_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAU_Mix_Music@@@std@@@std@@@std@@@std@@QAEAAV01@XZ 004103e0 f i AudioPlayer.obj
  0001:0000f400       ??E?$_Tree_unchecked_const_iterator@V?$_Tree_val@U?$_Tree_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAUMix_Chunk@@@std@@@std@@@std@@U_Iterator_base12@2@@std@@QAEAAV01@XZ 00410400 f i AudioPlayer.obj
@@ -343,19 +332,18 @@
  0001:0000f590       ??R?$less@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@std@@QBE_NABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@1@0@Z 00410590 f i AudioPlayer.obj
  0001:0000f5c0       ??_G?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAUMix_Chunk@@@std@@QAEPAXI@Z 004105c0 f i AudioPlayer.obj
  0001:0000f600       ??_G?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAU_Mix_Music@@@std@@QAEPAXI@Z 00410600 f i AudioPlayer.obj
- 0001:0000f640       ??_Gbad_alloc@std@@UAEPAXI@Z 00410640 f i AudioPlayer.obj
  0001:0000f640       ??_Ebad_alloc@std@@UAEPAXI@Z 00410640 f i AudioPlayer.obj
- 0001:0000f680       ??_Gbad_array_new_length@std@@UAEPAXI@Z 00410680 f i AudioPlayer.obj
+ 0001:0000f640       ??_Gbad_alloc@std@@UAEPAXI@Z 00410640 f i AudioPlayer.obj
  0001:0000f680       ??_Ebad_array_new_length@std@@UAEPAXI@Z 00410680 f i AudioPlayer.obj
+ 0001:0000f680       ??_Gbad_array_new_length@std@@UAEPAXI@Z 00410680 f i AudioPlayer.obj
  0001:0000f6c0       ??_Eexception@std@@UAEPAXI@Z 004106c0 f i AudioPlayer.obj
  0001:0000f6c0       ??_Gexception@std@@UAEPAXI@Z 004106c0 f i AudioPlayer.obj
  0001:0000f700       ?_Adjust_manually_vector_aligned@std@@YAXAAPAXAAI@Z 00410700 f i AudioPlayer.obj
- 0001:0000f800       ??4?$shared_ptr@VInventoryTileManager@@@std@@QAEAAV01@$$QAV01@@Z 00410800 f i GameEngine.obj
+ 0001:0000f800       ??4?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV01@$$QAV01@@Z 00410800 f i GameEngine.obj
  0001:0000f840       ?_Adopt@_Iterator_base12@std@@QAEXPBU_Container_base12@2@@Z 00410840 f i AudioPlayer.obj
  0001:0000f8e0       ?_Alloc_sentinel_and_proxy@?$_Tree@V?$_Tmap_traits@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAUMix_Chunk@@U?$less@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@V?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAUMix_Chunk@@@std@@@2@$0A@@std@@@std@@IAEXXZ 004108e0 f i AudioPlayer.obj
- 0001:0000f980       ??_GItem@@QAEPAXI@Z        00410980 f i GameEngine.obj
+ 0001:0000f980       ??_G?$shared_ptr@VItem@@@std@@QAEPAXI@Z 00410980 f i GameEngine.obj
  0001:0000f9b0       ?_Alloc_sentinel_and_proxy@?$_Tree@V?$_Tmap_traits@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAU_Mix_Music@@U?$less@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@V?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAU_Mix_Music@@@std@@@2@$0A@@std@@@std@@IAEXXZ 004109b0 f i AudioPlayer.obj
- 0001:0000fa50       ?_Unchecked_begin@?$vector@V?$vector@PAVRoom@@V?$allocator@PAVRoom@@@std@@@std@@V?$allocator@V?$vector@PAVRoom@@V?$allocator@PAVRoom@@@std@@@std@@@2@@std@@QAEPAV?$vector@PAVRoom@@V?$allocator@PAVRoom@@@std@@@2@XZ 00410a50 f i GameEngine.obj
  0001:0000fa80       ?_Allocate@?$_Alloc_construct_ptr@V?$allocator@U?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAUMix_Chunk@@@std@@PAX@std@@@std@@@std@@QAEXXZ 00410a80 f i AudioPlayer.obj
  0001:0000fab0       ?_Allocate@?$_Alloc_construct_ptr@V?$allocator@U?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAU_Mix_Music@@@std@@PAX@std@@@std@@@std@@QAEXXZ 00410ab0 f i AudioPlayer.obj
  0001:0000fae0       ?_Allocate@_Default_allocate_traits@std@@SAPAXI@Z 00410ae0 f i AudioPlayer.obj
@@ -386,9 +374,12 @@
  0001:0000ff10       ?_Getcomp@?$_Tree@V?$_Tmap_traits@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAU_Mix_Music@@U?$less@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@V?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAU_Mix_Music@@@std@@@2@$0A@@std@@@std@@IBEABU?$less@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@XZ 00410f10 f i AudioPlayer.obj
  0001:0000ff30       ?_Getcont@_Iterator_base12@std@@QBEPBU_Container_base12@2@XZ 00410f30 f i AudioPlayer.obj
  0001:0000ff70       ?_Insert_node@?$_Tree_val@U?$_Tree_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAUMix_Chunk@@@std@@@std@@@std@@QAEPAU?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAUMix_Chunk@@@std@@PAX@2@U?$_Tree_id@PAU?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAUMix_Chunk@@@std@@PAX@std@@@2@QAU32@@Z 00410f70 f i AudioPlayer.obj
- 0001:00010180       ??0?$vector@V?$shared_ptr@VItem@@@std@@V?$allocator@V?$shared_ptr@VItem@@@std@@@2@@std@@QAE@XZ 00411180 f i GameEngine.obj
+ 0001:00010180       ??0?$shared_ptr@VInventoryTileManager@@@std@@QAE@XZ 00411180 f i GameEngine.obj
+ 0001:000101a0       ?_Decref@?$_Ptr_base@VInventoryTileManager@@@std@@IAEXXZ 004111a0 f i GameEngine.obj
+ 0001:000101c0       ?_Delete_this@?$_Ref_count@VItem@@@std@@EAEXXZ 004111c0 f i GameEngine.obj
  0001:00010200       ?_Insert_node@?$_Tree_val@U?$_Tree_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAU_Mix_Music@@@std@@@std@@@std@@QAEPAU?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAU_Mix_Music@@@std@@PAX@2@U?$_Tree_id@PAU?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAU_Mix_Music@@@std@@PAX@std@@@2@QAU32@@Z 00411200 f i AudioPlayer.obj
- 0001:00010410       ??0FilterPointsScaling@@QAE@HHPAVFilterPoints@@@Z 00411410 f i GameEngine.obj
+ 0001:00010410       ??0?$shared_ptr@VItem@@@std@@QAE@$$QAV01@@Z 00411410 f i GameEngine.obj
+ 0001:00010440       ?_Decref@?$_Ptr_base@VItem@@@std@@IAEXXZ 00411440 f i GameEngine.obj
  0001:00010490       ?_Large_string_engaged@?$_String_val@U?$_Simple_types@D@std@@@std@@QBE_NXZ 00411490 f i AudioPlayer.obj
  0001:000104d0       ?_Lrotate@?$_Tree_val@U?$_Tree_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAUMix_Chunk@@@std@@@std@@@std@@QAEXPAU?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAUMix_Chunk@@@std@@PAX@2@@Z 004114d0 f i AudioPlayer.obj
  0001:00010590       ?_Lrotate@?$_Tree_val@U?$_Tree_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAU_Mix_Music@@@std@@@std@@@std@@QAEXPAU?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAU_Mix_Music@@@std@@PAX@2@@Z 00411590 f i AudioPlayer.obj
@@ -398,18 +389,17 @@
  0001:00010700       ?_Myptr@?$_String_val@U?$_Simple_types@D@std@@@std@@QBEPBDXZ 00411700 f i AudioPlayer.obj
  0001:00010750       ?_Orphan_all@_Container_base12@std@@QAEXXZ 00411750 f i AudioPlayer.obj
  0001:000107d0       ?_Orphan_me@_Iterator_base12@std@@QAEXXZ 004117d0 f i AudioPlayer.obj
- 0001:00010880       ??_GStateRunning@@QAEPAXI@Z 00411880 f i GameEngine.obj
+ 0001:00010880       ??_EInventoryTileManager@@UAEPAXI@Z 00411880 f i GameEngine.obj
+ 0001:00010880       ??_GInventoryTileManager@@UAEPAXI@Z 00411880 f i GameEngine.obj
  0001:000108b0       ?_Release@?$_Alloc_construct_ptr@V?$allocator@U?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAUMix_Chunk@@@std@@PAX@std@@@std@@@std@@QAEPAU?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAUMix_Chunk@@@std@@PAX@2@XZ 004118b0 f i AudioPlayer.obj
  0001:00010920       ?_Release@?$_Alloc_construct_ptr@V?$allocator@U?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAU_Mix_Music@@@std@@PAX@std@@@std@@@std@@QAEPAU?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAU_Mix_Music@@@std@@PAX@2@XZ 00411920 f i AudioPlayer.obj
  0001:00010990       ?_Release@_Basic_container_proxy_ptr12@std@@QAEXXZ 00411990 f i AudioPlayer.obj
  0001:000109b0       ?_Rrotate@?$_Tree_val@U?$_Tree_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAUMix_Chunk@@@std@@@std@@@std@@QAEXPAU?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAUMix_Chunk@@@std@@PAX@2@@Z 004119b0 f i AudioPlayer.obj
- 0001:00010a50       ?_Unchecked_end@?$vector@PAVRoom@@V?$allocator@PAVRoom@@@std@@@std@@QBEPBQAVRoom@@XZ 00411a50 f i GameEngine.obj
+ 0001:00010a50       ?_Umove@?$vector@V?$shared_ptr@VItem@@@std@@V?$allocator@V?$shared_ptr@VItem@@@std@@@2@@std@@AAEPAV?$shared_ptr@VItem@@@2@PAV32@00@Z 00411a50 f i GameEngine.obj
  0001:00010a80       ?_Rrotate@?$_Tree_val@U?$_Tree_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAU_Mix_Music@@@std@@@std@@@std@@QAEXPAU?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAU_Mix_Music@@@std@@PAX@2@@Z 00411a80 f i AudioPlayer.obj
- 0001:00010b20       ?_Destroy@?$vector@V?$shared_ptr@VItem@@@std@@V?$allocator@V?$shared_ptr@VItem@@@std@@@2@@std@@AAEXPAV?$shared_ptr@VItem@@@2@0@Z 00411b20 f i GameEngine.obj
  0001:00010b50       ?_Throw_bad_array_new_length@std@@YAXXZ 00411b50 f i AudioPlayer.obj
  0001:00010b80       ?_Throw_tree_length_error@std@@YAXXZ 00411b80 f i AudioPlayer.obj
  0001:00010ba0       ?_Tidy_deallocate@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AAEXXZ 00411ba0 f i AudioPlayer.obj
- 0001:00010c60       ?_Umove@?$vector@V?$shared_ptr@VItem@@@std@@V?$allocator@V?$shared_ptr@VItem@@@std@@@2@@std@@AAEPAV?$shared_ptr@VItem@@@2@PAV32@00@Z 00411c60 f i GameEngine.obj
  0001:00010c90       ?_Tidy_init@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AAEXXZ 00411c90 f i AudioPlayer.obj
  0001:00010cf0       ?_Xlen@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@CAXXZ 00411cf0 f i AudioPlayer.obj
  0001:00010d10       ?allocate@?$allocator@D@std@@QAEPADI@Z 00411d10 f i AudioPlayer.obj
@@ -458,9 +448,9 @@
  0001:000116b0       ?isClicked@Button@@QAE_NHH@Z 004126b0 f   Button.obj
  0001:00011700       ?onClick@ButtonContinue@@UAEXXZ 00412700 f   Button.obj
  0001:00011730       ?onClick@ButtonExit@@UAEXXZ 00412730 f   Button.obj
- 0001:00011750       ??_GGameEngine@@UAEPAXI@Z  00412750 f i GameEngine.obj
- 0001:00011750       ??_EGameEngine@@UAEPAXI@Z  00412750 f i GameEngine.obj
- 0001:00011790       ?_Umove_if_noexcept1@?$vector@V?$shared_ptr@VItem@@@std@@V?$allocator@V?$shared_ptr@VItem@@@std@@@2@@std@@AAEXPAV?$shared_ptr@VItem@@@2@00U?$integral_constant@_N$00@2@@Z 00412790 f i GameEngine.obj
+ 0001:00011750       ??_G?$_Ref_count@VItem@@@std@@UAEPAXI@Z 00412750 f i GameEngine.obj
+ 0001:00011750       ??_E?$_Ref_count@VItem@@@std@@UAEPAXI@Z 00412750 f i GameEngine.obj
+ 0001:00011780       ?_Delete_this@?$_Ref_count_obj2@VInventoryTileManager@@@std@@EAEXXZ 00412780 f i GameEngine.obj
  0001:000117c0       ?drawForegroundRectangle@BaseEngine@@QAEXHHHHI@Z 004127c0 f i Button.obj
  0001:00011800       ?drawForegroundString@BaseEngine@@QAEXHHPBDIPAVFont@@@Z 00412800 f i Button.obj
  0001:00011840       ?setExitWithCode@BaseEngine@@QAEXH@Z 00412840 f i Button.obj
@@ -473,8 +463,12 @@
  0001:00011a10       ?move@CharObject@@UAEXHHHH@Z 00412a10 f   CharObject.obj
  0001:00011a70       ?onProjectileHit@CharObject@@UAEXPAV1@@Z 00412a70 f   CharObject.obj
  0001:00011a80       ?lineOfSight@CharObject@@QAE_NHHHHH@Z 00412a80 f   CharObject.obj
- 0001:00011d90       ??$_Uninitialized_move@PAV?$shared_ptr@VItem@@@std@@V?$allocator@V?$shared_ptr@VItem@@@std@@@2@@std@@YAPAV?$shared_ptr@VItem@@@0@QAV10@0PAV10@AAV?$allocator@V?$shared_ptr@VItem@@@std@@@0@@Z 00412d90 f i GameEngine.obj
- 0001:00011e40       ??1?$vector@V?$shared_ptr@VItem@@@std@@V?$allocator@V?$shared_ptr@VItem@@@std@@@2@@std@@QAE@XZ 00412e40 f i GameEngine.obj
+ 0001:00011d90       ??$_Unfancy@V?$shared_ptr@VItem@@@std@@@std@@YAPAV?$shared_ptr@VItem@@@0@PAV10@@Z 00412d90 f i GameEngine.obj
+ 0001:00011da0       ??$emplace_back@ABV?$shared_ptr@VItem@@@std@@@?$vector@V?$shared_ptr@VItem@@@std@@V?$allocator@V?$shared_ptr@VItem@@@std@@@2@@std@@QAE@ABV?$shared_ptr@VItem@@@1@@Z 00412da0 f i GameEngine.obj
+ 0001:00011e00       ?_Swap@?$_Ptr_base@VInventoryTileManager@@@std@@IAEXAAV12@@Z 00412e00 f i GameEngine.obj
+ 0001:00011e40       ??1?$_Temporary_owner@VItem@@@std@@QAE@XZ 00412e40 f i GameEngine.obj
+ 0001:00011e80       ?_Get_first@?$_Compressed_pair@V?$allocator@V?$shared_ptr@VItem@@@std@@@std@@V?$_Vector_val@U?$_Simple_types@V?$shared_ptr@VItem@@@std@@@std@@@2@$00@std@@QBEABV?$allocator@V?$shared_ptr@VItem@@@std@@@2@XZ 00412e80 f i GameEngine.obj
+ 0001:00011e90       ?_Move_assign@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AAEXAAV12@U_Equal_allocators@2@@Z 00412e90 f i GameEngine.obj
  0001:00011ee0       ??$?0$$V@?$_Compressed_pair@V?$allocator@U?$_List_node@V?$tuple@HH@std@@PAX@std@@@std@@V?$_List_val@U?$_List_simple_types@V?$tuple@HH@std@@@std@@@2@$00@std@@QAE@U_Zero_then_variadic_args_t@1@@Z 00412ee0 f i CharObject.obj
  0001:00011f10       ??$?0H@?$_Tuple_val@H@std@@QAE@$$QAH@Z 00412f10 f i CharObject.obj
  0001:00011f40       ??$?0HH$0A@@?$tuple@HH@std@@QAE@$$QAH0@Z 00412f40 f i CharObject.obj
@@ -539,15 +533,16 @@
  0001:00012cb0       ??8?$_List_const_iterator@V?$_List_val@U?$_List_simple_types@V?$tuple@HH@std@@@std@@@std@@@std@@QBE_NABV01@@Z 00413cb0 f i CharObject.obj
  0001:00012d70       ??9?$_List_const_iterator@V?$_List_val@U?$_List_simple_types@V?$tuple@HH@std@@@std@@@std@@@std@@QBE_NABV01@@Z 00413d70 f i CharObject.obj
  0001:00012dc0       ??D?$_List_const_iterator@V?$_List_val@U?$_List_simple_types@V?$tuple@HH@std@@@std@@@std@@@std@@QBEABV?$tuple@HH@1@XZ 00413dc0 f i CharObject.obj
- 0001:00012ea0       ?_Umove_if_noexcept@?$vector@V?$shared_ptr@VItem@@@std@@V?$allocator@V?$shared_ptr@VItem@@@std@@@2@@std@@AAEXPAV?$shared_ptr@VItem@@@2@00@Z 00413ea0 f i GameEngine.obj
+ 0001:00012ea0       ?_Release@?$_Uninitialized_backout_al@V?$allocator@V?$shared_ptr@VItem@@@std@@@std@@@std@@QAEPAV?$shared_ptr@VItem@@@2@XZ 00413ea0 f i GameEngine.obj
  0001:00012ed0       ??D?$_List_iterator@V?$_List_val@U?$_List_simple_types@V?$tuple@HH@std@@@std@@@std@@@std@@QBEAAV?$tuple@HH@1@XZ 00413ed0 f i CharObject.obj
  0001:00012ef0       ??E?$_List_const_iterator@V?$_List_val@U?$_List_simple_types@V?$tuple@HH@std@@@std@@@std@@@std@@QAEAAV01@XZ 00413ef0 f i CharObject.obj
- 0001:00012fd0       ??_GStateStart@@QAEPAXI@Z  00413fd0 f i GameEngine.obj
+ 0001:00012fd0       ??_GItem@@QAEPAXI@Z        00413fd0 f i GameEngine.obj
  0001:00013010       ??E?$_List_iterator@V?$_List_val@U?$_List_simple_types@V?$tuple@HH@std@@@std@@@std@@@std@@QAE?AV01@H@Z 00414010 f i CharObject.obj
- 0001:000130c0       ??_GCharObject@@UAEPAXI@Z  004140c0 f i CharObject.obj
  0001:000130c0       ??_ECharObject@@UAEPAXI@Z  004140c0 f i CharObject.obj
+ 0001:000130c0       ??_GCharObject@@UAEPAXI@Z  004140c0 f i CharObject.obj
  0001:00013100       ?GetTilesSolid@GameEngine@@QAE?AV?$shared_ptr@VSolidTileManager@@@std@@XZ 00414100 f i CharObject.obj
  0001:00013140       ?_Alloc_sentinel_and_proxy@?$list@V?$tuple@HH@std@@V?$allocator@V?$tuple@HH@std@@@2@@std@@AAEXXZ 00414140 f i CharObject.obj
+ 0001:00013200       ?get_deleter@?$unique_ptr@VButton@@U?$default_delete@VButton@@@std@@@std@@QAEAAU?$default_delete@VButton@@@2@XZ 00414200 f i StateMenu.obj
  0001:00013230       ?_Allocate@?$_Alloc_construct_ptr@V?$allocator@U?$_List_node@V?$tuple@HH@std@@PAX@std@@@std@@@std@@QAEXXZ 00414230 f i CharObject.obj
  0001:00013260       ?_Decref@?$_Ptr_base@VSolidTileManager@@@std@@IAEXXZ 00414260 f i CharObject.obj
  0001:00013290       ?_Decref@?$_Ptr_base@VWeapon@@@std@@IAEXXZ 00414290 f i CharObject.obj
@@ -561,6 +556,7 @@
  0001:00013450       ?allocate@?$allocator@U?$_List_node@V?$tuple@HH@std@@PAX@std@@@std@@QAEPAU?$_List_node@V?$tuple@HH@std@@PAX@2@I@Z 00414450 f i CharObject.obj
  0001:00013480       ?begin@?$list@V?$tuple@HH@std@@V?$allocator@V?$tuple@HH@std@@@2@@std@@QAE?AV?$_List_iterator@V?$_List_val@U?$_List_simple_types@V?$tuple@HH@std@@@std@@@std@@@2@XZ 00414480 f i CharObject.obj
  0001:000134c0       ?calculate@MovementPosition@@QAEXH@Z 004144c0 f i CharObject.obj
+ 0001:00013580       ?size@?$list@PAVEnemyObject@@V?$allocator@PAVEnemyObject@@@std@@@std@@QBEIXZ 00414580 f i StateRunning.obj
  0001:000135b0       ?deallocate@?$_Default_allocator_traits@V?$allocator@U?$_List_node@V?$tuple@HH@std@@PAX@std@@@std@@@std@@SAXAAV?$allocator@U?$_List_node@V?$tuple@HH@std@@PAX@std@@@2@QAU?$_List_node@V?$tuple@HH@std@@PAX@2@I@Z 004145b0 f i CharObject.obj
  0001:000135d0       ?deallocate@?$allocator@U?$_List_node@V?$tuple@HH@std@@PAX@std@@@std@@QAEXQAU?$_List_node@V?$tuple@HH@std@@PAX@2@I@Z 004145d0 f i CharObject.obj
  0001:00013600       ?end@?$list@V?$tuple@HH@std@@V?$allocator@V?$tuple@HH@std@@@2@@std@@QAE?AV?$_List_iterator@V?$_List_val@U?$_List_simple_types@V?$tuple@HH@std@@@std@@@std@@@2@XZ 00414600 f i CharObject.obj
@@ -582,13 +578,16 @@
  0001:00013950       ?virtDraw@DoorObject@@UAEXXZ 00414950 f   DoorObject.obj
  0001:000139b0       ?virtDoUpdate@DoorObject@@UAEXH@Z 004149b0 f   DoorObject.obj
  0001:00013aa0       ?virtMouseDown@DoorObject@@UAEXHHH@Z 00414aa0 f   DoorObject.obj
- 0001:00013b60       ?_Calculate_growth@?$vector@V?$shared_ptr@VItem@@@std@@V?$allocator@V?$shared_ptr@VItem@@@std@@@2@@std@@ABEII@Z 00414b60 f i GameEngine.obj
+ 0001:00013b60       ??_GRoom@@QAEPAXI@Z        00414b60 f i GameEngine.obj
+ 0001:00013bb0       ?onClick@?$ButtonValueChange@H@@UAEXXZ 00414bb0 f i StateMenu.obj
  0001:00013be0       ??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@PBD@Z 00414be0 f i DoorObject.obj
- 0001:00013f10       ??$make_shared@VInventoryTileManager@@PAVGameEngine@@@std@@YA?AV?$shared_ptr@VInventoryTileManager@@@0@$$QAPAVGameEngine@@@Z 00414f10 f i GameEngine.obj
+ 0001:00013f10       ??$forward@V?$shared_ptr@VItem@@@std@@@std@@YA$$QAV?$shared_ptr@VItem@@@0@AAV10@@Z 00414f10 f i GameEngine.obj
+ 0001:00013f20       ??0?$vector@V?$shared_ptr@VItem@@@std@@V?$allocator@V?$shared_ptr@VItem@@@std@@@2@@std@@QAE@XZ 00414f20 f i GameEngine.obj
+ 0001:00013f90       ?_Calculate_growth@?$vector@V?$shared_ptr@VItem@@@std@@V?$allocator@V?$shared_ptr@VItem@@@std@@@2@@std@@ABEII@Z 00414f90 f i GameEngine.obj
  0001:00013fe0       ??$floor@HX@@YANH@Z        00414fe0 f i DoorObject.obj
  0001:00014010       ??0_Sentry_base@?$basic_ostream@DU?$char_traits@D@std@@@std@@QAE@AAV12@@Z 00415010 f i DoorObject.obj
  0001:00014070       ??0sentry@?$basic_ostream@DU?$char_traits@D@std@@@std@@QAE@AAV12@@Z 00415070 f i DoorObject.obj
- 0001:00014140       ?_Xlength@?$vector@V?$shared_ptr@VItem@@@std@@V?$allocator@V?$shared_ptr@VItem@@@std@@@2@@std@@CAXXZ 00415140 f i GameEngine.obj
+ 0001:00014140       ?_Umove_if_noexcept@?$vector@V?$shared_ptr@VItem@@@std@@V?$allocator@V?$shared_ptr@VItem@@@std@@@2@@std@@AAEXPAV?$shared_ptr@VItem@@@2@00@Z 00415140 f i GameEngine.obj
  0001:00014170       ??1_Sentry_base@?$basic_ostream@DU?$char_traits@D@std@@@std@@QAE@XZ 00415170 f i DoorObject.obj
  0001:000141f0       ??1sentry@?$basic_ostream@DU?$char_traits@D@std@@@std@@QAE@XZ 004151f0 f i DoorObject.obj
  0001:00014260       ??Bsentry@?$basic_ostream@DU?$char_traits@D@std@@@std@@QBE_NXZ 00415260 f i DoorObject.obj
@@ -601,7 +600,8 @@
  0001:00014360       ?virtSetupBackgroundBuffer@DraggingDemo@@UAEXXZ 00415360 f   DraggingDemo.obj
  0001:000144a0       ?virtInitialiseObjects@DraggingDemo@@UAEHXZ 004154a0 f   DraggingDemo.obj
  0001:000146f0       ?virtKeyDown@DraggingDemo@@UAEXH@Z 004156f0 f   DraggingDemo.obj
- 0001:00014720       ??$writeLine@H@SaveManager@@QAEXV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@H@Z 00415720 f i GameEngine.obj
+ 0001:00014720       ??$swap@PAVInventoryTileManager@@X@std@@YAXAAPAVInventoryTileManager@@0@Z 00415720 f i GameEngine.obj
+ 0001:00014760       ??1?$vector@V?$shared_ptr@VItem@@@std@@V?$allocator@V?$shared_ptr@VItem@@@std@@@2@@std@@QAE@XZ 00415760 f i GameEngine.obj
  0001:00014810       ??$?0$$V@?$_Compressed_pair@V?$allocator@U?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$shared_ptr@VRawImageData@@@2@@std@@PAX@std@@@std@@V?$_Tree_val@U?$_Tree_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$shared_ptr@VRawImageData@@@2@@std@@@std@@@2@$00@std@@QAE@U_Zero_then_variadic_args_t@1@@Z 00415810 f i DraggingDemo.obj
  0001:00014840       ??$?0$$V@?$_Compressed_pair@V?$allocator@U?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$weak_ptr@VRawImageData@@@2@@std@@PAX@std@@@std@@V?$_Tree_val@U?$_Tree_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$weak_ptr@VRawImageData@@@2@@std@@@std@@@2@$00@std@@QAE@U_Zero_then_variadic_args_t@1@@Z 00415840 f i DraggingDemo.obj
  0001:00014870       ??$?0AAPAU?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$shared_ptr@VRawImageData@@@2@@std@@PAX@std@@_N$0A@@?$pair@PAU?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$shared_ptr@VRawImageData@@@2@@std@@PAX@std@@_N@std@@QAE@AAPAU?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$shared_ptr@VRawImageData@@@2@@std@@PAX@1@$$QA_N@Z 00415870 f i DraggingDemo.obj
@@ -615,13 +615,16 @@
  0001:00014af0       ??$?0U?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$shared_ptr@VRawImageData@@@2@@std@@PAX@std@@@?$allocator@U_Container_proxy@std@@@std@@QAE@ABV?$allocator@U?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$shared_ptr@VRawImageData@@@2@@std@@PAX@std@@@1@@Z 00415af0 f i DraggingDemo.obj
  0001:00014b10       ??$?0U?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$weak_ptr@VRawImageData@@@2@@std@@PAX@std@@@?$allocator@U_Container_proxy@std@@@std@@QAE@ABV?$allocator@U?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$weak_ptr@VRawImageData@@@2@@std@@PAX@std@@@1@@Z 00415b10 f i DraggingDemo.obj
  0001:00014b30       ??$?0U?$pair@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$shared_ptr@VRawImageData@@@2@@std@@@?$_Tree_temp_node@V?$allocator@U?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$shared_ptr@VRawImageData@@@2@@std@@PAX@std@@@std@@@std@@QAE@AAV?$allocator@U?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$shared_ptr@VRawImageData@@@2@@std@@PAX@std@@@1@PAU?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$shared_ptr@VRawImageData@@@2@@std@@PAX@1@$$QAU?$pair@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$shared_ptr@VRawImageData@@@2@@1@@Z 00415b30 f i DraggingDemo.obj
+ 0001:00014c10       ?push_back@?$list@V?$unique_ptr@VButton@@U?$default_delete@VButton@@@std@@@std@@V?$allocator@V?$unique_ptr@VButton@@U?$default_delete@VButton@@@std@@@std@@@2@@std@@QAEX$$QAV?$unique_ptr@VButton@@U?$default_delete@VButton@@@std@@@2@@Z 00415c10 f i StateMenu.obj
  0001:00014c40       ??$?0U?$pair@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$weak_ptr@VRawImageData@@@2@@std@@@?$_Tree_temp_node@V?$allocator@U?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$weak_ptr@VRawImageData@@@2@@std@@PAX@std@@@std@@@std@@QAE@AAV?$allocator@U?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$weak_ptr@VRawImageData@@@2@@std@@PAX@std@@@1@PAU?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$weak_ptr@VRawImageData@@@2@@std@@PAX@1@$$QAU?$pair@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$weak_ptr@VRawImageData@@@2@@1@@Z 00415c40 f i DraggingDemo.obj
+ 0001:00014d20       ??$construct@PAVEnemyObject@@ABQAV1@@?$_Default_allocator_traits@V?$allocator@U?$_List_node@PAVEnemyObject@@PAX@std@@@std@@@std@@SAXAAV?$allocator@U?$_List_node@PAVEnemyObject@@PAX@std@@@1@QAPAVEnemyObject@@ABQAV3@@Z 00415d20 f i StateRunning.obj
  0001:00014d50       ??$?0V?$_Tree_iterator@V?$_Tree_val@U?$_Tree_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$shared_ptr@VRawImageData@@@2@@std@@@std@@@std@@@std@@AB_N$0A@@?$pair@V?$_Tree_iterator@V?$_Tree_val@U?$_Tree_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$shared_ptr@VRawImageData@@@2@@std@@@std@@@std@@@std@@_N@std@@QAE@$$QAV?$_Tree_iterator@V?$_Tree_val@U?$_Tree_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$shared_ptr@VRawImageData@@@2@@std@@@std@@@std@@@1@AB_N@Z 00415d50 f i DraggingDemo.obj
  0001:00014da0       ??$?0V?$_Tree_iterator@V?$_Tree_val@U?$_Tree_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$weak_ptr@VRawImageData@@@2@@std@@@std@@@std@@@std@@AB_N$0A@@?$pair@V?$_Tree_iterator@V?$_Tree_val@U?$_Tree_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$weak_ptr@VRawImageData@@@2@@std@@@std@@@std@@@std@@_N@std@@QAE@$$QAV?$_Tree_iterator@V?$_Tree_val@U?$_Tree_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$weak_ptr@VRawImageData@@@2@@std@@@std@@@std@@@1@AB_N@Z 00415da0 f i DraggingDemo.obj
  0001:00014df0       ??$?0V?$allocator@D@std@@$$V@?$_Compressed_pair@V?$allocator@D@std@@V?$_String_val@U?$_Simple_types@D@std@@@2@$00@std@@QAE@U_One_then_variadic_args_t@1@$$QAV?$allocator@D@1@@Z 00415df0 f i DraggingDemo.obj
  0001:00014e20       ??$?0V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$shared_ptr@VRawImageData@@@1@$0A@@?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$shared_ptr@VRawImageData@@@2@@std@@QAE@$$QAU?$pair@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$shared_ptr@VRawImageData@@@2@@1@@Z 00415e20 f i DraggingDemo.obj
  0001:00014e70       ??$?0V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$weak_ptr@VRawImageData@@@1@$0A@@?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$weak_ptr@VRawImageData@@@2@@std@@QAE@$$QAU?$pair@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$weak_ptr@VRawImageData@@@2@@1@@Z 00415e70 f i DraggingDemo.obj
  0001:00014ec0       ??$?0VRawImageData@@$0A@@?$shared_ptr@VRawImageData@@@std@@QAE@PAVRawImageData@@@Z 00415ec0 f i DraggingDemo.obj
+ 0001:00014f80       ??0?$_Alloc_construct_ptr@V?$allocator@U?$_List_node@PAVEnemyObject@@PAX@std@@@std@@@std@@QAE@AAV?$allocator@U?$_List_node@PAVEnemyObject@@PAX@std@@@1@@Z 00415f80 f i StateRunning.obj
  0001:00014fb0       ??$?0VRawImageData@@$0A@@?$weak_ptr@VRawImageData@@@std@@QAE@ABV?$shared_ptr@VRawImageData@@@1@@Z 00415fb0 f i DraggingDemo.obj
  0001:00014fe0       ??$?6DU?$char_traits@D@std@@V?$allocator@D@1@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@ABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@0@@Z 00415fe0 f i DraggingDemo.obj
  0001:00015010       ??$?9VRawImageData@@@std@@YA_NABV?$shared_ptr@VRawImageData@@@0@$$T@Z 00416010 f i DraggingDemo.obj
@@ -639,16 +642,18 @@
  0001:000153a0       ??$_Destroy_in_place@PAU?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$weak_ptr@VRawImageData@@@2@@std@@PAX@std@@@std@@YAXAAPAU?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$weak_ptr@VRawImageData@@@2@@std@@PAX@0@@Z 004163a0 f i DraggingDemo.obj
  0001:000153b0       ??$_Destroy_range@V?$allocator@PAVDisplayableObject@@@std@@@std@@YAXPAPAVDisplayableObject@@QAPAV1@AAV?$allocator@PAVDisplayableObject@@@0@@Z 004163b0 f i DraggingDemo.obj
  0001:000153c0       ??$_Emplace@U?$pair@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$shared_ptr@VRawImageData@@@2@@std@@@?$_Tree@V?$_Tmap_traits@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$shared_ptr@VRawImageData@@@2@U?$less@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@V?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$shared_ptr@VRawImageData@@@2@@std@@@2@$0A@@std@@@std@@IAE?AU?$pair@PAU?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$shared_ptr@VRawImageData@@@2@@std@@PAX@std@@_N@1@$$QAU?$pair@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$shared_ptr@VRawImageData@@@2@@1@@Z 004163c0 f i DraggingDemo.obj
- 0001:000154b0       ?_Delete_this@?$_Ref_count@VItem@@@std@@EAEXXZ 004164b0 f i GameEngine.obj
+ 0001:000154b0       ??_GStateStart@@QAEPAXI@Z  004164b0 f i GameEngine.obj
  0001:000154f0       ??$_Emplace@U?$pair@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$weak_ptr@VRawImageData@@@2@@std@@@?$_Tree@V?$_Tmap_traits@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$weak_ptr@VRawImageData@@@2@U?$less@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@V?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$weak_ptr@VRawImageData@@@2@@std@@@2@$0A@@std@@@std@@IAE?AU?$pair@PAU?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$weak_ptr@VRawImageData@@@2@@std@@PAX@std@@_N@1@$$QAU?$pair@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$weak_ptr@VRawImageData@@@2@@1@@Z 004164f0 f i DraggingDemo.obj
- 0001:000155e0       ?_Delete_this@?$_Ref_count_obj2@VInventoryTileManager@@@std@@EAEXXZ 004165e0 f i GameEngine.obj
+ 0001:000155e0       ?_Destroy@?$_Ref_count@VItem@@@std@@EAEXXZ 004165e0 f i GameEngine.obj
  0001:00015620       ??$_Erase_head@V?$allocator@U?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$shared_ptr@VRawImageData@@@2@@std@@PAX@std@@@std@@@?$_Tree_val@U?$_Tree_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$shared_ptr@VRawImageData@@@2@@std@@@std@@@std@@QAEXAAV?$allocator@U?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$shared_ptr@VRawImageData@@@2@@std@@PAX@std@@@1@@Z 00416620 f i DraggingDemo.obj
  0001:00015670       ??$_Erase_head@V?$allocator@U?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$weak_ptr@VRawImageData@@@2@@std@@PAX@std@@@std@@@?$_Tree_val@U?$_Tree_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$weak_ptr@VRawImageData@@@2@@std@@@std@@@std@@QAEXAAV?$allocator@U?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$weak_ptr@VRawImageData@@@2@@std@@PAX@std@@@1@@Z 00416670 f i DraggingDemo.obj
  0001:000156c0       ??$_Erase_tree@V?$allocator@U?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$shared_ptr@VRawImageData@@@2@@std@@PAX@std@@@std@@@?$_Tree_val@U?$_Tree_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$shared_ptr@VRawImageData@@@2@@std@@@std@@@std@@QAEXAAV?$allocator@U?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$shared_ptr@VRawImageData@@@2@@std@@PAX@std@@@1@PAU?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$shared_ptr@VRawImageData@@@2@@std@@PAX@1@@Z 004166c0 f i DraggingDemo.obj
  0001:00015760       ??$_Erase_tree@V?$allocator@U?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$weak_ptr@VRawImageData@@@2@@std@@PAX@std@@@std@@@?$_Tree_val@U?$_Tree_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$weak_ptr@VRawImageData@@@2@@std@@@std@@@std@@QAEXAAV?$allocator@U?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$weak_ptr@VRawImageData@@@2@@std@@PAX@std@@@1@PAU?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$weak_ptr@VRawImageData@@@2@@std@@PAX@1@@Z 00416760 f i DraggingDemo.obj
  0001:00015800       ??$_Find@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@?$_Tree@V?$_Tmap_traits@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$weak_ptr@VRawImageData@@@2@U?$less@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@V?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$weak_ptr@VRawImageData@@@2@@std@@@2@$0A@@std@@@std@@ABEPAU?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$weak_ptr@VRawImageData@@@2@@std@@PAX@1@ABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@1@@Z 00416800 f i DraggingDemo.obj
  0001:00015860       ??$_Find_lower_bound@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@?$_Tree@V?$_Tmap_traits@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$shared_ptr@VRawImageData@@@2@U?$less@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@V?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$shared_ptr@VRawImageData@@@2@@std@@@2@$0A@@std@@@std@@IBE?AU?$_Tree_find_result@PAU?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$shared_ptr@VRawImageData@@@2@@std@@PAX@std@@@1@ABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@1@@Z 00416860 f i DraggingDemo.obj
+ 0001:00015920       ??0?$shared_ptr@VInventoryTileManager@@@std@@QAE@ABV01@@Z 00416920 f i StateRunning.obj
  0001:00015950       ??$_Find_lower_bound@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@?$_Tree@V?$_Tmap_traits@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$weak_ptr@VRawImageData@@@2@U?$less@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@V?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$weak_ptr@VRawImageData@@@2@@std@@@2@$0A@@std@@@std@@IBE?AU?$_Tree_find_result@PAU?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$weak_ptr@VRawImageData@@@2@@std@@PAX@std@@@1@ABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@1@@Z 00416950 f i DraggingDemo.obj
+ 0001:00015a10       ?size@?$vector@V?$vector@PAVRoom@@V?$allocator@PAVRoom@@@std@@@std@@V?$allocator@V?$vector@PAVRoom@@V?$allocator@PAVRoom@@@std@@@std@@@2@@std@@QBEIXZ 00416a10 f i StateRunning.obj
  0001:00015a40       ??$_Freenode0@V?$allocator@U?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$shared_ptr@VRawImageData@@@2@@std@@PAX@std@@@std@@@?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$shared_ptr@VRawImageData@@@2@@std@@PAX@std@@SAXAAV?$allocator@U?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$shared_ptr@VRawImageData@@@2@@std@@PAX@std@@@1@PAU01@@Z 00416a40 f i DraggingDemo.obj
  0001:00015ad0       ??$_Freenode0@V?$allocator@U?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$weak_ptr@VRawImageData@@@2@@std@@PAX@std@@@std@@@?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$weak_ptr@VRawImageData@@@2@@std@@PAX@std@@SAXAAV?$allocator@U?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$weak_ptr@VRawImageData@@@2@@std@@PAX@std@@@1@PAU01@@Z 00416ad0 f i DraggingDemo.obj
  0001:00015b60       ??$_Freenode@V?$allocator@U?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$shared_ptr@VRawImageData@@@2@@std@@PAX@std@@@std@@@?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$shared_ptr@VRawImageData@@@2@@std@@PAX@std@@SAXAAV?$allocator@U?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$shared_ptr@VRawImageData@@@2@@std@@PAX@std@@@1@PAU01@@Z 00416b60 f i DraggingDemo.obj
@@ -657,9 +662,7 @@
  0001:00015ca0       ??$_Get_size_of_n@$0DE@@std@@YAII@Z 00416ca0 f i DraggingDemo.obj
  0001:00015cd0       ??$_Get_unwrapped@PAVDisplayableObject@@@std@@YAPAPAVDisplayableObject@@QAPAV1@@Z 00416cd0 f i DraggingDemo.obj
  0001:00015ce0       ??$_Insert_string@DU?$char_traits@D@std@@I@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@QBDI@Z 00416ce0 f i DraggingDemo.obj
- 0001:00015fb0       ?_Destroy@?$_Ref_count@VItem@@@std@@EAEXXZ 00416fb0 f i GameEngine.obj
- 0001:00015ff0       ?_Get_first@?$_Compressed_pair@V?$allocator@V?$shared_ptr@VItem@@@std@@@std@@V?$_Vector_val@U?$_Simple_types@V?$shared_ptr@VItem@@@std@@@std@@@2@$00@std@@QAEAAV?$allocator@V?$shared_ptr@VItem@@@std@@@2@XZ 00416ff0 f i GameEngine.obj
- 0001:00016000       ?max_size@?$vector@V?$shared_ptr@VItem@@@std@@V?$allocator@V?$shared_ptr@VItem@@@std@@@2@@std@@QBEIXZ 00417000 f i GameEngine.obj
+ 0001:00015fb0       ?_Change_array@?$vector@V?$shared_ptr@VItem@@@std@@V?$allocator@V?$shared_ptr@VItem@@@std@@@2@@std@@AAEXQAV?$shared_ptr@VItem@@@2@II@Z 00416fb0 f i GameEngine.obj
  0001:00016060       ??$_Kfn@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$shared_ptr@VRawImageData@@@2@@?$_Tmap_traits@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$shared_ptr@VRawImageData@@@2@U?$less@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@V?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$shared_ptr@VRawImageData@@@2@@std@@@2@$0A@@std@@SAABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@1@ABU?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$shared_ptr@VRawImageData@@@2@@1@@Z 00417060 f i DraggingDemo.obj
  0001:00016070       ??$_Kfn@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$weak_ptr@VRawImageData@@@2@@?$_Tmap_traits@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$weak_ptr@VRawImageData@@@2@U?$less@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@V?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$weak_ptr@VRawImageData@@@2@@std@@@2@$0A@@std@@SAABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@1@ABU?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$weak_ptr@VRawImageData@@@2@@1@@Z 00417070 f i DraggingDemo.obj
  0001:00016080       ??$_Lower_bound_duplicate@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@?$_Tree@V?$_Tmap_traits@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$shared_ptr@VRawImageData@@@2@U?$less@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@V?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$shared_ptr@VRawImageData@@@2@@std@@@2@$0A@@std@@@std@@IBE_NQAU?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$shared_ptr@VRawImageData@@@2@@std@@PAX@1@ABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@1@@Z 00417080 f i DraggingDemo.obj
@@ -667,7 +670,7 @@
  0001:00016160       ??$_Move_construct_from@VRawImageData@@@?$_Ptr_base@VRawImageData@@@std@@IAEX$$QAV01@@Z 00417160 f i DraggingDemo.obj
  0001:000161b0       ??$_Resize@U_Value_init_tag@std@@@?$vector@PAVDisplayableObject@@V?$allocator@PAVDisplayableObject@@@std@@@std@@AAEXIABU_Value_init_tag@1@@Z 004171b0 f i DraggingDemo.obj
  0001:000162d0       ??$_Resize_reallocate@U_Value_init_tag@std@@@?$vector@PAVDisplayableObject@@V?$allocator@PAVDisplayableObject@@@std@@@std@@AAEXIABU_Value_init_tag@1@@Z 004172d0 f i DraggingDemo.obj
- 0001:00016440       ?_Getal@?$vector@V?$shared_ptr@VItem@@@std@@V?$allocator@V?$shared_ptr@VItem@@@std@@@2@@std@@ABEABV?$allocator@V?$shared_ptr@VItem@@@std@@@2@XZ 00417440 f i GameEngine.obj
+ 0001:00016440       ?_Destroy@?$_Ref_count_obj2@VInventoryTileManager@@@std@@EAEXXZ 00417440 f i GameEngine.obj
  0001:00016480       ??$_Set_ptr_rep_and_enable_shared@VRawImageData@@@?$shared_ptr@VRawImageData@@@std@@AAEXQAVRawImageData@@QAV_Ref_count_base@1@@Z 00417480 f i DraggingDemo.obj
  0001:000164b0       ??$_Unfancy@PAVDisplayableObject@@@std@@YAPAPAVDisplayableObject@@PAPAV1@@Z 004174b0 f i DraggingDemo.obj
  0001:000164c0       ??$_Uninitialized_move@PAPAVDisplayableObject@@V?$allocator@PAVDisplayableObject@@@std@@@std@@YAPAPAVDisplayableObject@@QAPAV1@0PAPAV1@AAV?$allocator@PAVDisplayableObject@@@0@@Z 004174c0 f i DraggingDemo.obj
@@ -692,7 +695,7 @@
  0001:00016800       ??$emplace@U?$pair@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$weak_ptr@VRawImageData@@@2@@std@@@?$_Tree@V?$_Tmap_traits@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$weak_ptr@VRawImageData@@@2@U?$less@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@V?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$weak_ptr@VRawImageData@@@2@@std@@@2@$0A@@std@@@std@@QAE?AU?$pair@V?$_Tree_iterator@V?$_Tree_val@U?$_Tree_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$weak_ptr@VRawImageData@@@2@@std@@@std@@@std@@@std@@_N@1@$$QAU?$pair@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$weak_ptr@VRawImageData@@@2@@1@@Z 00417800 f i DraggingDemo.obj
  0001:00016890       ??$endl@DU?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@@Z 00417890 f i DraggingDemo.obj
  0001:000168d0       ??$erase@V?$_Tree_iterator@V?$_Tree_val@U?$_Tree_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$weak_ptr@VRawImageData@@@2@@std@@@std@@@std@@@std@@X@?$_Tree@V?$_Tmap_traits@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$weak_ptr@VRawImageData@@@2@U?$less@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@V?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$weak_ptr@VRawImageData@@@2@@std@@@2@$0A@@std@@@std@@QAE?AV?$_Tree_iterator@V?$_Tree_val@U?$_Tree_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$weak_ptr@VRawImageData@@@2@@std@@@std@@@std@@@1@V21@@Z 004178d0 f i DraggingDemo.obj
- 0001:00016a10       ?_Swap@?$_Ptr_base@VInventoryTileManager@@@std@@IAEXAAV12@@Z 00417a10 f i GameEngine.obj
+ 0001:00016a10       ?filterConvertVirtualToRealYPosition@FilterPointsTranslation@@UAEHH@Z 00417a10 f i GameEngine.obj
  0001:00016a50       ??$exchange@PAU?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$shared_ptr@VRawImageData@@@2@@std@@PAX@std@@$$T@std@@YAPAU?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$shared_ptr@VRawImageData@@@2@@std@@PAX@0@AAPAU10@$$QA$$T@Z 00417a50 f i DraggingDemo.obj
  0001:00016a80       ??$exchange@PAU?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$shared_ptr@VRawImageData@@@2@@std@@PAX@std@@AAPAU12@@std@@YAPAU?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$shared_ptr@VRawImageData@@@2@@std@@PAX@0@AAPAU10@0@Z 00417a80 f i DraggingDemo.obj
  0001:00016ab0       ??$exchange@PAU?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$weak_ptr@VRawImageData@@@2@@std@@PAX@std@@$$T@std@@YAPAU?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$weak_ptr@VRawImageData@@@2@@std@@PAX@0@AAPAU10@$$QA$$T@Z 00417ab0 f i DraggingDemo.obj
@@ -764,12 +767,12 @@
  0001:00017730       ??0DragableBaseClassObject@@QAE@HHPAVBaseEngine@@HH_N@Z 00418730 f i DraggingDemo.obj
  0001:00017790       ??0DragableBaseClassObject@@QAE@PAVBaseEngine@@HH_N@Z 00418790 f i DraggingDemo.obj
  0001:000177e0       ??0DragableImageObject@@QAE@HHPAVBaseEngine@@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@_N2@Z 004187e0 f i DraggingDemo.obj
- 0001:00017930       ?deallocate@?$allocator@V?$shared_ptr@VItem@@@std@@@std@@QAEXQAV?$shared_ptr@VItem@@@2@I@Z 00418930 f i GameEngine.obj
+ 0001:00017930       ?_Unchecked_end@?$vector@PAVRoom@@V?$allocator@PAVRoom@@@std@@@std@@QBEPBQAVRoom@@XZ 00418930 f i GameEngine.obj
  0001:00017980       ??0DragableObject@@QAE@HHPAVBaseEngine@@HH_N1@Z 00418980 f i DraggingDemo.obj
  0001:00017a30       ??0DragableObject@@QAE@PAVBaseEngine@@HH_N1@Z 00418a30 f i DraggingDemo.obj
  0001:00017ae0       ??0ImageManager@@QAE@XZ    00418ae0 f i DraggingDemo.obj
  0001:00017b60       ??0ImageObject@@QAE@HHPAVBaseEngine@@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@_N2@Z 00418b60 f i DraggingDemo.obj
- 0001:00017ca0       ?filterConvertRealToVirtualXPosition@FilterPointsTranslation@@UAEHH@Z 00418ca0 f i GameEngine.obj
+ 0001:00017ca0       ?max_size@?$vector@V?$shared_ptr@VItem@@@std@@V?$allocator@V?$shared_ptr@VItem@@@std@@@2@@std@@QBEIXZ 00418ca0 f i GameEngine.obj
  0001:00017cf0       ??0RawImageData@@QAE@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z 00418cf0 f i DraggingDemo.obj
  0001:00017da0       ??0_Ref_count_base@std@@IAE@XZ 00418da0 f i DraggingDemo.obj
  0001:00017dd0       ??1?$_Alloc_construct_ptr@V?$allocator@U?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$shared_ptr@VRawImageData@@@2@@std@@PAX@std@@@std@@@std@@QAE@XZ 00418dd0 f i DraggingDemo.obj
@@ -810,8 +813,8 @@
  0001:000186d0       ??D?$_Tree_const_iterator@V?$_Tree_val@U?$_Tree_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$weak_ptr@VRawImageData@@@2@@std@@@std@@@std@@@std@@QBEABU?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$weak_ptr@VRawImageData@@@2@@1@XZ 004196d0 f i DraggingDemo.obj
  0001:000187e0       ??D?$_Tree_iterator@V?$_Tree_val@U?$_Tree_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$weak_ptr@VRawImageData@@@2@@std@@@std@@@std@@@std@@QBEAAU?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$weak_ptr@VRawImageData@@@2@@1@XZ 004197e0 f i DraggingDemo.obj
  0001:00018800       ??E?$_Tree_unchecked_const_iterator@V?$_Tree_val@U?$_Tree_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$weak_ptr@VRawImageData@@@2@@std@@@std@@@std@@U_Iterator_base0@2@@std@@QAEAAV01@XZ 00419800 f i DraggingDemo.obj
- 0001:00018890       ??_G?$_Ref_count@VRawImageData@@@std@@UAEPAXI@Z 00419890 f i DraggingDemo.obj
  0001:00018890       ??_E?$_Ref_count@VRawImageData@@@std@@UAEPAXI@Z 00419890 f i DraggingDemo.obj
+ 0001:00018890       ??_G?$_Ref_count@VRawImageData@@@std@@UAEPAXI@Z 00419890 f i DraggingDemo.obj
  0001:000188d0       ??_G?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$shared_ptr@VRawImageData@@@2@@std@@QAEPAXI@Z 004198d0 f i DraggingDemo.obj
  0001:00018910       ??_G?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$weak_ptr@VRawImageData@@@2@@std@@QAEPAXI@Z 00419910 f i DraggingDemo.obj
  0001:00018950       ??_GDragableBaseClassObject@@UAEPAXI@Z 00419950 f i DraggingDemo.obj
@@ -833,7 +836,7 @@
  0001:00018de0       ?_Check_grow_by_1@?$_Tree@V?$_Tmap_traits@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$shared_ptr@VRawImageData@@@2@U?$less@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@V?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$shared_ptr@VRawImageData@@@2@@std@@@2@$0A@@std@@@std@@IAEXXZ 00419de0 f i DraggingDemo.obj
  0001:00018e20       ?_Check_grow_by_1@?$_Tree@V?$_Tmap_traits@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$weak_ptr@VRawImageData@@@2@U?$less@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@V?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$weak_ptr@VRawImageData@@@2@@std@@@2@$0A@@std@@@std@@IAEXXZ 00419e20 f i DraggingDemo.obj
  0001:00018e60       ?_Construct_lv_contents@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AAEXABV12@@Z 00419e60 f i DraggingDemo.obj
- 0001:00018f50       ?filterConvertRealToVirtualYPosition@FilterPointsTranslation@@UAEHH@Z 00419f50 f i GameEngine.obj
+ 0001:00018f50       ?filter@FilterPointsScaling@@UAE_NPAVDrawingSurface@@AAH1AAI@Z 00419f50 f i GameEngine.obj
  0001:00018f90       ?_Decwref@?$_Ptr_base@VRawImageData@@@std@@IAEXXZ 00419f90 f i DraggingDemo.obj
  0001:00018fc0       ?_Delete_this@?$_Ref_count@VRawImageData@@@std@@EAEXXZ 00419fc0 f i DraggingDemo.obj
  0001:00019010       ?_Destroy@?$_Ref_count@VRawImageData@@@std@@EAEXXZ 0041a010 f i DraggingDemo.obj
@@ -842,7 +845,7 @@
  0001:00019130       ?_Extract@?$_In_place_key_extract_map@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@U?$pair@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$shared_ptr@VRawImageData@@@2@@2@@std@@SAABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@2@ABU?$pair@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$shared_ptr@VRawImageData@@@2@@2@@Z 0041a130 f i DraggingDemo.obj
  0001:00019140       ?_Extract@?$_In_place_key_extract_map@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@U?$pair@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$weak_ptr@VRawImageData@@@2@@2@@std@@SAABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@2@ABU?$pair@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$weak_ptr@VRawImageData@@@2@@2@@Z 0041a140 f i DraggingDemo.obj
  0001:00019150       ?_Extract@?$_Tree_val@U?$_Tree_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$weak_ptr@VRawImageData@@@2@@std@@@std@@@std@@QAEPAU?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$weak_ptr@VRawImageData@@@2@@std@@PAX@2@V?$_Tree_unchecked_const_iterator@V?$_Tree_val@U?$_Tree_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$weak_ptr@VRawImageData@@@2@@std@@@std@@@std@@U_Iterator_base0@2@@2@@Z 0041a150 f i DraggingDemo.obj
- 0001:000195b0       ??$writeLine@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@SaveManager@@QAEXV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@0@Z 0041a5b0 f i GameEngine.obj
+ 0001:000195b0       ??$writeLine@H@SaveManager@@QAEXV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@H@Z 0041a5b0 f i GameEngine.obj
  0001:000196c0       ?_Get_deleter@_Ref_count_base@std@@UBEPAXABVtype_info@@@Z 0041a6c0 f i DraggingDemo.obj
  0001:000196e0       ?_Get_first@?$_Compressed_pair@U?$less@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@std@@V?$_Compressed_pair@V?$allocator@U?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$shared_ptr@VRawImageData@@@2@@std@@PAX@std@@@std@@V?$_Tree_val@U?$_Tree_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$shared_ptr@VRawImageData@@@2@@std@@@std@@@2@$00@2@$00@std@@QBEABU?$less@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@XZ 0041a6e0 f i DraggingDemo.obj
  0001:00019700       ?_Get_first@?$_Compressed_pair@U?$less@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@std@@V?$_Compressed_pair@V?$allocator@U?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$weak_ptr@VRawImageData@@@2@@std@@PAX@std@@@std@@V?$_Tree_val@U?$_Tree_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$weak_ptr@VRawImageData@@@2@@std@@@std@@@2@$00@2@$00@std@@QBEABU?$less@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@XZ 0041a700 f i DraggingDemo.obj
@@ -867,9 +870,11 @@
  0001:00019960       ?_Incref_nz@_Ref_count_base@std@@QAE_NXZ 0041a960 f i DraggingDemo.obj
  0001:000199d0       ?_Incwref@_Ref_count_base@std@@QAEXXZ 0041a9d0 f i DraggingDemo.obj
  0001:000199f0       ?_Insert_node@?$_Tree_val@U?$_Tree_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$shared_ptr@VRawImageData@@@2@@std@@@std@@@std@@QAEPAU?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$shared_ptr@VRawImageData@@@2@@std@@PAX@2@U?$_Tree_id@PAU?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$shared_ptr@VRawImageData@@@2@@std@@PAX@std@@@2@QAU32@@Z 0041a9f0 f i DraggingDemo.obj
- 0001:00019c00       ?_Orphan_range@?$vector@V?$shared_ptr@VItem@@@std@@V?$allocator@V?$shared_ptr@VItem@@@std@@@2@@std@@ABEXPAV?$shared_ptr@VItem@@@2@0@Z 0041ac00 f i GameEngine.obj
+ 0001:00019c00       ?_Get_first@?$_Compressed_pair@V?$allocator@V?$shared_ptr@VItem@@@std@@@std@@V?$_Vector_val@U?$_Simple_types@V?$shared_ptr@VItem@@@std@@@std@@@2@$00@std@@QAEAAV?$allocator@V?$shared_ptr@VItem@@@std@@@2@XZ 0041ac00 f i GameEngine.obj
+ 0001:00019c10       ?filterConvertRealToVirtualXPosition@FilterPointsScaling@@UAEHH@Z 0041ac10 f i GameEngine.obj
  0001:00019c80       ?_Insert_node@?$_Tree_val@U?$_Tree_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$weak_ptr@VRawImageData@@@2@@std@@@std@@@std@@QAEPAU?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$weak_ptr@VRawImageData@@@2@@std@@PAX@2@U?$_Tree_id@PAU?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$weak_ptr@VRawImageData@@@2@@std@@PAX@std@@@2@QAU32@@Z 0041ac80 f i DraggingDemo.obj
- 0001:00019e90       ?filter@FilterPointsTranslation@@UAE_NPAVDrawingSurface@@AAH1AAI@Z 0041ae90 f i GameEngine.obj
+ 0001:00019e90       ?_Xlength@?$vector@V?$shared_ptr@VItem@@@std@@V?$allocator@V?$shared_ptr@VItem@@@std@@@2@@std@@CAXXZ 0041ae90 f i GameEngine.obj
+ 0001:00019ea0       ?filterConvertRealToVirtualYPosition@FilterPointsScaling@@UAEHH@Z 0041aea0 f i GameEngine.obj
  0001:00019f10       ?_Lrotate@?$_Tree_val@U?$_Tree_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$shared_ptr@VRawImageData@@@2@@std@@@std@@@std@@QAEXPAU?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$shared_ptr@VRawImageData@@@2@@std@@PAX@2@@Z 0041af10 f i DraggingDemo.obj
  0001:00019fd0       ?_Lrotate@?$_Tree_val@U?$_Tree_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$weak_ptr@VRawImageData@@@2@@std@@@std@@@std@@QAEXPAU?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$weak_ptr@VRawImageData@@@2@@std@@PAX@2@@Z 0041afd0 f i DraggingDemo.obj
  0001:0001a090       ?_Max@?$_Tree_val@U?$_Tree_simple_types@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$weak_ptr@VRawImageData@@@2@@std@@@std@@@std@@SAPAU?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$weak_ptr@VRawImageData@@@2@@std@@PAX@2@PAU32@@Z 0041b090 f i DraggingDemo.obj
@@ -914,7 +919,9 @@
  0001:0001aca0       ?freeSurface@RawImageData@@QAEXXZ 0041bca0 f i DraggingDemo.obj
  0001:0001ace0       ?get@ImageManager@@SAPAV1@XZ 0041bce0 f i DraggingDemo.obj
  0001:0001ad90       ?getImagePtrbyURL@ImageManager@@QAE?AV?$shared_ptr@VRawImageData@@@std@@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@3@_N1@Z 0041bd90 f i DraggingDemo.obj
- 0001:0001b120       ?allocate@?$allocator@V?$shared_ptr@VItem@@@std@@@std@@QAEPAV?$shared_ptr@VItem@@@2@I@Z 0041c120 f i GameEngine.obj
+ 0001:0001b120       ?_Unchecked_begin@?$vector@PAVRoom@@V?$allocator@PAVRoom@@@std@@@std@@QBEPBQAVRoom@@XZ 0041c120 f i GameEngine.obj
+ 0001:0001b150       ??_GStateEditor@@QAEPAXI@Z 0041c150 f i StateMenu.obj
+ 0001:0001b190       ?release@?$unique_ptr@VButton@@U?$default_delete@VButton@@@std@@@std@@QAEPAVButton@@XZ 0041c190 f i StateMenu.obj
  0001:0001b1e0       ?getImagebyURL@ImageManager@@QAE?AVSimpleImage@@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@_N1@Z 0041c1e0 f i DraggingDemo.obj
  0001:0001b2b0       ?getIntsPerWindowRow@DrawingSurface@@QBEIXZ 0041c2b0 f i DraggingDemo.obj
  0001:0001b2d0       ?getSurfaceHeight@DrawingSurface@@QBEHXZ 0041c2d0 f i DraggingDemo.obj
@@ -924,8 +931,10 @@
  0001:0001b350       ?getXForRotationAndCrop@RawImageData@@SAHHHHHHH@Z 0041c350 f i DraggingDemo.obj
  0001:0001b3c0       ?getYForRotationAndCrop@RawImageData@@SAHHHHHHH@Z 0041c3c0 f i DraggingDemo.obj
  0001:0001b430       ?loadAsNew@ImageManager@@QAE?AV?$shared_ptr@VRawImageData@@@std@@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@3@@Z 0041c430 f i DraggingDemo.obj
+ 0001:0001b5a0       ??_GStatePaused@@QAEPAXI@Z 0041c5a0 f i StateRunning.obj
  0001:0001b5f0       ?loadImage@RawImageData@@QAE_NV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@HHHHH_N@Z 0041c5f0 f i DraggingDemo.obj
- 0001:0001b8c0       ?filterConvertVirtualToRealYPosition@FilterPointsTranslation@@UAEHH@Z 0041c8c0 f i GameEngine.obj
+ 0001:0001b860       ?_Get_first@?$_Compressed_pair@V?$allocator@U?$_List_node@V?$unique_ptr@VButton@@U?$default_delete@VButton@@@std@@@std@@PAX@std@@@std@@V?$_List_val@U?$_List_simple_types@V?$unique_ptr@VButton@@U?$default_delete@VButton@@@std@@@std@@@std@@@2@$00@std@@QBEABV?$allocator@U?$_List_node@V?$unique_ptr@VButton@@U?$default_delete@VButton@@@std@@@std@@PAX@std@@@2@XZ 0041c860 f i StateMenu.obj
+ 0001:0001b870       ??$_Copy_construct_from@VItem@@@?$_Ptr_base@VItem@@@std@@IAEXABV?$shared_ptr@VItem@@@1@@Z 0041c870 f i GameEngine.obj
  0001:0001b900       ?lock@?$weak_ptr@VRawImageData@@@std@@QBE?AV?$shared_ptr@VRawImageData@@@2@XZ 0041c900 f i DraggingDemo.obj
  0001:0001b950       ?max_size@?$_Default_allocator_traits@V?$allocator@PAVDisplayableObject@@@std@@@std@@SAIABV?$allocator@PAVDisplayableObject@@@2@@Z 0041c950 f i DraggingDemo.obj
  0001:0001b960       ?max_size@?$_Default_allocator_traits@V?$allocator@U?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$shared_ptr@VRawImageData@@@2@@std@@PAX@std@@@std@@@std@@SAIABV?$allocator@U?$_Tree_node@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$shared_ptr@VRawImageData@@@2@@std@@PAX@std@@@2@@Z 0041c960 f i DraggingDemo.obj
@@ -978,21 +987,32 @@
  0001:0001ed40       ?getRealRedrawMinY@DrawingSurface@@QAEHXZ 0041fd40 f   DrawingSurface.obj
  0001:0001ed90       ?getRealRedrawMaxX@DrawingSurface@@QAEHXZ 0041fd90 f   DrawingSurface.obj
  0001:0001ede0       ?getRealRedrawMaxY@DrawingSurface@@QAEHXZ 0041fde0 f   DrawingSurface.obj
- 0001:0001ee30       ??$_Emplace_reallocate@ABV?$shared_ptr@VItem@@@std@@@?$vector@V?$shared_ptr@VItem@@@std@@V?$allocator@V?$shared_ptr@VItem@@@std@@@2@@std@@QAEPAV?$shared_ptr@VItem@@@1@QAV21@ABV21@@Z 0041fe30 f i GameEngine.obj
- 0001:0001f000       ??0InventoryTileManager@@QAE@PAVGameEngine@@@Z 00420000 f i GameEngine.obj
- 0001:0001f1c0       ??1Room@@QAE@XZ            004201c0 f i GameEngine.obj
- 0001:0001f320       ?filterConvertVirtualToRealXPosition@FilterPointsScaling@@UAEHH@Z 00420320 f i GameEngine.obj
- 0001:0001f3b0       ?filterConvertVirtualToRealYPosition@FilterPointsScaling@@UAEHH@Z 004203b0 f i GameEngine.obj
- 0001:0001f440       ?handleXthenY@FilterPointsScaling@@AAEXPAVDrawingSurface@@HHAAI@Z 00420440 f i GameEngine.obj
- 0001:0001f4d0       ?setStretch@FilterPointsScaling@@QAEXHH@Z 004204d0 f i GameEngine.obj
- 0001:0001f590       ?_Change_array@?$vector@V?$shared_ptr@VItem@@@std@@V?$allocator@V?$shared_ptr@VItem@@@std@@@2@@std@@AAEXQAV?$shared_ptr@VItem@@@2@II@Z 00420590 f i GameEngine.obj
- 0001:0001f6c0       ??1StateStart@@QAE@XZ      004206c0 f i GameEngine.obj
- 0001:0001f700       ??_GFloorManager@@QAEPAXI@Z 00420700 f i GameEngine.obj
- 0001:0001f740       ??_GRoom@@QAEPAXI@Z        00420740 f i GameEngine.obj
- 0001:0001f790       ??_GStateMenu@@QAEPAXI@Z   00420790 f i GameEngine.obj
- 0001:0001f830       ?_Get_first@?$_Compressed_pair@V?$allocator@V?$shared_ptr@VItem@@@std@@@std@@V?$_Vector_val@U?$_Simple_types@V?$shared_ptr@VItem@@@std@@@std@@@2@$00@std@@QBEABV?$allocator@V?$shared_ptr@VItem@@@std@@@2@XZ 00420830 f i GameEngine.obj
- 0001:0001f8b0       ?_Move_assign@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AAEXAAV12@U_Equal_allocators@2@@Z 004208b0 f i GameEngine.obj
- 0001:0001f970       ?capacity@?$vector@V?$shared_ptr@VItem@@@std@@V?$allocator@V?$shared_ptr@VItem@@@std@@@2@@std@@QBEIXZ 00420970 f i GameEngine.obj
+ 0001:0001ee30       ??$_Emplace_back_with_unused_capacity@ABV?$shared_ptr@VItem@@@std@@@?$vector@V?$shared_ptr@VItem@@@std@@V?$allocator@V?$shared_ptr@VItem@@@std@@@2@@std@@AAE@ABV?$shared_ptr@VItem@@@1@@Z 0041fe30 f i GameEngine.obj
+ 0001:0001eeb0       ??$_Move_construct_from@VItem@@@?$_Ptr_base@VItem@@@std@@IAEX$$QAV01@@Z 0041feb0 f i GameEngine.obj
+ 0001:0001eef0       ??$_Uninitialized_move@PAV?$shared_ptr@VItem@@@std@@V?$allocator@V?$shared_ptr@VItem@@@std@@@2@@std@@YAPAV?$shared_ptr@VItem@@@0@QAV10@0PAV10@AAV?$allocator@V?$shared_ptr@VItem@@@std@@@0@@Z 0041fef0 f i GameEngine.obj
+ 0001:0001f000       ??0FilterPointsScaling@@QAE@HHPAVFilterPoints@@@Z 00420000 f i GameEngine.obj
+ 0001:0001f070       ??1Room@@QAE@XZ            00420070 f i GameEngine.obj
+ 0001:0001f1c0       ??1?$shared_ptr@VItem@@@std@@QAE@XZ 004201c0 f i GameEngine.obj
+ 0001:0001f1e0       ??_GStateRunning@@QAEPAXI@Z 004201e0 f i GameEngine.obj
+ 0001:0001f210       ?filterConvertVirtualToRealXPosition@FilterPointsScaling@@UAEHH@Z 00420210 f i GameEngine.obj
+ 0001:0001f2c0       ?deallocate@?$allocator@U?$_List_node@V?$unique_ptr@VButton@@U?$default_delete@VButton@@@std@@@std@@PAX@std@@@std@@QAEXQAU?$_List_node@V?$unique_ptr@VButton@@U?$default_delete@VButton@@@std@@@std@@PAX@2@I@Z 004202c0 f i StateMenu.obj
+ 0001:0001f320       ?filter@FilterPointsTranslation@@UAE_NPAVDrawingSurface@@AAH1AAI@Z 00420320 f i GameEngine.obj
+ 0001:0001f3b0       ?filterConvertRealToVirtualXPosition@FilterPointsTranslation@@UAEHH@Z 004203b0 f i GameEngine.obj
+ 0001:0001f440       ?filterConvertRealToVirtualYPosition@FilterPointsTranslation@@UAEHH@Z 00420440 f i GameEngine.obj
+ 0001:0001f4d0       ?handleXthenY@FilterPointsScaling@@AAEXPAVDrawingSurface@@HHAAI@Z 004204d0 f i GameEngine.obj
+ 0001:0001f590       ??_GStateMenu@@QAEPAXI@Z   00420590 f i GameEngine.obj
+ 0001:0001f630       ??_GStateInfo@@QAEPAXI@Z   00420630 f i StateMenu.obj
+ 0001:0001f6c0       ??1FloorManager@@QAE@XZ    004206c0 f i GameEngine.obj
+ 0001:0001f700       ??4?$shared_ptr@VInventoryTileManager@@@std@@QAEAAV01@$$QAV01@@Z 00420700 f i GameEngine.obj
+ 0001:0001f740       ??_GFloorManager@@QAEPAXI@Z 00420740 f i GameEngine.obj
+ 0001:0001f790       ??_GGameEngine@@UAEPAXI@Z  00420790 f i GameEngine.obj
+ 0001:0001f790       ??_EGameEngine@@UAEPAXI@Z  00420790 f i GameEngine.obj
+ 0001:0001f7d0       ?getCurrentMouseY@BaseEngine@@QBEHXZ 004207d0 f i StateRunning.obj
+ 0001:0001f840       ?_Tidy@?$list@PAVEnemyObject@@V?$allocator@PAVEnemyObject@@@std@@@std@@AAEXXZ 00420840 f i StateRunning.obj
+ 0001:0001f8b0       ?_Destroy@?$vector@V?$shared_ptr@VItem@@@std@@V?$allocator@V?$shared_ptr@VItem@@@std@@@2@@std@@AAEXPAV?$shared_ptr@VItem@@@2@0@Z 004208b0 f i GameEngine.obj
+ 0001:0001f900       ?_Transfer_before@?$_List_node_emplace_op2@V?$allocator@U?$_List_node@PAVEnemyObject@@PAX@std@@@std@@@std@@QAEPAU?$_List_node@PAVEnemyObject@@PAX@2@QAU32@@Z 00420900 f i StateRunning.obj
+ 0001:0001f970       ?_Unchecked_begin@?$vector@V?$vector@PAVRoom@@V?$allocator@PAVRoom@@@std@@@std@@V?$allocator@V?$vector@PAVRoom@@V?$allocator@PAVRoom@@@std@@@std@@@2@@std@@QAEPAV?$vector@PAVRoom@@V?$allocator@PAVRoom@@@std@@@2@XZ 00420970 f i GameEngine.obj
+ 0001:0001f9a0       ?max_size@?$_Default_allocator_traits@V?$allocator@U?$_List_node@PAVEnemyObject@@PAX@std@@@std@@@std@@SAIABV?$allocator@U?$_List_node@PAVEnemyObject@@PAX@std@@@2@@Z 004209a0 f i StateRunning.obj
  0001:0001f9e0       ??$swapPoints@H@@YAXAAH0@Z 004209e0 f i DrawingSurface.obj
  0001:0001fa10       ??$swapPoints@N@@YAXAAN0@Z 00420a10 f i DrawingSurface.obj
  0001:0001fa50       ?checkBlitable@DrawingSurface@@QAEXXZ 00420a50 f i DrawingSurface.obj
@@ -1015,7 +1035,8 @@
  0001:0001fd40       ??0EnemyCultist@@QAE@PAVBaseEngine@@PAVRoom@@HH@Z 00420d40 f   EnemyCultist.obj
  0001:0001fe80       ??1EnemyCultist@@UAE@XZ    00420e80 f   EnemyCultist.obj
  0001:0001fea0       ?virtDraw@EnemyCultist@@UAEXXZ 00420ea0 f   EnemyCultist.obj
- 0001:0001ff60       ?filter@FilterPointsScaling@@UAE_NPAVDrawingSurface@@AAH1AAI@Z 00420f60 f i GameEngine.obj
+ 0001:0001ff60       ?_Unchecked_end@?$vector@V?$vector@PAVRoom@@V?$allocator@PAVRoom@@@std@@@std@@V?$allocator@V?$vector@PAVRoom@@V?$allocator@PAVRoom@@@std@@@std@@@2@@std@@QAEPAV?$vector@PAVRoom@@V?$allocator@PAVRoom@@@std@@@2@XZ 00420f60 f i GameEngine.obj
+ 0001:0001ff90       ?getItemAt@InventoryTileManager@@QAE?AV?$shared_ptr@VItem@@@std@@H@Z 00420f90 f i StateRunning.obj
  0001:0001fff0       ??$?0PAVGameEngine@@@?$_Ref_count_obj2@VBow@@@std@@QAE@$$QAPAVGameEngine@@@Z 00420ff0 f i EnemyCultist.obj
  0001:000200a0       ??$?0VBow@@$0A@@?$shared_ptr@VWeapon@@@std@@QAE@$$QAV?$shared_ptr@VBow@@@1@@Z 004210a0 f i EnemyCultist.obj
  0001:000200e0       ??$?0VBow@@$0A@@?$weak_ptr@VWeapon@@@std@@QAE@ABV?$shared_ptr@VBow@@@1@@Z 004210e0 f i EnemyCultist.obj
@@ -1067,7 +1088,7 @@
  0001:00020c10       ??0EnemyDragon@@QAE@PAVBaseEngine@@PAVRoom@@HH@Z 00421c10 f   EnemyDragon.obj
  0001:00020d50       ??1EnemyDragon@@UAE@XZ     00421d50 f   EnemyDragon.obj
  0001:00020d70       ?virtDraw@EnemyDragon@@UAEXXZ 00421d70 f   EnemyDragon.obj
- 0001:00020e50       ?filterConvertRealToVirtualXPosition@FilterPointsScaling@@UAEHH@Z 00421e50 f i GameEngine.obj
+ 0001:00020e50       ?allocate@?$allocator@V?$shared_ptr@VItem@@@std@@@std@@QAEPAV?$shared_ptr@VItem@@@2@I@Z 00421e50 f i GameEngine.obj
  0001:00020ee0       ??$?0PAVGameEngine@@@?$_Ref_count_obj2@VWoodSword@@@std@@QAE@$$QAPAVGameEngine@@@Z 00421ee0 f i EnemyDragon.obj
  0001:00020f90       ??$?0VWoodSword@@$0A@@?$shared_ptr@VWeapon@@@std@@QAE@$$QAV?$shared_ptr@VWoodSword@@@1@@Z 00421f90 f i EnemyDragon.obj
  0001:00020fd0       ??$?0VWoodSword@@$0A@@?$weak_ptr@VWeapon@@@std@@QAE@ABV?$shared_ptr@VWoodSword@@@1@@Z 00421fd0 f i EnemyDragon.obj
@@ -1101,7 +1122,7 @@
  0001:000216f0       ??0EnemyElf@@QAE@PAVBaseEngine@@PAVRoom@@HH@Z 004226f0 f   EnemyElf.obj
  0001:00021830       ??1EnemyElf@@UAE@XZ        00422830 f   EnemyElf.obj
  0001:00021850       ?virtDraw@EnemyElf@@UAEXXZ 00422850 f   EnemyElf.obj
- 0001:00021910       ?filterConvertRealToVirtualYPosition@FilterPointsScaling@@UAEHH@Z 00422910 f i GameEngine.obj
+ 0001:00021910       ?deallocate@?$allocator@V?$shared_ptr@VItem@@@std@@@std@@QAEXQAV?$shared_ptr@VItem@@@2@I@Z 00422910 f i GameEngine.obj
  0001:000219a0       ??_EEnemyElf@@UAEPAXI@Z    004229a0 f i EnemyElf.obj
  0001:000219a0       ??_GEnemyElf@@UAEPAXI@Z    004229a0 f i EnemyElf.obj
  0001:000219e0       ??0EnemyObject@@QAE@HHPAVBaseEngine@@PAVRoom@@HH_NV?$shared_ptr@VWeapon@@@std@@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@4@4HHHHHHPBD5@Z 004229e0 f   EnemyObject.obj
@@ -1115,9 +1136,16 @@
  0001:00022060       ?AI@EnemyObject@@UAEXXZ    00423060 f   EnemyObject.obj
  0001:00022330       ?calcPath@EnemyObject@@QAE?AV?$list@V?$shared_ptr@VNode@@@std@@V?$allocator@V?$shared_ptr@VNode@@@std@@@2@@std@@HH@Z 00423330 f   EnemyObject.obj
  0001:00022d80       ?calcHeuristic@EnemyObject@@QAEHVNode@@HH@Z 00423d80 f   EnemyObject.obj
- 0001:00022dd0       ?filterConvertVirtualToRealXPosition@FilterPointsTranslation@@UAEHH@Z 00423dd0 f i GameEngine.obj
- 0001:00022ec0       ?_Tidy@?$vector@V?$shared_ptr@VItem@@@std@@V?$allocator@V?$shared_ptr@VItem@@@std@@@2@@std@@AAEXXZ 00423ec0 f i GameEngine.obj
- 0001:00022f80       ?handleY@FilterPointsScaling@@AAEXPAVDrawingSurface@@HHAAI@Z 00423f80 f i GameEngine.obj
+ 0001:00022e10       ?max_size@?$_Default_allocator_traits@V?$allocator@U?$_List_node@V?$unique_ptr@VButton@@U?$default_delete@VButton@@@std@@@std@@PAX@std@@@std@@@std@@SAIABV?$allocator@U?$_List_node@V?$unique_ptr@VButton@@U?$default_delete@VButton@@@std@@@std@@PAX@std@@@2@@Z 00423e10 f i StateMenu.obj
+ 0001:00022e20       ??$_Emplace@ABQAVEnemyObject@@@?$list@PAVEnemyObject@@V?$allocator@PAVEnemyObject@@@std@@@std@@QAEPAU?$_List_node@PAVEnemyObject@@PAX@1@QAU21@ABQAVEnemyObject@@@Z 00423e20 f i StateRunning.obj
+ 0001:00022ec0       ?_Getal@?$vector@V?$shared_ptr@VItem@@@std@@V?$allocator@V?$shared_ptr@VItem@@@std@@@2@@std@@ABEABV?$allocator@V?$shared_ptr@VItem@@@std@@@2@XZ 00423ec0 f i GameEngine.obj
+ 0001:00022ee0       ?capacity@?$vector@V?$shared_ptr@VItem@@@std@@V?$allocator@V?$shared_ptr@VItem@@@std@@@2@@std@@QBEIXZ 00423ee0 f i GameEngine.obj
+ 0001:00022fc0       ?filterConvertVirtualToRealXPosition@FilterPointsTranslation@@UAEHH@Z 00423fc0 f i GameEngine.obj
+ 0001:00023070       ?_Transfer_before@?$_List_node_emplace_op2@V?$allocator@U?$_List_node@V?$unique_ptr@VButton@@U?$default_delete@VButton@@@std@@@std@@PAX@std@@@std@@@std@@QAEPAU?$_List_node@V?$unique_ptr@VButton@@U?$default_delete@VButton@@@std@@@std@@PAX@2@QAU32@@Z 00424070 f i StateMenu.obj
+ 0001:000230e0       ?pop_back@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEXXZ 004240e0 f i StateMenu.obj
+ 0001:00023190       ??1?$_Alloc_construct_ptr@V?$allocator@U?$_List_node@PAVEnemyObject@@PAX@std@@@std@@@std@@QAE@XZ 00424190 f i StateRunning.obj
+ 0001:000231f0       ?GetTilesInv@GameEngine@@QAE?AV?$shared_ptr@VInventoryTileManager@@@std@@XZ 004241f0 f i StateRunning.obj
+ 0001:00023230       ?_Unchecked_erase@?$list@PAVEnemyObject@@V?$allocator@PAVEnemyObject@@@std@@@std@@AAEPAU?$_List_node@PAVEnemyObject@@PAX@2@QAU32@@Z 00424230 f i StateRunning.obj
  0001:000232c0       ??$?0$$V@?$_Compressed_pair@V?$allocator@U?$_List_node@V?$shared_ptr@VNode@@@std@@PAX@std@@@std@@V?$_List_val@U?$_List_simple_types@V?$shared_ptr@VNode@@@std@@@std@@@2@$00@std@@QAE@U_Zero_then_variadic_args_t@1@@Z 004242c0 f i EnemyObject.obj
  0001:000232f0       ??$?0$$V@?$_Compressed_pair@V?$allocator@V?$shared_ptr@VNode@@@std@@@std@@V?$_Deque_val@U?$_Deque_simple_types@V?$shared_ptr@VNode@@@std@@@std@@@2@$00@std@@QAE@U_Zero_then_variadic_args_t@1@@Z 004242f0 f i EnemyObject.obj
  0001:00023320       ??$?0AAHAAHHH$$T@?$_Ref_count_obj2@VNode@@@std@@QAE@AAH0$$QAH1$$QA$$T@Z 00424320 f i EnemyObject.obj
@@ -1286,11 +1314,11 @@
  0001:00026460       ??E?$_List_iterator@V?$_List_val@U?$_List_simple_types@V?$shared_ptr@VNode@@@std@@@std@@@std@@@std@@QAE?AV01@H@Z 00427460 f i EnemyObject.obj
  0001:00026510       ??R<lambda_042effd48067ace7ecd123675e35eec3>@@QBE@ABQAVDisplayableObject@@@Z 00427510 f i EnemyObject.obj
  0001:00026550       ??R<lambda_fb74a5899e677716be4aaee1512acc1d>@@QBE@ABV?$shared_ptr@VNode@@@std@@@Z 00427550 f i EnemyObject.obj
- 0001:00026580       ??_E?$_Ref_count_obj2@VNode@@@std@@UAEPAXI@Z 00427580 f i EnemyObject.obj
  0001:00026580       ??_G?$_Ref_count_obj2@VNode@@@std@@UAEPAXI@Z 00427580 f i EnemyObject.obj
+ 0001:00026580       ??_E?$_Ref_count_obj2@VNode@@@std@@UAEPAXI@Z 00427580 f i EnemyObject.obj
  0001:000265c0       ??_G?$shared_ptr@VNode@@@std@@QAEPAXI@Z 004275c0 f i EnemyObject.obj
- 0001:00026600       ??_GEnemyObject@@UAEPAXI@Z 00427600 f i EnemyObject.obj
  0001:00026600       ??_EEnemyObject@@UAEPAXI@Z 00427600 f i EnemyObject.obj
+ 0001:00026600       ??_GEnemyObject@@UAEPAXI@Z 00427600 f i EnemyObject.obj
  0001:00026640       ??_GNode@@QAEPAXI@Z        00427640 f i EnemyObject.obj
  0001:00026680       ?GetTilesBack@GameEngine@@QAE?AV?$shared_ptr@VBackgroundTileManager@@@std@@XZ 00427680 f i EnemyObject.obj
  0001:000266c0       ?_Alloc_sentinel_and_proxy@?$list@V?$shared_ptr@VNode@@@std@@V?$allocator@V?$shared_ptr@VNode@@@std@@@2@@std@@AAEXXZ 004276c0 f i EnemyObject.obj
@@ -1315,6 +1343,7 @@
  0001:00026ad0       ?_Getblock@?$_Deque_val@U?$_Deque_simple_types@V?$shared_ptr@VNode@@@std@@@std@@@std@@QBEII@Z 00427ad0 f i EnemyObject.obj
  0001:00026b00       ?_Getblock@?$deque@V?$shared_ptr@VNode@@@std@@V?$allocator@V?$shared_ptr@VNode@@@std@@@2@@std@@ABEII@Z 00427b00 f i EnemyObject.obj
  0001:00026b30       ?_Growmap@?$deque@V?$shared_ptr@VNode@@@std@@V?$allocator@V?$shared_ptr@VNode@@@std@@@2@@std@@AAEXI@Z 00427b30 f i EnemyObject.obj
+ 0001:00026d80       ?_Orphan_non_end@?$_List_val@U?$_List_simple_types@PAVEnemyObject@@@std@@@std@@QAEXXZ 00427d80 f i StateRunning.obj
  0001:00026e10       ?_Map@?$deque@V?$shared_ptr@VNode@@@std@@V?$allocator@V?$shared_ptr@VNode@@@std@@@2@@std@@AAEAAPAPAV?$shared_ptr@VNode@@@2@XZ 00427e10 f i EnemyObject.obj
  0001:00026e30       ?_Mapsize@?$deque@V?$shared_ptr@VNode@@@std@@V?$allocator@V?$shared_ptr@VNode@@@std@@@2@@std@@AAEAAIXZ 00427e30 f i EnemyObject.obj
  0001:00026e50       ?_Move_assign@?$list@V?$shared_ptr@VNode@@@std@@V?$allocator@V?$shared_ptr@VNode@@@std@@@2@@std@@AAEXAAV12@U_Equal_allocators@2@@Z 00427e50 f i EnemyObject.obj
@@ -1388,17 +1417,21 @@
  0001:00028940       ??0EnemyZombie@@QAE@PAVBaseEngine@@PAVRoom@@HH@Z 00429940 f   EnemyZombie.obj
  0001:00028a80       ??1EnemyZombie@@UAE@XZ     00429a80 f   EnemyZombie.obj
  0001:00028aa0       ?virtDraw@EnemyZombie@@UAEXXZ 00429aa0 f   EnemyZombie.obj
+ 0001:00028b60       ?_Orphan_ptr2@?$_List_val@U?$_List_simple_types@PAVEnemyObject@@@std@@@std@@QAEXPAU?$_List_node@PAVEnemyObject@@PAX@2@@Z 00429b60 f i StateRunning.obj
  0001:00028bf0       ??_GEnemyZombie@@UAEPAXI@Z 00429bf0 f i EnemyZombie.obj
  0001:00028bf0       ??_EEnemyZombie@@UAEPAXI@Z 00429bf0 f i EnemyZombie.obj
  0001:00028c30       ?virtDraw@ExitObject@@UAEXXZ 00429c30 f   ExitObject.obj
  0001:00028c80       ?virtDoUpdate@ExitObject@@UAEXH@Z 00429c80 f   ExitObject.obj
- 0001:00028cc0       ?virtMouseDown@ExitObject@@UAEXHHH@Z 00429cc0 f   ExitObject.obj
+ 0001:00028cd0       ?virtMouseDown@ExitObject@@UAEXHHH@Z 00429cd0 f   ExitObject.obj
  0001:00028dc0       ?getBackgroundSurface@BaseEngine@@QAEPAVDrawingSurface@@XZ 00429dc0 f i ExitObject.obj
  0001:00028de0       ??0FlashingDemo@@QAE@XZ    00429de0 f   FlashingDemo.obj
  0001:00028ea0       ??1FlashingDemo@@UAE@XZ    00429ea0 f   FlashingDemo.obj
  0001:00028ef0       ?virtSetupBackgroundBuffer@FlashingDemo@@UAEXXZ 00429ef0 f   FlashingDemo.obj
  0001:00029370       ?virtMainLoopDoBeforeUpdate@FlashingDemo@@UAEXXZ 0042a370 f   FlashingDemo.obj
  0001:00029430       ?virtCreateSurfaces@FlashingDemo@@UAEXXZ 0042a430 f   FlashingDemo.obj
+ 0001:000294a0       ?drawForegroundOval@BaseEngine@@QAEXHHHHI@Z 0042a4a0 f i StateRunning.obj
+ 0001:00029510       ?max_size@?$list@PAVEnemyObject@@V?$allocator@PAVEnemyObject@@@std@@@std@@QBEIXZ 0042a510 f i StateRunning.obj
+ 0001:00029590       ??1?$_List_node_emplace_op2@V?$allocator@U?$_List_node@PAVEnemyObject@@PAX@std@@@std@@@std@@QAE@XZ 0042a590 f i StateRunning.obj
  0001:00029650       ??1DrawingSurface@@QAE@XZ  0042a650 f i FlashingDemo.obj
  0001:00029660       ??_EFlashingDemo@@UAEPAXI@Z 0042a660 f i FlashingDemo.obj
  0001:00029660       ??_GFlashingDemo@@UAEPAXI@Z 0042a660 f i FlashingDemo.obj
@@ -1428,15 +1461,14 @@
  0001:00029be0       ?virtRealMouseDown@BaseEngine@@UAEXHHH@Z 0042abe0 f i FlashingDemo.obj
  0001:00029bf0       ?virtRealMouseUp@BaseEngine@@UAEXHHH@Z 0042abf0 f i FlashingDemo.obj
  0001:00029c00       ?virtTouchEvent@BaseEngine@@UAEXHH_J0MMMMM@Z 0042ac00 f i FlashingDemo.obj
- 0001:00029c30       ?genRoom@Room@@QAEXXZ      0042ac30 f   FloorManager.obj
- 0001:0002a2f0       ?getTileID@Room@@QAEHPAV?$vector@HV?$allocator@H@std@@@std@@H@Z 0042b2f0 f   FloorManager.obj
- 0001:0002a330       ?setSpecialTiles@Room@@QAEXHHH@Z 0042b330 f   FloorManager.obj
- 0001:0002a620       ?getTileData@Room@@QAE?AV?$vector@V?$vector@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@std@@V?$allocator@V?$vector@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@std@@@2@@std@@PAVSaveManager@@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@3@1@Z 0042b620 f   FloorManager.obj
- 0001:0002a900       ?onEnter@Room@@QAEXH@Z     0042b900 f   FloorManager.obj
- 0001:0002ad50       ?onExit@Room@@QAEXXZ       0042bd50 f   FloorManager.obj
- 0001:0002ad60       ?genFloor@FloorManager@@QAE?AV?$vector@V?$vector@HV?$allocator@H@std@@@std@@V?$allocator@V?$vector@HV?$allocator@H@std@@@std@@@2@@std@@V23@HHH@Z 0042bd60 f   FloorManager.obj
- 0001:0002b180       ?genRooms@FloorManager@@QAEXPAVGameEngine@@V?$vector@V?$vector@HV?$allocator@H@std@@@std@@V?$allocator@V?$vector@HV?$allocator@H@std@@@std@@@2@@std@@@Z 0042c180 f   FloorManager.obj
- 0001:0002b550       ?genRandomFloor@FloorManager@@QAE?AV?$vector@V?$vector@HV?$allocator@H@std@@@std@@V?$allocator@V?$vector@HV?$allocator@H@std@@@std@@@2@@std@@PAVSaveManager@@@Z 0042c550 f   FloorManager.obj
+ 0001:0002be70       ??0?$vector@V?$vector@PAVRoom@@V?$allocator@PAVRoom@@@std@@@std@@V?$allocator@V?$vector@PAVRoom@@V?$allocator@PAVRoom@@@std@@@std@@@2@@std@@QAE@ABV01@@Z 0042ce70 f i StateRunning.obj
+ 0001:0002bf90       ?_Alloc_sentinel_and_proxy@?$list@PAVEnemyObject@@V?$allocator@PAVEnemyObject@@@std@@@std@@AAEXXZ 0042cf90 f i StateRunning.obj
+ 0001:0002c050       ?front@?$list@PAVEnemyObject@@V?$allocator@PAVEnemyObject@@@std@@@std@@QAEAAPAVEnemyObject@@XZ 0042d050 f i StateRunning.obj
+ 0001:0002c0c0       ?pop_front@?$list@PAVEnemyObject@@V?$allocator@PAVEnemyObject@@@std@@@std@@QAEXXZ 0042d0c0 f i StateRunning.obj
+ 0001:0002c140       ??$_Emplace_reallocate@ABV?$shared_ptr@VItem@@@std@@@?$vector@V?$shared_ptr@VItem@@@std@@V?$allocator@V?$shared_ptr@VItem@@@std@@@2@@std@@QAEPAV?$shared_ptr@VItem@@@1@QAV21@ABV21@@Z 0042d140 f i GameEngine.obj
+ 0001:0002c310       ??$make_shared@VInventoryTileManager@@PAVGameEngine@@@std@@YA?AV?$shared_ptr@VInventoryTileManager@@@0@$$QAPAVGameEngine@@@Z 0042d310 f i GameEngine.obj
+ 0001:0002c3e0       ??$writeLine@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@SaveManager@@QAEXV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@0@Z 0042d3e0 f i GameEngine.obj
+ 0001:0002c4d0       ??0InventoryTileManager@@QAE@PAVGameEngine@@@Z 0042d4d0 f i GameEngine.obj
  0001:0002c700       ??$?0$$V@?$_Compressed_pair@V?$allocator@H@std@@V?$_Vector_val@U?$_Simple_types@H@std@@@2@$00@std@@QAE@U_Zero_then_variadic_args_t@1@@Z 0042d700 f i FloorManager.obj
  0001:0002c730       ??$?0$$V@?$_Compressed_pair@V?$allocator@PAVRoom@@@std@@V?$_Vector_val@U?$_Simple_types@PAVRoom@@@std@@@2@$00@std@@QAE@U_Zero_then_variadic_args_t@1@@Z 0042d730 f i FloorManager.obj
  0001:0002c760       ??$?0$$V@?$_Compressed_pair@V?$allocator@U?$_List_node@PAVDisplayableObject@@PAX@std@@@std@@V?$_List_val@U?$_List_simple_types@PAVDisplayableObject@@@std@@@2@$00@std@@QAE@U_Zero_then_variadic_args_t@1@@Z 0042d760 f i FloorManager.obj
@@ -1475,6 +1507,7 @@
  0001:0002d060       ??$?4VBackgroundTileManager@@@?$shared_ptr@VPsybc5TileManager@@@std@@QAEAAV01@ABV?$shared_ptr@VBackgroundTileManager@@@1@@Z 0042e060 f i FloorManager.obj
  0001:0002d0a0       ??$?4VSolidTileManager@@@?$shared_ptr@VPsybc5TileManager@@@std@@QAEAAV01@ABV?$shared_ptr@VSolidTileManager@@@1@@Z 0042e0a0 f i FloorManager.obj
  0001:0002d0e0       ??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@D@Z 0042e0e0 f i FloorManager.obj
+ 0001:0002d3d0       ?_Getal@?$vector@V?$shared_ptr@VItem@@@std@@V?$allocator@V?$shared_ptr@VItem@@@std@@@2@@std@@AAEAAV?$allocator@V?$shared_ptr@VItem@@@std@@@2@XZ 0042e3d0 f i GameEngine.obj
  0001:0002d480       ??$?CVPsybc5TileManager@@$0A@@?$shared_ptr@VPsybc5TileManager@@@std@@QBEPAVPsybc5TileManager@@XZ 0042e480 f i FloorManager.obj
  0001:0002d4a0       ??$_Adl_verify_range@PADPAD@std@@YAXABQAD0@Z 0042e4a0 f i FloorManager.obj
  0001:0002d4c0       ??$_Adl_verify_range@PAPAVRoom@@PAPAV1@@std@@YAXABQAPAVRoom@@0@Z 0042e4c0 f i FloorManager.obj
@@ -1860,22 +1893,22 @@
  0001:00036a30       ??R<lambda_ab246b20b9526e2ef7792587e4298a77>@@QBE@QADQBDI1I@Z 00437a30 f i FloorManager.obj
  0001:00036aa0       ??_E?$_Ref_count_obj2@VBackgroundTileManager@@@std@@UAEPAXI@Z 00437aa0 f i FloorManager.obj
  0001:00036aa0       ??_G?$_Ref_count_obj2@VBackgroundTileManager@@@std@@UAEPAXI@Z 00437aa0 f i FloorManager.obj
- 0001:00036ae0       ??_G?$_Ref_count_obj2@VSolidTileManager@@@std@@UAEPAXI@Z 00437ae0 f i FloorManager.obj
  0001:00036ae0       ??_E?$_Ref_count_obj2@VSolidTileManager@@@std@@UAEPAXI@Z 00437ae0 f i FloorManager.obj
+ 0001:00036ae0       ??_G?$_Ref_count_obj2@VSolidTileManager@@@std@@UAEPAXI@Z 00437ae0 f i FloorManager.obj
  0001:00036b20       ??_G?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEPAXI@Z 00437b20 f i FloorManager.obj
  0001:00036b60       ??_G?$vector@HV?$allocator@H@std@@@std@@QAEPAXI@Z 00437b60 f i FloorManager.obj
  0001:00036ba0       ??_G?$vector@PAVRoom@@V?$allocator@PAVRoom@@@std@@@std@@QAEPAXI@Z 00437ba0 f i FloorManager.obj
  0001:00036be0       ??_G?$vector@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@std@@QAEPAXI@Z 00437be0 f i FloorManager.obj
  0001:00036c20       ??_EBackgroundTileManager@@UAEPAXI@Z 00437c20 f i FloorManager.obj
  0001:00036c20       ??_GBackgroundTileManager@@UAEPAXI@Z 00437c20 f i FloorManager.obj
- 0001:00036c60       ??_EDoorObject@@UAEPAXI@Z  00437c60 f i FloorManager.obj
  0001:00036c60       ??_GDoorObject@@UAEPAXI@Z  00437c60 f i FloorManager.obj
- 0001:00036ca0       ??_EPsybc5TileManager@@UAEPAXI@Z 00437ca0 f i FloorManager.obj
+ 0001:00036c60       ??_EDoorObject@@UAEPAXI@Z  00437c60 f i FloorManager.obj
  0001:00036ca0       ??_GPsybc5TileManager@@UAEPAXI@Z 00437ca0 f i FloorManager.obj
- 0001:00036ce0       ??_ESolidTileManager@@UAEPAXI@Z 00437ce0 f i FloorManager.obj
+ 0001:00036ca0       ??_EPsybc5TileManager@@UAEPAXI@Z 00437ca0 f i FloorManager.obj
  0001:00036ce0       ??_GSolidTileManager@@UAEPAXI@Z 00437ce0 f i FloorManager.obj
- 0001:00036d20       ??_ETileManager@@UAEPAXI@Z 00437d20 f i FloorManager.obj
+ 0001:00036ce0       ??_ESolidTileManager@@UAEPAXI@Z 00437ce0 f i FloorManager.obj
  0001:00036d20       ??_GTileManager@@UAEPAXI@Z 00437d20 f i FloorManager.obj
+ 0001:00036d20       ??_ETileManager@@UAEPAXI@Z 00437d20 f i FloorManager.obj
  0001:00036d60       ?GetSaveManager@GameEngine@@QAEPAVSaveManager@@XZ 00437d60 f i FloorManager.obj
  0001:00036d80       ?SetPlayer@GameEngine@@QAEXPAVPlayerObject@@@Z 00437d80 f i FloorManager.obj
  0001:00036da0       ?SetTilesBack@GameEngine@@QAEXV?$shared_ptr@VBackgroundTileManager@@@std@@@Z 00437da0 f i FloorManager.obj
@@ -2121,19 +2154,22 @@
  0001:0003b560       ?virtDrawStringsOnTop@ImageObjectDemo@@UAEXXZ 0043c560 f   ImageObjectDemo.obj
  0001:0003b5e0       ?virtMouseDown@ImageObjectDemo@@UAEXHHH@Z 0043c5e0 f   ImageObjectDemo.obj
  0001:0003b600       ?virtKeyDown@ImageObjectDemo@@UAEXH@Z 0043c600 f   ImageObjectDemo.obj
+ 0001:0003b650       ?_Orphan_range@?$vector@V?$shared_ptr@VItem@@@std@@V?$allocator@V?$shared_ptr@VItem@@@std@@@2@@std@@ABEXPAV?$shared_ptr@VItem@@@2@0@Z 0043c650 f i GameEngine.obj
  0001:0003b760       ??0BouncingImageObject@@QAE@PAVBaseEngine@@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z 0043c760 f i ImageObjectDemo.obj
  0001:0003b850       ??0BouncingObject@@QAE@PAVBaseEngine@@@Z 0043c850 f i ImageObjectDemo.obj
  0001:0003b950       ??1BouncingImageObject@@UAE@XZ 0043c950 f i ImageObjectDemo.obj
  0001:0003b980       ??1BouncingObject@@UAE@XZ  0043c980 f i ImageObjectDemo.obj
  0001:0003b9a0       ??_GBouncingImageObject@@UAEPAXI@Z 0043c9a0 f i ImageObjectDemo.obj
  0001:0003b9a0       ??_EBouncingImageObject@@UAEPAXI@Z 0043c9a0 f i ImageObjectDemo.obj
- 0001:0003b9e0       ??_EBouncingObject@@UAEPAXI@Z 0043c9e0 f i ImageObjectDemo.obj
  0001:0003b9e0       ??_GBouncingObject@@UAEPAXI@Z 0043c9e0 f i ImageObjectDemo.obj
+ 0001:0003b9e0       ??_EBouncingObject@@UAEPAXI@Z 0043c9e0 f i ImageObjectDemo.obj
  0001:0003ba20       ?loadImage@BaseEngine@@QAE?AVSimpleImage@@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@_N@Z 0043ca20 f i ImageObjectDemo.obj
  0001:0003bae0       ?pause@BaseEngine@@QAEXXZ  0043cae0 f i ImageObjectDemo.obj
  0001:0003bb10       ?shrinkBy@SimpleImage@@QAE?AV1@H@Z 0043cb10 f i ImageObjectDemo.obj
  0001:0003bc20       ?unpause@BaseEngine@@QAEXXZ 0043cc20 f i ImageObjectDemo.obj
  0001:0003bc70       ?virtDoUpdate@BouncingObject@@UAEXH@Z 0043cc70 f i ImageObjectDemo.obj
+ 0001:0003bfa0       ?max_size@?$_Default_allocator_traits@V?$allocator@V?$shared_ptr@VItem@@@std@@@std@@@std@@SAIABV?$allocator@V?$shared_ptr@VItem@@@std@@@2@@Z 0043cfa0 f i GameEngine.obj
+ 0001:0003bfb0       ?setStretch@FilterPointsScaling@@QAEXHH@Z 0043cfb0 f i GameEngine.obj
  0001:0003c070       ?virtDraw@BouncingImageObject@@UAEXXZ 0043d070 f i ImageObjectDemo.obj
  0001:0003c0f0       ?virtDraw@BouncingObject@@UAEXXZ 0043d0f0 f i ImageObjectDemo.obj
  0001:0003c190       __vsnprintf_l              0043d190 f i ImageObjectDemo.obj
@@ -2161,6 +2197,9 @@
  0001:0003cdd0       ?virtMouseWheel@JigsawDemo@@UAEXHHHH@Z 0043ddd0 f   JigsawDemo.obj
  0001:0003ce90       ?virtPreDraw@JigsawDemo@@UAEXXZ 0043de90 f   JigsawDemo.obj
  0001:0003cea0       ?virtPostDraw@JigsawDemo@@UAEXXZ 0043dea0 f   JigsawDemo.obj
+ 0001:0003d0f0       ?filterConvertVirtualToRealYPosition@FilterPointsScaling@@UAEHH@Z 0043e0f0 f i GameEngine.obj
+ 0001:0003d1e0       ?_Tidy@?$vector@V?$shared_ptr@VItem@@@std@@V?$allocator@V?$shared_ptr@VItem@@@std@@@2@@std@@AAEXXZ 0043e1e0 f i GameEngine.obj
+ 0001:0003d2a0       ?handleY@FilterPointsScaling@@AAEXPAVDrawingSurface@@HHAAI@Z 0043e2a0 f i GameEngine.obj
  0001:0003d420       ??$?0ABV<lambda_2870de01b601283699da779de20905fc>@@X@?$_Func_impl_no_alloc@V<lambda_2870de01b601283699da779de20905fc>@@XPAVDisplayableObject@@@std@@QAE@ABV<lambda_2870de01b601283699da779de20905fc>@@@Z 0043e420 f i JigsawDemo.obj
  0001:0003d460       ??$?0ABV<lambda_341a6657abb2758c42a6873833e6116f>@@X@?$_Func_impl_no_alloc@V<lambda_341a6657abb2758c42a6873833e6116f>@@XPAVDisplayableObject@@@std@@QAE@ABV<lambda_341a6657abb2758c42a6873833e6116f>@@@Z 0043e460 f i JigsawDemo.obj
  0001:0003d4b0       ??$?0ABV<lambda_369f3aee610e50bbd15c3a78d9c8686f>@@X@?$_Func_impl_no_alloc@V<lambda_369f3aee610e50bbd15c3a78d9c8686f>@@XPAVDisplayableObject@@@std@@QAE@ABV<lambda_369f3aee610e50bbd15c3a78d9c8686f>@@@Z 0043e4b0 f i JigsawDemo.obj
@@ -2422,8 +2461,8 @@
  0001:000458c0       ?mapCoordinates@ImageMappingDemo@@UAE_NAAN0ABVSimpleImage@@@Z 004468c0 f   ImageMappingDemo.obj
  0001:00045b90       ??0MappableImageObject@@QAE@PAVCoordinateMapping@@HHPAVBaseEngine@@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@_N3@Z 00446b90 f i ImageMappingDemo.obj
  0001:00045c50       ??1MappableImageObject@@UAE@XZ 00446c50 f i ImageMappingDemo.obj
- 0001:00045c70       ??_EMappableImageObject@@UAEPAXI@Z 00446c70 f i ImageMappingDemo.obj
  0001:00045c70       ??_GMappableImageObject@@UAEPAXI@Z 00446c70 f i ImageMappingDemo.obj
+ 0001:00045c70       ??_EMappableImageObject@@UAEPAXI@Z 00446c70 f i ImageMappingDemo.obj
  0001:00045cb0       ?getPixelColour@MappableImageObject@@QAEHHH@Z 00446cb0 f i ImageMappingDemo.obj
  0001:00045ce0       ?setRotation@CoordinateMappingRotate@@QAEXN@Z 00446ce0 f i ImageMappingDemo.obj
  0001:00045d00       ?setTransparencyColour@MappableImageObject@@QAEXH@Z 00446d00 f i ImageMappingDemo.obj
@@ -2451,8 +2490,8 @@
  0001:00046f60       ?setMovement@ProjectileObject@@QAEXHHHHHHH@Z 00447f60 f   ProjectileObject.obj
  0001:000470e0       ??$pow@HHX@@YANHH@Z        004480e0 f i ProjectileObject.obj
  0001:00047110       ??0CoordinateMappingRotateTransparent@@QAE@NH@Z 00448110 f i ProjectileObject.obj
- 0001:00047160       ??_EProjectileObject@@UAEPAXI@Z 00448160 f i ProjectileObject.obj
  0001:00047160       ??_GProjectileObject@@UAEPAXI@Z 00448160 f i ProjectileObject.obj
+ 0001:00047160       ??_EProjectileObject@@UAEPAXI@Z 00448160 f i ProjectileObject.obj
  0001:000471a0       ?abs@@YANN@Z               004481a0 f i ProjectileObject.obj
  0001:000471c0       ?getXCentre@DisplayableObject@@QBEHXZ 004481c0 f i ProjectileObject.obj
  0001:000471f0       ?getYCentre@DisplayableObject@@QBEHXZ 004481f0 f i ProjectileObject.obj
@@ -2531,12 +2570,12 @@
  0001:00049af0       ??_D?$basic_ofstream@DU?$char_traits@D@std@@@std@@QAEXXZ 0044aaf0 f i SaveManager.obj
  0001:00049b1a       ??_E?$basic_ifstream@DU?$char_traits@D@std@@@std@@$4PPPPPPPM@A@AEPAXI@Z 0044ab1a f i SaveManager.obj
  0001:00049b24       ??_E?$basic_ofstream@DU?$char_traits@D@std@@@std@@$4PPPPPPPM@A@AEPAXI@Z 0044ab24 f i SaveManager.obj
- 0001:00049b30       ??_E?$basic_filebuf@DU?$char_traits@D@std@@@std@@UAEPAXI@Z 0044ab30 f i SaveManager.obj
  0001:00049b30       ??_G?$basic_filebuf@DU?$char_traits@D@std@@@std@@UAEPAXI@Z 0044ab30 f i SaveManager.obj
- 0001:00049b70       ??_G?$basic_ifstream@DU?$char_traits@D@std@@@std@@UAEPAXI@Z 0044ab70 f i SaveManager.obj
+ 0001:00049b30       ??_E?$basic_filebuf@DU?$char_traits@D@std@@@std@@UAEPAXI@Z 0044ab30 f i SaveManager.obj
  0001:00049b70       ??_E?$basic_ifstream@DU?$char_traits@D@std@@@std@@UAEPAXI@Z 0044ab70 f i SaveManager.obj
- 0001:00049bc0       ??_E?$basic_ofstream@DU?$char_traits@D@std@@@std@@UAEPAXI@Z 0044abc0 f i SaveManager.obj
+ 0001:00049b70       ??_G?$basic_ifstream@DU?$char_traits@D@std@@@std@@UAEPAXI@Z 0044ab70 f i SaveManager.obj
  0001:00049bc0       ??_G?$basic_ofstream@DU?$char_traits@D@std@@@std@@UAEPAXI@Z 0044abc0 f i SaveManager.obj
+ 0001:00049bc0       ??_E?$basic_ofstream@DU?$char_traits@D@std@@@std@@UAEPAXI@Z 0044abc0 f i SaveManager.obj
  0001:00049c10       ??_Ebad_cast@std@@UAEPAXI@Z 0044ac10 f i SaveManager.obj
  0001:00049c10       ??_Gbad_cast@std@@UAEPAXI@Z 0044ac10 f i SaveManager.obj
  0001:00049c50       ?_Check_offset@?$_String_val@U?$_Simple_types@D@std@@@std@@QBEXI@Z 0044ac50 f i SaveManager.obj
@@ -2666,18 +2705,18 @@
  0001:0004f51f       ??_ECardOrTile@@WDM@AEPAXI@Z 0045051f f i PlayingCardsDemo.obj
  0001:0004f529       ??_EDragableTokenContainer@@WDM@AEPAXI@Z 00450529 f i PlayingCardsDemo.obj
  0001:0004f533       ??_ETokenTray@@WDM@AEPAXI@Z 00450533 f i PlayingCardsDemo.obj
- 0001:0004f540       ??_ECardContainer@@UAEPAXI@Z 00450540 f i PlayingCardsDemo.obj
  0001:0004f540       ??_GCardContainer@@UAEPAXI@Z 00450540 f i PlayingCardsDemo.obj
- 0001:0004f580       ??_GCardOrTile@@UAEPAXI@Z  00450580 f i PlayingCardsDemo.obj
+ 0001:0004f540       ??_ECardContainer@@UAEPAXI@Z 00450540 f i PlayingCardsDemo.obj
  0001:0004f580       ??_ECardOrTile@@UAEPAXI@Z  00450580 f i PlayingCardsDemo.obj
- 0001:0004f5c0       ??_GCoordinateMappingRotateAndColour@@UAEPAXI@Z 004505c0 f i PlayingCardsDemo.obj
+ 0001:0004f580       ??_GCardOrTile@@UAEPAXI@Z  00450580 f i PlayingCardsDemo.obj
  0001:0004f5c0       ??_ECoordinateMappingRotateAndColour@@UAEPAXI@Z 004505c0 f i PlayingCardsDemo.obj
- 0001:0004f600       ??_GDragableToken@@UAEPAXI@Z 00450600 f i PlayingCardsDemo.obj
+ 0001:0004f5c0       ??_GCoordinateMappingRotateAndColour@@UAEPAXI@Z 004505c0 f i PlayingCardsDemo.obj
  0001:0004f600       ??_EDragableToken@@UAEPAXI@Z 00450600 f i PlayingCardsDemo.obj
- 0001:0004f640       ??_EDragableTokenContainer@@UAEPAXI@Z 00450640 f i PlayingCardsDemo.obj
+ 0001:0004f600       ??_GDragableToken@@UAEPAXI@Z 00450600 f i PlayingCardsDemo.obj
  0001:0004f640       ??_GDragableTokenContainer@@UAEPAXI@Z 00450640 f i PlayingCardsDemo.obj
- 0001:0004f680       ??_ETokenTray@@UAEPAXI@Z   00450680 f i PlayingCardsDemo.obj
+ 0001:0004f640       ??_EDragableTokenContainer@@UAEPAXI@Z 00450640 f i PlayingCardsDemo.obj
  0001:0004f680       ??_GTokenTray@@UAEPAXI@Z   00450680 f i PlayingCardsDemo.obj
+ 0001:0004f680       ??_ETokenTray@@UAEPAXI@Z   00450680 f i PlayingCardsDemo.obj
  0001:0004f6c0       ?_Get_bits@?$_Rng_from_urng@HU_Rand_urng_from_func@std@@@std@@AAEIXZ 004506c0 f i PlayingCardsDemo.obj
  0001:0004f710       ?addCardToContainer@CardContainer@@QAE_NPAVCardOrTile@@_N@Z 00450710 f i PlayingCardsDemo.obj
  0001:0004f760       ?bringToFront@CardOrTile@@UAEXXZ 00450760 f i PlayingCardsDemo.obj
@@ -2783,33 +2822,26 @@
  0001:00055fe0       ??$?0$$V@?$_Compressed_pair@V?$allocator@V?$shared_ptr@VItem@@@std@@@std@@V?$_Vector_val@U?$_Simple_types@V?$shared_ptr@VItem@@@std@@@std@@@2@$00@std@@QAE@U_Zero_then_variadic_args_t@1@@Z 00456fe0 f i GameEngine.obj
  0001:00056010       ??$?0V?$shared_ptr@VItem@@@std@@@?$allocator@U_Container_proxy@std@@@std@@QAE@ABV?$allocator@V?$shared_ptr@VItem@@@std@@@1@@Z 00457010 f i GameEngine.obj
  0001:00056120       ??$?0VItem@@$0A@@?$shared_ptr@VItem@@@std@@QAE@PAVItem@@@Z 00457120 f i GameEngine.obj
- 0001:00056270       ??$_Destroy_in_place@VInventoryTileManager@@@std@@YAXAAVInventoryTileManager@@@Z 00457270 f i GameEngine.obj
- 0001:00056290       ??$_Destroy_range@V?$allocator@V?$shared_ptr@VItem@@@std@@@std@@@std@@YAXPAV?$shared_ptr@VItem@@@0@QAV10@AAV?$allocator@V?$shared_ptr@VItem@@@std@@@0@@Z 00457290 f i GameEngine.obj
- 0001:00056310       ??$_Emplace_back@V?$shared_ptr@VItem@@@std@@@?$_Uninitialized_backout_al@V?$allocator@V?$shared_ptr@VItem@@@std@@@std@@@std@@QAEX$$QAV?$shared_ptr@VItem@@@1@@Z 00457310 f i GameEngine.obj
- 0001:000563a0       ??$_Get_unwrapped@V?$shared_ptr@VItem@@@std@@@std@@YAPAV?$shared_ptr@VItem@@@0@QAV10@@Z 004573a0 f i GameEngine.obj
- 0001:000563c0       ??$_Move_construct_from@VInventoryTileManager@@@?$_Ptr_base@VInventoryTileManager@@@std@@IAEX$$QAV01@@Z 004573c0 f i GameEngine.obj
- 0001:00056530       ??$_Pocma@V?$allocator@D@std@@@std@@YAXAAV?$allocator@D@0@0@Z 00457530 f i GameEngine.obj
- 0001:00056550       ??$_Set_ptr_rep_and_enable_shared@VInventoryTileManager@@@?$shared_ptr@VInventoryTileManager@@@std@@AAEXQAVInventoryTileManager@@QAV_Ref_count_base@1@@Z 00457550 f i GameEngine.obj
- 0001:000565a0       ??$_Set_ptr_rep_and_enable_shared@VItem@@@?$shared_ptr@VItem@@@std@@AAEXQAVItem@@QAV_Ref_count_base@1@@Z 004575a0 f i GameEngine.obj
- 0001:000565e0       ??$_Unfancy@V?$shared_ptr@VItem@@@std@@@std@@YAPAV?$shared_ptr@VItem@@@0@PAV10@@Z 004575e0 f i GameEngine.obj
- 0001:00056660       ??$addressof@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@std@@YAPAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@0@AAV10@@Z 00457660 f i GameEngine.obj
- 0001:000566a0       ??$addressof@VInventoryTileManager@@@std@@YAPAVInventoryTileManager@@AAV1@@Z 004576a0 f i GameEngine.obj
- 0001:000566e0       ??$construct@V?$shared_ptr@VItem@@@std@@ABV12@@?$_Default_allocator_traits@V?$allocator@V?$shared_ptr@VItem@@@std@@@std@@@std@@SAXAAV?$allocator@V?$shared_ptr@VItem@@@std@@@1@QAV?$shared_ptr@VItem@@@1@ABV31@@Z 004576e0 f i GameEngine.obj
- 0001:00056720       ??$construct@V?$shared_ptr@VItem@@@std@@V12@@?$_Default_allocator_traits@V?$allocator@V?$shared_ptr@VItem@@@std@@@std@@@std@@SAXAAV?$allocator@V?$shared_ptr@VItem@@@std@@@1@QAV?$shared_ptr@VItem@@@1@$$QAV31@@Z 00457720 f i GameEngine.obj
- 0001:00056750       ??$destroy@V?$shared_ptr@VItem@@@std@@@?$_Default_allocator_traits@V?$allocator@V?$shared_ptr@VItem@@@std@@@std@@@std@@SAXAAV?$allocator@V?$shared_ptr@VItem@@@std@@@1@QAV?$shared_ptr@VItem@@@1@@Z 00457750 f i GameEngine.obj
- 0001:000567d0       ??$forward@ABV?$shared_ptr@VItem@@@std@@@std@@YAABV?$shared_ptr@VItem@@@0@ABV10@@Z 004577d0 f i GameEngine.obj
- 0001:000567f0       ??$forward@V?$shared_ptr@VItem@@@std@@@std@@YA$$QAV?$shared_ptr@VItem@@@0@AAV10@@Z 004577f0 f i GameEngine.obj
- 0001:00056830       ??$move@AAPAVInventoryTileManager@@@std@@YA$$QAPAVInventoryTileManager@@AAPAV1@@Z 00457830 f i GameEngine.obj
- 0001:00056870       ??$move@AAV?$shared_ptr@VInventoryTileManager@@@std@@@std@@YA$$QAV?$shared_ptr@VInventoryTileManager@@@0@AAV10@@Z 00457870 f i GameEngine.obj
- 0001:00056910       ??$move@AAV?$shared_ptr@VItem@@@std@@@std@@YA$$QAV?$shared_ptr@VItem@@@0@AAV10@@Z 00457910 f i GameEngine.obj
- 0001:00056980       ??$swap@PAVInventoryTileManager@@X@std@@YAXAAPAVInventoryTileManager@@0@Z 00457980 f i GameEngine.obj
- 0001:00056a90       ??0?$_Ptr_base@VInventoryTileManager@@@std@@IAE@XZ 00457a90 f i GameEngine.obj
- 0001:00056b40       ??0?$_Ref_count@VItem@@@std@@QAE@PAVItem@@@Z 00457b40 f i GameEngine.obj
- 0001:00056b90       ??0?$_Temporary_owner@VItem@@@std@@QAE@QAVItem@@@Z 00457b90 f i GameEngine.obj
- 0001:00056c40       ??0?$_Uninitialized_backout_al@V?$allocator@V?$shared_ptr@VItem@@@std@@@std@@@std@@QAE@PAV?$shared_ptr@VItem@@@1@AAV?$allocator@V?$shared_ptr@VItem@@@std@@@1@@Z 00457c40 f i GameEngine.obj
- 0001:00056c90       ??0?$_Vector_val@U?$_Simple_types@V?$shared_ptr@VItem@@@std@@@std@@@std@@QAE@XZ 00457c90 f i GameEngine.obj
- 0001:00056d40       ??0?$allocator@V?$shared_ptr@VItem@@@std@@@std@@QAE@XZ 00457d40 f i GameEngine.obj
- 0001:00056e70       ??0?$shared_ptr@VInventoryTileManager@@@std@@QAE@$$QAV01@@Z 00457e70 f i GameEngine.obj
+ 0001:00056290       ??$_Destroy_in_place@VInventoryTileManager@@@std@@YAXAAVInventoryTileManager@@@Z 00457290 f i GameEngine.obj
+ 0001:00056310       ??$_Destroy_range@V?$allocator@V?$shared_ptr@VItem@@@std@@@std@@@std@@YAXPAV?$shared_ptr@VItem@@@0@QAV10@AAV?$allocator@V?$shared_ptr@VItem@@@std@@@0@@Z 00457310 f i GameEngine.obj
+ 0001:000563c0       ??$_Get_unwrapped@V?$shared_ptr@VItem@@@std@@@std@@YAPAV?$shared_ptr@VItem@@@0@QAV10@@Z 004573c0 f i GameEngine.obj
+ 0001:00056550       ??$_Pocma@V?$allocator@D@std@@@std@@YAXAAV?$allocator@D@0@0@Z 00457550 f i GameEngine.obj
+ 0001:000565a0       ??$_Set_ptr_rep_and_enable_shared@VInventoryTileManager@@@?$shared_ptr@VInventoryTileManager@@@std@@AAEXQAVInventoryTileManager@@QAV_Ref_count_base@1@@Z 004575a0 f i GameEngine.obj
+ 0001:000565e0       ??$_Set_ptr_rep_and_enable_shared@VItem@@@?$shared_ptr@VItem@@@std@@AAEXQAVItem@@QAV_Ref_count_base@1@@Z 004575e0 f i GameEngine.obj
+ 0001:000566a0       ??$addressof@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@std@@YAPAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@0@AAV10@@Z 004576a0 f i GameEngine.obj
+ 0001:000566e0       ??$addressof@VInventoryTileManager@@@std@@YAPAVInventoryTileManager@@AAV1@@Z 004576e0 f i GameEngine.obj
+ 0001:00056720       ??$construct@V?$shared_ptr@VItem@@@std@@ABV12@@?$_Default_allocator_traits@V?$allocator@V?$shared_ptr@VItem@@@std@@@std@@@std@@SAXAAV?$allocator@V?$shared_ptr@VItem@@@std@@@1@QAV?$shared_ptr@VItem@@@1@ABV31@@Z 00457720 f i GameEngine.obj
+ 0001:00056750       ??$construct@V?$shared_ptr@VItem@@@std@@V12@@?$_Default_allocator_traits@V?$allocator@V?$shared_ptr@VItem@@@std@@@std@@@std@@SAXAAV?$allocator@V?$shared_ptr@VItem@@@std@@@1@QAV?$shared_ptr@VItem@@@1@$$QAV31@@Z 00457750 f i GameEngine.obj
+ 0001:000567f0       ??$forward@ABV?$shared_ptr@VItem@@@std@@@std@@YAABV?$shared_ptr@VItem@@@0@ABV10@@Z 004577f0 f i GameEngine.obj
+ 0001:00056870       ??$move@AAPAVInventoryTileManager@@@std@@YA$$QAPAVInventoryTileManager@@AAPAV1@@Z 00457870 f i GameEngine.obj
+ 0001:00056910       ??$move@AAV?$shared_ptr@VInventoryTileManager@@@std@@@std@@YA$$QAV?$shared_ptr@VInventoryTileManager@@@0@AAV10@@Z 00457910 f i GameEngine.obj
+ 0001:00056980       ??$move@AAV?$shared_ptr@VItem@@@std@@@std@@YA$$QAV?$shared_ptr@VItem@@@0@AAV10@@Z 00457980 f i GameEngine.obj
+ 0001:00056b40       ??0?$_Ptr_base@VInventoryTileManager@@@std@@IAE@XZ 00457b40 f i GameEngine.obj
+ 0001:00056b90       ??0?$_Ptr_base@VItem@@@std@@IAE@XZ 00457b90 f i GameEngine.obj
+ 0001:00056c40       ??0?$_Ref_count@VItem@@@std@@QAE@PAVItem@@@Z 00457c40 f i GameEngine.obj
+ 0001:00056c90       ??0?$_Temporary_owner@VItem@@@std@@QAE@QAVItem@@@Z 00457c90 f i GameEngine.obj
+ 0001:00056d40       ??0?$_Uninitialized_backout_al@V?$allocator@V?$shared_ptr@VItem@@@std@@@std@@@std@@QAE@PAV?$shared_ptr@VItem@@@1@AAV?$allocator@V?$shared_ptr@VItem@@@std@@@1@@Z 00457d40 f i GameEngine.obj
+ 0001:00056e70       ??0?$_Vector_val@U?$_Simple_types@V?$shared_ptr@VItem@@@std@@@std@@@std@@QAE@XZ 00457e70 f i GameEngine.obj
  0001:00056f60       ??0BaseState@@QAE@PAVGameEngine@@@Z 00457f60 f   BaseState.obj
  0001:00056fd0       ??1BaseState@@QAE@XZ       00457fd0 f   BaseState.obj
  0001:00057000       ?onStateEnter@BaseState@@UAEXXZ 00458000 f   BaseState.obj
@@ -2939,26 +2971,14 @@
  0001:0005ae90       ??1StateEditor@@QAE@XZ     0045be90 f i StateMenu.obj
  0001:0005aef0       ??1StateInfo@@QAE@XZ       0045bef0 f i StateMenu.obj
  0001:0005af10       ??_GStateCharCreate@@QAEPAXI@Z 0045bf10 f i StateMenu.obj
- 0001:0005af50       ??_GStateEditor@@QAEPAXI@Z 0045bf50 f i StateMenu.obj
- 0001:0005af90       ??_GStateInfo@@QAEPAXI@Z   0045bf90 f i StateMenu.obj
  0001:0005afd0       ?_Allocate@?$_Alloc_construct_ptr@V?$allocator@U?$_List_node@V?$unique_ptr@VButton@@U?$default_delete@VButton@@@std@@@std@@PAX@std@@@std@@@std@@QAEXXZ 0045bfd0 f i StateMenu.obj
- 0001:0005b000       ?_Get_first@?$_Compressed_pair@V?$allocator@U?$_List_node@V?$unique_ptr@VButton@@U?$default_delete@VButton@@@std@@@std@@PAX@std@@@std@@V?$_List_val@U?$_List_simple_types@V?$unique_ptr@VButton@@U?$default_delete@VButton@@@std@@@std@@@std@@@2@$00@std@@QBEABV?$allocator@U?$_List_node@V?$unique_ptr@VButton@@U?$default_delete@VButton@@@std@@@std@@PAX@std@@@2@XZ 0045c000 f i StateMenu.obj
  0001:0005b020       ?_Getal@?$list@V?$unique_ptr@VButton@@U?$default_delete@VButton@@@std@@@std@@V?$allocator@V?$unique_ptr@VButton@@U?$default_delete@VButton@@@std@@@std@@@2@@std@@ABEABV?$allocator@U?$_List_node@V?$unique_ptr@VButton@@U?$default_delete@VButton@@@std@@@std@@PAX@std@@@2@XZ 0045c020 f i StateMenu.obj
  0001:0005b040       ?_Orphan_non_end@?$_List_val@U?$_List_simple_types@V?$unique_ptr@VButton@@U?$default_delete@VButton@@@std@@@std@@@std@@@std@@QAEXXZ 0045c040 f i StateMenu.obj
- 0001:0005b0e0       ?_Transfer_before@?$_List_node_emplace_op2@V?$allocator@U?$_List_node@V?$unique_ptr@VButton@@U?$default_delete@VButton@@@std@@@std@@PAX@std@@@std@@@std@@QAEPAU?$_List_node@V?$unique_ptr@VButton@@U?$default_delete@VButton@@@std@@@std@@PAX@2@QAU32@@Z 0045c0e0 f i StateMenu.obj
  0001:0005b170       ?append@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@QBD@Z 0045c170 f i StateMenu.obj
  0001:0005b1b0       ?clear@?$list@V?$unique_ptr@VButton@@U?$default_delete@VButton@@@std@@@std@@V?$allocator@V?$unique_ptr@VButton@@U?$default_delete@VButton@@@std@@@std@@@2@@std@@QAEXXZ 0045c1b0 f i StateMenu.obj
- 0001:0005b220       ?deallocate@?$allocator@U?$_List_node@V?$unique_ptr@VButton@@U?$default_delete@VButton@@@std@@@std@@PAX@std@@@std@@QAEXQAU?$_List_node@V?$unique_ptr@VButton@@U?$default_delete@VButton@@@std@@@std@@PAX@2@I@Z 0045c220 f i StateMenu.obj
- 0001:0005b250       ?get_deleter@?$unique_ptr@VButton@@U?$default_delete@VButton@@@std@@@std@@QAEAAU?$default_delete@VButton@@@2@XZ 0045c250 f i StateMenu.obj
  0001:0005b270       ?mapCoordinates@CoordinateMappingShiftXY@@UAE_NAAN0ABVSimpleImage@@@Z 0045c270 f i StateMenu.obj
- 0001:0005b440       ?max_size@?$_Default_allocator_traits@V?$allocator@U?$_List_node@V?$unique_ptr@VButton@@U?$default_delete@VButton@@@std@@@std@@PAX@std@@@std@@@std@@SAIABV?$allocator@U?$_List_node@V?$unique_ptr@VButton@@U?$default_delete@VButton@@@std@@@std@@PAX@std@@@2@@Z 0045c440 f i StateMenu.obj
  0001:0005b450       ?max_size@?$list@V?$unique_ptr@VButton@@U?$default_delete@VButton@@@std@@@std@@V?$allocator@V?$unique_ptr@VButton@@U?$default_delete@VButton@@@std@@@std@@@2@@std@@QBEIXZ 0045c450 f i StateMenu.obj
  0001:0005b4a0       ?onClick@?$ButtonAllocateSkill@H@@UAEXXZ 0045c4a0 f i StateMenu.obj
- 0001:0005b510       ?onClick@?$ButtonValueChange@H@@UAEXXZ 0045c510 f i StateMenu.obj
- 0001:0005b540       ?onClick@ButtonChangeState@@UAEXXZ 0045c540 f i StateMenu.obj
- 0001:0005b570       ?pop_back@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEXXZ 0045c570 f i StateMenu.obj
- 0001:0005b640       ?push_back@?$list@V?$unique_ptr@VButton@@U?$default_delete@VButton@@@std@@@std@@V?$allocator@V?$unique_ptr@VButton@@U?$default_delete@VButton@@@std@@@std@@@2@@std@@QAEX$$QAV?$unique_ptr@VButton@@U?$default_delete@VButton@@@std@@@2@@Z 0045c640 f i StateMenu.obj
- 0001:0005b680       ?release@?$unique_ptr@VButton@@U?$default_delete@VButton@@@std@@@std@@QAEPAVButton@@XZ 0045c680 f i StateMenu.obj
  0001:0005b6f0       ??0StateRunning@@QAE@PAVGameEngine@@@Z 0045c6f0 f   StateRunning.obj
  0001:0005b780       ??1StateRunning@@QAE@XZ    0045c780 f   StateRunning.obj
  0001:0005b7f0       ?onStateEnter@StateRunning@@UAEXXZ 0045c7f0 f   StateRunning.obj
@@ -2997,73 +3017,44 @@
  0001:0005e450       ??$_Construct_in_place@PAU?$_List_node@PAVEnemyObject@@PAX@std@@AAPAU12@@std@@YAXAAPAU?$_List_node@PAVEnemyObject@@PAX@0@0@Z 0045f450 f i StateRunning.obj
  0001:0005e4a0       ??$_Construct_in_place@PAU?$_List_node@PAVEnemyObject@@PAX@std@@ABQAU12@@std@@YAXAAPAU?$_List_node@PAVEnemyObject@@PAX@0@ABQAU10@@Z 0045f4a0 f i StateRunning.obj
  0001:0005e4f0       ??$_Copy_construct_from@VInventoryTileManager@@@?$_Ptr_base@VInventoryTileManager@@@std@@IAEXABV?$shared_ptr@VInventoryTileManager@@@1@@Z 0045f4f0 f i StateRunning.obj
- 0001:0005e540       ??$_Copy_construct_from@VItem@@@?$_Ptr_base@VItem@@@std@@IAEXABV?$shared_ptr@VItem@@@1@@Z 0045f540 f i StateRunning.obj
- 0001:0005e590       ??$_Destroy_in_place@PAU?$_List_node@PAVEnemyObject@@PAX@std@@@std@@YAXAAPAU?$_List_node@PAVEnemyObject@@PAX@0@@Z 0045f590 f i StateRunning.obj
- 0001:0005e5a0       ??$_Emplace@ABQAVEnemyObject@@@?$list@PAVEnemyObject@@V?$allocator@PAVEnemyObject@@@std@@@std@@QAEPAU?$_List_node@PAVEnemyObject@@PAX@1@QAU21@ABQAVEnemyObject@@@Z 0045f5a0 f i StateRunning.obj
- 0001:0005e650       ??$_Free_non_head@V?$allocator@U?$_List_node@PAVEnemyObject@@PAX@std@@@std@@@?$_List_node@PAVEnemyObject@@PAX@std@@SAXAAV?$allocator@U?$_List_node@PAVEnemyObject@@PAX@std@@@1@PAU01@@Z 0045f650 f i StateRunning.obj
- 0001:0005e6b0       ??$_Freenode0@V?$allocator@U?$_List_node@PAVEnemyObject@@PAX@std@@@std@@@?$_List_node@PAVEnemyObject@@PAX@std@@SAXAAV?$allocator@U?$_List_node@PAVEnemyObject@@PAX@std@@@1@PAU01@@Z 0045f6b0 f i StateRunning.obj
- 0001:0005e730       ??$_Freenode@V?$allocator@U?$_List_node@PAVEnemyObject@@PAX@std@@@std@@@?$_List_node@PAVEnemyObject@@PAX@std@@SAXAAV?$allocator@U?$_List_node@PAVEnemyObject@@PAX@std@@@1@PAU01@@Z 0045f730 f i StateRunning.obj
- 0001:0005e7b0       ??$addressof@PAU?$_List_node@PAVEnemyObject@@PAX@std@@@std@@YAPAPAU?$_List_node@PAVEnemyObject@@PAX@0@AAPAU10@@Z 0045f7b0 f i StateRunning.obj
- 0001:0005e7c0       ??$addressof@PAVEnemyObject@@@std@@YAPAPAVEnemyObject@@AAPAV1@@Z 0045f7c0 f i StateRunning.obj
- 0001:0005e7d0       ??$construct@PAVEnemyObject@@ABQAV1@@?$_Default_allocator_traits@V?$allocator@U?$_List_node@PAVEnemyObject@@PAX@std@@@std@@@std@@SAXAAV?$allocator@U?$_List_node@PAVEnemyObject@@PAX@std@@@1@QAPAVEnemyObject@@ABQAV3@@Z 0045f7d0 f i StateRunning.obj
- 0001:0005e810       ??$destroy@PAVEnemyObject@@@?$_Default_allocator_traits@V?$allocator@U?$_List_node@PAVEnemyObject@@PAX@std@@@std@@@std@@SAXAAV?$allocator@U?$_List_node@PAVEnemyObject@@PAX@std@@@1@QAPAVEnemyObject@@@Z 0045f810 f i StateRunning.obj
- 0001:0005e820       ??$forward@AAPAU?$_List_node@PAVEnemyObject@@PAX@std@@@std@@YAAAPAU?$_List_node@PAVEnemyObject@@PAX@0@AAPAU10@@Z 0045f820 f i StateRunning.obj
- 0001:0005e830       ??$forward@ABQAU?$_List_node@PAVEnemyObject@@PAX@std@@@std@@YAABQAU?$_List_node@PAVEnemyObject@@PAX@0@ABQAU10@@Z 0045f830 f i StateRunning.obj
- 0001:0005e840       ??$forward@ABQAVEnemyObject@@@std@@YAABQAVEnemyObject@@ABQAV1@@Z 0045f840 f i StateRunning.obj
- 0001:0005e850       ??$forward@V?$allocator@V?$vector@PAVRoom@@V?$allocator@PAVRoom@@@std@@@std@@@std@@@std@@YA$$QAV?$allocator@V?$vector@PAVRoom@@V?$allocator@PAVRoom@@@std@@@std@@@0@AAV10@@Z 0045f850 f i StateRunning.obj
- 0001:0005e860       ??0?$_Alloc_construct_ptr@V?$allocator@U?$_List_node@PAVEnemyObject@@PAX@std@@@std@@@std@@QAE@AAV?$allocator@U?$_List_node@PAVEnemyObject@@PAX@std@@@1@@Z 0045f860 f i StateRunning.obj
- 0001:0005e890       ??0?$_List_val@U?$_List_simple_types@PAVEnemyObject@@@std@@@std@@QAE@XZ 0045f890 f i StateRunning.obj
- 0001:0005e8d0       ??0?$_Ptr_base@VItem@@@std@@IAE@XZ 0045f8d0 f i StateRunning.obj
- 0001:0005e900       ??0?$allocator@U?$_List_node@PAVEnemyObject@@PAX@std@@@std@@QAE@XZ 0045f900 f i StateRunning.obj
- 0001:0005e920       ??0?$list@PAVEnemyObject@@V?$allocator@PAVEnemyObject@@@std@@@std@@QAE@XZ 0045f920 f i StateRunning.obj
- 0001:0005e950       ??0?$shared_ptr@VInventoryTileManager@@@std@@QAE@ABV01@@Z 0045f950 f i StateRunning.obj
- 0001:0005e980       ??0?$shared_ptr@VItem@@@std@@QAE@ABV01@@Z 0045f980 f i StateRunning.obj
- 0001:0005e9b0       ??0?$vector@V?$vector@PAVRoom@@V?$allocator@PAVRoom@@@std@@@std@@V?$allocator@V?$vector@PAVRoom@@V?$allocator@PAVRoom@@@std@@@std@@@2@@std@@QAE@ABV01@@Z 0045f9b0 f i StateRunning.obj
- 0001:0005eb10       ??1?$_Alloc_construct_ptr@V?$allocator@U?$_List_node@PAVEnemyObject@@PAX@std@@@std@@@std@@QAE@XZ 0045fb10 f i StateRunning.obj
- 0001:0005eb80       ??1?$_List_node_emplace_op2@V?$allocator@U?$_List_node@PAVEnemyObject@@PAX@std@@@std@@@std@@QAE@XZ 0045fb80 f i StateRunning.obj
- 0001:0005ec00       ??1?$_Tidy_guard@V?$vector@V?$vector@PAVRoom@@V?$allocator@PAVRoom@@@std@@@std@@V?$allocator@V?$vector@PAVRoom@@V?$allocator@PAVRoom@@@std@@@std@@@2@@std@@@std@@QAE@XZ 0045fc00 f i StateRunning.obj
- 0001:0005ec30       ??1?$list@PAVEnemyObject@@V?$allocator@PAVEnemyObject@@@std@@@std@@QAE@XZ 0045fc30 f i StateRunning.obj
- 0001:0005ec80       ??1?$shared_ptr@VItem@@@std@@QAE@XZ 0045fc80 f i StateRunning.obj
- 0001:0005eca0       ??1StateEnemyTurn@@QAE@XZ  0045fca0 f i StateRunning.obj
- 0001:0005ecd0       ??1StatePaused@@QAE@XZ     0045fcd0 f i StateRunning.obj
- 0001:0005ed00       ??_GStateEnemyTurn@@QAEPAXI@Z 0045fd00 f i StateRunning.obj
- 0001:0005ed40       ??_GStatePaused@@QAEPAXI@Z 0045fd40 f i StateRunning.obj
- 0001:0005ed80       ?GetTilesInv@GameEngine@@QAE?AV?$shared_ptr@VInventoryTileManager@@@std@@XZ 0045fd80 f i StateRunning.obj
- 0001:0005edc0       ?_Alloc_sentinel_and_proxy@?$list@PAVEnemyObject@@V?$allocator@PAVEnemyObject@@@std@@@std@@AAEXXZ 0045fdc0 f i StateRunning.obj
- 0001:0005eeb0       ?_Allocate@?$_Alloc_construct_ptr@V?$allocator@U?$_List_node@PAVEnemyObject@@PAX@std@@@std@@@std@@QAEXXZ 0045feb0 f i StateRunning.obj
- 0001:0005eee0       ?_Decref@?$_Ptr_base@VItem@@@std@@IAEXXZ 0045fee0 f i StateRunning.obj
- 0001:0005ef10       ?_Get_first@?$_Compressed_pair@V?$allocator@U?$_List_node@PAVEnemyObject@@PAX@std@@@std@@V?$_List_val@U?$_List_simple_types@PAVEnemyObject@@@std@@@2@$00@std@@QAEAAV?$allocator@U?$_List_node@PAVEnemyObject@@PAX@std@@@2@XZ 0045ff10 f i StateRunning.obj
- 0001:0005ef30       ?_Get_first@?$_Compressed_pair@V?$allocator@U?$_List_node@PAVEnemyObject@@PAX@std@@@std@@V?$_List_val@U?$_List_simple_types@PAVEnemyObject@@@std@@@2@$00@std@@QBEABV?$allocator@U?$_List_node@PAVEnemyObject@@PAX@std@@@2@XZ 0045ff30 f i StateRunning.obj
- 0001:0005ef50       ?_Getal@?$list@PAVEnemyObject@@V?$allocator@PAVEnemyObject@@@std@@@std@@AAEAAV?$allocator@U?$_List_node@PAVEnemyObject@@PAX@std@@@2@XZ 0045ff50 f i StateRunning.obj
- 0001:0005ef70       ?_Getal@?$list@PAVEnemyObject@@V?$allocator@PAVEnemyObject@@@std@@@std@@ABEABV?$allocator@U?$_List_node@PAVEnemyObject@@PAX@std@@@2@XZ 0045ff70 f i StateRunning.obj
- 0001:0005ef90       ?_Orphan_non_end@?$_List_val@U?$_List_simple_types@PAVEnemyObject@@@std@@@std@@QAEXXZ 0045ff90 f i StateRunning.obj
- 0001:0005f030       ?_Orphan_ptr2@?$_List_val@U?$_List_simple_types@PAVEnemyObject@@@std@@@std@@QAEXPAU?$_List_node@PAVEnemyObject@@PAX@2@@Z 00460030 f i StateRunning.obj
- 0001:0005f0e0       ?_Tidy@?$list@PAVEnemyObject@@V?$allocator@PAVEnemyObject@@@std@@@std@@AAEXXZ 004600e0 f i StateRunning.obj
- 0001:0005f140       ?_Transfer_before@?$_List_node_emplace_op2@V?$allocator@U?$_List_node@PAVEnemyObject@@PAX@std@@@std@@@std@@QAEPAU?$_List_node@PAVEnemyObject@@PAX@2@QAU32@@Z 00460140 f i StateRunning.obj
- 0001:0005f1d0       ?_Unchecked_erase@?$list@PAVEnemyObject@@V?$allocator@PAVEnemyObject@@@std@@@std@@AAEPAU?$_List_node@PAVEnemyObject@@PAX@2@QAU32@@Z 004601d0 f i StateRunning.obj
- 0001:0005f250       ?_Xrange@?$vector@V?$shared_ptr@VItem@@@std@@V?$allocator@V?$shared_ptr@VItem@@@std@@@2@@std@@CAXXZ 00460250 f i StateRunning.obj
- 0001:0005f270       ?allocate@?$allocator@U?$_List_node@PAVEnemyObject@@PAX@std@@@std@@QAEPAU?$_List_node@PAVEnemyObject@@PAX@2@I@Z 00460270 f i StateRunning.obj
- 0001:0005f2a0       ?at@?$vector@V?$shared_ptr@VItem@@@std@@V?$allocator@V?$shared_ptr@VItem@@@std@@@2@@std@@QAEAAV?$shared_ptr@VItem@@@2@I@Z 004602a0 f i StateRunning.obj
- 0001:0005f2f0       ?capacity@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QBEIXZ 004602f0 f i StateRunning.obj
- 0001:0005f310       ?clear@?$list@PAVEnemyObject@@V?$allocator@PAVEnemyObject@@@std@@@std@@QAEXXZ 00460310 f i StateRunning.obj
- 0001:0005f380       ?deallocate@?$_Default_allocator_traits@V?$allocator@U?$_List_node@PAVEnemyObject@@PAX@std@@@std@@@std@@SAXAAV?$allocator@U?$_List_node@PAVEnemyObject@@PAX@std@@@2@QAU?$_List_node@PAVEnemyObject@@PAX@2@I@Z 00460380 f i StateRunning.obj
- 0001:0005f3a0       ?deallocate@?$allocator@U?$_List_node@PAVEnemyObject@@PAX@std@@@std@@QAEXQAU?$_List_node@PAVEnemyObject@@PAX@2@I@Z 004603a0 f i StateRunning.obj
- 0001:0005f3d0       ?drawForegroundOval@BaseEngine@@QAEXHHHHI@Z 004603d0 f i StateRunning.obj
- 0001:0005f410       ?front@?$list@PAVEnemyObject@@V?$allocator@PAVEnemyObject@@@std@@@std@@QAEAAPAVEnemyObject@@XZ 00460410 f i StateRunning.obj
- 0001:0005f4a0       ?get@?$_Ptr_base@VInventoryTileManager@@@std@@IBEPAVInventoryTileManager@@XZ 004604a0 f i StateRunning.obj
- 0001:0005f4c0       ?getCurrentMouseX@BaseEngine@@QBEHXZ 004604c0 f i StateRunning.obj
- 0001:0005f4e0       ?getCurrentMouseY@BaseEngine@@QBEHXZ 004604e0 f i StateRunning.obj
- 0001:0005f500       ?getItemAt@InventoryTileManager@@QAE?AV?$shared_ptr@VItem@@@std@@H@Z 00460500 f i StateRunning.obj
- 0001:0005f550       ?getZoomX@FilterPointsScaling@@QAEMXZ 00460550 f i StateRunning.obj
- 0001:0005f5c0       ?insert@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@IABV12@@Z 004605c0 f i StateRunning.obj
- 0001:0005f600       ?max_size@?$_Default_allocator_traits@V?$allocator@U?$_List_node@PAVEnemyObject@@PAX@std@@@std@@@std@@SAIABV?$allocator@U?$_List_node@PAVEnemyObject@@PAX@std@@@2@@Z 00460600 f i StateRunning.obj
- 0001:0005f610       ?max_size@?$list@PAVEnemyObject@@V?$allocator@PAVEnemyObject@@@std@@@std@@QBEIXZ 00460610 f i StateRunning.obj
- 0001:0005f660       ?pop_front@?$list@PAVEnemyObject@@V?$allocator@PAVEnemyObject@@@std@@@std@@QAEXXZ 00460660 f i StateRunning.obj
- 0001:0005f700       ?push_back@?$list@PAVEnemyObject@@V?$allocator@PAVEnemyObject@@@std@@@std@@QAEXABQAVEnemyObject@@@Z 00460700 f i StateRunning.obj
- 0001:0005f730       ?select_on_container_copy_construction@?$_Default_allocator_traits@V?$allocator@V?$vector@PAVRoom@@V?$allocator@PAVRoom@@@std@@@std@@@std@@@std@@SA?AV?$allocator@V?$vector@PAVRoom@@V?$allocator@PAVRoom@@@std@@@std@@@2@ABV32@@Z 00460730 f i StateRunning.obj
- 0001:0005f740       ?size@?$list@PAVEnemyObject@@V?$allocator@PAVEnemyObject@@@std@@@std@@QBEIXZ 00460740 f i StateRunning.obj
- 0001:0005f760       ?size@?$vector@PAVRoom@@V?$allocator@PAVRoom@@@std@@@std@@QBEIXZ 00460760 f i StateRunning.obj
- 0001:0005f790       ?size@?$vector@V?$vector@PAVRoom@@V?$allocator@PAVRoom@@@std@@@std@@V?$allocator@V?$vector@PAVRoom@@V?$allocator@PAVRoom@@@std@@@std@@@2@@std@@QBEIXZ 00460790 f i StateRunning.obj
+ 0001:0005e540       ??$_Destroy_in_place@PAU?$_List_node@PAVEnemyObject@@PAX@std@@@std@@YAXAAPAU?$_List_node@PAVEnemyObject@@PAX@0@@Z 0045f540 f i StateRunning.obj
+ 0001:0005e5a0       ??$_Free_non_head@V?$allocator@U?$_List_node@PAVEnemyObject@@PAX@std@@@std@@@?$_List_node@PAVEnemyObject@@PAX@std@@SAXAAV?$allocator@U?$_List_node@PAVEnemyObject@@PAX@std@@@1@PAU01@@Z 0045f5a0 f i StateRunning.obj
+ 0001:0005e650       ??$_Freenode0@V?$allocator@U?$_List_node@PAVEnemyObject@@PAX@std@@@std@@@?$_List_node@PAVEnemyObject@@PAX@std@@SAXAAV?$allocator@U?$_List_node@PAVEnemyObject@@PAX@std@@@1@PAU01@@Z 0045f650 f i StateRunning.obj
+ 0001:0005e6b0       ??$_Freenode@V?$allocator@U?$_List_node@PAVEnemyObject@@PAX@std@@@std@@@?$_List_node@PAVEnemyObject@@PAX@std@@SAXAAV?$allocator@U?$_List_node@PAVEnemyObject@@PAX@std@@@1@PAU01@@Z 0045f6b0 f i StateRunning.obj
+ 0001:0005e730       ??$addressof@PAU?$_List_node@PAVEnemyObject@@PAX@std@@@std@@YAPAPAU?$_List_node@PAVEnemyObject@@PAX@0@AAPAU10@@Z 0045f730 f i StateRunning.obj
+ 0001:0005e7b0       ??$addressof@PAVEnemyObject@@@std@@YAPAPAVEnemyObject@@AAPAV1@@Z 0045f7b0 f i StateRunning.obj
+ 0001:0005e7d0       ??$destroy@PAVEnemyObject@@@?$_Default_allocator_traits@V?$allocator@U?$_List_node@PAVEnemyObject@@PAX@std@@@std@@@std@@SAXAAV?$allocator@U?$_List_node@PAVEnemyObject@@PAX@std@@@1@QAPAVEnemyObject@@@Z 0045f7d0 f i StateRunning.obj
+ 0001:0005e810       ??$forward@AAPAU?$_List_node@PAVEnemyObject@@PAX@std@@@std@@YAAAPAU?$_List_node@PAVEnemyObject@@PAX@0@AAPAU10@@Z 0045f810 f i StateRunning.obj
+ 0001:0005e820       ??$forward@ABQAU?$_List_node@PAVEnemyObject@@PAX@std@@@std@@YAABQAU?$_List_node@PAVEnemyObject@@PAX@0@ABQAU10@@Z 0045f820 f i StateRunning.obj
+ 0001:0005e830       ??$forward@ABQAVEnemyObject@@@std@@YAABQAVEnemyObject@@ABQAV1@@Z 0045f830 f i StateRunning.obj
+ 0001:0005e840       ??$forward@V?$allocator@V?$vector@PAVRoom@@V?$allocator@PAVRoom@@@std@@@std@@@std@@@std@@YA$$QAV?$allocator@V?$vector@PAVRoom@@V?$allocator@PAVRoom@@@std@@@std@@@0@AAV10@@Z 0045f840 f i StateRunning.obj
+ 0001:0005e860       ??0?$_List_val@U?$_List_simple_types@PAVEnemyObject@@@std@@@std@@QAE@XZ 0045f860 f i StateRunning.obj
+ 0001:0005e890       ??0?$allocator@U?$_List_node@PAVEnemyObject@@PAX@std@@@std@@QAE@XZ 0045f890 f i StateRunning.obj
+ 0001:0005e8d0       ??0?$list@PAVEnemyObject@@V?$allocator@PAVEnemyObject@@@std@@@std@@QAE@XZ 0045f8d0 f i StateRunning.obj
+ 0001:0005e9b0       ??1?$_Tidy_guard@V?$vector@V?$vector@PAVRoom@@V?$allocator@PAVRoom@@@std@@@std@@V?$allocator@V?$vector@PAVRoom@@V?$allocator@PAVRoom@@@std@@@std@@@2@@std@@@std@@QAE@XZ 0045f9b0 f i StateRunning.obj
+ 0001:0005eb10       ??1?$list@PAVEnemyObject@@V?$allocator@PAVEnemyObject@@@std@@@std@@QAE@XZ 0045fb10 f i StateRunning.obj
+ 0001:0005eb80       ??1StateEnemyTurn@@QAE@XZ  0045fb80 f i StateRunning.obj
+ 0001:0005ec00       ??1StatePaused@@QAE@XZ     0045fc00 f i StateRunning.obj
+ 0001:0005ec30       ??_GStateEnemyTurn@@QAEPAXI@Z 0045fc30 f i StateRunning.obj
+ 0001:0005ed00       ?_Allocate@?$_Alloc_construct_ptr@V?$allocator@U?$_List_node@PAVEnemyObject@@PAX@std@@@std@@@std@@QAEXXZ 0045fd00 f i StateRunning.obj
+ 0001:0005ed40       ?_Get_first@?$_Compressed_pair@V?$allocator@U?$_List_node@PAVEnemyObject@@PAX@std@@@std@@V?$_List_val@U?$_List_simple_types@PAVEnemyObject@@@std@@@2@$00@std@@QAEAAV?$allocator@U?$_List_node@PAVEnemyObject@@PAX@std@@@2@XZ 0045fd40 f i StateRunning.obj
+ 0001:0005ed80       ?_Get_first@?$_Compressed_pair@V?$allocator@U?$_List_node@PAVEnemyObject@@PAX@std@@@std@@V?$_List_val@U?$_List_simple_types@PAVEnemyObject@@@std@@@2@$00@std@@QBEABV?$allocator@U?$_List_node@PAVEnemyObject@@PAX@std@@@2@XZ 0045fd80 f i StateRunning.obj
+ 0001:0005edc0       ?_Getal@?$list@PAVEnemyObject@@V?$allocator@PAVEnemyObject@@@std@@@std@@AAEAAV?$allocator@U?$_List_node@PAVEnemyObject@@PAX@std@@@2@XZ 0045fdc0 f i StateRunning.obj
+ 0001:0005eeb0       ?_Getal@?$list@PAVEnemyObject@@V?$allocator@PAVEnemyObject@@@std@@@std@@ABEABV?$allocator@U?$_List_node@PAVEnemyObject@@PAX@std@@@2@XZ 0045feb0 f i StateRunning.obj
+ 0001:0005ef90       ?_Xrange@?$vector@V?$shared_ptr@VItem@@@std@@V?$allocator@V?$shared_ptr@VItem@@@std@@@2@@std@@CAXXZ 0045ff90 f i StateRunning.obj
+ 0001:0005f030       ?allocate@?$allocator@U?$_List_node@PAVEnemyObject@@PAX@std@@@std@@QAEPAU?$_List_node@PAVEnemyObject@@PAX@2@I@Z 00460030 f i StateRunning.obj
+ 0001:0005f0e0       ?at@?$vector@V?$shared_ptr@VItem@@@std@@V?$allocator@V?$shared_ptr@VItem@@@std@@@2@@std@@QAEAAV?$shared_ptr@VItem@@@2@I@Z 004600e0 f i StateRunning.obj
+ 0001:0005f140       ?capacity@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QBEIXZ 00460140 f i StateRunning.obj
+ 0001:0005f1d0       ?clear@?$list@PAVEnemyObject@@V?$allocator@PAVEnemyObject@@@std@@@std@@QAEXXZ 004601d0 f i StateRunning.obj
+ 0001:0005f250       ?deallocate@?$_Default_allocator_traits@V?$allocator@U?$_List_node@PAVEnemyObject@@PAX@std@@@std@@@std@@SAXAAV?$allocator@U?$_List_node@PAVEnemyObject@@PAX@std@@@2@QAU?$_List_node@PAVEnemyObject@@PAX@2@I@Z 00460250 f i StateRunning.obj
+ 0001:0005f270       ?deallocate@?$allocator@U?$_List_node@PAVEnemyObject@@PAX@std@@@std@@QAEXQAU?$_List_node@PAVEnemyObject@@PAX@2@I@Z 00460270 f i StateRunning.obj
+ 0001:0005f310       ?get@?$_Ptr_base@VInventoryTileManager@@@std@@IBEPAVInventoryTileManager@@XZ 00460310 f i StateRunning.obj
+ 0001:0005f380       ?getCurrentMouseX@BaseEngine@@QBEHXZ 00460380 f i StateRunning.obj
+ 0001:0005f410       ?getZoomX@FilterPointsScaling@@QAEMXZ 00460410 f i StateRunning.obj
+ 0001:0005f4a0       ?insert@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@IABV12@@Z 004604a0 f i StateRunning.obj
+ 0001:0005f550       ?push_back@?$list@PAVEnemyObject@@V?$allocator@PAVEnemyObject@@@std@@@std@@QAEXABQAVEnemyObject@@@Z 00460550 f i StateRunning.obj
+ 0001:0005f5c0       ?select_on_container_copy_construction@?$_Default_allocator_traits@V?$allocator@V?$vector@PAVRoom@@V?$allocator@PAVRoom@@@std@@@std@@@std@@@std@@SA?AV?$allocator@V?$vector@PAVRoom@@V?$allocator@PAVRoom@@@std@@@std@@@2@ABV32@@Z 004605c0 f i StateRunning.obj
+ 0001:0005f610       ?size@?$vector@PAVRoom@@V?$allocator@PAVRoom@@@std@@@std@@QBEIXZ 00460610 f i StateRunning.obj
  0001:0005f7e0       ??0StateStart@@QAE@PAVGameEngine@@@Z 004607e0 f   StateStart.obj
  0001:0005f810       ?virtSetupBackgroundBuffer@StateStart@@UAEXXZ 00460810 f   StateStart.obj
  0001:0005fc00       ?onStateEnter@StateStart@@UAEXXZ 00460c00 f   StateStart.obj
@@ -3071,7 +3062,7 @@
  0001:0005fd40       ??$_Pocma@V?$allocator@V?$vector@PAVRoom@@V?$allocator@PAVRoom@@@std@@@std@@@std@@@std@@YAXAAV?$allocator@V?$vector@PAVRoom@@V?$allocator@PAVRoom@@@std@@@std@@@0@0@Z 00460d40 f i StateStart.obj
  0001:0005fd60       ??$addressof@V?$vector@V?$vector@PAVRoom@@V?$allocator@PAVRoom@@@std@@@std@@V?$allocator@V?$vector@PAVRoom@@V?$allocator@PAVRoom@@@std@@@std@@@2@@std@@@std@@YAPAV?$vector@V?$vector@PAVRoom@@V?$allocator@PAVRoom@@@std@@@std@@V?$allocator@V?$vector@PAVRoom@@V?$allocator@PAVRoom@@@std@@@std@@@2@@0@AAV10@@Z 00460d60 f i StateStart.obj
  0001:0005fd70       ??$move@AAV?$allocator@V?$vector@PAVRoom@@V?$allocator@PAVRoom@@@std@@@std@@@std@@@std@@YA$$QAV?$allocator@V?$vector@PAVRoom@@V?$allocator@PAVRoom@@@std@@@std@@@0@AAV10@@Z 00460d70 f i StateStart.obj
- 0001:0005fd80       ??0ExitObject@@QAE@PAVBaseEngine@@HH@Z 00460d80 f i StateStart.obj
+ 0001:0005fd80       ??0ExitObject@@QAE@PAVBaseEngine@@PAVRoom@@HH@Z 00460d80 f i StateStart.obj
  0001:0005fe70       ??1ExitObject@@UAE@XZ      00460e70 f i StateStart.obj
  0001:0005fea0       ??4?$vector@V?$vector@PAVRoom@@V?$allocator@PAVRoom@@@std@@@std@@V?$allocator@V?$vector@PAVRoom@@V?$allocator@PAVRoom@@@std@@@std@@@2@@std@@QAEAAV01@$$QAV01@@Z 00460ea0 f i StateStart.obj
  0001:0005fef0       ??_EExitObject@@UAEPAXI@Z  00460ef0 f i StateStart.obj
@@ -3096,10 +3087,10 @@
  0001:000609d0       ?virtDoUpdate@BouncingBall2@@UAEXH@Z 004619d0 f   BouncingBall.obj
  0001:00060fc0       ??1BouncingBall1@@UAE@XZ   00461fc0 f i BouncingBall.obj
  0001:00060fe0       ??1BouncingBall2@@UAE@XZ   00461fe0 f i BouncingBall.obj
- 0001:00061000       ??_EBouncingBall1@@UAEPAXI@Z 00462000 f i BouncingBall.obj
  0001:00061000       ??_GBouncingBall1@@UAEPAXI@Z 00462000 f i BouncingBall.obj
- 0001:00061040       ??_EBouncingBall2@@UAEPAXI@Z 00462040 f i BouncingBall.obj
+ 0001:00061000       ??_EBouncingBall1@@UAEPAXI@Z 00462000 f i BouncingBall.obj
  0001:00061040       ??_GBouncingBall2@@UAEPAXI@Z 00462040 f i BouncingBall.obj
+ 0001:00061040       ??_EBouncingBall2@@UAEPAXI@Z 00462040 f i BouncingBall.obj
  0001:00061080       ??_GBouncingBall@@UAEPAXI@Z 00462080 f i BouncingBall.obj
  0001:00061080       ??_EBouncingBall@@UAEPAXI@Z 00462080 f i BouncingBall.obj
  0001:000610c0       ?reverse@MovementPosition@@QAEXXZ 004620c0 f i BouncingBall.obj
@@ -3156,8 +3147,8 @@
  0001:00063ec0       ?virtMouseWheel@ZoomingDemo@@UAEXHHHH@Z 00464ec0 f   ZoomingDemo.obj
  0001:000640c0       ??0SimpleFlashingDragableImageObject@@QAE@HHPAVBaseEngine@@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@1_N2@Z 004650c0 f i ZoomingDemo.obj
  0001:000642c0       ??1SimpleFlashingDragableImageObject@@UAE@XZ 004652c0 f i ZoomingDemo.obj
- 0001:00064300       ??_ESimpleFlashingDragableImageObject@@UAEPAXI@Z 00465300 f i ZoomingDemo.obj
  0001:00064300       ??_GSimpleFlashingDragableImageObject@@UAEPAXI@Z 00465300 f i ZoomingDemo.obj
+ 0001:00064300       ??_ESimpleFlashingDragableImageObject@@UAEPAXI@Z 00465300 f i ZoomingDemo.obj
  0001:00064340       ?virtDoUpdate@SimpleFlashingDragableImageObject@@UAEXH@Z 00465340 f i ZoomingDemo.obj
  0001:000643a0       ?virtDraw@SimpleFlashingDragableImageObject@@UAEXXZ 004653a0 f i ZoomingDemo.obj
  0001:00064490       ?virtMouseDown@SimpleFlashingDragableImageObject@@UAEXHHH@Z 00465490 f i ZoomingDemo.obj
@@ -3172,8 +3163,8 @@
  0001:00064ad0       ?virtKeyDown@MazeDemoMain@@UAEXH@Z 00465ad0 f   MazeDemoMain.obj
  0001:00064d20       ??0MazeDemoTileManager@@QAE@XZ 00465d20 f i MazeDemoMain.obj
  0001:00064d50       ??1MazeDemoTileManager@@UAE@XZ 00465d50 f i MazeDemoMain.obj
- 0001:00064d80       ??_EMazeDemoMain@@UAEPAXI@Z 00465d80 f i MazeDemoMain.obj
  0001:00064d80       ??_GMazeDemoMain@@UAEPAXI@Z 00465d80 f i MazeDemoMain.obj
+ 0001:00064d80       ??_EMazeDemoMain@@UAEPAXI@Z 00465d80 f i MazeDemoMain.obj
  0001:00064dc0       ??_GMazeDemoTileManager@@UAEPAXI@Z 00465dc0 f i MazeDemoMain.obj
  0001:00064dc0       ??_EMazeDemoTileManager@@UAEPAXI@Z 00465dc0 f i MazeDemoMain.obj
  0001:00064e00       ??0MazeDemoObject@@QAE@PAVMazeDemoMain@@HH@Z 00465e00 f   MazeDemoObject.obj
@@ -3306,8 +3297,8 @@
  0001:00066380       ??3@YAXPAXI@Z              00467380 f   MSVCRTD:delete_scalar_size.obj
  0001:000663a0       @__security_check_cookie@4 004673a0 f   MSVCRTD:secchk.obj
  0001:000663c0       ??1type_info@@UAE@XZ       004673c0 f   MSVCRTD:std_type_info_static.obj
- 0001:000663e0       ??_Etype_info@@UAEPAXI@Z   004673e0 f i MSVCRTD:std_type_info_static.obj
  0001:000663e0       ??_Gtype_info@@UAEPAXI@Z   004673e0 f i MSVCRTD:std_type_info_static.obj
+ 0001:000663e0       ??_Etype_info@@UAEPAXI@Z   004673e0 f i MSVCRTD:std_type_info_static.obj
  0001:00066420       ??2@YAPAXI@Z               00467420 f   MSVCRTD:new_scalar.obj
  0001:00066480       ??_M@YGXPAXIHP6EX0@Z@Z     00467480 f   MSVCRTD:ehvecdtr.obj
  0001:000664b0       ??_M@YGXPAXIIP6EX0@Z@Z     004674b0 f   MSVCRTD:ehvecdtr.obj
@@ -3331,8 +3322,8 @@
  0001:00066de0       __onexit                   00467de0 f   MSVCRTD:utility.obj
  0001:00066e60       _at_quick_exit             00467e60 f   MSVCRTD:utility.obj
  0001:00066eb0       _atexit                    00467eb0 f   MSVCRTD:utility.obj
- 0001:00066ef0       __ftol2_sse_excpt          00467ef0     MSVCRTD:ftol2.obj
  0001:00066ef0       __ftol2_sse                00467ef0     MSVCRTD:ftol2.obj
+ 0001:00066ef0       __ftol2_sse_excpt          00467ef0     MSVCRTD:ftol2.obj
  0001:00066ef0       __ftoi2                    00467ef0 f   MSVCRTD:ftol2.obj
  0001:00066f70       __ftoui2                   00467f70 f   MSVCRTD:ftol2.obj
  0001:00067020       __ftol2                    00468020 f   MSVCRTD:ftol2.obj
@@ -3365,8 +3356,8 @@
  0001:00067790       ___scrt_initialize_winrt   00468790 f   MSVCRTD:utility_desktop.obj
  0001:000677a0       ___scrt_is_managed_app     004687a0 f   MSVCRTD:utility_desktop.obj
  0001:00067850       ___scrt_set_unhandled_exception_filter 00468850 f   MSVCRTD:utility_desktop.obj
- 0001:00067870       ___scrt_exe_initialize_mta 00468870 f   MSVCRTD:utility_desktop.obj
  0001:00067870       ___scrt_stub_for_initialize_mta 00468870 f   MSVCRTD:utility_desktop.obj
+ 0001:00067870       ___scrt_exe_initialize_mta 00468870 f   MSVCRTD:utility_desktop.obj
  0001:00067880       ___scrt_unhandled_exception_filter@4 00468880 f   MSVCRTD:utility_desktop.obj
  0001:00067920       __crt_debugger_hook        00468920 f   MSVCRTD:utility_desktop.obj
  0001:00067940       __RTC_Initialize           00468940 f   MSVCRTD:initsect.obj
@@ -3495,24 +3486,33 @@
  0001:0006883b       _SDL_SetMainReady          0046983b f   SDL2:SDL2.dll
  0001:00068841       _SDL_ShowSimpleMessageBox  00469841 f   SDL2:SDL2.dll
  0001:00068850       ___vcrt_initialize         00469850 f   MSVCRTD:ucrt_stubs.obj
- 0001:00068850       ___acrt_initialize         00469850 f   MSVCRTD:ucrt_stubs.obj
  0001:00068850       ___scrt_stub_for_acrt_initialize 00469850 f   MSVCRTD:ucrt_stubs.obj
+ 0001:00068850       ___acrt_initialize         00469850 f   MSVCRTD:ucrt_stubs.obj
  0001:00068860       ___acrt_thread_attach      00469860 f   MSVCRTD:ucrt_stubs.obj
- 0001:00068860       ___scrt_stub_for_acrt_thread_attach 00469860 f   MSVCRTD:ucrt_stubs.obj
  0001:00068860       ___vcrt_thread_attach      00469860 f   MSVCRTD:ucrt_stubs.obj
- 0001:00068870       ___scrt_stub_for_acrt_thread_detach 00469870 f   MSVCRTD:ucrt_stubs.obj
+ 0001:00068860       ___scrt_stub_for_acrt_thread_attach 00469860 f   MSVCRTD:ucrt_stubs.obj
  0001:00068870       ___vcrt_thread_detach      00469870 f   MSVCRTD:ucrt_stubs.obj
  0001:00068870       ___acrt_thread_detach      00469870 f   MSVCRTD:ucrt_stubs.obj
- 0001:00068880       ___scrt_stub_for_acrt_uninitialize 00469880 f   MSVCRTD:ucrt_stubs.obj
+ 0001:00068870       ___scrt_stub_for_acrt_thread_detach 00469870 f   MSVCRTD:ucrt_stubs.obj
  0001:00068880       ___vcrt_uninitialize       00469880 f   MSVCRTD:ucrt_stubs.obj
  0001:00068880       ___acrt_uninitialize       00469880 f   MSVCRTD:ucrt_stubs.obj
- 0001:00068890       ___scrt_stub_for_acrt_uninitialize_critical 00469890 f   MSVCRTD:ucrt_stubs.obj
+ 0001:00068880       ___scrt_stub_for_acrt_uninitialize 00469880 f   MSVCRTD:ucrt_stubs.obj
  0001:00068890       ___acrt_uninitialize_critical 00469890 f   MSVCRTD:ucrt_stubs.obj
  0001:00068890       ___vcrt_uninitialize_critical 00469890 f   MSVCRTD:ucrt_stubs.obj
+ 0001:00068890       ___scrt_stub_for_acrt_uninitialize_critical 00469890 f   MSVCRTD:ucrt_stubs.obj
  0001:000688a0       ___scrt_stub_for_is_c_termination_complete 004698a0 f   MSVCRTD:ucrt_stubs.obj
  0001:000688a0       __is_c_termination_complete 004698a0 f   MSVCRTD:ucrt_stubs.obj
  0001:000688b0       __filter_x86_sse2_floating_point_exception_default 004698b0 f   MSVCRTD:x86_exception_filter.obj
  0001:000688b0       __filter_x86_sse2_floating_point_exception 004698b0 f   MSVCRTD:x86_exception_filter.obj
+ 0001:00068a10       ?genRoom@Room@@QAEXXZ      00469a10 f   FloorManager.obj
+ 0001:000690d0       ?getTileID@Room@@QAEHPAV?$vector@HV?$allocator@H@std@@@std@@H@Z 0046a0d0 f   FloorManager.obj
+ 0001:00069110       ?setSpecialTiles@Room@@QAEXHHH@Z 0046a110 f   FloorManager.obj
+ 0001:00069400       ?getTileData@Room@@QAE?AV?$vector@V?$vector@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@std@@V?$allocator@V?$vector@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@std@@@2@@std@@PAVSaveManager@@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@3@1@Z 0046a400 f   FloorManager.obj
+ 0001:000696e0       ?onEnter@Room@@QAEXH@Z     0046a6e0 f   FloorManager.obj
+ 0001:00069ae0       ?onExit@Room@@QAEXXZ       0046aae0 f   FloorManager.obj
+ 0001:00069b40       ?genFloor@FloorManager@@QAE?AV?$vector@V?$vector@HV?$allocator@H@std@@@std@@V?$allocator@V?$vector@HV?$allocator@H@std@@@std@@@2@@std@@V23@HHH@Z 0046ab40 f   FloorManager.obj
+ 0001:00069f60       ?genRooms@FloorManager@@QAEXPAVGameEngine@@V?$vector@V?$vector@HV?$allocator@H@std@@@std@@V?$allocator@V?$vector@HV?$allocator@H@std@@@std@@@2@@std@@@Z 0046af60 f   FloorManager.obj
+ 0001:0006a330       ?genRandomFloor@FloorManager@@QAE?AV?$vector@V?$vector@HV?$allocator@H@std@@@std@@V?$allocator@V?$vector@HV?$allocator@H@std@@@std@@@2@@std@@PAVSaveManager@@@Z 0046b330 f   FloorManager.obj
  0002:00000000       ___xc_a                    00475000     MSVCRTD:initializers.obj
  0002:00000410       ___xc_z                    00475410     MSVCRTD:initializers.obj
  0002:00000514       ___xi_a                    00475514     MSVCRTD:initializers.obj
@@ -8672,7 +8672,6 @@
  0001:0001447c       $LN17                      0041547c     DraggingDemo.obj
  0001:00015f3f       __catch$??$_Insert_string@DU?$char_traits@D@std@@I@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@QBDI@Z$0 00416f3f f i DraggingDemo.obj
  0001:000163b4       __catch$??$_Resize_reallocate@U_Value_init_tag@std@@@?$vector@PAVDisplayableObject@@V?$allocator@PAVDisplayableObject@@@std@@@std@@AAEXIABU_Value_init_tag@1@@Z$0 004173b4 f i DraggingDemo.obj
- 0001:0001ef8a       __catch$??$_Emplace_reallocate@ABV?$shared_ptr@VItem@@@std@@@?$vector@V?$shared_ptr@VItem@@@std@@V?$allocator@V?$shared_ptr@VItem@@@std@@@2@@std@@QAEPAV?$shared_ptr@VItem@@@1@QAV21@ABV21@@Z$0 0041ff8a f i GameEngine.obj
  0001:0001ff50       $LN9                       00420f50     EnemyCultist.obj
  0001:00020e40       $LN9                       00421e40     EnemyDragon.obj
  0001:00021900       $LN9                       00422900     EnemyElf.obj
@@ -8682,11 +8681,7 @@
  0001:00029340       $LN43                      0042a340     FlashingDemo.obj
  0001:00029358       $LN44                      0042a358     FlashingDemo.obj
  0001:0002941c       $LN9                       0042a41c     FlashingDemo.obj
- 0001:00029c10       _time                      0042ac10 f   FloorManager.obj
- 0001:0002a2b8       $LN42                      0042b2b8     FloorManager.obj
- 0001:0002a2cc       $LN41                      0042b2cc     FloorManager.obj
- 0001:0002a5f8       $LN28                      0042b5f8     FloorManager.obj
- 0001:0002ad34       $LN36                      0042bd34     FloorManager.obj
+ 0001:0002c29a       __catch$??$_Emplace_reallocate@ABV?$shared_ptr@VItem@@@std@@@?$vector@V?$shared_ptr@VItem@@@std@@V?$allocator@V?$shared_ptr@VItem@@@std@@@2@@std@@QAEPAV?$shared_ptr@VItem@@@1@QAV21@ABV21@@Z$0 0042d29a f i GameEngine.obj
  0001:0002d342       __catch$??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@D@Z$0 0042e342 f i FloorManager.obj
  0001:0002e80a       __catch$??$_Emplace_reallocate@ABH@?$vector@HV?$allocator@H@std@@@std@@QAEPAHQAHABH@Z$0 0042f80a f i FloorManager.obj
  0001:0002ea4a       __catch$??$_Emplace_reallocate@ABQAVDisplayableObject@@@?$vector@PAVDisplayableObject@@V?$allocator@PAVDisplayableObject@@@std@@@std@@QAEPAPAVDisplayableObject@@QAPAV2@ABQAV2@@Z$0 0042fa4a f i FloorManager.obj
@@ -8813,6 +8808,11 @@
  0001:000672c0       ___get_entropy             004682c0 f   MSVCRTD:gs_support.obj
  0001:00068530       _ParseCommandLine          00469530 f   SDL2main:SDL_windows_main.obj
  0001:00068690       _main_getcmdline           00469690 f   SDL2main:SDL_windows_main.obj
+ 0001:000689f0       _time                      004699f0 f   FloorManager.obj
+ 0001:00069098       $LN42                      0046a098     FloorManager.obj
+ 0001:000690ac       $LN41                      0046a0ac     FloorManager.obj
+ 0001:000693d8       $LN28                      0046a3d8     FloorManager.obj
+ 0001:00069acc       $LN34                      0046aacc     FloorManager.obj
  0001:0006b550       __unwindfunclet$??0AnimatedObject@@QAE@HHPAVBaseEngine@@HH_N@Z$0 0046c550 f   AnimatedObject.obj
  0001:0006b558       __unwindfunclet$??0AnimatedObject@@QAE@HHPAVBaseEngine@@HH_N@Z$1 0046c558 f   AnimatedObject.obj
  0001:0006b563       __ehhandler$??0AnimatedObject@@QAE@HHPAVBaseEngine@@HH_N@Z 0046c563 f   AnimatedObject.obj
@@ -9796,9 +9796,9 @@
  0001:00071026       __unwindfunclet$?virtSetupBackgroundBuffer@StateStart@@UAEXXZ$4 00472026 f   StateStart.obj
  0001:00071031       __unwindfunclet$?virtSetupBackgroundBuffer@StateStart@@UAEXXZ$5 00472031 f   StateStart.obj
  0001:00071040       __ehhandler$?virtSetupBackgroundBuffer@StateStart@@UAEXXZ 00472040 f   StateStart.obj
- 0001:00071080       __unwindfunclet$??0ExitObject@@QAE@PAVBaseEngine@@HH@Z$0 00472080 f   StateStart.obj
- 0001:00071088       __unwindfunclet$??0ExitObject@@QAE@PAVBaseEngine@@HH@Z$2 00472088 f   StateStart.obj
- 0001:00071093       __ehhandler$??0ExitObject@@QAE@PAVBaseEngine@@HH@Z 00472093 f   StateStart.obj
+ 0001:00071080       __unwindfunclet$??0ExitObject@@QAE@PAVBaseEngine@@PAVRoom@@HH@Z$0 00472080 f   StateStart.obj
+ 0001:00071088       __unwindfunclet$??0ExitObject@@QAE@PAVBaseEngine@@PAVRoom@@HH@Z$2 00472088 f   StateStart.obj
+ 0001:00071093       __ehhandler$??0ExitObject@@QAE@PAVBaseEngine@@PAVRoom@@HH@Z 00472093 f   StateStart.obj
  0001:000710c0       __unwindfunclet$??0BouncingBall@@QAE@PAVBouncingBallMain@@HHHHPBDHH@Z$0 004720c0 f   BouncingBall.obj
  0001:000710c8       __ehhandler$??0BouncingBall@@QAE@PAVBouncingBallMain@@HHHHPBDHH@Z 004720c8 f   BouncingBall.obj
  0001:000710e3       __unwindfunclet$??0BouncingBall1@@QAE@PAVBouncingBallMain@@HHHHPBDHHPAVTileManager@@@Z$0 004720e3 f   BouncingBall.obj
@@ -10070,20 +10070,20 @@
  0002:00008cc8       $SG93533                   0047dcc8     EnemyZombie.obj
  0002:00008ce8       $SG93534                   0047dce8     EnemyZombie.obj
  0002:00008cf0       $SG93535                   0047dcf0     EnemyZombie.obj
- 0002:00008e50       $SG106646                  0047de50     ExitObject.obj
- 0002:00008e6c       $SG106647                  0047de6c     ExitObject.obj
- 0002:00008e70       $SG106648                  0047de70     ExitObject.obj
- 0002:00008edc       $SG106650                  0047dedc     ExitObject.obj
- 0002:00008f08       $SG106649                  0047df08     ExitObject.obj
- 0002:00008fdc       $SG106651                  0047dfdc     ExitObject.obj
- 0002:00009014       $SG92822                   0047e014     ExitObject.obj
- 0002:0000902c       $SG105515                  0047e02c     ExitObject.obj
- 0002:00009040       $SG105516                  0047e040     ExitObject.obj
- 0002:00009048       $SG105517                  0047e048     ExitObject.obj
- 0002:000090b0       $SG105518                  0047e0b0     ExitObject.obj
- 0002:00009180       $SG105519                  0047e180     ExitObject.obj
- 0002:000091d0       $SG105520                  0047e1d0     ExitObject.obj
- 0002:000091f8       $SG105951                  0047e1f8     ExitObject.obj
+ 0002:00008e50       $SG108390                  0047de50     ExitObject.obj
+ 0002:00008e64       $SG108391                  0047de64     ExitObject.obj
+ 0002:00008e68       $SG108392                  0047de68     ExitObject.obj
+ 0002:00008ed0       $SG108393                  0047ded0     ExitObject.obj
+ 0002:00008fa0       $SG108394                  0047dfa0     ExitObject.obj
+ 0002:00008ff0       $SG108395                  0047dff0     ExitObject.obj
+ 0002:00009018       $SG108825                  0047e018     ExitObject.obj
+ 0002:00009080       $SG109576                  0047e080     ExitObject.obj
+ 0002:0000909c       $SG109577                  0047e09c     ExitObject.obj
+ 0002:000090a0       $SG109578                  0047e0a0     ExitObject.obj
+ 0002:0000910c       $SG109580                  0047e10c     ExitObject.obj
+ 0002:00009138       $SG109579                  0047e138     ExitObject.obj
+ 0002:0000920c       $SG109581                  0047e20c     ExitObject.obj
+ 0002:00009244       $SG93757                   0047e244     ExitObject.obj
  0002:00009330       $SG95050                   0047e330     FlashingDemo.obj
  0002:00009344       $SG95051                   0047e344     FlashingDemo.obj
  0002:00009348       $SG95052                   0047e348     FlashingDemo.obj
@@ -10097,37 +10097,37 @@
  0002:000095ec       $SG95552                   0047e5ec     FlashingDemo.obj
  0002:00009618       $SG95551                   0047e618     FlashingDemo.obj
  0002:000096ec       $SG95553                   0047e6ec     FlashingDemo.obj
- 0002:000098b8       $SG98503                   0047e8b8     FloorManager.obj
- 0002:000098c8       $SG98504                   0047e8c8     FloorManager.obj
- 0002:000098d0       $SG98505                   0047e8d0     FloorManager.obj
- 0002:000098d8       $SG98506                   0047e8d8     FloorManager.obj
- 0002:000098e0       $SG98507                   0047e8e0     FloorManager.obj
- 0002:000098e8       $SG98511                   0047e8e8     FloorManager.obj
- 0002:000098f0       $SG98958                   0047e8f0     FloorManager.obj
- 0002:00009900       $SG102437                  0047e900     FloorManager.obj
- 0002:00009914       $SG102438                  0047e914     FloorManager.obj
- 0002:00009924       $SG102439                  0047e924     FloorManager.obj
- 0002:0000992c       $SG102440                  0047e92c     FloorManager.obj
- 0002:00009950       $SG102441                  0047e950     FloorManager.obj
- 0002:0000996c       $SG102442                  0047e96c     FloorManager.obj
- 0002:00009974       $SG102444                  0047e974     FloorManager.obj
- 0002:00009978       $SG102446                  0047e978     FloorManager.obj
- 0002:0000997c       $SG102447                  0047e97c     FloorManager.obj
- 0002:00009980       $SG102450                  0047e980     FloorManager.obj
- 0002:00009990       $SG102451                  0047e990     FloorManager.obj
- 0002:0000999c       $SG121032                  0047e99c     FloorManager.obj
- 0002:000099b0       $SG121033                  0047e9b0     FloorManager.obj
- 0002:000099b4       $SG122460                  0047e9b4     FloorManager.obj
- 0002:000099d0       $SG121034                  0047e9d0     FloorManager.obj
- 0002:00009a38       $SG121035                  0047ea38     FloorManager.obj
- 0002:00009b08       $SG121036                  0047eb08     FloorManager.obj
- 0002:00009b58       $SG121037                  0047eb58     FloorManager.obj
- 0002:00009b80       $SG122190                  0047eb80     FloorManager.obj
- 0002:00009be8       $SG122461                  0047ebe8     FloorManager.obj
- 0002:00009bec       $SG122464                  0047ebec     FloorManager.obj
- 0002:00009c18       $SG122462                  0047ec18     FloorManager.obj
- 0002:00009c84       $SG122465                  0047ec84     FloorManager.obj
- 0002:00009cc0       $SG122463                  0047ecc0     FloorManager.obj
+ 0002:000098b8       $SG98505                   0047e8b8     FloorManager.obj
+ 0002:000098c8       $SG98506                   0047e8c8     FloorManager.obj
+ 0002:000098d0       $SG98507                   0047e8d0     FloorManager.obj
+ 0002:000098d8       $SG98508                   0047e8d8     FloorManager.obj
+ 0002:000098e0       $SG98509                   0047e8e0     FloorManager.obj
+ 0002:000098e8       $SG98513                   0047e8e8     FloorManager.obj
+ 0002:000098f0       $SG98959                   0047e8f0     FloorManager.obj
+ 0002:00009900       $SG102439                  0047e900     FloorManager.obj
+ 0002:00009914       $SG102440                  0047e914     FloorManager.obj
+ 0002:00009924       $SG102441                  0047e924     FloorManager.obj
+ 0002:0000992c       $SG102442                  0047e92c     FloorManager.obj
+ 0002:00009950       $SG102443                  0047e950     FloorManager.obj
+ 0002:0000996c       $SG102444                  0047e96c     FloorManager.obj
+ 0002:00009974       $SG102446                  0047e974     FloorManager.obj
+ 0002:00009978       $SG102448                  0047e978     FloorManager.obj
+ 0002:0000997c       $SG102449                  0047e97c     FloorManager.obj
+ 0002:00009980       $SG102452                  0047e980     FloorManager.obj
+ 0002:00009990       $SG102453                  0047e990     FloorManager.obj
+ 0002:0000999c       $SG121034                  0047e99c     FloorManager.obj
+ 0002:000099b0       $SG121035                  0047e9b0     FloorManager.obj
+ 0002:000099b4       $SG122462                  0047e9b4     FloorManager.obj
+ 0002:000099d0       $SG121036                  0047e9d0     FloorManager.obj
+ 0002:00009a38       $SG121037                  0047ea38     FloorManager.obj
+ 0002:00009b08       $SG121038                  0047eb08     FloorManager.obj
+ 0002:00009b58       $SG121039                  0047eb58     FloorManager.obj
+ 0002:00009b80       $SG122192                  0047eb80     FloorManager.obj
+ 0002:00009be8       $SG122463                  0047ebe8     FloorManager.obj
+ 0002:00009bec       $SG122466                  0047ebec     FloorManager.obj
+ 0002:00009c18       $SG122464                  0047ec18     FloorManager.obj
+ 0002:00009c84       $SG122467                  0047ec84     FloorManager.obj
+ 0002:00009cc0       $SG122465                  0047ecc0     FloorManager.obj
  0002:0000c5e8       $SG83587                   004815e8     ImageObjectDemo.obj
  0002:0000c5fc       $SG83595                   004815fc     ImageObjectDemo.obj
  0002:0000c608       $SG83600                   00481608     ImageObjectDemo.obj
@@ -10593,20 +10593,20 @@
  0002:00016634       $SG97955                   0048b634     StateRunning.obj
  0002:00016640       $SG97956                   0048b640     StateRunning.obj
  0002:00016648       $SG98046                   0048b648     StateRunning.obj
- 0002:000169b8       $SG112606                  0048b9b8     StateStart.obj
- 0002:000169cc       $SG112607                  0048b9cc     StateStart.obj
- 0002:000169d0       $SG112608                  0048b9d0     StateStart.obj
- 0002:00016a38       $SG112609                  0048ba38     StateStart.obj
- 0002:00016b08       $SG112610                  0048bb08     StateStart.obj
- 0002:00016b58       $SG112611                  0048bb58     StateStart.obj
- 0002:00016b80       $SG113057                  0048bb80     StateStart.obj
- 0002:00016be8       $SG113321                  0048bbe8     StateStart.obj
- 0002:00016c04       $SG113322                  0048bc04     StateStart.obj
- 0002:00016c08       $SG113323                  0048bc08     StateStart.obj
- 0002:00016c74       $SG113325                  0048bc74     StateStart.obj
- 0002:00016ca0       $SG113324                  0048bca0     StateStart.obj
- 0002:00016d74       $SG113326                  0048bd74     StateStart.obj
- 0002:00016dac       $SG98004                   0048bdac     StateStart.obj
+ 0002:000169b8       $SG112608                  0048b9b8     StateStart.obj
+ 0002:000169cc       $SG112609                  0048b9cc     StateStart.obj
+ 0002:000169d0       $SG112610                  0048b9d0     StateStart.obj
+ 0002:00016a38       $SG112611                  0048ba38     StateStart.obj
+ 0002:00016b08       $SG112612                  0048bb08     StateStart.obj
+ 0002:00016b58       $SG112613                  0048bb58     StateStart.obj
+ 0002:00016b80       $SG113059                  0048bb80     StateStart.obj
+ 0002:00016be8       $SG113323                  0048bbe8     StateStart.obj
+ 0002:00016c04       $SG113324                  0048bc04     StateStart.obj
+ 0002:00016c08       $SG113325                  0048bc08     StateStart.obj
+ 0002:00016c74       $SG113327                  0048bc74     StateStart.obj
+ 0002:00016ca0       $SG113326                  0048bca0     StateStart.obj
+ 0002:00016d74       $SG113328                  0048bd74     StateStart.obj
+ 0002:00016dac       $SG98006                   0048bdac     StateStart.obj
  0002:00016f38       $SG95131                   0048bf38     TileManager.obj
  0002:00016f4c       $SG95132                   0048bf4c     TileManager.obj
  0002:00016f50       $SG95133                   0048bf50     TileManager.obj
@@ -11396,8 +11396,8 @@
  0002:00022b14       __ehfuncinfo$??$?0ABQAVEnemyObject@@@?$_List_node_emplace_op2@V?$allocator@U?$_List_node@PAVEnemyObject@@PAX@std@@@std@@@std@@QAE@AAV?$allocator@U?$_List_node@PAVEnemyObject@@PAX@std@@@1@ABQAVEnemyObject@@@Z 00497b14     StateRunning.obj
  0002:00022b3c       __unwindtable$?virtSetupBackgroundBuffer@StateStart@@UAEXXZ 00497b3c     StateStart.obj
  0002:00022b5c       __ehfuncinfo$?virtSetupBackgroundBuffer@StateStart@@UAEXXZ 00497b5c     StateStart.obj
- 0002:00022b88       __unwindtable$??0ExitObject@@QAE@PAVBaseEngine@@HH@Z 00497b88     StateStart.obj
- 0002:00022b98       __ehfuncinfo$??0ExitObject@@QAE@PAVBaseEngine@@HH@Z 00497b98     StateStart.obj
+ 0002:00022b88       __unwindtable$??0ExitObject@@QAE@PAVBaseEngine@@PAVRoom@@HH@Z 00497b88     StateStart.obj
+ 0002:00022b98       __ehfuncinfo$??0ExitObject@@QAE@PAVBaseEngine@@PAVRoom@@HH@Z 00497b98     StateStart.obj
  0002:00022bc4       __unwindtable$??0BouncingBall1@@QAE@PAVBouncingBallMain@@HHHHPBDHHPAVTileManager@@@Z 00497bc4     BouncingBall.obj
  0002:00022bcc       __unwindtable$??0BouncingBall@@QAE@PAVBouncingBallMain@@HHHHPBDHH@Z 00497bcc     BouncingBall.obj
  0002:00022bd4       __ehfuncinfo$??0BouncingBall1@@QAE@PAVBouncingBallMain@@HHHHPBDHHPAVTileManager@@@Z 00497bd4     BouncingBall.obj
