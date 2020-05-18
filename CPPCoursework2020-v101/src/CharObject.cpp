@@ -57,82 +57,51 @@ void CharObject::onProjectileHit(CharObject* target)
 
 //Using Bresenham's Line Algorithm to find the list of tiles between two points, then returning false if any of those tiles are solid
 //Also returns false if there are too many tiles between the points (ie. out of the given range)
-/*
-bool CharObject::lineOfSight(const int x1, const int y1, const int x2, const int y2, const int range) {
-
-	std::list<std::tuple<int, int>> los;
-
-	//Algorithm performed using only integer operations (fast and easy)
-	int dy = y2 - y1;
-	int dx = x2 - x1;
-	int D = 2 * dy - dx;
-	int y = y1;
-	int length = 0;
-
-	for (int x = x1; x <= x2; x += TILE_SIZE) {
-		std::cout << "(" << x << "," << y << ")\n";
-
-		los.push_back(std::make_tuple(x, y));
-		length++;
-
-		//Increment y when it's time to slope
-		if (D >= 0) {
-			y += TILE_SIZE;
-			D -= 2 * dx;
-		}
-		D += 2 * dy;
-	}
-
-	//Check length of line, return false if greater than the range
-	//(range ignored if set to zero or less)
-	if (range == 0 || length > range) {
-		std::cout << "Target out of range\n";
-		return false;
-	}
-
-	//Check if any tiles are solid, return false if any found
-	for (auto it = los.begin(); it != los.end(); it++) {
-		auto tiles = pEngine->GetTilesSolid();
-		int x = std::get<0>(*it);
-		int y = std::get<1>(*it);
-
-		if (tiles->isValidTilePosition(x,y)) {
-			if (tiles->getMapValue(tiles->getMapXForScreenX(x), tiles->getMapYForScreenY(y)) != 0) {
-				std::cout << "Line of sight blocked\n";
-				return false;
-			}
-		}
-	}
-
-	return true;
-}*/
-
-
 bool CharObject::lineOfSight(int x0, int y0, int x1, int y1, const int range) {
+
+	//Translating between actual coords and tile numbers. just doing it with the actual coords didn't work before :/
 	x0 /= TILE_SIZE; y0 /= TILE_SIZE;
 	x1 /= TILE_SIZE; y1 /= TILE_SIZE;
 
 	std::list<std::tuple<int, int>> los;
 
-	//Algorithm performed using only integer operations (fast and easy)
-	int dx = abs(x1 - x0), sx = x0 < x1 ? 1 : -1;
-	int dy = -abs(y1 - y0), sy = y0 < y1 ? 1 : -1;
-	int err = dx + dy, e2; /* error value e_xy */
+	//Using the integer-only operations version. Should work regardless of whether x0 > x1 or anything like that, unlike my last attempt
+	int dx = abs(x1 - x0);
+	int sx; if (x0 < x1) sx = 1; else sx = -1;
 
-	for (;;) {  /* loop */
+	int dy = -abs(y1 - y0);
+	int sy; if (y0 < y1) sy = 1; else sy = -1;
+
+	int err = dx + dy, e2;
+
+	while(true) {
+		//Add this coord to the list (and multiply by tile size to get actual coords)
 		los.push_back(std::make_tuple(x0 * TILE_SIZE, y0 * TILE_SIZE));
-		std::cout << "(" << x0 * TILE_SIZE << "," << y0 * TILE_SIZE << ")\n";
 
+		//std::cout << "(" << x0 * TILE_SIZE << "," << y0 * TILE_SIZE << ")\n";
+
+		//Reached target
 		if (x0 == x1 && y0 == y1) break;
+
+		//Check if it's time to move on the slope yet
 		e2 = 2 * err;
-		if (e2 >= dy) { err += dy; x0 += sx; } /* e_xy+e_x > 0 */
-		if (e2 <= dx) { err += dx; y0 += sy; } /* e_xy+e_y < 0 */
+		if (e2 >= dy) {
+			err += dy;
+			x0 += sx;
+		}
+
+		if (e2 <= dx) {
+			err += dx;
+			y0 += sy;
+		}
 	}
+
+	//LIST COMPLETE: now we check its elements:
 
 	//Check length of line, return false if greater than the range
 	//(range ignored if set to zero or less)
 	if (range == 0 || los.size() > range) {
-		std::cout << "Target out of range\n";
+		//std::cout << "Target out of range\n";
 		return false;
 	}
 
@@ -144,7 +113,7 @@ bool CharObject::lineOfSight(int x0, int y0, int x1, int y1, const int range) {
 
 		if (tiles->isValidTilePosition(x, y)) {
 			if (tiles->getMapValue(tiles->getMapXForScreenX(x), tiles->getMapYForScreenY(y)) != 0) {
-				std::cout << "Line of sight blocked\n";
+				//std::cout << "Line of sight blocked\n";
 				return false;
 			}
 		}
