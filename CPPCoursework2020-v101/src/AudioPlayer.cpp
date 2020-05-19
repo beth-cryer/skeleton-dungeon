@@ -25,7 +25,10 @@ int AudioPlayer::audioInit()
 		return 1;
 	}
 
+	//too loud for me by default, haha
 	Mix_VolumeMusic(MIX_MAX_VOLUME / 4);
+	Mix_Volume(1, MIX_MAX_VOLUME / 4);
+	Mix_Volume(2, MIX_MAX_VOLUME / 4);
 
 	return 0;
 }

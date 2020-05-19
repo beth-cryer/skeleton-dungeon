@@ -15,8 +15,9 @@ void ExitObject::virtDraw()
 void ExitObject::virtDoUpdate(int iCurrentTime)
 {
 	if (activate) {
+		pEngine->currentFloor++;
 		pEngine->GetAudio()->playAudio("sfx/objects/Open2.ogg", -1, 0);
-		pRoom->onExit();
+		//pRoom->onExit();
 
 		//Generate and load next floor (delete objects first)
 		pEngine->nextLevel();

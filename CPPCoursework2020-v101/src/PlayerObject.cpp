@@ -60,6 +60,9 @@ void PlayerObject::virtDoUpdate(int iCurrentTime)
 		pEngine->skillUps+=3;
 		//Every 2 levels, increase stamina by 1
 		if ((pEngine->level-1) % 2 == 0) pEngine->maxStamina++;
+
+		//Back to max HP
+		pEngine->health = pEngine->maxHealth;
 	}
 
 	//REQ 4. (2/2) Keyboard input handled
@@ -125,7 +128,8 @@ void PlayerObject::virtMouseDown(int iButton, int iX, int iY)
 					if (lineOfSight(pEngine->GetPlayer()->getXPos(), pEngine->GetPlayer()->getYPos(), pEnemy->getXPos(), pEnemy->getYPos(), wep->range)) {
 						//Attack if in range
 						currentState = CharState::stateAttack;
-						anim_frame = 0;
+						
+						resetAnim();
 
 						pEngine->GetAudio()->playAudio("sfx/combat/Slash2.ogg", -1, 0);
 						pEngine->attacks--;
@@ -207,7 +211,7 @@ void PlayerObject::move(int xmove, int ymove, int currentTime, int time)
 	//set flipX accordingly (only change if we switch directions)
 	if (xmove > 0) flipX = false; else if (xmove < 0) flipX = true;
 
-	pEngine->GetAudio()->playAudio("sfx/combat/fst_conc_solid_run_01.wav", -1, 0);
+	pEngine->GetAudio()->playAudio("sfx/combat/Run1.wav", -1, 0);
 	pEngine->stamina--;
 
 	CharObject::move(xmove, ymove, currentTime, time);

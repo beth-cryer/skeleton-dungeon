@@ -235,7 +235,7 @@ void GameEngine::saveGame()
 	auto sm = &saveManager; //shorter pointer for easier readability
 	auto save = sm->openFile("saves/save.txt");
 
-	sm->writeLine("name",playerName);
+	sm->writeLine("name", playerName);
 	sm->writeLine("level", level);
 	sm->writeLine("exp", exp);
 	sm->writeLine("expnext", expNext);
@@ -251,6 +251,8 @@ void GameEngine::saveGame()
 	sm->writeLine("strength", strength);
 	sm->writeLine("ranged", ranged);
 	sm->writeLine("defence", defence);
+
+	sm->writeLine("floor", currentFloor);
 
 	sm->closeFile();
 }
@@ -278,6 +280,8 @@ void GameEngine::loadGame()
 	ranged = std::stoi(loader->getSaveData("ranged"));
 	defence = std::stoi(loader->getSaveData("defence"));
 
+	currentFloor = std::stoi(loader->getSaveData("floor"));
+
 	//std::string solidTiles = loader->getSaveData("solid");
 	//std::string solidBack = loader->getSaveData("back");
 }
@@ -292,4 +296,5 @@ void GameEngine::resetStats()
 	exp = 0, expNext = 50, level = 1, skillUps = 0;
 	maxAttacks = 1, attacks = maxAttacks;
 	skillUps = 3;
+	currentFloor = 1;
 }

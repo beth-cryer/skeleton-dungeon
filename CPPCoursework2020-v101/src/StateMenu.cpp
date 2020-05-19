@@ -33,6 +33,9 @@ void StateMenu::onStateEnter()
 		stateEditor = new StateEditor(pEngine);
 	}
 
+	//Reset inventory to default
+	pEngine->GetTilesInv()->setInvDefault();
+
 	//Create UI buttons
 	buttons.clear();
 	buttons.push_back(std::unique_ptr<Button>(new ButtonChangeState(pEngine, stateCharCreate, 550, 250, 230, 40, 0x2159ff, 0xd4e4ff, "New Game", fntButtons)));
@@ -228,7 +231,7 @@ void StateCharCreate::virtKeyDown(int iKeyCode)
 		}
 
 		//Backspace - delete last letter if there are any letters
-		if (iKeyCode == SDLK_BACKSPACE && charInput.length() > 0) {
+		if (iKeyCode == SDLK_BACKSPACE && charInput.length() > 0 && charInput.length() < 16) {
 			charInput.pop_back();
 			pEngine->redrawDisplay();
 		}

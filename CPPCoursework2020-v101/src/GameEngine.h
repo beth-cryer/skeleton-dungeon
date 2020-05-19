@@ -82,6 +82,7 @@ public:
 	//SETTERS
 	void SetTilesSolid(std::shared_ptr<SolidTileManager> newTiles) { objTilesSolid = newTiles; }
 	void SetTilesBack(std::shared_ptr<BackgroundTileManager> newTiles) { objTilesBack = newTiles; }
+	void SetTilesInv(std::shared_ptr<InventoryTileManager> newTiles) { objInvTiles = newTiles; }
 	void SetPlayer(PlayerObject* newPlayer) { player = newPlayer; }
 
 	//For scrolling and zooming the draw Surfaces
@@ -98,6 +99,7 @@ public:
 	int strength, ranged, defence;
 	int exp, expNext, level, skillUps;
 	int maxAttacks, attacks;
+	int currentFloor;
 
 	//Current floor
 	std::vector<std::vector<Room*>> floor;

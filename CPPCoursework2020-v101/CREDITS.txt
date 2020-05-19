@@ -1,8 +1,8 @@
 Some Music and SFX from RPG Maker, which I own a copy of
 + Darren Curtis' Commercially Free Music
-+ some stuff from a game soundpack I bought ages ago
++ some stuff from a game soundpack I bought ages ago on Humble Bundle (Mega Music Collection)
 
-Enemy and Player sprites are from Heroes of Might and Magic II (ripped by Cyrus Annihilator)
+Enemy and Player sprites are from Heroes of Might and Magic II, released 1996 (ripped by Cyrus Annihilator)
 https://www.spriters-resource.com/pc_computer/heroesofmightandmagic2/
 
 Weapons and Items are mostly from Terraria

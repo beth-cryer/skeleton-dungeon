@@ -13,6 +13,8 @@
 #include "SaveManager.h"
 #include "FloorManager.h"
 
+#include "Weapon.h"
+
 StateStart::StateStart(GameEngine* pEngine) : BaseState(pEngine)
 {
 
@@ -24,26 +26,11 @@ void StateStart::virtSetupBackgroundBuffer()
 {
 	pEngine->createObjects();
 
-	//INIT TILE MANAGERS
-	std::shared_ptr<InventoryTileManager> invTiles = pEngine->GetTilesInv();
+	auto invTiles = pEngine->GetTilesInv();
+	//Set default Weapon to first item in Inventory (Wood Sword by default)
+	std::shared_ptr<Weapon> wep(std::dynamic_pointer_cast<Weapon>(invTiles->getItemAt(0)));
 
-	//SETUP INVENTORY
-	int inv[4][4] = {
-		{1,-1,1,2},
-		{0,3,-1,-1},
-		{-1,2,2,2},
-		{-1,-1,1,2}
-	};
-
-	int w = 4, h = 4;
-	invTiles->setMapSize(w, h);
-	for (int x = 0; x < w; x++) {
-		for (int y = 0; y < h; y++)
-			invTiles->setMapValue(x, y, inv[y][x]);
-	}
-
-	invTiles->setTopLeftPositionOnScreen(WIN_CENTREX - (w * 64) / 2, WIN_CENTREY + 32 - (h * 64) / 2);
-
+	pEngine->SetPlayer(new PlayerObject(pEngine, wep));
 
 	//GENERATE FLOOR
 	srand(time(NULL));

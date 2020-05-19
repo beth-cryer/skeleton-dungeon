@@ -4,7 +4,7 @@
 EnemyCultist::EnemyCultist(BaseEngine* pEngine, Room* room, int xStart, int yStart)
 	: EnemyObject(xStart, yStart, pEngine, room, TILE_SIZE, TILE_SIZE, true,
 		std::make_shared<Bow>((GameEngine*)pEngine), "Cultist", "A mage that wields occult magicks", 12, 3, 1, 4, 25, 1,
-		"sfx/monsters/Monster2.ogg", "sfx/combat/fst_conc_solid_run_01.wav")
+		"sfx/monsters/Monster2.ogg", "sfx/combat/Run1.wav")
 {
 	imgSprites = ImageManager::loadImage("sprites/chars/cultist.png", true);
 }

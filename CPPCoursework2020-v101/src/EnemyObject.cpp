@@ -149,8 +149,8 @@ void EnemyObject::AI()
 	attacks = maxAttacks;
 
 	//Signal to Engine that it's the next enemy's turn
-	auto e = dynamic_cast<StateEnemyTurn*>(pEngine->getState());
-	if (e) e->triggerNextEnemy();
+	auto s = dynamic_cast<StateEnemyTurn*>(pEngine->getState());
+	if (s) s->triggerNextEnemy();
 	else
 		std::cout << "Should be in Enemy Turn state, but we ain't. Something is terribly wrong <0__0>"; //ERROR TIME (wrong state)
 

@@ -39,6 +39,14 @@ public:
 
 };
 
+class MegaDeathSword :
+	public Weapon
+{
+public:
+	MegaDeathSword(GameEngine* pEngine) : Weapon(pEngine, 13, "Mega Death Sword", "Unleash death.", 8, 2, WepType::phys, "sfx/combat/Thunder7.ogg") {}
+
+};
+
 class Bow :
 	public Weapon
 {

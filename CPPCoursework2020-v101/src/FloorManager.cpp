@@ -5,6 +5,7 @@
 #include "PlayerObject.h"
 #include "ExitObject.h"
 #include "DoorObject.h"
+#include "ItemObject.h"
 
 #include "StateRunning.h"
 
@@ -12,6 +13,8 @@
 #include "EnemyCultist.h"
 #include "EnemyDragon.h"
 #include "EnemyElf.h"
+
+#include "Consumable.h"
 
 	//ROOM FUNCTIONS
 
@@ -100,7 +103,10 @@ void Room::setSpecialTiles(int x, int y, int id)
 	case(6): objects.push_back(new DoorObject(pEngine, this, 2, 31, x * TILE_SIZE, y * TILE_SIZE)); break; //UP
 	case(7): objects.push_back(new DoorObject(pEngine, this, 3, 31, x * TILE_SIZE, y * TILE_SIZE)); break; //LEFT
 
-	case(8): break; //TREASURE
+	case(8):
+		std::shared_ptr<Item> item(new LesserHealthPotion(pEngine));
+		objects.push_back(new ItemObject(x * TILE_SIZE, y * TILE_SIZE, pEngine, item));
+		break; //TREASURE
 	}
 }
 
@@ -194,7 +200,7 @@ void Room::onEnter(int dir) {
 
 	pEngine->drawableObjectsChanged();
 	//Add player to the room in starting position
-	pEngine->SetPlayer(new PlayerObject(pEngine, std::make_shared<WoodSword>(pEngine)));
+	//pEngine->SetPlayer(new PlayerObject(pEngine, std::make_shared<WoodSword>(pEngine)));
 
 	//Get position to place:
 	int x = xEnter; int y = yEnter; //(starting pos by default, if no door id is given)
@@ -245,8 +251,6 @@ void Room::onExit()
 
 	//Destroy any existing objects (but don't free their memory, except for Player)
 	pEngine->destroyOldObjects(false);
-
-	delete pEngine->GetPlayer();
 }
 
 

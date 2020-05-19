@@ -27,11 +27,11 @@ public:
 
 protected:
 	Font* fntText;
+	bool enemyTurn = false;
 
 private:
 	StatePaused* statePaused = nullptr;
 	StateEnemyTurn* stateEnemyTurn = nullptr;
-	bool enemyTurn = false;
 
 };
 

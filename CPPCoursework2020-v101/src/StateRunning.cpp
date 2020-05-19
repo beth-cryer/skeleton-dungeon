@@ -10,6 +10,8 @@
 StateRunning::StateRunning(GameEngine* pEngine) : BaseState(pEngine)
 {
 	fntText = pEngine->getFont("fonts/gameplay.ttf", 15);
+
+	enemyTurn = false;
 }
 
 StateRunning::~StateRunning()
@@ -26,8 +28,6 @@ void StateRunning::onStateEnter()
 		statePaused = new StatePaused(pEngine);
 		stateEnemyTurn = new StateEnemyTurn(pEngine);
 	}
-
-	enemyTurn = false;
 }
 
 void StateRunning::onStateExit()
@@ -53,6 +53,10 @@ void StateRunning::virtDrawStringsOnTop()
 	//EXP Bar
 	std::string printExp = "EXP: " + std::to_string(pEngine->exp) + " / " + std::to_string(pEngine->expNext);
 	pEngine->drawBar(10, 10, 40, 300, printExp, pEngine->exp, pEngine->expNext, 0xfcdf03, 0xffee96);
+
+	//Current Floor
+	std::string printFloor = "Floor: " + std::to_string(pEngine->currentFloor);
+	pEngine->drawForegroundString(12, 50, printFloor.c_str(), 0xffffff, NULL);
 
 	//Health Bar
 	std::string printHealth = "Health: " + std::to_string(pEngine->health) + " / " + std::to_string(pEngine->maxHealth);
@@ -134,7 +138,6 @@ void StateRunning::virtKeyDown(int iKeyCode)
 
 		//NEXT TURN
 		if (iKeyCode == SDLK_SPACE) {
-			enemyTurn = true;
 			pEngine->setState(stateEnemyTurn);
 		}
 
@@ -452,7 +455,7 @@ void StatePaused::virtMouseWheel(int x, int y, int which, int timestamp)
 
 StateEnemyTurn::StateEnemyTurn(GameEngine* pEngine) : StateRunning(pEngine)
 {
-
+	enemyTurn = true;
 }
 
 void StateEnemyTurn::onStateEnter()

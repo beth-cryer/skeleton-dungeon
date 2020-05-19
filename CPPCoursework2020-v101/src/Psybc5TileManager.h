@@ -1,6 +1,7 @@
 #pragma once
 #include "TileManager.h"
 #include "Item.h"
+#include "Weapon.h"
 #include "Consumable.h"
 
 #include <ctime>
@@ -97,14 +98,7 @@ public:
 		: TileManager(64, 64),
 		pEngine(pEngine)
 	{
-		srand(time(NULL));
-
-		for (int i = 0; i < invSize; i++) {
-			//std::shared_ptr<Item> item(new Item(pEngine, rand() % 5,"Test","A test item"));
-
-			std::shared_ptr<Item> item(new LesserHealthPotion(pEngine));
-			invArray.push_back(item);
-		}
+		setInvDefault();
 	}
 
 	~InventoryTileManager(void)
@@ -114,13 +108,36 @@ public:
 
 	virtual void virtDrawTileAt(BaseEngine* pEngine, DrawingSurface* pSurface, int iMapX, int iMapY, int iStartPositionScreenX, int iStartPositionScreenY) const override;
 
+	//Add item to the array
+	bool addItem(std::shared_ptr<Item> item)
+	{
+		int index = -1;
+		//Find an empty tile to add it to
+		for (int i = 0; i < invArray.size(); i++) {
+			if (invArray[i] == nullptr) {
+				index = i;
+				break;
+			}
+		}
+		//(if doesn't exit, don't allow it)
+		if (index != -1) {
+			invArray[index] = item;
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+
 	//Get item from array
-	std::shared_ptr<Item> getItemAt(int i) {
+	std::shared_ptr<Item> getItemAt(int i)
+	{
 		return invArray.at(i);
 	}
 
 	//Remove item by reference
-	void removeItem(std::shared_ptr<Item> item) {
+	void removeItem(std::shared_ptr<Item> item)
+	{
 		for (auto it = invArray.begin(); it != invArray.end(); it++) {
 			if (*it == item) {
 				*it = nullptr; //Find item pointer that matches, and set iterator to nullptr
@@ -130,8 +147,37 @@ public:
 	}
 
 	//Set item in array
-	void setItemAt(int i, std::shared_ptr<Item> item) {
+	void setItemAt(int i, std::shared_ptr<Item> item)
+	{
 		invArray[i] = item;
+	}
+
+
+	//Set default inventory (at the start of a run)
+	void setInvDefault()
+	{
+		invArray.clear();
+
+		//Set inv array
+		std::shared_ptr<Item> wep(new WoodSword(pEngine));
+		invArray.push_back(wep);
+
+		std::shared_ptr<Item> wep2(new MegaDeathSword(pEngine));
+		invArray.push_back(wep2);
+
+		for (int i = 2; i < invSize; i++) {
+			std::shared_ptr<Item> item(new LesserHealthPotion(pEngine));
+			invArray.push_back(item);
+		}
+
+		//Set map tiles
+		int w = 4, h = 4;
+		setMapSize(w, h);
+		for (int x = 0; x < w; x++) {
+			for (int y = 0; y < h; y++)
+				setMapValue(x, y, x + (y * 4)); //Label by index of inv array
+		}
+		setTopLeftPositionOnScreen(WIN_CENTREX - (w * 64) / 2, WIN_CENTREY + 32 - (h * 64) / 2);
 	}
 
 private:
@@ -140,7 +186,7 @@ private:
 	SimpleImage invSlot = ImageManager::loadImage("sprites/invSlot.png", true);
 	SimpleImage invSprites = ImageManager::loadImage("sprites/items.png", true);
 
-	int invSize = 8;
+	int invSize = 16;
 
 	//Vector of Smart Points to Items (Items destroyed when no longer in use)
 	//Using shared_ptr since item pointers get copied all the time (they are transferred to and from from ItemObjects when picking up and dropping)
